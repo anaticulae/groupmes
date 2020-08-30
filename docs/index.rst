@@ -1,5 +1,9 @@
-Welcome to good old times
-=================================
+Welcome to groupme
+===============
+
+.. toctree::
+  :maxdepth: 1
+  technique/index
 
 Progress
 --------
@@ -10,6 +14,7 @@ Progress
   releases/releases
   releases/backlog
   pages/changelog
+
 
 Modules
 --------------------
@@ -24,4 +29,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
