@@ -22,31 +22,28 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 PACKAGE = groupme.PACKAGE
 
 RESOURCES = [
-    power.MASTER116_PDF,
-    power.MASTER099_PDF,
-    power.MASTER098_PDF,
-    power.BACHELOR090_PDF,
-    power.BACHELOR241_PDF,
+    (power.MASTER116_PDF, '50:117'),
+    (power.MASTER099_PDF, '0:15'),
+    (power.MASTER098_PDF, '0:15'),
+    (power.BACHELOR090_PDF, '0:25'),
+    (power.BACHELOR241_PDF, '0:100'),
     power.HOMEWORK018_PDF,
     (power.DISS264_PDF, '0:50'),
     (power.BACHELOR056_PDF, '0:55'),
     (power.MASTER089_PDF, '0:89'),
-    power.BACHELOR076_PDF,
+    (power.BACHELOR076_PDF, '0:15'),
     power.MASTER072_PDF,
     power.BACHELOR111_PDF,
     power.BACHELOR037_PDF,
     (power.BACHELOR063_PDF, '0:9,59:62'),
-    power.HOMEWORK025_PDF,
     power.DOCU27_PDF,
     power.TECHNICAL_024,
     power.DOCU14_PDF,
     power.DOCU07_PDF,
     power.BOOK007_PDF,
     power.DOCU09_PDF,
-    power.DOCU35_PDF,
     (power.HOMEWORK050_PDF, '0:10'),
     (power.ORDER009_PDF, '0:10'),
-    (power.MASTER078_PDF, '0:5'),
     (power.MASTER083_PDF, '0:10'),
 ]
 
@@ -96,24 +93,4 @@ def extract_notitle(resources):
         groupme=True,
         pages='0:10',
         worker=1,
-    )
-
-
-RESOURCES_SECTIONSANDWORDS = [
-    (power.MASTER072_PDF, '0:16'),
-]
-
-
-def extract_sectionsandwords(resources):
-    destination = power.generated(folder='sectionsandwords')
-    tests.example.extract(
-        resources + [power.REPOSITORY],
-        destination=destination,
-        caption=True,
-        detector=True,
-        groupme=True,
-        sections=True,
-        textflow=True,
-        words=True,
-        pages=':',
     )
