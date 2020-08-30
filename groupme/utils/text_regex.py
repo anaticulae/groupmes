@@ -7,18 +7,41 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-# ensure that test data is generated with the right version of rawmaker
-rawmaker==2.4.0
+# Unicode special minus sign
 
-# reference to test data
-power==0.15.0
+USER_CHARACTER = [
+    "'",
+    '!',
+    '"',
+    '&',
+    ',',
+    '/',
+    ':',
+    ';',
+    '?',
+    'ß',
+    '–',  # special minus sign
+    '‘',
+    '’',
+    '‚',
+    '“',
+    '”',
+    '„',
+    '…',
+    r'\(',
+    r'\)',
+    r'\-',
+    r'\.',
+    r'\[',
+    r'\]',
+    r'\d',
+    r'\w',
+]
 
-# test data generator
-jam==0.2.18
+UC_NWS = ''.join(USER_CHARACTER)
+UC = UC_NWS + ' '  # user content with whitespace
+UC_WS_NL = UC + r'\s'  # content with whitespace, newline
 
-# generate magic test data
-words==0.15.0
-detector==0.7.3
-
-
-utilatest==0.1.3
+UC_NWS = f'[{UC_NWS}]'
+UC = f'[{UC}]'
+UC_WS_NL = f'[{UC_WS_NL}]'

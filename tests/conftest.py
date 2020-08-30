@@ -9,17 +9,17 @@
 
 import os
 
-import hey
-import hey.example
 import power
 import utila
 import utilatest
 
+import groupme
+import tests.example
 import tests.resources
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-PACKAGE = hey.PACKAGE
+PACKAGE = groupme.PACKAGE
 
 RESOURCES = [
     power.MASTER116_PDF,
@@ -60,7 +60,7 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
 def extract(resources):
     destination = power.generated()
 
-    hey.example.extract(
+    tests.example.extract(
         resources + [power.REPOSITORY],
         destination=destination,
         groupme=True,
@@ -90,7 +90,7 @@ def extract_notitle(resources):
     utila.run_parallel(todo)
 
     # generate
-    hey.example.extract(
+    tests.example.extract(
         without_titlepage + [destination],  # ensure correct parent
         destination,
         groupme=True,
@@ -106,7 +106,7 @@ RESOURCES_SECTIONSANDWORDS = [
 
 def extract_sectionsandwords(resources):
     destination = power.generated(folder='sectionsandwords')
-    hey.example.extract(
+    tests.example.extract(
         resources + [power.REPOSITORY],
         destination=destination,
         caption=True,

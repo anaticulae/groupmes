@@ -7,10 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import hey
 import power
 
-power.setup(hey.ROOT)
+import groupme
+
+power.setup(groupme.ROOT)
 
 RESTRUCT_TOC_LINES = 13
 # the simple example has two 2 chapters, but there are on the same page,

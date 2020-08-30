@@ -20,7 +20,7 @@ import groupme.toc
 import groupme.toc.extractor
 import groupme.toc.group
 import groupme.toc.strategy
-import hey.geometry.double_column
+import groupme.utils.double_column
 
 # minimal percentage of figure lines per page
 MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(20, limit=100.0).value
@@ -100,7 +100,7 @@ def doublecolumn_figure_strategy(ptcns) -> iamraw.Toc:
         return False
 
     def parse(ptcn) -> groupme.toc.TocLines:
-        parsed = hey.geometry.double_column.parse_page(ptcn)
+        parsed = groupme.utils.double_column.parse_page(ptcn)
         if not parsed:
             return []
         result = []
