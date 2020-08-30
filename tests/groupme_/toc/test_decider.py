@@ -7,24 +7,26 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import utila
+import groupme.toc.decider
 
-import groupme
-import tests.resources
+EXAMPLE = [
+    groupme.toc.decider.ExtractionStatistic(
+        validitem_count=67,
+        group_count=13,
+        oneline_factor=0.31,
+    ),
+    groupme.toc.decider.ExtractionStatistic(
+        validitem_count=67,
+        group_count=17,
+        oneline_factor=0.53,
+    ),
+    groupme.toc.decider.ExtractionStatistic(
+        validitem_count=64,
+        group_count=17,
+        oneline_factor=0.53,
+    ),
+]
 
-power.setup(groupme.ROOT)
 
-
-def relative_path(item):
-    item = item.replace(power.REPOSITORY, '')
-    start_with_slash = item[0] in ('/', '\\')
-    if start_with_slash:
-        item = item[1:]
-
-    item = utila.forward_slash(item)
-    return item
-
-
-def prepare(item):
-    return item.replace(utila.NEWLINE, '').replace(' ', '_')[0:40]
+def test_groupme_toc_decider_sort_decisions():
+    assert sorted(EXAMPLE) == EXAMPLE

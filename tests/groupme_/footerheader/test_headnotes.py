@@ -7,24 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import utila
-
-import groupme
-import tests.resources
-
-power.setup(groupme.ROOT)
+import groupme.footer.headnotes
 
 
-def relative_path(item):
-    item = item.replace(power.REPOSITORY, '')
-    start_with_slash = item[0] in ('/', '\\')
-    if start_with_slash:
-        item = item[1:]
-
-    item = utila.forward_slash(item)
-    return item
-
-
-def prepare(item):
-    return item.replace(utila.NEWLINE, '').replace(' ', '_')[0:40]
+def test_parse_headnotes():
+    """Test parsing headnotes based on contemporary"""
+    raw = "INHALTSVERZEICHNIS"
+    parsed = groupme.footer.headnotes.parse_title(raw)
+    assert parsed.title == 'Inhaltsverzeichnis'
+    assert parsed.raw == raw

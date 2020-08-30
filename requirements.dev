@@ -1,30 +1,25 @@
 # =============================================================================
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
-# Copyright (c) 2019-2020 by Helmut Konrad Fahrendholz. All rights reserved.
+# Copyright (c) 2020 by Helmut Konrad Fahrendholz. All rights reserved.
 # This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import utila
+# ensure that test data is generated with the right version of rawmaker
+rawmaker==2.4.0
 
-import groupme
-import tests.resources
+# reference to test data
+power==0.15.0
 
-power.setup(groupme.ROOT)
+# test data generator
+jam==0.2.18
 
-
-def relative_path(item):
-    item = item.replace(power.REPOSITORY, '')
-    start_with_slash = item[0] in ('/', '\\')
-    if start_with_slash:
-        item = item[1:]
-
-    item = utila.forward_slash(item)
-    return item
+# generate magic test data
+words==0.15.0
+detector==0.7.3
+hey==3.11.1
 
 
-def prepare(item):
-    return item.replace(utila.NEWLINE, '').replace(' ', '_')[0:40]
+utilatest==0.1.3

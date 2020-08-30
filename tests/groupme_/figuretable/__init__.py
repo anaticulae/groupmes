@@ -7,7 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-iamraw==2.4.1
-utila==2.8.0
+import serializeraw
 
-configo==0.7.3
+import groupme.path
+import tests.groupme_
+
+
+def extract_figuretable(source, pages, monkeypatch, testdir):
+    pages = ','.join((str(item) for item in pages)) if pages else ''
+    pages = f'--pages={pages}' if pages else ''
+    cmd = f'-i {source} --figuretable {pages}'
+    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+
+    path = groupme.path.figuretable(testdir.tmpdir)
+    figuretable = serializeraw.load_toc(path)
+    return figuretable

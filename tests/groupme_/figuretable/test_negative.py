@@ -7,7 +7,24 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-iamraw==2.4.1
-utila==2.8.0
+import power
+import pytest
 
-configo==0.7.3
+import tests.groupme_.figuretable
+
+
+@pytest.mark.parametrize('source,  pages', [
+    pytest.param(
+        power.link(power.MASTER089_PDF),
+        (85, 86, 87, 88),
+        id='master89_page85_86_87_88',
+    ),
+])
+def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
+    extracted = tests.groupme_.figuretable.extract_figuretable(
+        source,
+        pages,
+        monkeypatch,
+        testdir,
+    )
+    assert not extracted
