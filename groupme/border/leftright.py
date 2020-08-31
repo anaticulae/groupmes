@@ -66,7 +66,7 @@ RAISING_FAILRATE = (
     (7, 2 / 7),
     (10, 3 / 10),
     (40, 10 / 40),
-    (200, 20 / 200),
+    (200, 40 / 200),
 )
 # TODO: SHOULD WE DISABLE ALGO ON BIG FAIL COUNT?
 
