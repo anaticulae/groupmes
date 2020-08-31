@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* support fixed horizontal header on alternating pages (6cc1c5604a60)
+
 ## v0.1.1
 
 ### Documentation
