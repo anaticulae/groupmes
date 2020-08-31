@@ -102,3 +102,13 @@ def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
         pages='0:40',
     )
     assert len(header) == 37
+
+
+def test_groupme_header_diss264_all(testdir, monkeypatch):
+    """Ensure to parse header of alternating pages correctly."""
+    cmd = f'-i {power.link(power.DISS264_PDF)}  --footer --pages=0:150'
+    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+
+    loaded = serializeraw.load_headerfooter(headerpath)
+    assert len(loaded) == 147  # may change in the future
