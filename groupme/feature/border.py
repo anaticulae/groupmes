@@ -12,7 +12,6 @@ import typing
 import iamraw
 import serializeraw
 import utila
-import yaml
 
 import groupme.border.leftright
 import groupme.border.most
@@ -28,9 +27,7 @@ def work(
 
     result = determine_border(textpositions, sizeandborder)
 
-    result = [utila.from_tuple(item) for item in result]
-
-    dumped = yaml.dump(result)
+    dumped = serializeraw.dump_leftright_border(result)  # pylint:disable=E1101
     return dumped
 
 

@@ -93,7 +93,7 @@ def test_leftright_bachelor241(testdir, monkeypatch):
     source = power.link(power.BACHELOR241_PDF)
     tests.groupme_.run(f'-i {source} --border', monkeypatch=monkeypatch)
 
-    leftright = groupme.serialize.load_leftright_border(testdir.tmpdir)
+    leftright = serializeraw.load_leftright_border(testdir.tmpdir)  # pylint:disable=E1101
     assert leftright[0] != leftright[1]
 
 
