@@ -37,7 +37,7 @@ import groupme.utils
 NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
 
 # max difference between left and right y-coordinate
-COMMON_HORIZONTAL_CLASSIFICATOR_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0).value # yapf:disable
+COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0).value # yapf:disable
 
 # minimal horizontal line count in cluster to avoid low item cluster
 MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10).value
@@ -120,7 +120,7 @@ def extract_common_footer(
     # instead of the whole line.
     clusters = utila.same_line_cluster(
         todo=bounding,
-        max_difference=COMMON_HORIZONTAL_CLASSIFICATOR_MAX_ERROR,
+        max_difference=COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR,
     )
 
     if not clusters:
