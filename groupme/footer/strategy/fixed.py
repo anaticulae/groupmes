@@ -19,6 +19,7 @@ Master of the art:
 - docu/vimguide.pdf: This example contains a lot of tables, therefore we
   have a lot of horizontal lines which challenges the algorithm.
 """
+
 import itertools
 import typing
 
@@ -29,12 +30,28 @@ import utila
 
 import groupme.footer
 import groupme.footer.headnotes
-import groupme.footer.strategy as gfs
+import groupme.footer.strategy
 import groupme.horizontals
 import groupme.utils
 
+NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
 
-class FixedFooterStrategy(gfs.FooterHeaderDetectionStrategy):
+# max difference between left and right y-coordinate
+COMMON_HORIZONTAL_CLASSIFICATOR_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0).value # yapf:disable
+
+# minimal horizontal line count in cluster to avoid low item cluster
+MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10).value
+
+# maximal count of different header/footer areas
+MAX_FOOTERHEADER_AREA_COUNT = configo.HV_INT_PLUS(default=5).value
+
+# maximal distance from page top in percent where header can be detected
+HEADER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=15, limit=100).value
+
+# maximal distance from page bottom in percent where footer can be detected
+FOOTER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=20, limit=100).value
+
+class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy): # yapf:disable
     """The `FixedFooterStrategy` detects footer and header depending on
     horizontal line position. The strategy detects the most common
     border for header and footer.
@@ -74,32 +91,8 @@ class FixedFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         footerheader = decide_multiple(footerheader)
         return footerheader
 
-    def report(self) -> gfs.FooterStrategyResultReport:
+    def report(self) -> groupme.footer.strategy.FooterStrategyResultReport:
         pass
-
-
-def decide_multiple(items):
-    """Decide for a single page which extracted header/footer is correct.
-
-    In some cases there are more than one possible horizontal headlines
-    or footlines. This can happen when having different FixedHeader or
-    MovingFooter. This strategy decides on the count of extracted
-    header. The main propose is to have a single header/footer per page.
-    """
-    selected = {}
-    for item in items:
-        try:
-            cur = selected[item.page]
-            itemcount = len([it for it in [item.header, item.footer] if it])
-            currentcount = len([it for it in [cur.header, cur.footer] if it])
-            if itemcount > currentcount:
-                # replace current result with better result
-                selected[item.page] = item
-        except KeyError:
-            selected[item.page] = item
-    result = [item for item in selected.values()]
-    result = sorted(result, key=lambda x: x.page)
-    return result
 
 
 def extract_common_footer(
@@ -148,7 +141,6 @@ def extract_common_footer(
     if top is None:
         # could not detect any header
         top = [texmex.START]
-
     if bottom is None:
         # could not detect any footer
         bottom = [pageheight]
@@ -228,25 +220,6 @@ def create_header(top, pageheight, textnavigator):
     return result
 
 
-
-NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
-
-# max difference between left and right y-coordinate
-COMMON_HORIZONTAL_CLASSIFICATOR_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0).value # yapf:disable
-
-# minimal horizontal line count in cluster to avoid low item cluster
-MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10).value
-
-# maximal count of different header/footer areas
-MAX_FOOTERHEADER_AREA_COUNT = configo.HV_INT_PLUS(default=5).value
-
-# maximal distance from page top in percent where header can be detected
-HEADER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=15, limit=100).value
-
-# maximal distance from page bottom in percent where footer can be detected
-FOOTER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=20, limit=100).value
-
-
 def extract_inarea(
         clusters: typing.List,
         pageheight: int,
@@ -268,4 +241,28 @@ def extract_inarea(
     )
     if not result:
         return None
+    return result
+
+
+def decide_multiple(items):
+    """Decide for a single page which extracted header/footer is correct.
+
+    In some cases there are more than one possible horizontal headlines
+    or footlines. This can happen when having different FixedHeader or
+    MovingFooter. This strategy decides on the count of extracted
+    header. The main propose is to have a single header/footer per page.
+    """
+    selected = {}
+    for item in items:
+        try:
+            cur = selected[item.page]
+            itemcount = len([it for it in [item.header, item.footer] if it])
+            currentcount = len([it for it in [cur.header, cur.footer] if it])
+            if itemcount > currentcount:
+                # replace current result with better result
+                selected[item.page] = item
+        except KeyError:
+            selected[item.page] = item
+    result = [item for item in selected.values()]
+    result = sorted(result, key=lambda x: x.page)
     return result
