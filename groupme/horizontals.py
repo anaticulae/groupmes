@@ -78,8 +78,7 @@ def biggest_hlinecluster_in_area(
     maximized = groupme.likelihood.select_maxi(valid, count=max_group_count)
     result = []
     for cluster in maximized:
-        first_cluster_item = cluster[0]
-        _, (bounding, __) = first_cluster_item  # select first item of cluster
+        bounding = cluster[0]
         result.append(bounding.y1)
     return result
 
@@ -94,7 +93,7 @@ def cluster_in_area(clusters, ymin, ymax):
     for cluster in clusters:
         # take first item in cluster to determine cluster location,
         # because all items in cluster have the same location.
-        _, (bounding, __) = cluster[0]
+        bounding = cluster[0]
         groupme.horizontals.assert_horizontal(bounding)
 
         if iamraw.between(bounding, ymin, ymax):

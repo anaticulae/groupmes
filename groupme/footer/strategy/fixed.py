@@ -110,16 +110,19 @@ def extract_common_footer(
         a tuple with the `top` and `bottom` border of header and footer.
         None - If no header or footer is detected.
     """
-    with_box = [[(
-        horizontal.box,
-        horizontal,
-    ) for horizontal in page.content] for page in horizontals]
-
-    # cluster horizontal lines
-    clusters = utila.common_items(
-        collected=with_box,
+    bounding = []
+    for page in horizontals:
+        for horizontal in page.content:
+            bounding.append(horizontal.box)
+    # Hint: Use same line cluster instead of same area cluster. In
+    # documents with alternating left right pages the horizonal lines
+    # alternates also. Therefore we have only check the y-direction
+    # instead of the whole line.
+    clusters = utila.same_line_cluster(
+        todo=bounding,
         max_difference=COMMON_HORIZONTAL_CLASSIFICATOR_MAX_ERROR,
     )
+
     if not clusters:
         return NO_CLUSTER
 
