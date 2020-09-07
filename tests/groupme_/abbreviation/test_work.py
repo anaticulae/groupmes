@@ -10,10 +10,12 @@
 import iamraw
 import power
 import serializeraw
+import utilatest
 
 import groupme.feature.abbreviation
 
 
+@utilatest.skip_longrun
 def test_groupme_abbreviation_work():
     source = power.link(power.BACHELOR037_PDF)
 

@@ -94,6 +94,7 @@ def test_groupme_header_bachelor37_all(testdir, monkeypatch):
     assert current == expected
 
 
+@utilatest.skip_longrun
 def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
     header = extract_header(
         power.DISS264_PDF,
@@ -104,6 +105,7 @@ def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
     assert len(header) == 37
 
 
+@utilatest.skip_longrun
 def test_groupme_header_diss264_all(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
     cmd = f'-i {power.link(power.DISS264_PDF)}  --footer --pages=0:150'
