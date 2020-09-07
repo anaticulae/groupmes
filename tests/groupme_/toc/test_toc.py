@@ -13,6 +13,7 @@ import serializeraw
 import utila
 
 import groupme.feature.toc
+import groupme.pageselector
 import groupme.toc.group
 import tests.resources
 
@@ -22,7 +23,7 @@ def test_groupme_toc_groupby_level():
         power.link(power.DOCU07_PDF),
         prefix='oneline',
     )
-    selected = groupme.feature.figuretable.select_figuretable(navigators)
+    selected = groupme.pageselector.select_contentpages(navigators)
     # select toc pages only
     navigators = [item for item in navigators if item.page in selected]
     loaded = groupme.toc.strategy.load(navigators)

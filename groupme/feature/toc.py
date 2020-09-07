@@ -61,9 +61,9 @@ def work(
         pages=pages,
     )
     # select toc pages only
-    selected = groupme.feature.figuretable.select_figuretable(
-        utila.select_pages(navigators, POSSIBLE_PAGES),
-        NO_TOC,
+    selected = groupme.pageselector.select_contentpages(
+        textnavigators=utila.select_pages(navigators, POSSIBLE_PAGES),
+        wrong_table=NO_TOC,
         skip_higherqual_level_three=False,
         min_valid_lines_perpage=MIN_TOCS_PER_PAGE,
     )

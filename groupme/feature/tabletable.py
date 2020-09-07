@@ -15,11 +15,12 @@ import serializeraw
 import utila
 
 import groupme.feature.figuretable
+import groupme.pageselector
 import groupme.toc.extractor
 import groupme.toc.group
 import groupme.toc.strategy
 
-# minimal percentage of figure lines per page
+# minimal percentage of tabletable lines per page
 MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(0.2, limit=1.0).value
 
 
@@ -49,9 +50,10 @@ def work(
         headerfooterpath=headerfooter,
         pages=pages,
     )
-    selected = groupme.feature.figuretable.select_figuretable(
+    selected = groupme.pageselector.select_contentpages(
         navigators,
-        NO_TABLES,
+        wrong_table=NO_TABLES,
+        min_valid_lines_perpage=MIN_TOFS_PER_PAGE,
     )
     # select toc pages only
     navigators = utila.select_pages(navigators, pages=selected)
