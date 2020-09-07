@@ -22,7 +22,7 @@ def test_groupme_toc_groupby_level():
         power.link(power.DOCU07_PDF),
         prefix='oneline',
     )
-    selected = groupme.feature.toc.select_tocpages(navigators)
+    selected = groupme.feature.figuretable.select_figuretable(navigators)
     # select toc pages only
     navigators = [item for item in navigators if item.page in selected]
     loaded = groupme.toc.strategy.load(navigators)

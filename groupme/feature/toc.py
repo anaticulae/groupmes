@@ -18,14 +18,14 @@ Outdated approaches
 
 import configo
 import serializeraw
-import texmex
 import utila
 
 import groupme.feature
+import groupme.feature.figuretable
 import groupme.toc
 import groupme.toc.extractor
+import groupme.toc.group
 import groupme.toc.strategy
-import groupme.utils
 
 # minimal percentage of toc lines per page
 MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(0.2, limit=1.0).value
@@ -60,8 +60,13 @@ def work(
         headerfooterpath=headerfooter,
         pages=pages,
     )
-    selected = select_tocpages(navigators)
     # select toc pages only
+    selected = groupme.feature.figuretable.select_figuretable(
+        utila.select_pages(navigators, POSSIBLE_PAGES),
+        NO_TOC,
+        skip_higherqual_level_three=False,
+        min_valid_lines_perpage=MIN_TOCS_PER_PAGE,
+    )
     navigators = utila.select_pages(navigators, pages=selected)
 
     loaded = groupme.toc.strategy.load(navigators)
@@ -74,59 +79,12 @@ def work(
     return dumped
 
 
-def select_tocpages(textnavigators: texmex.PageTextNavigators) -> utila.Ints:
-    """Use simple approach to decide which page is a toc page."""
-    selected = []
-    for page in textnavigators:
-        if utila.should_skip(page.page, POSSIBLE_PAGES):
-            continue
-        utila.debug(f'page: {page.page}')
-        tocpage = groupme.toc.strategy.regex.parse_page(page)
-        if tocpage is None:
-            utila.log(f'empty page: {page.page}')
-            continue
-        pageslines = texmex.count_textlines(page, remove_empty=True)
-        if not pageslines:
-            continue
-        tocpage = decide_non_level_possible_headlines(tocpage)
-        if not tocpage:
-            # after filtering, no toc line is left
-            continue
-        toc_percent = len(tocpage) / pageslines
-        utila.info(f'toc percent: {toc_percent} on page: {page.page}')
-        if toc_percent < MIN_TOCS_PER_PAGE:
-            # avoid missdetection in random pages if only few lines are
-            # missdetected as toc line.
-            continue
-        selected.append(page.page)
-    selected = sorted(utila.make_unique(selected))
-    return selected
-
-
-# TODO: THIS IS STOLEN FROM WORDS
-WHITELIST = set([
+NO_TOC = {
+    'Abbildungsverzeichnis',
+    'Abkürzungsverzeichnis',
     'Anhang',
     'Eidesstattliche Erklärung',
+    'Glossar',
     'Literaturverzeichnis',
-])
-
-
-def decide_non_level_possible_headlines(items):
-    """Decide level for toc lines without 1.2.3-pattern in table of content
-
-    Use a whitelist to detect which line could be a headline."""
-    result = []
-    for item in items:
-        if item.level is None:
-            if not item.title in WHITELIST:
-                # remove items which are not part of the white list
-                utila.info(f'skip potential headline: {item.title}')
-                continue
-            item = groupme.toc.TocLine(
-                level='1',
-                title=item.title,
-                page=item.page,
-                raw=item.raw,
-            )
-        result.append(item)
-    return result
+    'Tabellenverzeichnis',
+}

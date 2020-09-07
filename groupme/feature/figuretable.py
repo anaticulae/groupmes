@@ -142,6 +142,7 @@ def select_figuretable(
         wrong_table=None,
         strategy: callable = None,
         skip_higherqual_level_three: bool = True,
+        min_valid_lines_perpage=MIN_TOFS_PER_PAGE,
 ) -> utila.Ints:
     """Use simple approach to decide which page is a figure table page."""
     if strategy is None:
@@ -165,7 +166,7 @@ def select_figuretable(
             continue
         figure_percent = len(figurepage) / pageslines
         utila.info(f'toc percent: {figure_percent} on page: {page.page}')
-        if figure_percent < MIN_TOFS_PER_PAGE:
+        if figure_percent < min_valid_lines_perpage:
             # avoid missdetection in random pages if only few lines are
             # missdetected as toc line.
             continue
@@ -184,6 +185,9 @@ def select_figuretable(
                 continue
         selected.append(page.page)
     selected = sorted(utila.make_unique(selected))
+    # select biggest connected chunck
+    selected = utila.groupby_diff(selected, diff=1)
+    selected = utila.longest(selected)
     return selected
 
 
