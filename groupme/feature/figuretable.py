@@ -141,6 +141,7 @@ def select_figuretable(
         textnavigators: texmex.PageTextNavigators,
         wrong_table=None,
         strategy: callable = None,
+        skip_higherqual_level_three: bool = True,
 ) -> utila.Ints:
     """Use simple approach to decide which page is a figure table page."""
     if strategy is None:
@@ -159,7 +160,6 @@ def select_figuretable(
         if not figurepage:
             utila.debug(f'could not parse any figure line on page: {page.page}')
             continue
-
         pageslines = texmex.count_textlines(page, remove_empty=True)
         if not pageslines:
             continue
@@ -170,15 +170,18 @@ def select_figuretable(
             # missdetected as toc line.
             continue
         # TODO: group.level fails on failing level
-        level3 = [groupme.toc.group.level(item.level) for item in figurepage]
-        level3 = [
-            item for item in level3
-            if item and isinstance(item.value, int) and item.value >= 3
-        ]
-        if any(level3):
-            # TODO: THINK ABOUT THIS
-            # level is mostly a table of content level
-            continue
+        if skip_higherqual_level_three:
+            level3 = [
+                groupme.toc.group.level(item.level) for item in figurepage
+            ]
+            level3 = [
+                item for item in level3
+                if item and isinstance(item.value, int) and item.value >= 3
+            ]
+            if any(level3):
+                # TODO: THINK ABOUT THIS
+                # level is mostly a table of content level
+                continue
         selected.append(page.page)
     selected = sorted(utila.make_unique(selected))
     return selected
