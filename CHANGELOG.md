@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.1
+
+### Fix
+
+* fix loading of fewer than 15 pages (52c0f6793cd9)
+
 ## v0.3.0
 
 ### Feature
