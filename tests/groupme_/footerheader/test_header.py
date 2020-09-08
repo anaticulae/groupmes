@@ -113,4 +113,4 @@ def test_groupme_header_diss264_all(testdir, monkeypatch):
     headerpath = iamraw.path.headerfooters(testdir.tmpdir)
 
     loaded = serializeraw.load_headerfooter(headerpath)
-    assert len(loaded) == 147  # may change in the future
+    assert len(loaded) == 47  # may change in the future
