@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* use more generalized toc page selector (a2cd84f49588)
+* add option to disable level three selector (4f6761c408e4)
+* extend toc level parser with code from words project (e90b2f6a8126)
+
 ## v0.2.1
 
 ## v0.2.0
