@@ -53,6 +53,7 @@ def work(
     Returns:
         dump of extracted table of content
     """
+    pages = POSSIBLE_PAGES if pages is None else pages
     navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
         text,
         textpositions,
@@ -60,9 +61,8 @@ def work(
         headerfooterpath=headerfooter,
         pages=pages,
     )
-    # select toc pages only
     selected = groupme.pageselector.select_contentpages(
-        textnavigators=utila.select_pages(navigators, POSSIBLE_PAGES),
+        textnavigators=navigators,
         wrong_table=NO_TOC,
         skip_higherqual_level_three=False,
         min_valid_lines_perpage=MIN_TOCS_PER_PAGE,
