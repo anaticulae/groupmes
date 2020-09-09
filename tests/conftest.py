@@ -9,12 +9,12 @@
 
 import os
 
+import genex
 import power
 import utila
 import utilatest
 
 import groupme
-import tests.example
 import tests.resources
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
@@ -57,7 +57,7 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
 def extract(resources):
     destination = power.generated()
 
-    tests.example.extract(
+    genex.extract(
         resources + [power.REPOSITORY],
         destination=destination,
         groupme=True,
@@ -87,7 +87,7 @@ def extract_notitle(resources):
     utila.run_parallel(todo)
 
     # generate
-    tests.example.extract(
+    genex.extract(
         without_titlepage + [destination],  # ensure correct parent
         destination,
         groupme=True,
