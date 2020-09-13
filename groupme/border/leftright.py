@@ -48,9 +48,17 @@ import utila
 # max diff to match in common group.
 MAX_SIDE_DIFF = configo.HV_INT_PLUS(default=2.0)
 # exceptions which are allowed cause of user defined error.
-# TODO: REPLACE WITH HOLY VALUE CONFIGO APPROACH
-MAX_FIRSTSECOND_ERROR = ((2, 0.5), (3, 0.35), (5, 0.26), (10, .21), (15, 0.05),
-                         (200, 0.01))
+MAX_FIRSTSECOND_ERROR = configo.HolyTable(
+    items=(
+        (2, 0.5),
+        (3, 0.35),
+        (5, 0.26),
+        (10, .21),
+        (15, 0.05),
+        (200, 0.01),
+    ),
+    right_outranges_none=False,
+)
 # errors which are a result of handle alternating border as single border.
 MIN_MIXED_ERROR = configo.HV_PERCENT_PLUS(default=15)
 # area where left border can be located.
@@ -60,15 +68,17 @@ RIGHT_PERCENT = configo.HV_PERCENT_PLUS(default=30)
 
 MIN_RAISING_EDGE = configo.HV_PERCENT_PLUS(default=75)
 
-# TODO: REPLACE WITH CONFIGO TABLE
-RAISING_FAILRATE = (
-    (5, 1 / 5),
-    (7, 2 / 7),
-    (10, 3 / 10),
-    (40, 10 / 40),
-    (200, 40 / 200),
-)
 # TODO: SHOULD WE DISABLE ALGO ON BIG FAIL COUNT?
+RAISING_FAILRATE = configo.HolyTable(
+    items=(
+        (5, 1 / 5),
+        (7, 2 / 7),
+        (10, 3 / 10),
+        (40, 10 / 40),
+        (200, 40 / 200),
+    ),
+    right_outranges_none=False,
+)
 
 LeftRight = typing.Tuple[float, float]
 
@@ -149,10 +159,7 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
 
     # left right
     # TODO: DEFINE BETTER CONFIDENCE APPROACH
-    max_firstsecond_error = utila.lookup(
-        len(first),
-        MAX_FIRSTSECOND_ERROR,
-    )
+    max_firstsecond_error = MAX_FIRSTSECOND_ERROR(len(first))
     if mixed_error > MIN_MIXED_ERROR.value and all([
             first_error < max_firstsecond_error,
             second_error < max_firstsecond_error,
@@ -208,11 +215,7 @@ def raising(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
         if item < edge * MIN_RAISING_EDGE.value
     ]
     failrate = len(failures) / len(edges)
-    max_failrate = utila.lookup(
-        len(edges),
-        RAISING_FAILRATE,
-        right_outranges_none=False,
-    )
+    max_failrate = RAISING_FAILRATE(len(edges))
 
     if failrate > max_failrate:
         return None
