@@ -27,7 +27,7 @@ def work(
 
     result = determine_border(textpositions, sizeandborder)
 
-    dumped = serializeraw.dump_leftright_border(result)  # pylint:disable=E1101
+    dumped = serializeraw.dump_leftright_border(result)
     return dumped
 
 
