@@ -68,9 +68,7 @@ Anhang"""
 
 
 def master98(toc: iamraw.Toc):
-    # TODO: REPLACE DUE LEN AFTER UPGRADE
-    assert len([item for item in toc]) == 8
-    # titles = utila.NEWLINE.join([item.title for item in toc])
+    assert len(toc) == 8
     titles = merge_required(toc)
     assert titles == TITLE_MASTER98, toc
 
