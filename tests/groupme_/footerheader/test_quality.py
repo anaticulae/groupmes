@@ -18,14 +18,15 @@ import groupme.feature.footer
 
 @utilatest.skip_longrun
 def test_groupme_footerheader_quality_bachelor111():
+    source = power.link(power.BACHELOR111_PDF)
     dumped = groupme.feature.footer.work(
-        iamraw.path.text(power.link(power.BACHELOR111_PDF)),
-        iamraw.path.textposition(power.link(power.BACHELOR111_PDF)),
-        iamraw.path.fontheader(power.link(power.BACHELOR111_PDF)),
-        iamraw.path.fontcontent(power.link(power.BACHELOR111_PDF)),
-        iamraw.path.horizontals(power.link(power.BACHELOR111_PDF)),
-        iamraw.path.sizeandborder(power.link(power.BACHELOR111_PDF)),
-        groupme.path.pagenumbers(power.link(power.BACHELOR111_PDF)),
+        iamraw.path.text(source),
+        iamraw.path.textposition(source),
+        iamraw.path.fontheader(source),
+        iamraw.path.fontcontent(source),
+        iamraw.path.horizontals(source),
+        iamraw.path.sizeandborder(source),
+        groupme.path.pagenumbers(source),
     )
     result = serializeraw.load_headerfooter(dumped)
 
