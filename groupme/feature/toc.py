@@ -28,7 +28,7 @@ import groupme.toc.group
 import groupme.toc.strategy
 
 # minimal percentage of toc lines per page
-MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(0.2, limit=1.0).value
+MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(30, limit=100).value
 
 # limit possible toc to the first 15 pages
 POSSIBLE_PAGES = utila.make_tuple(15)
