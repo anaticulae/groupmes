@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.3
+
+### Fix
+
+* fix dimension of holy value (8494dae179d1)
+
 ## v0.3.2
 
 ## v0.3.1
