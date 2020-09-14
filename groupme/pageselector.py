@@ -7,11 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import texmex
 import utila
 
 import groupme.toc.group
 import groupme.toc.strategy.regex
+
+MIN_HEADLINE_SIZE = configo.HV_FLOAT_PLUS(15.0).value
 
 
 def select_contentpages(
@@ -78,7 +81,7 @@ def headline(page):
         textsize = utila.flatten(
             [[item.size] * (item.end - item.start) for item in item.style])
         textsize = utila.mode(textsize)
-        if textsize < 15.0:  # TODO: HOLY VALUE
+        if textsize < MIN_HEADLINE_SIZE:
             continue
         result.append(item.text.strip())
     if not result:
