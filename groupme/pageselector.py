@@ -21,7 +21,7 @@ def select_contentpages(
         skip_higherqual_level_three: bool = True,
         min_valid_lines_perpage=None,
 ) -> utila.Ints:
-    """Use simple approach to decide which page is a figure table page."""
+    """Use simple approach to decide which page contains table content."""
     if strategy is None:
         strategy = groupme.toc.strategy.regex.parse_page
     selected = []
@@ -32,23 +32,23 @@ def select_contentpages(
             # TODO: WHAT SHOULD WE DO WHEN BOTH ARE ON THE SAME PAGE?
             continue
         utila.debug(f'page: {page.page}')
-        figurepage = strategy(page)
-        if not figurepage:
-            utila.debug(f'could not parse any figure line on page: {page.page}')
+        current_page = strategy(page)
+        if not current_page:
+            utila.debug(f'could not parse any valid line on page: {page.page}')
             continue
         pageslines = texmex.count_textlines(page, remove_empty=True)
         if not pageslines:
             continue
-        figure_percent = len(figurepage) / pageslines
-        utila.info(f'toc percent: {figure_percent} on page: {page.page}')
-        if min_valid_lines_perpage is not None and figure_percent < min_valid_lines_perpage:
+        matched_percent = len(current_page) / pageslines
+        utila.info(f'page percent: {matched_percent} on page: {page.page}')
+        if min_valid_lines_perpage is not None and matched_percent < min_valid_lines_perpage:
             # avoid missdetection in random pages if only few lines are
             # missdetected as toc line.
             continue
         # TODO: group.level fails on failing level
         if skip_higherqual_level_three:
             level3 = [
-                groupme.toc.group.level(item.level) for item in figurepage
+                groupme.toc.group.level(item.level) for item in current_page
             ]
             level3 = [
                 item for item in level3
