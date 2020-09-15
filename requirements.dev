@@ -10,7 +10,7 @@
 utilatest==0.1.3
 
 # reference to test data
-power==0.15.0
+power==0.15.1
 
 # test data generator
 jam==0.2.18
