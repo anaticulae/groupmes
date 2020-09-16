@@ -29,6 +29,7 @@ There are 2 supported types of footnotes:
 """
 import re
 
+import configo
 import iamraw
 import utila
 
@@ -112,11 +113,23 @@ def parse_footer(content):
     return footnotes
 
 
-def parse_with_highnotes(content):
+def parse_with_highnotes(content: list, width: float = 594.0) -> list:
+    """\
+    Args:
+        content(list): content of footnote area
+        width(float): width in pixel of current page. As default use DINA4.
+    Returns:
+        List of parsed footnotes
+    """
     splitted = groupme.footnotes.highnotes.split_textinfo(content)
     merged = groupme.footnotes.highnotes.merge_online(splitted)
     result = []
     for number, note in merged:
+        x0 = number.bounding[0]
+        # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
+        if x0 >= groupme.footnotes.MAX_FOOTNOTE_X0(width):
+            # potential highnote is located too right
+            continue
         try:
             notenumber = int(number.text)
         except ValueError:
@@ -125,7 +138,6 @@ def parse_with_highnotes(content):
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
-
         footnote = iamraw.FootRawNote(
             number=notenumber,
             text=note.text,

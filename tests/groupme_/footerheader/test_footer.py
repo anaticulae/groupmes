@@ -145,3 +145,15 @@ def test_footer_homework18(testdir, monkeypatch):
     # TODO: Change after fixing footnote merger
     assert len(content) == 96, len(content)
     # assert len(content) == 94, len(content)
+
+
+def test_footer_paper18_page3(testdir, monkeypatch):
+    """Regression test to avoid parsing formula as footnote."""
+    cmd = f'-i {power.link(power.PAPER18_PDF)}  --footer'
+    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+
+    loaded = serializeraw.load_headerfooter(headerpath)
+    page3 = utila.select_page(loaded, 3)
+    # do not interpret this formula is footer
+    assert not page3.footer

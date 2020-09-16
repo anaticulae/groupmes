@@ -151,7 +151,10 @@ def extract_footer(
 
     # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
-    footnotes = groupme.footnotes.parser.parse_with_highnotes(content)
+    footnotes = groupme.footnotes.parser.parse_with_highnotes(
+        content,
+        pagetextnavigator.width,
+    )
     if not footnotes:
         # no footnotes parsed, therefore do not return MovingFooterInformation
         return None
