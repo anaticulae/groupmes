@@ -7,7 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import dataclasses
 import math
+import typing
 
 import configo
 import iamraw
@@ -61,7 +63,12 @@ def split_textinfo(content) -> list:
                 style.start = 0
                 style.end = len(highnote.text)
             else:
-                collected.append((item.text, style))
+                bounding = iamraw.split_x(
+                    item.bounding,
+                    style.start,
+                    len(item.text),
+                )
+                collected.append(TextChunk(item.text, style, bounding))
     if highnote:
         # ?THERE IS ALWAYS A REST?
         result.append((highnote, union(collected)))
@@ -103,22 +110,31 @@ def merge_online(items) -> list:
     return result
 
 
-def shrink_tostyle(text, style):
+@dataclasses.dataclass
+class TextChunk:
+    text: str = None
+    style: texmex.TextStyle = None
+    bounding: iamraw.BoundingBox = None
+
+
+TextChunks = typing.List[TextChunk]
+
+
+def shrink_tostyle(text: str, style) -> TextChunk:
     text = text[style.start:style.end]
     style = style.copy()
-    style.start = 0
-    style.end = len(text)
-    return text, style
+    style.start, style.end = 0, len(text)
+    return TextChunk(text, style, None)
 
 
-def union(items) -> texmex.TextInfo:
+def union(chunks: TextChunks) -> texmex.TextInfo:
     raw = ''
     content = []
-    for (text, style) in items:
+    for chunk in chunks:  # pylint:disable=W0612
         start = len(raw)
-        raw += text[style.start:style.end]
+        raw += chunk.text[chunk.style.start:chunk.style.end]
         end = len(raw)
-        section_style = style.copy()
+        section_style = chunk.style.copy()
         section_style.start, section_style.end = start, end
         content.append(section_style)
     result = texmex.TextInfo(
