@@ -20,6 +20,7 @@ import groupme.footer.strategy as gfs
 import groupme.path
 import tests.fixtures.restruct
 import tests.groupme_
+import tests.groupme_.footerheader.extractor
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_horizontals
 from tests.fixtures.restruct import restructured_pagenumbers
@@ -121,39 +122,14 @@ def normalize_whitespaces(text: str) -> str:
     return text
 
 
-def test_footer_master98_page10(testdir, monkeypatch):
-    cmd = f'-i {power.link(power.MASTER098_PDF)}  --footer --pages=10'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-
-    loaded = serializeraw.load_headerfooter(headerpath)
-    footer = utila.select_page(loaded, 10).footer
-    notes = footer.notes
-    assert len(notes) == 1
-    firstnote_text = notes[0].text.strip()
-    # ensure that page number is not merged to note text
-    assert firstnote_text.endswith('16)'), firstnote_text
-
-
 def test_footer_homework18(testdir, monkeypatch):
-    cmd = f'-i {power.link(power.HOMEWORK018_PDF)}  --footer --pages=3:17'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-
-    loaded = serializeraw.load_headerfooter(headerpath)
-    content = utila.flatten([item.footer.notes for item in loaded])
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.HOMEWORK018_PDF,
+        testdir,
+        monkeypatch,
+        pages='3:17',
+    )
+    content = utila.flatten([item.footer.notes for item in extracted])
     # TODO: Change after fixing footnote merger
     assert len(content) == 96, len(content)
     # assert len(content) == 94, len(content)
-
-
-def test_footer_paper18_page3(testdir, monkeypatch):
-    """Regression test to avoid parsing formula as footnote."""
-    cmd = f'-i {power.link(power.PAPER18_PDF)}  --footer'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-
-    loaded = serializeraw.load_headerfooter(headerpath)
-    page3 = utila.select_page(loaded, 3)
-    # do not interpret this formula is footer
-    assert not page3.footer

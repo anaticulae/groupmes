@@ -7,10 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
+import utila
 
 import groupme.footnotes.parser
 import tests.fixtures.footnotes
+import tests.groupme_.footerheader.extractor
 
 
 @pytest.mark.parametrize('example', [
@@ -34,3 +37,18 @@ def test_groupme_footer_footenote_parse_notes_multiline():
                               'Form verwendet, wobei immer beide '
                               'Geschlechter gemeint sind.')
     assert parsed[-1].number == 23
+
+
+def test_footer_master98_page10(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER098_PDF,
+        testdir,
+        monkeypatch,
+        pages='10',
+    )
+    footer_ = utila.select_page(extracted, 10).footer
+    notes = footer_.notes
+    assert len(notes) == 1
+    firstnote_text = notes[0].text.strip()
+    # ensure that page number is not merged to note text
+    assert firstnote_text.endswith('16)'), firstnote_text
