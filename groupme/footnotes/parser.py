@@ -27,9 +27,9 @@ There are 2 supported types of footnotes:
 
   ? we have to use a combination of font rise and maybe textual grammar ?
 """
+
 import re
 
-import configo
 import iamraw
 import utila
 
@@ -121,10 +121,14 @@ def parse_with_highnotes(content: list, width: float = 594.0) -> list:
     Returns:
         List of parsed footnotes
     """
-    splitted = groupme.footnotes.highnotes.split_textinfo(content)
-    merged = groupme.footnotes.highnotes.merge_online(splitted)
+    neighbors = groupme.footnotes.neighbors(content)
+    grouped = []
+    for group in neighbors:
+        splitted = groupme.footnotes.highnotes.split_textinfo(group)
+        merged = groupme.footnotes.highnotes.merge_online(splitted)
+        grouped.extend(merged)
     result = []
-    for number, note in merged:
+    for number, note in grouped:
         x0 = number.bounding[0]
         # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
         if x0 >= groupme.footnotes.MAX_FOOTNOTE_X0(width):
