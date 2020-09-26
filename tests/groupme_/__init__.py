@@ -9,8 +9,8 @@
 
 from functools import partial
 
+import utila
 from iamraw import BoundingBox
-from iamraw import common_box
 from pytest import fixture
 from texmex import PageTextNavigator
 from utilatest import run_command
@@ -46,5 +46,5 @@ def navigator() -> PageTextNavigator:
 
 
 def document_size(items):
-    dimension = common_box(items)
+    dimension = utila.rectangle_max(items)
     return (dimension[2], dimension[3])

@@ -109,7 +109,7 @@ def footer(
         pagecontent = []
         for item in footercontent:
             text = item.text.strip()
-            if iamraw.area(item.bounding) > max_area:
+            if utila.rectangle_size(item.bounding) > max_area:
                 # ignore to big items
                 continue
             if remove_empty and not text:

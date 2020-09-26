@@ -120,7 +120,7 @@ def extract_common_footer(
     # instead of the whole line.
     clusters = utila.same_line_cluster(
         todo=bounding,
-        max_difference=COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR,
+        max_diff=COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR,
     )
 
     if not clusters:
