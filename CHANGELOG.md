@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* use bounding of text to improve text grouping (ae5e862221b3)
+* add text bounding to improve footnotes detection (ef38c3409dc4)
+* shrink potential footnotes area (b8b30d6f5314)
+
 ## v0.3.3
 
 ### Fix
