@@ -24,8 +24,6 @@ import texmex
 import utila
 import yaml
 
-import groupme.utils
-
 RECTANGLE_MAX_DIFF = 10.0  # TODO: HOLY VALUE
 
 RequiredResources = collections.namedtuple(
@@ -129,15 +127,15 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
     return result
 
 
-def boxed_checker(items) -> groupme.utils.RectangleCheck:
-    result = groupme.utils.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
+def boxed_checker(items) -> utila.RectangleCheck:
+    result = utila.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
     for item in items:
         result.extend(*item.box)
     return result
 
 
-def table_checker(items) -> groupme.utils.RectangleCheck:
-    result = groupme.utils.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
+def table_checker(items) -> utila.RectangleCheck:
+    result = utila.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
     for item in items:
         result.extend(*item.bounding)
     return result
