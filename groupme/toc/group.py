@@ -125,21 +125,21 @@ def numbered_level(raw: str) -> int:
     2
     >>> numbered_level('2020 This is not a headline level')
     False
+    >>> numbered_level('04.03.2016. No Headline')
+    False
     """
+    # TODO: SUPPORT LEVEL WITHOUT SPACE
     # TODO: MOVE TESTS?
     raw = raw.strip()
     if not raw:
         return None
     raw = raw.split()[0]
-    if not '.' in raw:
-        if raw.isnumeric():
-            rawlevel = int(raw)
-            if rawlevel > 30:  # TODO: HOLY VALUE
-                return False
-            return 1
+    try:
+        splitted = [int(item) for item in raw.split('.') if item]
+        if max(splitted) > 20:
+            return False
+    except ValueError:
         return None
-    # 2.1.3
-    splitted = [item for item in raw.split('.') if item]
     return len(splitted)
 
 
