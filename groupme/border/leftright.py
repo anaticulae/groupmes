@@ -245,7 +245,8 @@ def handle_emptypage(left, right):
     left_none = 0.0
     left = [item if item is not None else left_none for item in left]
 
-    right_none = max([item for item in right if item is not None])
+    # TODO: Is default=0 a good one?
+    right_none = max([item for item in right if item is not None], default=0)
     # NOTE: Determine more pages as large than it realy are - is this a
     # problem?
     right = [item if item is not None else right_none for item in right]
