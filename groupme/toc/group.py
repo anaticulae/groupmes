@@ -107,7 +107,8 @@ def level(item: str) -> Level:
         result = AppendixLevel(value=letter, character=letter, raw=item)
         return result
 
-    assert 0, str(item)
+    utila.error(f'could not convert to level: {item}')
+    return None
 
 
 def numbered_level(raw: str) -> int:
