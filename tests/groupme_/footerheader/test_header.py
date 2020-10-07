@@ -114,3 +114,16 @@ def test_groupme_header_diss264_all(testdir, monkeypatch):
 
     loaded = serializeraw.load_headerfooter(headerpath)
     assert len(loaded) == 47  # may change in the future
+
+
+def test_header_under_line_master75(testdir, monkeypatch):
+    """Ensure to parse header of alternating pages correctly."""
+    cmd = f'-i {power.link(power.MASTER075_PDF)}  --footer --pages=0:50'
+    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+
+    loaded = serializeraw.load_headerfooter(headerpath)
+    assert len(loaded) == 48, len(loaded)
+    first = loaded[0].header.undefined
+    # use common extractor
+    assert len(first) == 2, str(first)
