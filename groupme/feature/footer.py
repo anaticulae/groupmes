@@ -150,6 +150,5 @@ def judge_strategy(results: typing.List[iamraw.PageContentFooterHeaders],
         result.append(current)
 
     page_order = [item.page for item in result]
-    assert sorted(page_order) == page_order, ('require ascending pages order'
-                                              f', got: {page_order}')
+    assert utila.isascending(page_order), page_order
     return result
