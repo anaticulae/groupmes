@@ -6,8 +6,8 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""Analyze content and structure of header area.
-
+"""Analyze content and structure of header area
+============================================
 """
 
 import iamraw
