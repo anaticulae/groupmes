@@ -139,10 +139,14 @@ def is_pagenumber(number: str) -> bool:
     """Determine if passed `number` is a page number. Empty `number` is
     not a page number.
 
-    Examples:
-        1, 2, 3, 4,
-        -1-, -2-, -3-
-        i, ii, iii, iiv, iv, v
+    >>> is_pagenumber('99')
+    True
+    >>> is_pagenumber('-1-')
+    True
+    >>> is_pagenumber('iv')
+    True
+    >>> is_pagenumber('32/54')
+    True
 
     Args:
         number(str): string to check if it is a number
