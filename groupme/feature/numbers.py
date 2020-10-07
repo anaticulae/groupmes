@@ -23,6 +23,7 @@ Required API:
 """
 
 import collections
+import re
 import typing
 
 import iamraw
@@ -120,6 +121,8 @@ def footer(
                 continue
             # support -1-, -2-, ...
             clean_number = text.replace('-', '', 2).strip()
+            # 32/54
+            clean_number = clean_number.split('/')[0]
             # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
             item = (item.bounding, clean_number, pagenumber)
             pagecontent.append(item)
@@ -154,6 +157,8 @@ def is_pagenumber(number: str) -> bool:
     if number.isnumeric():
         return True
     if utila.isroman(number):
+        return True
+    if re.match(r'\d{1,3}/\d{1,3}', number):
         return True
     return False
 
