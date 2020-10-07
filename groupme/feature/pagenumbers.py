@@ -222,14 +222,3 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
         ]
         return singlepage
     return left, right
-
-
-def name():
-    return 'pagenumbers'
-
-
-def commandline():
-    return utila.Flag(
-        longcut=name(),
-        message='extract page numbers from footer and header',
-    )

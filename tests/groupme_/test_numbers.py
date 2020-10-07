@@ -17,7 +17,7 @@ import serializeraw
 import utila
 import utilatest
 
-import groupme.feature.numbers
+import groupme.feature.pagenumbers
 # pylint:disable=W0611
 from tests.fixtures.restruct import restructured_pagetextnavigators
 from tests.fixtures.simple import simple
@@ -32,7 +32,7 @@ def test_simple_example(simple):  #pylint:disable=W0621
 
 def test_footer_simple(simple):  #pylint:disable=W0621
     navigator, _ = simple
-    result = groupme.feature.numbers.footer(navigator)
+    result = groupme.feature.pagenumbers.footer(navigator)
 
     # cluster with page numbers
     assert len(result) == 1
@@ -40,12 +40,12 @@ def test_footer_simple(simple):  #pylint:disable=W0621
 
 def test_header_simple(simple):  #pylint:disable=W0621
     navigator, _ = simple
-    result = groupme.feature.numbers.header(navigator)
+    result = groupme.feature.pagenumbers.header(navigator)
     assert not result
 
 
 def test_footer_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
-    result = groupme.feature.numbers.footer(
+    result = groupme.feature.pagenumbers.footer(
         restructured_pagetextnavigators,
         numbers_only=False,
     )
@@ -55,7 +55,7 @@ def test_footer_restructured(restructured_pagetextnavigators):  #pylint:disable=
 
 
 def test_header_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
-    result = groupme.feature.numbers.header(restructured_pagetextnavigators)
+    result = groupme.feature.pagenumbers.header(restructured_pagetextnavigators)
     # Example:
     # (5,
     # (BoundingBox(x_bottom=72.00, y_bottom=746.33, x_top=336.99, y_top=758.84),
@@ -66,9 +66,9 @@ def test_header_restructured(restructured_pagetextnavigators):  #pylint:disable=
 
 
 def test_pagenumbers_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
-    result = groupme.feature.numbers.footer(restructured_pagetextnavigators)
+    result = groupme.feature.pagenumbers.footer(restructured_pagetextnavigators)
 
-    numbers = groupme.feature.numbers.pagenumbers(result)
+    numbers = groupme.feature.pagenumbers.pagenumbers(result)
 
     # left and right page
     assert len(numbers) == 2
@@ -87,10 +87,10 @@ def test_pagenumbers_restructured(restructured_pagetextnavigators):  #pylint:dis
 
 
 def test_pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
-    result = groupme.feature.numbers.footer(simple_navigator)
+    result = groupme.feature.pagenumbers.footer(simple_navigator)
 
     # single page
-    numbers = groupme.feature.numbers.pagenumbers(result)
+    numbers = groupme.feature.pagenumbers.pagenumbers(result)
 
     assert isinstance(numbers, typing.Iterable), numbers
     assert numbers
@@ -98,9 +98,9 @@ def test_pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
 
 @pytest.fixture
 def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
-    result = groupme.feature.numbers.footer(simple_navigator)
+    result = groupme.feature.pagenumbers.footer(simple_navigator)
     # single page
-    numbers = groupme.feature.numbers.pagenumbers(result)
+    numbers = groupme.feature.pagenumbers.pagenumbers(result)
 
     assert isinstance(numbers, typing.Iterable), numbers
     assert numbers
@@ -118,7 +118,7 @@ def test_groupme_numbers_work_single(resource, expected_numbers):
     text = iamraw.path.text(resource)
     text_positions = iamraw.path.textposition(resource)
 
-    result = groupme.feature.numbers.work(text, text_positions)
+    result = groupme.feature.pagenumbers.work(text, text_positions)
     result = serializeraw.load_pagenumbers(result)
 
     assert isinstance(result, list), f'wrong page detection type {type(result)}'
@@ -127,7 +127,7 @@ def test_groupme_numbers_work_single(resource, expected_numbers):
 
 @pytest.mark.parametrize('nopagenumber', ['', 'a'])
 def test_groumpe_numbers_is_pagenumber_negative(nopagenumber):
-    assert not groupme.feature.numbers.is_pagenumber(nopagenumber)
+    assert not groupme.feature.pagenumbers.is_pagenumber(nopagenumber)
 
 
 def test_numbers_restructured_without_title():
@@ -136,7 +136,7 @@ def test_numbers_restructured_without_title():
     instead of one."""
     source = power.link(power.DOCU27_PDF, folder='notitle')
     navigator = serializeraw.create_pagetextnavigators_frompath(source)
-    pagenumbers = groupme.feature.numbers.determine_pagenumbers(navigator)
+    pagenumbers = groupme.feature.pagenumbers.determine_pagenumbers(navigator)
     pagenumbers = utila.flatten(pagenumbers)  # pylint:disable=R0204
     pagenumbers = sorted(pagenumbers, key=lambda x: x[0])
     expected_pdfpages = [1, 2, 3, 4, 5, 6, 7, 8, 9]

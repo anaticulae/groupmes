@@ -13,7 +13,7 @@
 import iamraw
 import utila
 
-import groupme.feature.numbers
+import groupme.feature.pagenumbers
 import groupme.toc.strategy.regex as gtsr
 
 
@@ -46,7 +46,7 @@ def parse_rawtext(text: str, _=None):  # pylint:disable=W0613
 
 def parse_pagenumber(text: str, _=None):  # pylint:disable=W0613
     text = text.strip()
-    if not groupme.feature.numbers.is_pagenumber(text):
+    if not groupme.feature.pagenumbers.is_pagenumber(text):
         return None
     return iamraw.PageInformation(value=text, raw=text)
 
