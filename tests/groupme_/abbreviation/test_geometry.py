@@ -52,6 +52,7 @@ def test_abbreviation_parse_strategy_geometry(source, pages, expected):
     assert len(parsed) == expected, len(parsed)
 
 
+@utilatest.skip_longrun
 def test_abbreviation_geometry_columns():
     page = bachelor37().normal[0]  # pylint:disable=E1136
     columns = groupme.abbreviation.geometry.columns(page)

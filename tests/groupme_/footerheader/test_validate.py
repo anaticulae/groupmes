@@ -13,6 +13,7 @@ import iamraw
 import power
 import pytest
 import serializeraw
+import utilatest
 
 import tests.groupme_
 
@@ -21,6 +22,7 @@ import tests.groupme_
     pytest.param(power.MASTER116_PDF, None, 0, id='master116'),
     pytest.param(power.BACHELOR063_PDF, None, 0, id='bachelor63'),
 ])
+@utilatest.skip_longrun
 def test_footer_validate(source, pages, expected, testdir, monkeypatch):
     pages = '' if pages is None else f'--pages={pages}'
     cmd = f'-i {power.link(source)}  --footer {pages}'

@@ -68,6 +68,7 @@ def test_groupme_footnote_parse_footer_with_highnotes(master89_page7):  # pylint
     assert len(parsed) == 1, parsed
 
 
+@utilatest.skip_longrun
 def test_groupme_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylint:disable=W0621,W0613
     parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111_page10)
     assert len(parsed) == 3, str(parsed)

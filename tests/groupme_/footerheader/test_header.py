@@ -79,12 +79,14 @@ def test_groupme_header_bachelor90(testdir, monkeypatch):
     assert len(header) == 11
 
 
+@utilatest.skip_longrun
 def test_groupme_header_bachelor37_starting_index(testdir, monkeypatch):
     """Ensure that parts of pages `4:14` for example are indexed correctly."""
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:14')
     assert header[0].page.value == 4
 
 
+@utilatest.skip_longrun
 def test_groupme_header_bachelor37_all(testdir, monkeypatch):
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch)
 
@@ -116,6 +118,7 @@ def test_groupme_header_diss264_all(testdir, monkeypatch):
     assert len(loaded) == 47  # may change in the future
 
 
+@utilatest.skip_longrun
 def test_header_under_line_master75(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
     cmd = f'-i {power.link(power.MASTER075_PDF)}  --footer --pages=0:50'

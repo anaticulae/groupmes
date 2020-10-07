@@ -138,6 +138,7 @@ def test_groupme_footer_fixed_bachelor111page_extract_page_header():
     assert len(title) >= 68, 'not enough title'
 
 
+@utilatest.skip_longrun
 def test_groupme_footer_dump_and_load_bachelor111():
     footerheader = _bachelor111_footerheader()
 
