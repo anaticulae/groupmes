@@ -153,11 +153,7 @@ def is_pagenumber(number: str) -> bool:
         return False
     if number.isnumeric():
         return True
-    number = number.lower()
-    # 'i ii iii iv v vi vii viii ix xi'
-    roman = {'i', 'v', 'x', 'c', 'l'}
-    isroman = all([test in roman for test in number])
-    if isroman:
+    if utila.isroman(number):
         return True
     return False
 

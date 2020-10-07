@@ -130,11 +130,6 @@ def test_groumpe_numbers_is_pagenumber_negative(nopagenumber):
     assert not groupme.feature.numbers.is_pagenumber(nopagenumber)
 
 
-@pytest.mark.parametrize('pagenumber', ['xxc', '10'])
-def test_groumpe_numbers_is_pagenumber(pagenumber):
-    assert groupme.feature.numbers.is_pagenumber(pagenumber)
-
-
 def test_numbers_restructured_without_title():
     """Ensure to extract correct pdf page on document which starts with
     empty page. Before this patch, the pdfpages started with zero
