@@ -13,6 +13,7 @@ import iamraw
 import utila
 
 import groupme
+import groupme.horizontals
 import groupme.likelihood
 
 
