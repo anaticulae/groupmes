@@ -135,3 +135,13 @@ def test_footer_homework18(testdir, monkeypatch):
     # TODO: Change after fixing footnote merger
     assert len(content) == 96, len(content)
     # assert len(content) == 94, len(content)
+
+
+def test_footer_bachelor51(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.BACHELOR051_PDF,
+        testdir,
+        monkeypatch,
+    )
+    pages = [item.footer.page.value for item in extracted]
+    assert len(pages) >= 23
