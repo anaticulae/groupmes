@@ -13,6 +13,7 @@ TODO:
     what should we do with empty header/footer
 """
 
+import collections
 import typing
 
 import iamraw
@@ -118,6 +119,7 @@ def judge_strategy(results: typing.List[iamraw.PageContentFooterHeaders],
         list of zipped result
     """
     assert results is not None, 'require list of strategy results'
+    qualities = quality(results)
     result = []
     for pagenumber, (
             common,
@@ -135,8 +137,15 @@ def judge_strategy(results: typing.List[iamraw.PageContentFooterHeaders],
         if moving and moving.footer and moving.footer.notes:
             footer = moving.footer
 
-        if not header and common and common.header:
-            header = common.header
+        if common and common.header:
+            if not header:
+                header = common.header
+            else:
+                # compare quality of both extractions
+                if qualities[0] == max(qualities):
+                    # TODO: MORE THAN ONE EXTRACTION CAN HAVE BEST
+                    # EXTRACTION QUALITY.
+                    header = common.header
 
         if not (moving and moving.footer) and plainmoving and plainmoving.footer: # yapf:disable
             # use plain moving only if no other strategy works
@@ -151,4 +160,22 @@ def judge_strategy(results: typing.List[iamraw.PageContentFooterHeaders],
 
     page_order = [item.page for item in result]
     assert utila.isascending(page_order), page_order
+    return result
+
+
+def quality(results: list) -> tuple:
+    """Determine quality[0.0, 1.0] of every extraction strategy."""
+    # count number of page
+    pages = set()
+    # count result for every strategy
+    counter = collections.defaultdict(int)
+    for pagenumber, data in utila.sync_pages(results):
+        pages.add(pagenumber)
+        for index, item in enumerate(data):
+            if not item:
+                continue
+            counter[index] += 1
+
+    result = tuple(counter[index] / len(pages) if pages else 0
+                   for index, _ in enumerate(results))
     return result
