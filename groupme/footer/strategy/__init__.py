@@ -155,6 +155,7 @@ def multijudgement(judges):
         if cur_count < count:
             continue
         current = item
+        count = cur_count
     return current
 
 
