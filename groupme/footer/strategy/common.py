@@ -23,6 +23,7 @@ import iamraw
 import texmex
 import utila
 
+import groupme.feature.pagenumbers
 import groupme.footer.strategy as gfs
 
 COMMON_HEADER_MAX_ERROR = 1.0  # TODO: HOLY VALUE
@@ -97,7 +98,10 @@ def prepare_clustering(pagetextnavigators):
     valid = header_content(collected)
     result = []
     for page in collected:
-        content = [item for item in page if item[1].text.strip() in valid]
+        content = [
+            item for item in page if item[1].text.strip() in valid or
+            groupme.feature.pagenumbers.is_pagenumber(item[1].text)
+        ]
         result.append(content)
     return result
 
