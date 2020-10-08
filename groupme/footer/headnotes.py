@@ -14,7 +14,7 @@ import iamraw
 import utila
 
 import groupme.feature.pagenumbers
-import groupme.toc.strategy.regex as gtsr
+import groupme.toc.strategy.regex
 
 
 def parse(content: str):
@@ -63,7 +63,7 @@ def parse_title(text: str, _=None) -> iamraw.HeaderTitle:  # pylint:disable=W061
 
 
 def parse_title_regex(text: str) -> iamraw.HeaderTitle:
-    parsed = gtsr.parse(text)
+    parsed = groupme.toc.strategy.regex.parse(text)
 
     if not parsed:
         return None
