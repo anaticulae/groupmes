@@ -48,24 +48,24 @@ def work(
     """
     utila.call('footer')
     # load
-    text = serializeraw.load_document(text, pages=pages)
-    text_position = serializeraw.load_textpositions(text_positions, pages=pages)
-    fontstore = serializeraw.create_fontstore(fontheader, fontcontent, pages=pages) # yapf:disable
     horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
     sizeandborders = serializeraw.load_pageborders(sizeandborders, pages=pages)
     pagenumbers = serializeraw.load_pagenumbers(pagenumbers, pages=pages)
 
-    pagetextnavigators = texmex.create_pagetextnavigators(
+    ptns = serializeraw.create_pagetextnavigators_fromfile(
         text,
-        text_position,
-        fontstore=fontstore,
+        text_positions,
+        fontheader,
+        fontcontent,
+        pages=pages,
     )
+
     # work
     result = extract_footerheader(
         horizontals=horizontals,
         sizeandborders=sizeandborders,
         pagenumbers=pagenumbers,
-        pagetextnavigators=pagetextnavigators,
+        pagetextnavigators=ptns,
     )
 
     groupme.utils.validate(result)
