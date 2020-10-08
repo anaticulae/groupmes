@@ -13,7 +13,6 @@ import iamraw
 import utila
 
 import groupme
-import groupme.horizontals
 import groupme.likelihood
 
 
@@ -95,7 +94,7 @@ def cluster_in_area(clusters, ymin, ymax):
         # take first item in cluster to determine cluster location,
         # because all items in cluster have the same location.
         bounding = cluster[0]
-        groupme.horizontals.assert_horizontal(bounding)
+        assert_horizontal(bounding)
 
         if iamraw.between(bounding, ymin, ymax):
             result.append(cluster)
