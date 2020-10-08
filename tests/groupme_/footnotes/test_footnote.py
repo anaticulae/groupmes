@@ -20,13 +20,13 @@ import tests.groupme_.footerheader.extractor
     pytest.param(tests.fixtures.footnotes.FOOTNOTES,),
     pytest.param(tests.fixtures.footnotes.FOOTNOTES_SECOND,),
 ])
-def test_groupme_footer_footenote_parse_notes(example):
+def test_footer_footenote_parse_notes(example):
     raw, expected_footnotes = example[0], example[1]
     parsed = groupme.footnotes.parser.parse(raw)
     assert len(parsed) == expected_footnotes
 
 
-def test_groupme_footer_footenote_parse_notes_multiline():
+def test_footer_footenote_parse_notes_multiline():
     raw = tests.fixtures.footnotes.FOOTNOTES_SECOND[0]
     parsed = groupme.footnotes.parser.parse(raw)
     assert len(parsed) == 23, len(parsed)

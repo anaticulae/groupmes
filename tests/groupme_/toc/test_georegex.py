@@ -34,7 +34,7 @@ def bachelor111():
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_geometry_analyse_page_master72():
+def test_toc_geometry_analyse_page_master72():
     data = master72()
 
     firstpage = data[0]
@@ -47,7 +47,7 @@ def test_groupme_toc_geometry_analyse_page_master72():
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_geometry_analyse_page_bachelor111():
+def test_toc_geometry_analyse_page_bachelor111():
     """Check that geometry approach parses and group toc lines correctly."""
 
     expected = [

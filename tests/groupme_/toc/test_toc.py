@@ -18,7 +18,7 @@ import groupme.toc.group
 import tests.resources
 
 
-def test_groupme_toc_groupby_level():
+def test_toc_groupby_level():
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(
         power.link(power.DOCU07_PDF),
         prefix='oneline',

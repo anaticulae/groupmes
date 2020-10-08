@@ -161,7 +161,7 @@ TEN = tuple(range(10))
     ),
 ])
 @utilatest.skip_longrun
-def test_groupme_figuretable(source, validate, pages, monkeypatch, testdir):
+def test_figuretable(source, validate, pages, monkeypatch, testdir):
     figuretable = tests.groupme_.figuretable.extract_figuretable(
         source,
         pages,

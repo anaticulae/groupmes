@@ -16,7 +16,7 @@ import groupme.feature.abbreviation
 
 
 @utilatest.skip_longrun
-def test_groupme_abbreviation_work():
+def test_abbreviation_work():
     source = power.link(power.BACHELOR037_PDF)
 
     text = iamraw.path.text(source)

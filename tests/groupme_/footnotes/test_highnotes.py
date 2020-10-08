@@ -22,7 +22,7 @@ from tests.groupme_.footnotes.fixtures import master89_page19
 
 
 @utilatest.skip_longrun
-def test_groupme_footnote_highnotes_split(master72_page14):  # pylint:disable=W0621
+def test_footnote_highnotes_split(master72_page14):  # pylint:disable=W0621
     footer = master72_page14
     splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
     assert splitted, splitted
@@ -30,7 +30,7 @@ def test_groupme_footnote_highnotes_split(master72_page14):  # pylint:disable=W0
 
 
 @utilatest.skip_longrun
-def test_groupme_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disable=W0621
+def test_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disable=W0621
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow."""
     footer = master89_page7
@@ -42,8 +42,7 @@ def test_groupme_footnote_highnotes_split_mixed_in_text(master89_page7):  # pyli
 
 
 @utilatest.skip_longrun
-def test_groupme_footnote_highnotes_split_mixed_in_text_tripple(
-        master89_page19):  # pylint:disable=W0621
+def test_footnote_highnotes_split_mixed_in_text_tripple(master89_page19):  # pylint:disable=W0621
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow and after this there are two more
     footnotes."""
@@ -63,13 +62,13 @@ def test_groupme_footnote_highnotes_split_mixed_in_text_tripple(
 
 
 @utilatest.skip_longrun
-def test_groupme_footnote_parse_footer_with_highnotes(master89_page7):  # pylint:disable=W0621
+def test_footnote_parse_footer_with_highnotes(master89_page7):  # pylint:disable=W0621
     parsed = groupme.footnotes.parser.parse_with_highnotes(master89_page7)
     assert len(parsed) == 1, parsed
 
 
 @utilatest.skip_longrun
-def test_groupme_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylint:disable=W0621,W0613
+def test_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylint:disable=W0621,W0613
     parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111_page10)
     assert len(parsed) == 3, str(parsed)
     notes = [item.number for item in parsed]

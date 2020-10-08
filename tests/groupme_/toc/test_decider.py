@@ -28,5 +28,5 @@ EXAMPLE = [
 ]
 
 
-def test_groupme_toc_decider_sort_decisions():
+def test_toc_decider_sort_decisions():
     assert sorted(EXAMPLE) == EXAMPLE

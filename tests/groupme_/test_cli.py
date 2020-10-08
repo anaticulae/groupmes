@@ -25,7 +25,7 @@ import tests.groupme_
 ])
 @pytest.mark.usefixtures('testdir')
 @utilatest.skip_nightly
-def test_groupme_run_external(cmd, monkeypatch):
+def test_run_external(cmd, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
 

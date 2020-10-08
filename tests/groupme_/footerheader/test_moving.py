@@ -81,7 +81,7 @@ def validate_homework18(result):
         ),
     ])
 @utilatest.skip_longrun
-def test_groupme_footer_moving(
+def test_footer_moving(
         document,
         pages,
         expected_footer,
@@ -111,7 +111,7 @@ def test_groupme_footer_moving(
         assert extracted_footer[1], utila.log_raw(f'has no footer: {page}')
 
 
-def test_groupme_footer_master72pages(testdir):
+def test_footer_master72pages(testdir):
     path = iamraw.path.horizontals(power.link(power.MASTER072_PDF))
     result = serializeraw.load_horizontals(path)
     assert len(result) > 10, str(result)

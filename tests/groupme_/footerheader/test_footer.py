@@ -23,7 +23,7 @@ import tests.groupme_
 import tests.groupme_.footerheader.extractor
 
 
-def test_groupme_footer_work(testdir):  #pylint:disable=W0621
+def test_footer_work(testdir):  #pylint:disable=W0621
     root = str(testdir)
     docu27 = power.link(power.DOCU27_PDF)
     dumped = groupme.feature.footer.work(
@@ -48,7 +48,7 @@ def test_groupme_footer_work(testdir):  #pylint:disable=W0621
         (gfs.fixed.FixedFooterStrategy, 25),  # TODO: CHECK 25
         (gfs.pages.PageNumberStrategy, 0),
     ])
-def test_groupme_footer_footerheader_detectionstategy(
+def test_footer_footerheader_detectionstategy(
         strategy,
         expected_results,
 ):
@@ -73,7 +73,7 @@ def test_groupme_footer_footerheader_detectionstategy(
 
 
 @utilatest.skip_longrun
-def test_groupme_footer_master72_extract(testdir, monkeypatch):
+def test_footer_master72_extract(testdir, monkeypatch):
     outdir = testdir.tmpdir
     cmd = f'-i {power.link(power.MASTER072_PDF)}  -o {outdir} --footer --pages=3'
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)

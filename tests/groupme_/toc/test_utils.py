@@ -54,7 +54,7 @@ HEADLINES = [
 ]
 
 
-def test_groupme_toc_sort_byposition():
+def test_toc_sort_byposition():
     """Avoid searching the subpattern, ensure that find finds the
     correct pattern in text.
 

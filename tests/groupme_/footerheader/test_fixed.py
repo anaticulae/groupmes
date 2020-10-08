@@ -39,14 +39,14 @@ def _restructed():
     return horizontals, pageheight, top, bottom, navigators
 
 
-def test_groupme_footer_fixed_restructed_extract_common_footer():
+def test_footer_fixed_restructed_extract_common_footer():
     _, __, top, bottom, ___ = _restructed()
     assert top  # document has header
     assert bottom  # document has footer
     assert top < bottom
 
 
-def test_groupme_footer_fixed_restructed_extract_page_footerheader():
+def test_footer_fixed_restructed_extract_page_footerheader():
     horizontals, pageheight, top, bottom, pagetextnavigators = _restructed()
     top, bottom = top[0], bottom[0]
     extracted = gfsf.extract_page_footerheader(
@@ -100,7 +100,7 @@ def _bachelor111_footerheader():
 
 
 @utilatest.skip_longrun
-def test_groupme_footer_fixed_bachelor111page_extract_common_footer():
+def test_footer_fixed_bachelor111page_extract_common_footer():
     _, __, top, bottom, ___ = _bachelor111()
     assert top  # document has header
     assert bottom  # document has footer
@@ -108,7 +108,7 @@ def test_groupme_footer_fixed_bachelor111page_extract_common_footer():
 
 
 @utilatest.skip_longrun
-def test_groupme_footer_fixed_bachelor111page_extract_page_footerheader():
+def test_footer_fixed_bachelor111page_extract_page_footerheader():
     """Use more than one group to detect all headers. There are ordered
     from biggest to smallest"""
 
@@ -125,7 +125,7 @@ def test_groupme_footer_fixed_bachelor111page_extract_page_footerheader():
 
 
 @utilatest.skip_longrun
-def test_groupme_footer_fixed_bachelor111page_extract_page_header():
+def test_footer_fixed_bachelor111page_extract_page_header():
     footerheader = _bachelor111_footerheader()
     pages = [item.page for item in footerheader]
     assert all(pages)
@@ -139,7 +139,7 @@ def test_groupme_footer_fixed_bachelor111page_extract_page_header():
 
 
 @utilatest.skip_longrun
-def test_groupme_footer_dump_and_load_bachelor111():
+def test_footer_dump_and_load_bachelor111():
     footerheader = _bachelor111_footerheader()
 
     dumped = serializeraw.dump_headerfooter(footerheader)

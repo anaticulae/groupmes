@@ -65,7 +65,7 @@ def bachelor90(toc: iamraw.Toc):
     ),
 ])
 @utilatest.skip_longrun
-def test_groupme_tabletable(source, validate, pages, monkeypatch, testdir):
+def test_tabletable(source, validate, pages, monkeypatch, testdir):
     pages = ','.join((str(item) for item in pages)) if pages else ''
     pages = f'--pages={pages}' if pages else ''
     cmd = f'-i {source} --tabletable {pages}'

@@ -31,7 +31,7 @@ import tests.groupme_
     ),
 ])
 @utilatest.skip_longrun
-def test_groupme_footer_extract_footerheader_technical(root, expected):
+def test_footer_extract_footerheader_technical(root, expected):
     pages = None
     pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(
         root,
@@ -64,20 +64,20 @@ def extract_header(source, testdir, monkeypatch, pages=':'):
     return header
 
 
-def test_groupme_header_bachelor90(testdir, monkeypatch):
+def test_header_bachelor90(testdir, monkeypatch):
     header = extract_header(power.BACHELOR090_PDF, testdir, monkeypatch, '11:24') # yapf:disable
     assert len(header) == 11
 
 
 @utilatest.skip_longrun
-def test_groupme_header_bachelor37_starting_index(testdir, monkeypatch):
+def test_header_bachelor37_starting_index(testdir, monkeypatch):
     """Ensure that parts of pages `4:14` for example are indexed correctly."""
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:14')
     assert header[0].page.value == 4
 
 
 @utilatest.skip_longrun
-def test_groupme_header_bachelor37_all(testdir, monkeypatch):
+def test_header_bachelor37_all(testdir, monkeypatch):
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch)
 
     noheader = [0, 5, 33]
@@ -87,7 +87,7 @@ def test_groupme_header_bachelor37_all(testdir, monkeypatch):
 
 
 @utilatest.skip_longrun
-def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
+def test_header_diss264_page0_40(testdir, monkeypatch):
     header = extract_header(
         power.DISS264_PDF,
         testdir,
@@ -98,7 +98,7 @@ def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
 
 
 @utilatest.skip_longrun
-def test_groupme_header_diss264_all(testdir, monkeypatch):
+def test_header_diss264_all(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
     loaded = extract_header(power.DISS264_PDF, testdir, monkeypatch, '0:150')
     assert len(loaded) == 47  # may change in the future

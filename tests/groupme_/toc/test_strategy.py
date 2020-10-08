@@ -14,7 +14,7 @@ import tests.fixtures.tableofcontent as tft
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_strategy_master72():
+def test_toc_strategy_master72():
     """Headline 3.1. is writen over content border, therefore we have to
     disable checking content border in PageTextContentNavigator
     creation. If we do not, the third position `11` detects only `10`
@@ -29,7 +29,7 @@ def test_groupme_toc_strategy_master72():
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_strategy_technial24():
+def test_toc_strategy_technial24():
     headlines = tft.technical24_toc()
 
     expected = [1, 1, 2, 7, 5, 1, 16, 1]

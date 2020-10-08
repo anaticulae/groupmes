@@ -15,7 +15,7 @@ import tests.fixtures.tableofcontent
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_strategy_geometry():
+def test_toc_strategy_geometry():
     headlines = tests.fixtures.tableofcontent.bachelor111_toc()
 
     # expected = [3, 16, 8, 5, 7, 8, 3, 1, 4, 1, 1, 1, 9]
@@ -37,7 +37,7 @@ def test_groupme_toc_strategy_geometry():
 
 
 @utilatest.skip_longrun
-def test_groupme_toc_strategy_bachelor111():
+def test_toc_strategy_bachelor111():
     headlines = tests.fixtures.tableofcontent.bachelor111_toc()
 
     # TODO: SEE ABOVE

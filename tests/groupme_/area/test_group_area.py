@@ -31,14 +31,14 @@ def pyporting(pages: tuple = None):
     return loaded
 
 
-def test_groupme_area_pyporting_table():
+def test_area_pyporting_table():
     loaded = pyporting(pages=3)
     grouped = groupme.feature.area.group_areas(loaded)
     assert grouped
     assert len(grouped[0].outside['tables']) == 6
 
 
-def test_groupme_area_pyporting_boxes():
+def test_area_pyporting_boxes():
     loaded = pyporting(pages=5)
     grouped = groupme.feature.area.group_areas(loaded)
     assert grouped
@@ -47,7 +47,7 @@ def test_groupme_area_pyporting_boxes():
     assert len(grouped[0].outside['boxes']) == 17
 
 
-def test_groupme_area_dump_load():
+def test_area_dump_load():
     data = pyporting()
     grouped = groupme.feature.area.group_areas(data)
 
@@ -57,7 +57,7 @@ def test_groupme_area_dump_load():
     assert grouped == loaded
 
 
-def test_groupme_area_rectangle_merge():
+def test_area_rectangle_merge():
     before = [
         (10, 10, 100, 100),
         (10, 10, 30, 30),
