@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v0.5.0
+
+### Feature
+
+* use common cluster to use position instead of repeating content (3707ee19c80c)
+* add pagenumber to common header extractor (13b0e0e7d3db)
+* add another pages pattern (6c082bcf66c7)
+* add quality judgement to prefer common quality (e4886571f137)
+
+### Fix
+
+* add missing count update (5f533d001586)
+* add missing import (c4e8284f88c5)
+* do not fail on level conversion (944ff9ed18bb)
+* do not fail on empty content (005ad94b85eb)
+* do not handle date as valid headline level (88bab4a73ab9)
+
 ## v0.4.0
 
 ### Feature
