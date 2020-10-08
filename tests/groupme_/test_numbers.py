@@ -19,7 +19,6 @@ import utilatest
 
 import groupme.feature.pagenumbers
 # pylint:disable=W0611
-from tests.fixtures.restruct import restructured_pagetextnavigators
 from tests.fixtures.simple import simple
 from tests.fixtures.simple import simple_navigator
 
@@ -44,9 +43,11 @@ def test_header_simple(simple):  #pylint:disable=W0621
     assert not result
 
 
-def test_footer_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
+def test_footer_restructured():
+    source = power.link(power.DOCU27_PDF)
+    navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(
-        restructured_pagetextnavigators,
+        navigators,
         numbers_only=False,
     )
     # cluster with page numbers
@@ -54,8 +55,10 @@ def test_footer_restructured(restructured_pagetextnavigators):  #pylint:disable=
     assert len(result) == 3, utila.log_raw(result)
 
 
-def test_header_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
-    result = groupme.feature.pagenumbers.header(restructured_pagetextnavigators)
+def test_header_restructured():
+    source = power.link(power.DOCU27_PDF)
+    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    result = groupme.feature.pagenumbers.header(navigators)
     # Example:
     # (5,
     # (BoundingBox(x_bottom=72.00, y_bottom=746.33, x_top=336.99, y_top=758.84),
@@ -65,8 +68,10 @@ def test_header_restructured(restructured_pagetextnavigators):  #pylint:disable=
     assert len(result) == 2, utila.log_raw(result)
 
 
-def test_pagenumbers_restructured(restructured_pagetextnavigators):  #pylint:disable=W0621
-    result = groupme.feature.pagenumbers.footer(restructured_pagetextnavigators)
+def test_pagenumbers_restructured():
+    source = power.link(power.DOCU27_PDF)
+    navigators = serializeraw.create_pagetextnavigators_frompath(source)
+    result = groupme.feature.pagenumbers.footer(navigators)
 
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
 

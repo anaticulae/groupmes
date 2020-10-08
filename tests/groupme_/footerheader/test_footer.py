@@ -19,14 +19,8 @@ import utilatest
 import groupme.feature.footer
 import groupme.footer.strategy as gfs
 import groupme.path
-import tests.fixtures.restruct
 import tests.groupme_
 import tests.groupme_.footerheader.extractor
-# pylint:disable=W0611
-from tests.fixtures.restruct import restructured_horizontals
-from tests.fixtures.restruct import restructured_pagenumbers
-from tests.fixtures.restruct import restructured_pagetextnavigators
-from tests.fixtures.restruct import restructured_sizeandborder
 
 
 def test_groupme_footer_work(testdir):  #pylint:disable=W0621
@@ -47,31 +41,6 @@ def test_groupme_footer_work(testdir):  #pylint:disable=W0621
     utila.file_create(os.path.join(root, 'result.yaml'), dumped)
 
 
-def test_groupme_footer_dump_and_load(
-        restructured_horizontals,  #pylint:disable=W0621
-        restructured_sizeandborder,  #pylint:disable=W0621
-        restructured_pagenumbers,  #pylint:disable=W0621
-        restructured_pagetextnavigators,  #pylint:disable=W0621
-):
-    horizontals = restructured_horizontals
-    pagenumbers = restructured_pagenumbers
-    sizeandborders = restructured_sizeandborder
-    pagetextnavigators = restructured_pagetextnavigators
-    # TODO: use general strategy?
-    extracted = gfs.fixed.FixedFooterStrategy(
-        horizontals,
-        sizeandborders,
-        pagenumbers,
-        pagetextnavigators,
-    )
-    extracted = extracted.result()  # pylint:disable=R0204
-
-    dumped = serializeraw.dump_headerfooter(extracted)
-    loaded = serializeraw.load_headerfooter(dumped)
-
-    assert loaded == extracted
-
-
 @pytest.mark.parametrize(
     'strategy, expected_results',
     [
@@ -82,24 +51,22 @@ def test_groupme_footer_dump_and_load(
 def test_groupme_footer_footerheader_detectionstategy(
         strategy,
         expected_results,
-        restructured_horizontals,  #pylint:disable=W0621
-        restructured_sizeandborder,  #pylint:disable=W0621
-        restructured_pagenumbers,  #pylint:disable=W0621
-        restructured_pagetextnavigators,  # pylint:disable=W0621
 ):
     """Check that different strategies work proper with given resources
 
-    TODO: SEE DUPLICATION test_footer_judgement_strategy_quality"""
-    horizontals = restructured_horizontals
-    sizeandborders = restructured_sizeandborder
-    pagenumbers = restructured_pagenumbers
-    pagetextnavigators = restructured_pagetextnavigators
+    TODO: SEE DUPLICATION test_footer_judgement_strategy_quality?"""
+    source = power.link(power.DOCU27_PDF)
+    horizontals = serializeraw.load_horizontals(source)
+    sizeandborders = serializeraw.load_pageborders(source)
+    pagenumbers = groupme.path.pagenumbers(source)  # TODO: REMOVE AFTER UPGRADE
+    pagenumbers = serializeraw.load_pagenumbers(pagenumbers)
+    ptn = serializeraw.create_pagetextnavigators_frompath(source)
 
     process = strategy(
         horizontals=horizontals,
         sizeandborders=sizeandborders,
         pagenumbers=pagenumbers,
-        pagetextnavigators=pagetextnavigators,
+        pagetextnavigators=ptn,
     )
     result = process.result()
     assert len(result) == expected_results, 'not enough footer and header'
