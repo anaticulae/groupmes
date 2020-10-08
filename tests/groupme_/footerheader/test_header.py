@@ -37,22 +37,12 @@ def test_groupme_footer_extract_footerheader_technical(root, expected):
         root,
         pages=pages,
     )
-
-    horizontals = serializeraw.load_horizontals(
-        iamraw.path.horizontals(root),
-        pages=pages,
-    )
-
-    sizeandborders = serializeraw.load_pageborders(
-        iamraw.path.sizeandborder(root),
-        pages=pages,
-    )
-
+    horizontals = serializeraw.load_horizontals(root, pages=pages)
+    sizeandborders = serializeraw.load_pageborders(root, pages=pages)
     pagenumbers = serializeraw.load_pagenumbers(
         groupme.path.pagenumbers(root),
         pages=pages,
     )
-
     result = groupme.feature.footer.extract_footerheader(
         horizontals=horizontals,
         sizeandborders=sizeandborders,
@@ -110,22 +100,14 @@ def test_groupme_header_diss264_page0_40(testdir, monkeypatch):
 @utilatest.skip_longrun
 def test_groupme_header_diss264_all(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
-    cmd = f'-i {power.link(power.DISS264_PDF)}  --footer --pages=0:150'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-
-    loaded = serializeraw.load_headerfooter(headerpath)
+    loaded = extract_header(power.DISS264_PDF, testdir, monkeypatch, '0:150')
     assert len(loaded) == 47  # may change in the future
 
 
 @utilatest.skip_longrun
 def test_header_under_line_master75(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
-    cmd = f'-i {power.link(power.MASTER075_PDF)}  --footer --pages=0:50'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-
-    loaded = serializeraw.load_headerfooter(headerpath)
+    loaded = extract_header(power.MASTER075_PDF, testdir, monkeypatch, '0:50')
     assert len(loaded) == 48, len(loaded)
     first = loaded[0].header.undefined
     # use common extractor
