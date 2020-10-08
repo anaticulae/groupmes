@@ -26,10 +26,10 @@ import utila
 import groupme.feature.pagenumbers
 import groupme.footer.strategy as gfs
 
-COMMON_HEADER_MAX_ERROR = 1.0  # TODO: HOLY VALUE
+COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE
 # minimal items in a cluster to be detected and accepted as feature.
-MIN_CLUSTER_COUNT = configo.HV_INT_PLUS(5)
-MIN_OCCURRENCE = 0.5
+MIN_CLUSTER_COUNT = configo.HV_INT_PLUS(5).value
+MIN_OCCURRENCE = 0.25
 TOP_AREA = 0.15  # TODO: HOLY VALUE
 
 
@@ -55,11 +55,11 @@ def cluster_pages(pagenavigators):
         MIN_CLUSTER_COUNT,
     ])
 
-    with_box = prepare_clustering(pagenavigators)
+    with_box = utila.flatten(prepare_clustering(pagenavigators))
 
     # TODO REPLACE WITH COMMON POSITION CLUSTER
-    clusters = utila.common_items(
-        collected=with_box,
+    clusters = utila.same_area_cluster(
+        todo=with_box,
         max_difference=COMMON_HEADER_MAX_ERROR,
         min_elements=min_cluster_count,
     )
@@ -68,7 +68,7 @@ def cluster_pages(pagenavigators):
 
     result = {}
     for cluster in clusters:
-        for (_, (bounding, text, pageheight, pagenumber)) in cluster:
+        for bounding, text, pageheight, pagenumber in cluster:
             end = utila.roundme(bounding.y1 / pageheight)
             # remove newline at end TODO: REMOVE LATER
             text = text.text.strip()
