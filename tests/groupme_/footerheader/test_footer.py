@@ -112,3 +112,14 @@ def test_footer_bachelor51(testdir, monkeypatch):
     )
     pages = [item.footer.page.value for item in extracted]
     assert len(pages) >= 23
+
+
+def test_footer_master110(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER110_PDF,
+        testdir,
+        monkeypatch,
+    )
+    footers = [item.footer for item in extracted if item.footer]
+    # changes in the future if data generator is extended
+    assert len(footers) == 37
