@@ -123,3 +123,16 @@ def test_footer_master110(testdir, monkeypatch):
     footers = [item.footer for item in extracted if item.footer]
     # changes in the future if data generator is extended
     assert len(footers) == 37
+
+
+def test_footer_master99_page8(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER099_PDF,
+        testdir,
+        monkeypatch,
+        pages='8',
+    )
+    footer = extracted[0].footer.notes[0].text.strip()
+    footer = utila.normalize_whitespaces(footer)
+    assert footer.startswith('Näheres')
+    assert footer.endswith('nachgelesen werden.')
