@@ -65,6 +65,7 @@ def test_abbreviation_geometry_columns():
     assert len(content[1]) == 20, str(content[1])
 
 
+@utilatest.longrun
 def test_abbreviation_geometry_all_columns():
     page = bachelor37().normal[0]  # pylint:disable=E1136
     columns = [

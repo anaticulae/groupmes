@@ -9,6 +9,7 @@
 
 import power
 import pytest
+import utilatest
 
 import groupme.feature.footer
 import groupme.footer
@@ -26,6 +27,7 @@ import groupme.footer
         id='restruct',
     ),
 ])
+@utilatest.longrun
 def test_footer_judge_strategy_quality(path, expected_quality):
     """Ensure that enough header and footer are detected"""
     pages = tuple(range(0, 20))

@@ -12,6 +12,7 @@ import power
 import pytest
 import serializeraw
 import utila
+import utilatest
 
 import groupme.feature.toc
 import groupme.toc.lineregex
@@ -23,6 +24,7 @@ MASTER72_TEXT = iamraw.path.text(
 )
 
 
+@utilatest.longrun
 def test_extract_toc_from_master_pages72_page_1and2():
     document = serializeraw.load_document(MASTER72_TEXT)
 
