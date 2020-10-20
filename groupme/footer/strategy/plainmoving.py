@@ -146,6 +146,9 @@ def extract_footer(
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
 
+    if invalid_footer(begin, content):
+        return None
+
     # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
     footnotes = groupme.footnotes.plain.parse(content)
@@ -155,3 +158,26 @@ def extract_footer(
         notes=footnotes,
     )
     return footer
+
+
+FOOTER_MIN_COUNT = configo.HolyTable(
+    items=(
+        (BOTTOM_BORDER, 10),
+        (0.8, 4),
+        (1.0, 0),
+    ),
+    strategy=utila.Strategy.LINEARISE,
+    right_outranges_none=False,
+)
+
+
+def invalid_footer(begin, content) -> bool:
+    """Check if potential footer contain too few content and there can
+    not be a footer."""
+    # TODO: The distance between footer line and footer content is very
+    # high in bachelor128. This about to change invalidation method. May
+    # introduce high distance check?
+    mincount = FOOTER_MIN_COUNT(begin)
+    if len(content) < mincount:
+        return True
+    return False
