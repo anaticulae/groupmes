@@ -120,3 +120,9 @@ def test_header_under_line_master75(testdir, monkeypatch):
 def test_header_master110(testdir, monkeypatch):
     loaded = extract_header(power.MASTER110_PDF, testdir, monkeypatch, '0:50')
     assert len(loaded) == 25  # may change in the future
+
+
+@utilatest.skip_longrun
+def test_header_master155(testdir, monkeypatch):
+    loaded = extract_header(power.MASTER155_PDF, testdir, monkeypatch)
+    assert len(loaded) == 143  # may change in the future
