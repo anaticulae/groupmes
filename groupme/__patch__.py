@@ -40,3 +40,31 @@ def three_side_equal_cluster(
 
 
 utila.three_side_equal_cluster = three_side_equal_cluster
+
+
+def isascending(
+        items: 'utila.math.number.Numbers',
+        *,
+        strict: bool = True,
+) -> bool:
+    """Check that `items` are ascending numbers.
+
+    >>> isascending([1, 2, 3, 4])
+    True
+    >>> isascending((5, 2.2, 5))
+    False
+    >>> isascending((0.6, 0.8, 1.0))
+    True
+    >>> isascending([1, 2, 2, 2, 3], strict=False)
+    True
+    """
+    items = [float(item) for item in items]
+    diff = [
+        (after - current) for (current, after) in zip(items[:-1], items[1:])
+    ]
+    if strict:
+        return all([item > 0 for item in diff])
+    return all([item >= 0 for item in diff])
+
+
+utila.isascending = isascending
