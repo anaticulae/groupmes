@@ -36,4 +36,4 @@ def bachelor111_toc():
 
 
 def technical24_toc():
-    return headlines_frompath(power.link(power.TECHNICAL_024), pages=(1,))
+    return headlines_frompath(power.link(power.TECH024_PDF), pages=(1,))

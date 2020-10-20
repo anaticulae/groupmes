@@ -26,7 +26,7 @@ import tests.resources
             id='howtoargparse',
         ),
         pytest.param(
-            power.link(power.TECHNICAL_024),
+            power.link(power.TECH024_PDF),
             tests.resources.TECHNICAL24_PAGE_COUNT,
             # header page has no page number
             tests.resources.TECHNICAL24_PAGE_COUNT - 1,

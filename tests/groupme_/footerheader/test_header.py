@@ -20,7 +20,7 @@ import tests.groupme_
 
 @pytest.mark.parametrize('root, expected', [
     pytest.param(
-        power.link(power.TECHNICAL_024),
+        power.link(power.TECH024_PDF),
         list(range(1, 24)),
         id='technical24',
     ),

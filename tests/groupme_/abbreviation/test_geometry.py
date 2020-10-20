@@ -37,7 +37,7 @@ def bachelor37():
         10,
         id='bachelor37_figure',
     ),
-    pytest.param(power.link(power.HOMEWORK050_PDF), 6, 0, id='homework50'),
+    pytest.param(power.link(power.HOME050_PDF), 6, 0, id='homework50'),
     pytest.param(power.link(power.MASTER116_PDF), 96, 8, id='master116'),
 ])
 @utilatest.skip_longrun

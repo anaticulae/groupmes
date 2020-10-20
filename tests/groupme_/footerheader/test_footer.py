@@ -93,7 +93,7 @@ def normalize_whitespaces(text: str) -> str:
 
 def test_footer_homework18(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
-        power.HOMEWORK018_PDF,
+        power.HOME018_PDF,
         testdir,
         monkeypatch,
         pages='3:17',

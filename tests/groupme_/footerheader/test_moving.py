@@ -63,7 +63,7 @@ def validate_homework18(result):
             id='restructured',
         ),
         pytest.param(
-            power.link(power.HOMEWORK018_PDF),
+            power.link(power.HOME018_PDF),
             tuple(range(6)),
             [(3, 3), (4, 4), (5, 7)],
             groupme.footer.strategy.plainmoving.PlainMovingFooterStrategy,

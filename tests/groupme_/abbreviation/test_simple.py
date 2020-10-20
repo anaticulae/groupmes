@@ -16,7 +16,7 @@ import groupme.abbreviation.simple
 
 
 @pytest.mark.parametrize('source, pages, expected', [
-    pytest.param(power.link(power.HOMEWORK050_PDF), 6, 18, id='homework50'),
+    pytest.param(power.link(power.HOME050_PDF), 6, 18, id='homework50'),
     pytest.param(power.link(power.MASTER116_PDF), 96, 8, id='master116'),
     pytest.param(
         power.link(power.BACHELOR037_PDF),

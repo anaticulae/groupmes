@@ -617,7 +617,7 @@ TEN = tuple(range(10))
                  marks=pytest.mark.xfail(reason='literaturverzeichnis sub notes')),
     pytest.param(power.link(power.BACHELOR241_PDF), bachelor241, (4, 5, 6, 7), id='bachelor241',
                  marks=pytest.mark.xfail(reason='literaturverzeichnis sub notes')),
-    pytest.param(power.link(power.HOMEWORK050_PDF), homework50, (3, 4), id='homework50'),
+    pytest.param(power.link(power.HOME050_PDF), homework50, (3, 4), id='homework50'),
     pytest.param(power.link(power.MASTER083_PDF), master83, TEN, id='master83'),
     pytest.param(power.link(power.MASTER089_PDF), master89, TEN, id='master89'),
     pytest.param(power.link(power.MASTER098_PDF), master98, TEN, id='master98'),
