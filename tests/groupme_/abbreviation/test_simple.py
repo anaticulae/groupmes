@@ -26,7 +26,7 @@ import groupme.abbreviation.simple
         marks=pytest.mark.xfail(reason='require more complex strategy'),
     ),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_abbreviation_parse_simple(source, pages, expected):
     content = serializeraw.create_pagetextnavigators_frompath(
         source,

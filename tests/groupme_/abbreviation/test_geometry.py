@@ -40,7 +40,7 @@ def bachelor37():
     pytest.param(power.link(power.HOME050_PDF), 6, 0, id='homework50'),
     pytest.param(power.link(power.MASTER116_PDF), 96, 8, id='master116'),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_abbreviation_parse_strategy_geometry(source, pages, expected):
     content = serializeraw.create_pagetextnavigators_frompath(
         source,
@@ -52,7 +52,7 @@ def test_abbreviation_parse_strategy_geometry(source, pages, expected):
     assert len(parsed) == expected, len(parsed)
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_abbreviation_geometry_columns():
     page = bachelor37().normal[0]  # pylint:disable=E1136
     columns = groupme.abbreviation.geometry.columns(page)

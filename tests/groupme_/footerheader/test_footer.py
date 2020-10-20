@@ -72,7 +72,7 @@ def test_footer_footerheader_detectionstategy(
     assert len(result) == expected_results, 'not enough footer and header'
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_master72_extract(testdir, monkeypatch):
     outdir = testdir.tmpdir
     cmd = f'-i {power.link(power.MASTER072_PDF)}  -o {outdir} --footer --pages=3'

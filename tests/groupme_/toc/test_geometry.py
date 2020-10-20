@@ -14,7 +14,7 @@ import groupme.toc.strategy.geometry
 import tests.fixtures.tableofcontent
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_strategy_geometry():
     headlines = tests.fixtures.tableofcontent.bachelor111_toc()
 
@@ -36,7 +36,7 @@ def test_toc_strategy_geometry():
     assert current == expected
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_strategy_bachelor111():
     headlines = tests.fixtures.tableofcontent.bachelor111_toc()
 

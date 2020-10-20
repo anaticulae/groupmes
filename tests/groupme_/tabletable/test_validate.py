@@ -64,7 +64,7 @@ def bachelor90(toc: iamraw.Toc):
         id='bachelor90',
     ),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_tabletable(source, validate, pages, monkeypatch, testdir):
     pages = ','.join((str(item) for item in pages)) if pages else ''
     pages = f'--pages={pages}' if pages else ''

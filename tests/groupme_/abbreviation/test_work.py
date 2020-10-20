@@ -15,7 +15,7 @@ import utilatest
 import groupme.feature.abbreviation
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_abbreviation_work():
     source = power.link(power.BACHELOR037_PDF)
 

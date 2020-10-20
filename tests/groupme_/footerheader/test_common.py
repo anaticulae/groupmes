@@ -15,7 +15,7 @@ import utilatest
 import tests.groupme_
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_regression_common_strategy(testdir, monkeypatch):
     """There was a bug in handling selective --pages=1 correctly. In the
     old implementation the page height of page zero was used for the

@@ -117,7 +117,7 @@ def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
     pytest.param(power.link(power.MASTER072_PDF), 69, id='master72pages'),
     pytest.param(power.link(power.TECH024_PDF), 23, id='technical24pages'),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_numbers_work_single(resource, expected_numbers):
     # TODO: bottom only, add header page extraction
     text = iamraw.path.text(resource)

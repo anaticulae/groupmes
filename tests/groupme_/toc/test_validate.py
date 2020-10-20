@@ -625,7 +625,7 @@ TEN = tuple(range(10))
     pytest.param(power.link(power.MASTER072_PDF), master72, None, id='master72'),
     pytest.param(power.link(power.BACHELOR090_PDF), bachelor90, TEN, id='bachelor90'),
 ])  # yapf:enable
-@utilatest.skip_nightly
+@utilatest.nightly
 def test_toc_validate(source, validate, pages, monkeypatch, testdir):
     """Verify parsing behavior and check that toc is located
     automatically in range of `TEN` pages."""

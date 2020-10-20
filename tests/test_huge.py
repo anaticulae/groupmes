@@ -115,7 +115,7 @@ def rawresult(request, testdir):
     return (tmpdir, tocpath, generalpath)
 
 
-@utilatest.skip_nightly
+@utilatest.nightly
 @pytest.mark.usefixtures('testdir')
 def test_huge_running_application(rawresult):  # pylint:disable=W0621
     tmpdir, tocpath, generalpath = rawresult

@@ -21,7 +21,7 @@ from tests.groupme_.footnotes.fixtures import master89_page7
 from tests.groupme_.footnotes.fixtures import master89_page19
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footnote_highnotes_split(master72_page14):  # pylint:disable=W0621
     footer = master72_page14
     splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
@@ -29,7 +29,7 @@ def test_footnote_highnotes_split(master72_page14):  # pylint:disable=W0621
     assert len(splitted) == 7, splitted
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disable=W0621
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow."""
@@ -41,7 +41,7 @@ def test_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disab
     assert len(merged) == 1, merged
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footnote_highnotes_split_mixed_in_text_tripple(master89_page19):  # pylint:disable=W0621
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow and after this there are two more
@@ -61,13 +61,13 @@ def test_footnote_highnotes_split_mixed_in_text_tripple(master89_page19):  # pyl
     assert thirdnote_text.startswith(expected), thirdnote_text
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footnote_parse_footer_with_highnotes(master89_page7):  # pylint:disable=W0621
     parsed = groupme.footnotes.parser.parse_with_highnotes(master89_page7)
     assert len(parsed) == 1, parsed
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylint:disable=W0621,W0613
     parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111_page10)
     assert len(parsed) == 3, str(parsed)

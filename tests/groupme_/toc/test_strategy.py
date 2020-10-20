@@ -13,7 +13,7 @@ import groupme.toc.extractor as gte
 import tests.fixtures.tableofcontent as tft
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_strategy_master72():
     """Headline 3.1. is writen over content border, therefore we have to
     disable checking content border in PageTextContentNavigator
@@ -28,7 +28,7 @@ def test_toc_strategy_master72():
     assert count == expected
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_strategy_technial24():
     headlines = tft.technical24_toc()
 

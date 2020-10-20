@@ -99,7 +99,7 @@ def _bachelor111_footerheader():
     return footerheader
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_fixed_bachelor111page_extract_common_footer():
     _, __, top, bottom, ___ = _bachelor111()
     assert top  # document has header
@@ -107,7 +107,7 @@ def test_footer_fixed_bachelor111page_extract_common_footer():
     assert top < bottom
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_fixed_bachelor111page_extract_page_footerheader():
     """Use more than one group to detect all headers. There are ordered
     from biggest to smallest"""
@@ -124,7 +124,7 @@ def test_footer_fixed_bachelor111page_extract_page_footerheader():
     assert not footer, utila.log_raw(footer)
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_fixed_bachelor111page_extract_page_header():
     footerheader = _bachelor111_footerheader()
     pages = [item.page for item in footerheader]
@@ -138,7 +138,7 @@ def test_footer_fixed_bachelor111page_extract_page_header():
     assert len(title) >= 68, 'not enough title'
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_dump_and_load_bachelor111():
     footerheader = _bachelor111_footerheader()
 

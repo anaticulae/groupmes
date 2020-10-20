@@ -80,7 +80,7 @@ def validate_homework18(result):
             marks=pytest.mark.xfail(reason='pdf is not printed correctly'),
         ),
     ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_moving(
         document,
         pages,

@@ -21,7 +21,7 @@ import groupme.abbreviation.parser
     pytest.param(power.link(power.HOME050_PDF), 6, 18, id='homework50'),
     pytest.param(power.link(power.MASTER116_PDF), 96, 8, id='master116'),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_abbreviation_parser(source, pages, expected):
     normal = serializeraw.create_pagetextnavigators_frompath(
         source,

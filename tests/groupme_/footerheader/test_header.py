@@ -30,7 +30,7 @@ import tests.groupme_
         id='master72',
     ),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_footer_extract_footerheader_technical(root, expected):
     pages = None
     pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(
@@ -69,14 +69,14 @@ def test_header_bachelor90(testdir, monkeypatch):
     assert len(header) == 11
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_bachelor37_starting_index(testdir, monkeypatch):
     """Ensure that parts of pages `4:20` for example are indexed correctly."""
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:20')
     assert header[0].page.value == 4
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_bachelor37_all(testdir, monkeypatch):
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch)
 
@@ -86,7 +86,7 @@ def test_header_bachelor37_all(testdir, monkeypatch):
     assert current == expected
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_diss264_page0_40(testdir, monkeypatch):
     header = extract_header(
         power.DISS264_PDF,
@@ -97,14 +97,14 @@ def test_header_diss264_page0_40(testdir, monkeypatch):
     assert len(header) == 37
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_diss264_all(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
     loaded = extract_header(power.DISS264_PDF, testdir, monkeypatch, '0:150')
     assert len(loaded) == 47  # may change in the future
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_under_line_master75(testdir, monkeypatch):
     """Ensure to parse header of alternating pages correctly."""
     loaded = extract_header(power.MASTER075_PDF, testdir, monkeypatch, '0:50')
@@ -116,13 +116,13 @@ def test_header_under_line_master75(testdir, monkeypatch):
     # assert len(first) == 2, str(first)
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_master110(testdir, monkeypatch):
     loaded = extract_header(power.MASTER110_PDF, testdir, monkeypatch, '0:50')
     assert len(loaded) == 25  # may change in the future
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_header_master155(testdir, monkeypatch):
     loaded = extract_header(power.MASTER155_PDF, testdir, monkeypatch)
     assert len(loaded) == 143  # may change in the future

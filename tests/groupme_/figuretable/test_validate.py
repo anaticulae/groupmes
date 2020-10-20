@@ -160,7 +160,7 @@ TEN = tuple(range(10))
         id='bachelor63',
     ),
 ])
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_figuretable(source, validate, pages, monkeypatch, testdir):
     figuretable = tests.groupme_.figuretable.extract_figuretable(
         source,

@@ -33,7 +33,7 @@ def bachelor111():
     return result
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_geometry_analyse_page_master72():
     data = master72()
 
@@ -46,7 +46,7 @@ def test_toc_geometry_analyse_page_master72():
     assert len(parsed) == 4
 
 
-@utilatest.skip_longrun
+@utilatest.longrun
 def test_toc_geometry_analyse_page_bachelor111():
     """Check that geometry approach parses and group toc lines correctly."""
 
