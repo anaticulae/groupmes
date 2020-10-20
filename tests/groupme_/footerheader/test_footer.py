@@ -136,3 +136,15 @@ def test_footer_master99_page8(testdir, monkeypatch):
     footer = utila.normalize_whitespaces(footer)
     assert footer.startswith('Näheres')
     assert footer.endswith('nachgelesen werden.')
+
+
+@utilatest.longrun
+def test_footer_master155_page107(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER155_PDF,
+        testdir,
+        monkeypatch,
+        pages='0:110',
+    )
+    footer = utila.select_page(extracted, 107).footer
+    assert isinstance(footer, iamraw.PagesFooterInformation), type(footer)
