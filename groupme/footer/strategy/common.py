@@ -28,8 +28,18 @@ import groupme.footer.strategy as gfs
 
 COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE
 # minimal items in a cluster to be detected and accepted as feature.
-MIN_CLUSTER_COUNT = configo.HV_INT_PLUS(5).value
-MIN_OCCURRENCE = 0.25
+MIN_OCCURRENCE = configo.HolyTable(
+    items=(
+        (0, 10),
+        (10, 10),
+        (15, 10),
+        (30, 15),
+        (50, 20),
+        (100, 25),
+    ),
+    right_outranges_none=False,
+)
+
 TOP_AREA = 0.15  # TODO: HOLY VALUE
 
 
@@ -50,17 +60,13 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
 
 def cluster_pages(pagenavigators):
     pagenumbers = len(pagenavigators)
-    min_cluster_count = max([
-        int(pagenumbers * MIN_OCCURRENCE),
-        MIN_CLUSTER_COUNT,
-    ])
+    min_cluster_count = MIN_OCCURRENCE(pagenumbers)
 
     with_box = utila.flatten(prepare_clustering(pagenavigators))
 
-    # TODO REPLACE WITH COMMON POSITION CLUSTER
-    clusters = utila.same_area_cluster(
+    clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
-        max_difference=COMMON_HEADER_MAX_ERROR,
+        max_diff=COMMON_HEADER_MAX_ERROR,
         min_elements=min_cluster_count,
     )
     if not clusters:
@@ -80,7 +86,9 @@ def cluster_pages(pagenavigators):
                     begin=texmex.START,
                     end=end,
                     page=iamraw.PageInformation(value=pagenumber, raw=None),
-                    undefined=[iamraw.RawText(text=text)]  # pylint:disable=E1101
+                    undefined=[
+                        iamraw.RawText(text=text),
+                    ],
                 )
                 result[pagenumber] = header
     result = [(item, result[item]) for item in sorted(result.keys())]

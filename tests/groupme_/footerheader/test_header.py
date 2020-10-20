@@ -71,8 +71,8 @@ def test_header_bachelor90(testdir, monkeypatch):
 
 @utilatest.skip_longrun
 def test_header_bachelor37_starting_index(testdir, monkeypatch):
-    """Ensure that parts of pages `4:14` for example are indexed correctly."""
-    header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:14')
+    """Ensure that parts of pages `4:20` for example are indexed correctly."""
+    header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:20')
     assert header[0].page.value == 4
 
 
