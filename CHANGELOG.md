@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.6.0
+
+### Feature
+
+* add min content count to plain moving extractor (8e39b7ecb06b)
+* improve common header detector (d302e27b2d4f)
+* fix footnote parser (04c9f5d9a00b)
+
 ## v0.5.1
 
 ## v0.5.0
