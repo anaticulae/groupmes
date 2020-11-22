@@ -137,6 +137,100 @@ def bachelor63(toc: iamraw.Toc):
     assert figures == FIGURETABLE_BACHELOR63, figures
 
 
+# TODO: REMOVE TAB 1
+FIGURETABLE_MASTER75 = """\
+Abb. 1: Lage Neunkirchens (Quelle: Google Maps (2017), eigene Darstellung)
+Abb. 2: Untersuchungsgebiete in Neunkirchen (Datengrundlage: Google Maps (2017), eigene Darstellung)
+Abb. 3: Fragebogen – Seite 1
+Abb. 4: Fragebogen – Seite 2
+Abb. 5: Besuchsfrequenz – Neunkirchen Männer
+Abb. 6: Besuchsfrequenz – Neunkirchen Frauen
+Abb. 7: Besuchsfrequenz – Standort Innenstadt Männer
+Abb. 8: Besuchsfrequenz – Standort Innenstadt Frauen
+Abb. 9: Besuchsfrequenz – Standort Panoramapark Männer
+Abb. 10: Besuchsfrequenz – Standort Panoramapark Frauen
+Abb. 11: Besuchsfrequenz – Standort Am Spitz Männer
+Abb. 12: Besuchsfrequenz – Standort Am Spitz Frauen
+Abb. 13: Besuchsfrequenz – Standort Sonstige Männer
+Abb. 14: Besuchsfrequenz – Standort Sonstige Frauen
+Abb. 15: Art der Anreise – Neunkirchen
+Abb. 16: Art der Anreise – Männer
+Abb. 17: Art der Anreise – Frauen
+Abb. 18: Art d. Anreise – Standort Innenstadt Männer
+Abb. 19: Art d. Anreise – Standort Innenstadt Frauen
+Abb. 20: Art d. Anreise – Standort Panoramapark Männer
+Abb. 21: Art d. Anreise – Standort Panoramapark Frauen
+Abb. 22: Art d. Anreise – Standort Am Spitz Männer
+Abb. 23: Art d. Anreise – Standort Am Spitz Frauen
+Abb. 24: Art d. Anreise – Standort Sonstige Männer
+Abb. 25: Art d. Anreise – Standort Sonstige Frauen
+Abb. 26: Besuchsgrund Neunkirchen
+Abb. 27: Besuchsgrund – Standort Innenstadt
+Abb. 28: Besuchsgrund – Standort Panoramapark
+Abb. 29: Besuchsgrund – Standort Am Spitz
+Abb. 30: Besuchsgrund – Standort Sonstige
+Abb. 31: Kundenbedürfnisse Neunkirchen
+Abb. 32: Besucherzufriedenheit – Neunkirchen
+Abb. 33: Besucherzufriedenheit – Standort Innenstadt
+Abb. 34: Besucherzufriedenheit – Standort Panoramapark
+Abb. 35: Besucherzufriedenheit – Standort Am Spitz
+Abb. 36: Besucherzufriedenheit – Standort Sonstige
+Abb. 37: Bildungsstand – Bezirk Neunkirchen Männer
+Abb. 38: Bildungsstand – Bezirk Neunkirchen Frauen
+Abb. 39: Bildungsstand – Befragungsteilnehmer Männer
+Abb. 40: Bildungsstand – Befragungsteilnehmer Frauen
+Abb. 41: Bildungsstand nach Standort (Männer)
+Abb. 42: Bildungsstand nach Standort (Frauen)
+Abb. 43: Herkunft aller Untersuchungsteilnehmer
+Abb. 44: Herkunft – Neunkirchen Männer
+Abb. 45: Herkunft – Neunkirchen Frauen
+Abb. 46: Herkunft – Standort Innenstadt
+Abb. 47: Herkunft – Standort Innenstadt Männer
+Abb. 48: Herkunft – Standort Innenstadt Frauen
+Abb. 49: Herkunft – Standort Panoramapark
+Abb. 50: Herkunft – Standort Panoramapark Männer
+Abb. 51: Herkunft – Standort Panoramapark Frauen
+Abb. 52: Herkunft – Standort Am Spitz
+Abb. 53: Herkunft – Standort Am Spitz Männer
+Abb. 54: Herkunft – Standort Am Spitz Frauen
+Abb. 55: Herkunft – Standort Sonstige
+Abb. 56: Herkunft – Standort Sonstige Männer
+Abb. 57: Herkunft – Standort Sonstige Frauen
+Abb. 58: Haushaltseinkommen netto – Neunkirchen
+Abb. 59: Übersicht Haushaltseinkommen netto (Prozent)
+Abb. 60: Wohnsituation in Neunkirchen (Prozent)
+Abb. 61: Wohnsituation nach Standorten in Prozent
+Abb. 62: Alternative Einkaufsorte
+Abb. 63: Herkunft der Untersuchungsteilnehmer (1) (Quelle: Bobek u. Fesl (1978), eig. Darstellung)
+Abb. 64: Herkunft der Untersuchungsteilnehmer (2) (Quelle: Google Maps (2017), eig. Darstellung)
+Abb. 65: Besuchsfrequenz – Neunkirchen
+Abb. 66: Besuchsfrequenz nach Standorten
+Abb. 67: Besuchsgrund in Neunkirchen, geschlechterdifferenziert
+Abb. 68: Besuchsgrund nach Standorten (ab 4 Nennungen)
+Abb. 69: Besuchsgrund in Neunkirchen – Auswärtige Besucher, geschlechterdifferenziert
+Abb. 70: Besuchsgrund in Neunkirchen – Auswärtige
+Abb. 71: Besuchsgrund in Neunkirchen – Einheimische
+Abb. 72: Nicht befriedigte Einkaufsbedürfnisse
+Abb. 73: Alternative Einkaufsorte
+Abb. 74: Art der Anreise – Männer
+Abb. 75: Art der Anreise – Frauen
+Abb. 76: Besucherzufriedenheit nach Standorten
+Abb. 77: Wohnsituation relativ nach Altersklassen
+Abb. 78: Einkommenssituation relativ nach Altersklassen
+Abb. 79: Bildungsstand relativ nach Altersklassen
+Abb. 80: Zufriedenheit nach Altersgruppen und Geschlecht, alle Standorte
+Abb. 81: Zufriedenheit Standort Innenstadt nach Alter und Geschlecht
+Abb. 82: Zufriedenheit Standort Panoramapark nach Alter und Geschlecht
+Abb. 83: Zufriedenheit Standort Am Spitz nach Alter und Geschlecht
+Abb. 84: Zufriedenheit Standort Sonstige nach Alter und Geschlecht
+Tab. 1: Stichprobenkonstruktion"""
+
+
+def master75(toc: iamraw.Toc):
+    figures = merge_required(toc)
+    assert figures == FIGURETABLE_MASTER75, figures
+
+
 TEN = tuple(range(10))
 
 
@@ -158,6 +252,12 @@ TEN = tuple(range(10))
         bachelor63,
         (59, 60, 61, 62),
         id='bachelor63',
+    ),
+    pytest.param(
+        power.link(power.MASTER075_PDF),
+        master75,
+        (71, 72),
+        id='master75',
     ),
 ])
 @utilatest.longrun
