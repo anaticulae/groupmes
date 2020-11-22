@@ -77,7 +77,7 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
         wrong_table=NO_FIGURES,
         min_valid_lines_perpage=MIN_TOFS_PER_PAGE,
     )
-    # select toc pages only
+    # select figure pages only
     oneline = utila.select_pages(oneline, pages=selected)
 
     loaded = groupme.toc.strategy.load(oneline)
