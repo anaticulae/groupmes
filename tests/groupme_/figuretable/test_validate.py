@@ -100,36 +100,36 @@ def bachelor37(toc: iamraw.Toc):
 
 
 FIGURETABLE_BACHELOR63 = """\
-Abbildung 1: Korotkow-Geräusche bei der auskultatorischen Blutdruckmessung [Elt01]
-Abbildung 2: Manschettendruckverlauf und Oszillationen bei der oszillometrischen Blutdruckmessung [Elt01]
-Abbildung 3: Volumenkompensationsmethode nach Penaz [Elt01]
-Abbildung 4: Messverfahren nach R. Aaslid und AO. Brubakk [Aas81]
-Abbildung 5: Schematische Darstellung einer aufgesetzten Ultraschall-Doppler-Sonde [Pau11]
-Abbildung 6: Grundstruktur des Regelkreises [nach Lun10]
-Abbildung 7: Digitalisierung mit Abtast-Halteglied [Reu08]
-Abbildung 8: Sprungantwort eines idealen PI-Reglers
-Abbildung 9: Einfache LabVIEW-Operation
-Abbildung 10: Blutdruckverlauf während eines Valsalva-Manövers
-Abbildung 11: Bestehender Versuchsaufbau vor der Optimierung
-Abbildung 12: Blockdiagramm des ersten Modellentwurfs
-Abbildung 13: Optimierung der Regelschleife - Zeitsteuerung Messschleife
-Abbildung 14: Optimierung der Regelschleife - Puffer nach dem „FIFO“-Prinzip
-Abbildung 15: Optimierung der Regelschleife - Regelalgorithmus (PI)
-Abbildung 16: Valsalva-Press-Versuch mit altem Aufbau
-Abbildung 17: Valsalva-Press-Versuch mit neuem Aufbau
-Abbildung 18: Spannungsverteiler und 24V-Netzteil
-Abbildung 19: Verteilerplatine
-Abbildung 20: Registerkartenelement "Voreinstellungen" der Bedienoberfläche
-Abbildung 21: Registerkartenelement "Wiedergabe" der Bedienoberfläche mit gespeicherter Messung
-Abbildung 22: Frontpanel des Messprogramms
-Abbildung 23: Optimierte Sondenfixierung
-Abbildung 24: Struktur- und Signalflussplan - Legende
-Abbildung 25: Struktur- und Signalflussplan - Übersicht Laboraufbau
-Abbildung 26: Struktur- und Signalflussplan - Detailansicht Druckerzeugungseinheit
-Abbildung 27: Struktur- und Signalflussplan - Detailansicht Mess-PC
-Abbildung 28: Auswertung der Testmessungen - Beispiel für oszillometrische Messung
-Abbildung 29: Auswertung der Testmessungen - Vergleich der ermittelten MAP-Werte
-Abbildung 30: Auswertung der Testmessungen - Qualität der oszillometrischen Anpassung"""
+Korotkow-Geräusche bei der auskultatorischen Blutdruckmessung [Elt01]
+Manschettendruckverlauf und Oszillationen bei der oszillometrischen Blutdruckmessung [Elt01]
+Volumenkompensationsmethode nach Penaz [Elt01]
+Messverfahren nach R. Aaslid und AO. Brubakk [Aas81]
+Schematische Darstellung einer aufgesetzten Ultraschall-Doppler-Sonde [Pau11]
+Grundstruktur des Regelkreises [nach Lun10]
+Digitalisierung mit Abtast-Halteglied [Reu08]
+Sprungantwort eines idealen PI-Reglers
+Einfache LabVIEW-Operation
+Blutdruckverlauf während eines Valsalva-Manövers
+Bestehender Versuchsaufbau vor der Optimierung
+Blockdiagramm des ersten Modellentwurfs
+Optimierung der Regelschleife - Zeitsteuerung Messschleife
+Optimierung der Regelschleife - Puffer nach dem „FIFO“-Prinzip
+Optimierung der Regelschleife - Regelalgorithmus (PI)
+Valsalva-Press-Versuch mit altem Aufbau
+Valsalva-Press-Versuch mit neuem Aufbau
+Spannungsverteiler und 24V-Netzteil
+Verteilerplatine
+Registerkartenelement "Voreinstellungen" der Bedienoberfläche
+Registerkartenelement "Wiedergabe" der Bedienoberfläche mit gespeicherter Messung
+Frontpanel des Messprogramms
+Optimierte Sondenfixierung
+Struktur- und Signalflussplan - Legende
+Struktur- und Signalflussplan - Übersicht Laboraufbau
+Struktur- und Signalflussplan - Detailansicht Druckerzeugungseinheit
+Struktur- und Signalflussplan - Detailansicht Mess-PC
+Auswertung der Testmessungen - Beispiel für oszillometrische Messung
+Auswertung der Testmessungen - Vergleich der ermittelten MAP-Werte
+Auswertung der Testmessungen - Qualität der oszillometrischen Anpassung"""
 
 
 def bachelor63(toc: iamraw.Toc):
@@ -139,90 +139,90 @@ def bachelor63(toc: iamraw.Toc):
 
 # TODO: REMOVE TAB 1
 FIGURETABLE_MASTER75 = """\
-Abb. 1: Lage Neunkirchens (Quelle: Google Maps (2017), eigene Darstellung)
-Abb. 2: Untersuchungsgebiete in Neunkirchen (Datengrundlage: Google Maps (2017), eigene Darstellung)
-Abb. 3: Fragebogen – Seite 1
-Abb. 4: Fragebogen – Seite 2
-Abb. 5: Besuchsfrequenz – Neunkirchen Männer
-Abb. 6: Besuchsfrequenz – Neunkirchen Frauen
-Abb. 7: Besuchsfrequenz – Standort Innenstadt Männer
-Abb. 8: Besuchsfrequenz – Standort Innenstadt Frauen
-Abb. 9: Besuchsfrequenz – Standort Panoramapark Männer
-Abb. 10: Besuchsfrequenz – Standort Panoramapark Frauen
-Abb. 11: Besuchsfrequenz – Standort Am Spitz Männer
-Abb. 12: Besuchsfrequenz – Standort Am Spitz Frauen
-Abb. 13: Besuchsfrequenz – Standort Sonstige Männer
-Abb. 14: Besuchsfrequenz – Standort Sonstige Frauen
-Abb. 15: Art der Anreise – Neunkirchen
-Abb. 16: Art der Anreise – Männer
-Abb. 17: Art der Anreise – Frauen
-Abb. 18: Art d. Anreise – Standort Innenstadt Männer
-Abb. 19: Art d. Anreise – Standort Innenstadt Frauen
-Abb. 20: Art d. Anreise – Standort Panoramapark Männer
-Abb. 21: Art d. Anreise – Standort Panoramapark Frauen
-Abb. 22: Art d. Anreise – Standort Am Spitz Männer
-Abb. 23: Art d. Anreise – Standort Am Spitz Frauen
-Abb. 24: Art d. Anreise – Standort Sonstige Männer
-Abb. 25: Art d. Anreise – Standort Sonstige Frauen
-Abb. 26: Besuchsgrund Neunkirchen
-Abb. 27: Besuchsgrund – Standort Innenstadt
-Abb. 28: Besuchsgrund – Standort Panoramapark
-Abb. 29: Besuchsgrund – Standort Am Spitz
-Abb. 30: Besuchsgrund – Standort Sonstige
-Abb. 31: Kundenbedürfnisse Neunkirchen
-Abb. 32: Besucherzufriedenheit – Neunkirchen
-Abb. 33: Besucherzufriedenheit – Standort Innenstadt
-Abb. 34: Besucherzufriedenheit – Standort Panoramapark
-Abb. 35: Besucherzufriedenheit – Standort Am Spitz
-Abb. 36: Besucherzufriedenheit – Standort Sonstige
-Abb. 37: Bildungsstand – Bezirk Neunkirchen Männer
-Abb. 38: Bildungsstand – Bezirk Neunkirchen Frauen
-Abb. 39: Bildungsstand – Befragungsteilnehmer Männer
-Abb. 40: Bildungsstand – Befragungsteilnehmer Frauen
-Abb. 41: Bildungsstand nach Standort (Männer)
-Abb. 42: Bildungsstand nach Standort (Frauen)
-Abb. 43: Herkunft aller Untersuchungsteilnehmer
-Abb. 44: Herkunft – Neunkirchen Männer
-Abb. 45: Herkunft – Neunkirchen Frauen
-Abb. 46: Herkunft – Standort Innenstadt
-Abb. 47: Herkunft – Standort Innenstadt Männer
-Abb. 48: Herkunft – Standort Innenstadt Frauen
-Abb. 49: Herkunft – Standort Panoramapark
-Abb. 50: Herkunft – Standort Panoramapark Männer
-Abb. 51: Herkunft – Standort Panoramapark Frauen
-Abb. 52: Herkunft – Standort Am Spitz
-Abb. 53: Herkunft – Standort Am Spitz Männer
-Abb. 54: Herkunft – Standort Am Spitz Frauen
-Abb. 55: Herkunft – Standort Sonstige
-Abb. 56: Herkunft – Standort Sonstige Männer
-Abb. 57: Herkunft – Standort Sonstige Frauen
-Abb. 58: Haushaltseinkommen netto – Neunkirchen
-Abb. 59: Übersicht Haushaltseinkommen netto (Prozent)
-Abb. 60: Wohnsituation in Neunkirchen (Prozent)
-Abb. 61: Wohnsituation nach Standorten in Prozent
-Abb. 62: Alternative Einkaufsorte
-Abb. 63: Herkunft der Untersuchungsteilnehmer (1) (Quelle: Bobek u. Fesl (1978), eig. Darstellung)
-Abb. 64: Herkunft der Untersuchungsteilnehmer (2) (Quelle: Google Maps (2017), eig. Darstellung)
-Abb. 65: Besuchsfrequenz – Neunkirchen
-Abb. 66: Besuchsfrequenz nach Standorten
-Abb. 67: Besuchsgrund in Neunkirchen, geschlechterdifferenziert
-Abb. 68: Besuchsgrund nach Standorten (ab 4 Nennungen)
-Abb. 69: Besuchsgrund in Neunkirchen – Auswärtige Besucher, geschlechterdifferenziert
-Abb. 70: Besuchsgrund in Neunkirchen – Auswärtige
-Abb. 71: Besuchsgrund in Neunkirchen – Einheimische
-Abb. 72: Nicht befriedigte Einkaufsbedürfnisse
-Abb. 73: Alternative Einkaufsorte
-Abb. 74: Art der Anreise – Männer
-Abb. 75: Art der Anreise – Frauen
-Abb. 76: Besucherzufriedenheit nach Standorten
-Abb. 77: Wohnsituation relativ nach Altersklassen
-Abb. 78: Einkommenssituation relativ nach Altersklassen
-Abb. 79: Bildungsstand relativ nach Altersklassen
-Abb. 80: Zufriedenheit nach Altersgruppen und Geschlecht, alle Standorte
-Abb. 81: Zufriedenheit Standort Innenstadt nach Alter und Geschlecht
-Abb. 82: Zufriedenheit Standort Panoramapark nach Alter und Geschlecht
-Abb. 83: Zufriedenheit Standort Am Spitz nach Alter und Geschlecht
-Abb. 84: Zufriedenheit Standort Sonstige nach Alter und Geschlecht
+Lage Neunkirchens (Quelle: Google Maps (2017), eigene Darstellung)
+Untersuchungsgebiete in Neunkirchen (Datengrundlage: Google Maps (2017), eigene Darstellung)
+Fragebogen – Seite 1
+Fragebogen – Seite 2
+Besuchsfrequenz – Neunkirchen Männer
+Besuchsfrequenz – Neunkirchen Frauen
+Besuchsfrequenz – Standort Innenstadt Männer
+Besuchsfrequenz – Standort Innenstadt Frauen
+Besuchsfrequenz – Standort Panoramapark Männer
+Besuchsfrequenz – Standort Panoramapark Frauen
+Besuchsfrequenz – Standort Am Spitz Männer
+Besuchsfrequenz – Standort Am Spitz Frauen
+Besuchsfrequenz – Standort Sonstige Männer
+Besuchsfrequenz – Standort Sonstige Frauen
+Art der Anreise – Neunkirchen
+Art der Anreise – Männer
+Art der Anreise – Frauen
+Art d. Anreise – Standort Innenstadt Männer
+Art d. Anreise – Standort Innenstadt Frauen
+Art d. Anreise – Standort Panoramapark Männer
+Art d. Anreise – Standort Panoramapark Frauen
+Art d. Anreise – Standort Am Spitz Männer
+Art d. Anreise – Standort Am Spitz Frauen
+Art d. Anreise – Standort Sonstige Männer
+Art d. Anreise – Standort Sonstige Frauen
+Besuchsgrund Neunkirchen
+Besuchsgrund – Standort Innenstadt
+Besuchsgrund – Standort Panoramapark
+Besuchsgrund – Standort Am Spitz
+Besuchsgrund – Standort Sonstige
+Kundenbedürfnisse Neunkirchen
+Besucherzufriedenheit – Neunkirchen
+Besucherzufriedenheit – Standort Innenstadt
+Besucherzufriedenheit – Standort Panoramapark
+Besucherzufriedenheit – Standort Am Spitz
+Besucherzufriedenheit – Standort Sonstige
+Bildungsstand – Bezirk Neunkirchen Männer
+Bildungsstand – Bezirk Neunkirchen Frauen
+Bildungsstand – Befragungsteilnehmer Männer
+Bildungsstand – Befragungsteilnehmer Frauen
+Bildungsstand nach Standort (Männer)
+Bildungsstand nach Standort (Frauen)
+Herkunft aller Untersuchungsteilnehmer
+Herkunft – Neunkirchen Männer
+Herkunft – Neunkirchen Frauen
+Herkunft – Standort Innenstadt
+Herkunft – Standort Innenstadt Männer
+Herkunft – Standort Innenstadt Frauen
+Herkunft – Standort Panoramapark
+Herkunft – Standort Panoramapark Männer
+Herkunft – Standort Panoramapark Frauen
+Herkunft – Standort Am Spitz
+Herkunft – Standort Am Spitz Männer
+Herkunft – Standort Am Spitz Frauen
+Herkunft – Standort Sonstige
+Herkunft – Standort Sonstige Männer
+Herkunft – Standort Sonstige Frauen
+Haushaltseinkommen netto – Neunkirchen
+Übersicht Haushaltseinkommen netto (Prozent)
+Wohnsituation in Neunkirchen (Prozent)
+Wohnsituation nach Standorten in Prozent
+Alternative Einkaufsorte
+Herkunft der Untersuchungsteilnehmer (1) (Quelle: Bobek u. Fesl (1978), eig. Darstellung)
+Herkunft der Untersuchungsteilnehmer (2) (Quelle: Google Maps (2017), eig. Darstellung)
+Besuchsfrequenz – Neunkirchen
+Besuchsfrequenz nach Standorten
+Besuchsgrund in Neunkirchen, geschlechterdifferenziert
+Besuchsgrund nach Standorten (ab 4 Nennungen)
+Besuchsgrund in Neunkirchen – Auswärtige Besucher, geschlechterdifferenziert
+Besuchsgrund in Neunkirchen – Auswärtige
+Besuchsgrund in Neunkirchen – Einheimische
+Nicht befriedigte Einkaufsbedürfnisse
+Alternative Einkaufsorte
+Art der Anreise – Männer
+Art der Anreise – Frauen
+Besucherzufriedenheit nach Standorten
+Wohnsituation relativ nach Altersklassen
+Einkommenssituation relativ nach Altersklassen
+Bildungsstand relativ nach Altersklassen
+Zufriedenheit nach Altersgruppen und Geschlecht, alle Standorte
+Zufriedenheit Standort Innenstadt nach Alter und Geschlecht
+Zufriedenheit Standort Panoramapark nach Alter und Geschlecht
+Zufriedenheit Standort Am Spitz nach Alter und Geschlecht
+Zufriedenheit Standort Sonstige nach Alter und Geschlecht
 Tab. 1: Stichprobenkonstruktion"""
 
 

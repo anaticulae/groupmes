@@ -10,6 +10,8 @@
 ==========================
 """
 
+import re
+
 import configo
 import geostrat
 import iamraw
@@ -84,7 +86,18 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
     extracted = groupme.toc.extractor.extract(loaded)
 
     flat = utila.flatten(extracted.content)
+
+    flat = remove_figure_sequence(flat)
     return flat
+
+
+def remove_figure_sequence(items) -> list:
+    """Remove starting sequence which is a result of using toc-table
+    parser."""
+    pattern = r'^(Abb\.|Abbildung)[ ]{0,2}\d{1,3}\:[ ]{0,2}'
+    for item in items:
+        item.title = re.sub(pattern, '', item.title)
+    return items
 
 
 def doublecolumn_figure_strategy(ptcns) -> iamraw.Toc:
