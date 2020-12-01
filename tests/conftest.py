@@ -50,6 +50,7 @@ RESOURCES = [
     (power.HOME050_PDF, '0:10'),
     (power.ORDER009_PDF, '0:10'),
     (power.MASTER083_PDF, '0:10'),
+    (power.DOCU35_PDF, '0:10'),
 ]
 
 WORKER = 4
