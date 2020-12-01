@@ -52,6 +52,12 @@ def test_toc_groupby_level():
         marks=pytest.mark.xfail,
         id='simple',
     ),
+    pytest.param(
+        power.link(power.DOCU35_PDF),
+        (5,),
+        0,
+        id='notoc',
+    ),
 ])
 def test_extract_toc_from_path(resources, pages, expected):
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(
@@ -60,6 +66,9 @@ def test_extract_toc_from_path(resources, pages, expected):
         pages=pages,
     )
     loaded = groupme.toc.strategy.load(navigators)
-    extracted = groupme.toc.extractor.extract(loaded)
+    extracted = groupme.toc.extractor.extract(
+        loaded,
+        min_detection_count=groupme.feature.toc.MIN_TOC_COUNT,
+    )
     flat = utila.flatten(extracted)
     assert len(flat) == expected, str(flat)

@@ -33,6 +33,8 @@ MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(30, limit=100).value
 # limit possible toc to the first 15 pages
 POSSIBLE_PAGES = utila.make_tuple(15)
 
+MIN_TOC_COUNT = 4  # TODO: HOLY VALUE
+
 
 def work(
         text: str,
@@ -70,7 +72,10 @@ def work(
     navigators = utila.select_pages(navigators, pages=selected)
 
     loaded = groupme.toc.strategy.load(navigators)
-    extracted = groupme.toc.extractor.extract(loaded)
+    extracted = groupme.toc.extractor.extract(
+        loaded,
+        min_detection_count=MIN_TOC_COUNT,
+    )
 
     flat = utila.flatten(extracted.content)
     leveled = groupme.toc.group.groupby_level(flat)

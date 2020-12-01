@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
+
 import groupme.toc.decider
 import groupme.toc.strategy
 import groupme.toc.strategy.geometry
@@ -17,13 +19,16 @@ import groupme.toc.strategy.regex
 def extract(
         data: groupme.toc.strategy.ExtractionData,
         active: list = None,
+        min_detection_count: int = 1,
 ) -> groupme.toc.strategy.ExtractionResult:
     """Run various strategies to extract ``toc-lines`` out of given ``data``.
 
     Args:
         data: loaded data
-        active: List of executed stratgies. Use ``None`` to run
-                         all strategies.
+        active: List of executed stratgies. Use ``None`` to run all
+                strategies.
+        min_detection_count: if count of valid results is lower, return
+                             empty result
     Returns:
         List of ``ExtractionResult`` with extracted data.
     """
@@ -41,4 +46,6 @@ def extract(
     ]
 
     decision = groupme.toc.decider.decide(results)
+    if len(utila.flatten(decision.content)) < min_detection_count:
+        decision = groupme.toc.strategy.ExtractionResult()
     return decision
