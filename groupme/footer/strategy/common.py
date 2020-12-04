@@ -30,8 +30,8 @@ COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE
 # minimal items in a cluster to be detected and accepted as feature.
 MIN_OCCURRENCE = configo.HolyTable(
     items=(
-        (0, 10),
-        (10, 10),
+        (0, 5),
+        (10, 7),
         (15, 10),
         (30, 15),
         (50, 20),

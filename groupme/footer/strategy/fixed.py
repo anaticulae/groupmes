@@ -180,7 +180,6 @@ def extract_page_footerheader(
         header = None
         if top is not None and groupme.horizontals.match(content, top):
             header = create_header(top, pageheight, textnavigator)
-
         footer = None
         if bottom is not None and groupme.horizontals.match(content, bottom):
             bottom_ = utila.roundme(bottom / pageheight)

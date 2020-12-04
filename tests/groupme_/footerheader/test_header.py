@@ -126,3 +126,13 @@ def test_header_master110(testdir, monkeypatch):
 def test_header_master155(testdir, monkeypatch):
     loaded = extract_header(power.MASTER155_PDF, testdir, monkeypatch)
     assert len(loaded) == 153  # do not change
+
+
+def test_header_tech24(testdir, monkeypatch):
+    loaded = extract_header(
+        power.TECH024_PDF,
+        testdir,
+        monkeypatch,
+        pages='0:10',
+    )
+    assert len(loaded) == 9  # do not change
