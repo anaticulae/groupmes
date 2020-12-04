@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.7.0
+
+### Feature
+
+* disable toc parser for too few results (e95b1d3dcd06)
+* remove start sequence from title (466a305515d5)
+
+### Fix
+
+* adjust min count to pass short documents (a4952f455526)
+
+### Documentation
+
+* fix comment (03af860626a0)
+
 ## v0.6.2
 
 ## v0.6.1
