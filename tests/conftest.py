@@ -15,7 +15,6 @@ import utila
 import utilatest
 
 import groupme
-import tests.resources
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
@@ -72,7 +71,9 @@ def extract(resources):
     )
 
 
-RESOURCES_NOTITLE = tests.resources.NO_TITLE_EXAMPLE
+RESOURCES_NOTITLE = [
+    power.DOCU27_PDF,
+]
 
 
 def extract_notitle(resources):
@@ -94,9 +95,10 @@ def extract_notitle(resources):
 
     # generate
     genex.extract(
-        without_titlepage + [destination],  # ensure correct parent
+        without_titlepage,
         destination,
         groupme=True,
         pages='0:10',
         worker=1,
+        base=destination,
     )
