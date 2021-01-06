@@ -111,6 +111,9 @@ def level(item: str) -> Level:
     return None
 
 
+MAX_CHAPTER_NUMBER = 20  # TODO: HOLY VALUE
+
+
 def numbered_level(raw: str) -> int:
     """Convert number to raw level.
 
@@ -137,7 +140,7 @@ def numbered_level(raw: str) -> int:
     raw = raw.split()[0]
     try:
         splitted = [int(item) for item in raw.split('.') if item]
-        if max(splitted) > 20:
+        if max(splitted) > MAX_CHAPTER_NUMBER:
             return False
     except ValueError:
         return None
