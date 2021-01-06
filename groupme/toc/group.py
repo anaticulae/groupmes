@@ -59,11 +59,11 @@ class RomanLevel(Level):
 
 @dataclasses.dataclass
 class AppendixLevel(Level):
-    character: str = None
-    """
+    """\
     Example::
         A.1.1
     """
+    character: str = None
 
     def __int__(self):
         return 100  # HOLY VALUE
