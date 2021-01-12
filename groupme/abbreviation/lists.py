@@ -10,40 +10,7 @@
 import dataclasses
 import typing
 
-# TODO: THIS IS STOLEN FROM WORDS
-WHITELIST = {
-    'Abb.',
-    'Aufl.',
-    'Bd.',
-    'Co.',
-    'Diss.',
-    'Dok.',
-    'Forts.',
-    'Hrsg.',
-    'Jg.',
-    'S.',
-    'Sp.',
-    'Verf.',
-    'Verl.',
-    'Vol.',
-    'a.a.O.',
-    'al.',
-    'bzw.',
-    'ca.',
-    'etc.',
-    'f.',
-    'ff.'
-    'ggf.',
-    'lat.',
-    'mind.',
-    'o.J.',
-    'o.V.',
-    'o.Ä',
-    'usw.',
-    'vgl.',
-    'z.B.',
-}
-WHITELIST = {item.lower() for item in WHITELIST}
+import konrad
 
 
 @dataclasses.dataclass
@@ -59,7 +26,7 @@ class AbbreviationList:
 
 AbbreviationLists = typing.List[AbbreviationList]
 
-DUDEN = AbbreviationList(data=WHITELIST)
+DUDEN = AbbreviationList(data=konrad.ABBREVIATION_LOWER)
 
 
 @dataclasses.dataclass
