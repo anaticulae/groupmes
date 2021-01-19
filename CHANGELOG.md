@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.7.4
+
+### Documentation
+
+* move class doc (1936598733a2)
+
 ## v0.7.3
 
 ### Documentation
