@@ -31,16 +31,6 @@ def work(
     return dumped
 
 
-def content_pages(*pageable) -> list:
-    result = []
-    for pages in pageable:
-        for item in pages:
-            result.append(item.page)
-    result = utila.make_unique(result)
-    result = sorted(result)
-    return result
-
-
 def determine_border(
         textpositions: iamraw.PageContentTextPositions,
         pagesizes: iamraw.PageSizeBorderList,
