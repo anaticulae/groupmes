@@ -56,12 +56,12 @@ def cluster_border(textpositions, pagesizes, pages_incluster):
     most = groupme.border.most.run(pagesizes)
     leftright = groupme.border.leftright.run(textpositions, pagesizes)
 
-    result = [(page, *border_detector(leftright, most, pagesizes, page))
+    result = [(page, *expected_border(leftright, most, pagesizes, page))
               for page in pages_incluster]
     return result
 
 
-def border_detector(leftright, most, pagesizes, page: int):
+def expected_border(leftright, most, pagesizes, page: int):
     # left, right, top, down
     # TODO: CHECK THAT PAGE CALL IS CORRECT
     left = leftright.left
