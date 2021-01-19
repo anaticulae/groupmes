@@ -48,40 +48,46 @@ def determine_border(
     clustered = pagecluster(pagesizes)
     result = []
     for pages_incluster in clustered:
-        textpositions_ = utila.select_pages(textpositions, pages_incluster)
-        pagesizes_ = utila.select_pages(pagesizes, pages_incluster)
-
-        textpositions_ = utila.not_none(textpositions_)
-        pagesizes_ = utila.not_none(pagesizes_)
-
-        most = groupme.border.most.run(pagesizes_)
-        leftright_ = groupme.border.leftright.run(textpositions_, pagesizes_)
-
-        def border_detector(leftright, most, page: int):
-            # left, right, top, down
-            # TODO: CHECK THAT PAGE CALL IS CORRECT
-            left = leftright.left
-            if isinstance(left, tuple):
-                left = left[page % 2]  # pylint:disable=E1136
-
-            right = leftright.right
-            if isinstance(right, tuple):
-                right = right[page % 2]  # pylint:disable=E1136
-
-            pagesize = utila.select_page(pagesizes, page).size
-            rightborder = pagesize.width - right
-            bottomborder = pagesize.height - most.bottom
-
-            result = (left, rightborder, most.top, bottomborder)
-            result = utila.roundme(result)
-            return result
-
-        selected = [(page, *border_detector(leftright_, most, page))
-                    for page in pages_incluster]
-        result.append(selected)
+        border = cluster_border(textpositions, pagesizes, pages_incluster)
+        result.append(border)
     result = utila.flatten(result)
     # sort by page number
     result = sorted(result, key=lambda x: x[0])
+    return result
+
+
+def cluster_border(textpositions, pagesizes, pages_incluster):
+    textpositions = utila.select_pages(textpositions, pages_incluster)
+    pagesizes = utila.select_pages(pagesizes, pages_incluster)
+
+    textpositions = utila.not_none(textpositions)
+    pagesizes = utila.not_none(pagesizes)
+
+    most = groupme.border.most.run(pagesizes)
+    leftright = groupme.border.leftright.run(textpositions, pagesizes)
+
+    result = [(page, *border_detector(leftright, most, pagesizes, page))
+              for page in pages_incluster]
+    return result
+
+
+def border_detector(leftright, most, pagesizes, page: int):
+    # left, right, top, down
+    # TODO: CHECK THAT PAGE CALL IS CORRECT
+    left = leftright.left
+    if isinstance(left, tuple):
+        left = left[page % 2]  # pylint:disable=E1136
+
+    right = leftright.right
+    if isinstance(right, tuple):
+        right = right[page % 2]  # pylint:disable=E1136
+
+    pagesize = utila.select_page(pagesizes, page).size
+    rightborder = pagesize.width - right
+    bottomborder = pagesize.height - most.bottom
+
+    result = (left, rightborder, most.top, bottomborder)
+    result = utila.roundme(result)
     return result
 
 
