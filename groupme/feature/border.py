@@ -45,12 +45,11 @@ def determine_border(
         textpositions: iamraw.PageContentTextPositions,
         pagesizes: iamraw.PageSizeBorderList,
 ):
-    pages = pagecluster(pagesizes)
-
+    clustered = pagecluster(pagesizes)
     result = []
-    for cluster in pages:
-        textpositions_ = utila.select_pages(textpositions, cluster)
-        pagesizes_ = utila.select_pages(pagesizes, cluster)
+    for pages_incluster in clustered:
+        textpositions_ = utila.select_pages(textpositions, pages_incluster)
+        pagesizes_ = utila.select_pages(pagesizes, pages_incluster)
 
         textpositions_ = utila.not_none(textpositions_)
         pagesizes_ = utila.not_none(pagesizes_)
@@ -77,9 +76,9 @@ def determine_border(
             result = utila.roundme(result)
             return result
 
-        result.append([
-            (page, *border_detector(leftright_, most, page)) for page in cluster
-        ])
+        selected = [(page, *border_detector(leftright_, most, page))
+                    for page in pages_incluster]
+        result.append(selected)
     result = utila.flatten(result)
     # sort by page number
     result = sorted(result, key=lambda x: x[0])
