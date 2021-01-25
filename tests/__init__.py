@@ -9,11 +9,14 @@
 
 import power
 import utila
+import utilatest
 
 import groupme
 import tests.resources
 
 power.setup(groupme.ROOT)
+
+utilatest.register_marker('huge')
 
 
 def relative_path(item):
