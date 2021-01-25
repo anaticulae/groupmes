@@ -10,6 +10,7 @@
 import contextlib
 import dataclasses
 
+import elements
 import iamraw
 import texmex.numbers
 import utila
@@ -88,7 +89,7 @@ def level(item: str) -> Level:
     if item is None:
         return None
 
-    number = numbered_level(item)
+    number = elements.level_numbered(item)
     if number is not None:
         return Level(value=number, raw=item)
 
@@ -111,42 +112,6 @@ def level(item: str) -> Level:
     return None
 
 
-MAX_CHAPTER_NUMBER = 20  # TODO: HOLY VALUE
-
-
-def numbered_level(raw: str) -> int:
-    """Convert number to raw level.
-
-    >>> numbered_level('5 Geology')
-    1
-    >>> numbered_level('2. Zentrum')
-    1
-    >>> numbered_level('2.1.3. Abschluss')
-    3
-    >>> numbered_level('2.1 Anhang')
-    2
-    >>> numbered_level('2..1... Fehlerfrei') # ignore typos
-    2
-    >>> numbered_level('2020 This is not a headline level')
-    False
-    >>> numbered_level('04.03.2016. No Headline')
-    False
-    """
-    # TODO: SUPPORT LEVEL WITHOUT SPACE
-    # TODO: MOVE TESTS?
-    raw = raw.strip()
-    if not raw:
-        return None
-    raw = raw.split()[0]
-    try:
-        splitted = [int(item) for item in raw.split('.') if item]
-        if max(splitted) > MAX_CHAPTER_NUMBER:
-            return False
-    except ValueError:
-        return None
-    return len(splitted)
-
-
 def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint:disable=R1260
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
@@ -162,7 +127,7 @@ def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint
     def determine_level(level_) -> int:
         if level_ is None:
             return 1
-        numbered = numbered_level(level_)
+        numbered = elements.level_numbered(level_)
         if numbered is None:
             return 1
         return numbered
