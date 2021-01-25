@@ -112,6 +112,9 @@ def level(item: str) -> Level:
     return None
 
 
+# TODO: MOVE TO ELEMENTS
+
+
 def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint:disable=R1260
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
