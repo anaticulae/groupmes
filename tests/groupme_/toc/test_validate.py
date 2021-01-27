@@ -590,34 +590,33 @@ def bachelor90(toc: iamraw.Toc):
     assert titles == TITLE_BACHELOR90, titles
 
 
-TEN = tuple(range(10))
+TEN = utila.make_tuple(10)
 
 
 # yapf:disable, format the list by hand
 @pytest.mark.parametrize('source, validate, pages', [
-    pytest.param(power.link(power.BACHELOR076_PDF), bachelor76, TEN, id='bachelor76'),
-    pytest.param(power.link(power.BACHELOR111_PDF), bachelor111, (1, 2, 3, 4), id='bachelor111',
+    pytest.param(power.BACHELOR076_PDF, bachelor76, TEN, id='bachelor76'),
+    pytest.param(power.BACHELOR111_PDF, bachelor111, (1, 2, 3, 4), id='bachelor111',
                  marks=pytest.mark.xfail(reason='literaturverzeichnis sub notes')),
-    pytest.param(power.link(power.BACHELOR241_PDF), bachelor241, (4, 5, 6, 7), id='bachelor241',
+    pytest.param(power.BACHELOR241_PDF, bachelor241, (4, 5, 6, 7), id='bachelor241',
                  marks=pytest.mark.xfail(reason='literaturverzeichnis sub notes')),
-    pytest.param(power.link(power.HOME050_PDF), homework50, (3, 4), id='homework50'),
-    pytest.param(power.link(power.MASTER083_PDF), master83, TEN, id='master83'),
-    pytest.param(power.link(power.MASTER089_PDF), master89, TEN, id='master89'),
-    pytest.param(power.link(power.MASTER098_PDF), master98, TEN, id='master98'),
-    pytest.param(power.link(power.MASTER099_PDF), master99, TEN, id='master99'),
-    pytest.param(power.link(power.MASTER072_PDF), master72, None, id='master72'),
-    pytest.param(power.link(power.BACHELOR090_PDF), bachelor90, TEN, id='bachelor90'),
-    pytest.param(power.link(power.BACHELOR063_PDF), bachelor63, TEN, id='bachelor63'),
+    pytest.param(power.HOME050_PDF, homework50, (3, 4), id='homework50'),
+    pytest.param(power.MASTER083_PDF, master83, TEN, id='master83'),
+    pytest.param(power.MASTER089_PDF, master89, TEN, id='master89'),
+    pytest.param(power.MASTER098_PDF, master98, TEN, id='master98'),
+    pytest.param(power.MASTER099_PDF, master99, TEN, id='master99'),
+    pytest.param(power.MASTER072_PDF, master72, None, id='master72'),
+    pytest.param(power.BACHELOR090_PDF, bachelor90, TEN, id='bachelor90'),
+    pytest.param(power.BACHELOR063_PDF, bachelor63, TEN, id='bachelor63'),
 ])  # yapf:enable
 @utilatest.nightly
 def test_toc_validate(source, validate, pages, monkeypatch, testdir):
     """Verify parsing behavior and check that toc is located
     automatically in range of `TEN` pages."""
-    pages = ','.join((str(item) for item in pages)) if pages else ''
-    pages = f'--pages={pages}' if pages else ''
-    cmd = f'-i {source} --toc {pages}'
+    source = power.link(source)
+    pages = utila.from_tuple(pages, separator=',') if pages else ':'
+    cmd = f'-i {source} --toc --pages={pages}'
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
 
-    path = groupme.path.toc(testdir.tmpdir)
-    toc = serializeraw.load_toc(path)
+    toc = serializeraw.load_toc(testdir.tmpdir)
     validate(toc)
