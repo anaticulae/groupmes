@@ -24,6 +24,12 @@ EXPECTED = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
 file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pylint:disable=C0103
 
 TITLE_MASTER98 = file_read('master098')
+TITLE_BACHELOR63 = file_read('bachelor063')
+
+
+def bachelor63(toc: iamraw.Toc):
+    titles = merge_required(toc)
+    assert titles == TITLE_BACHELOR63, toc
 
 
 def merge_required(toc: iamraw.Toc) -> str:
@@ -601,6 +607,7 @@ TEN = tuple(range(10))
     pytest.param(power.link(power.MASTER099_PDF), master99, TEN, id='master99'),
     pytest.param(power.link(power.MASTER072_PDF), master72, None, id='master72'),
     pytest.param(power.link(power.BACHELOR090_PDF), bachelor90, TEN, id='bachelor90'),
+    pytest.param(power.link(power.BACHELOR063_PDF), bachelor63, TEN, id='bachelor63'),
 ])  # yapf:enable
 @utilatest.nightly
 def test_toc_validate(source, validate, pages, monkeypatch, testdir):
