@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import iamraw
 import power
 import pytest
@@ -14,8 +16,14 @@ import serializeraw
 import utila
 import utilatest
 
+import groupme
 import groupme.path
 import tests.resources
+
+EXPECTED = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
+file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pylint:disable=C0103
+
+TITLE_MASTER98 = file_read('master098')
 
 
 def merge_required(toc: iamraw.Toc) -> str:
@@ -34,37 +42,6 @@ def merge_required(toc: iamraw.Toc) -> str:
         result.extend(recursive(item, level=0))
     titles = utila.NEWLINE.join(result)
     return titles
-
-
-TITLE_MASTER98 = """\
-Einleitung
-Theoretische Grundlagen
-    Von der mémoire collective zu den Lieux de mémoire
-    Binationale Erinnerungsorte
-    Das dialogische Erinnern von Aleida Assmann
-    Erinnerungsorte im DaF-Landeskundeunterricht
-Der Elysée-Vertrag – Ein deutsch-französischer Erinnerungsort
-    Die Vorgeschichte
-    Adenauer, de Gaulle und der Elysée-Vertrag
-    Mythos Elysée-Vertrag
-    Die Entwicklung des Elysée-Vertrags vom Ereignis zum Erinnerungsort
-Didaktisierung
-    Eignung des Elysée-Vertrags für den DaF-Landeskundeunterricht
-    Zielgruppe und Sprachniveau
-    Zielsetzungen
-    Vorstellung der Materialien
-Reflexion
-    Reflexion der Themenwahl
-    Reflexion der Zielgruppe
-    Reflexion der inhaltlichen Lernziele
-    Reflexion der sprachlichen Lernziele
-    Reflexion der Methodik und des Materials
-    Reflexion der kulturdidaktischen Lernziele
-Fazit und Ausblick
-Verzeichnisse
-    Literaturverzeichnis
-    Tabellenverzeichnis
-Anhang"""
 
 
 def master98(toc: iamraw.Toc):
