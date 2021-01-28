@@ -12,7 +12,7 @@ import os
 import groupme.__patch__
 import groupme.path
 
-__version__ = '0.7.4'
+__version__ = '0.7.5'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 

@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.7.5
+
+### Feature
+
+* add abbreviation generated path (60b4bd5d674d)
+
+### Fix
+
+* enable longer Arabic numbers in table of content (e379d71a13bd)
+
 ## v0.7.4
 
 ### Documentation
