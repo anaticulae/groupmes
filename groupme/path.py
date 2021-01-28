@@ -10,6 +10,15 @@
 import utila
 
 
+def abbreviation(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(
+        path,
+        'groupme',
+        'abbreviation_abbreviation',
+        prefix,
+    )
+
+
 def area(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'groupme', 'area_area', prefix)
 

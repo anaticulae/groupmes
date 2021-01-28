@@ -10,6 +10,7 @@
 import os
 
 import groupme.__patch__
+import groupme.path
 
 __version__ = '0.7.4'
 
