@@ -23,14 +23,6 @@ import tests.resources
 EXPECTED = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
 file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pylint:disable=C0103
 
-TITLE_MASTER98 = file_read('master098')
-TITLE_BACHELOR63 = file_read('bachelor063')
-
-
-def bachelor63(toc: iamraw.Toc):
-    titles = merge_required(toc)
-    assert titles == TITLE_BACHELOR63, toc
-
 
 def merge_required(toc: iamraw.Toc) -> str:
     result = []
@@ -48,12 +40,6 @@ def merge_required(toc: iamraw.Toc) -> str:
         result.extend(recursive(item, level=0))
     titles = utila.NEWLINE.join(result)
     return titles
-
-
-def master98(toc: iamraw.Toc):
-    assert len(toc) == 8
-    titles = merge_required(toc)
-    assert titles == TITLE_MASTER98, toc
 
 
 TITLE_MASTER89 = """\
@@ -603,12 +589,13 @@ TEN = utila.make_tuple(10)
     pytest.param(power.HOME050_PDF, homework50, (3, 4), id='homework50'),
     pytest.param(power.MASTER083_PDF, master83, TEN, id='master83'),
     pytest.param(power.MASTER089_PDF, master89, TEN, id='master89'),
-    pytest.param(power.MASTER098_PDF, master98, TEN, id='master98'),
+    pytest.param(power.MASTER098_PDF, 'master098', TEN, id='master98'),
     pytest.param(power.MASTER099_PDF, master99, TEN, id='master99'),
     pytest.param(power.MASTER072_PDF, master72, None, id='master72'),
     pytest.param(power.BACHELOR090_PDF, bachelor90, TEN, id='bachelor90'),
-    pytest.param(power.BACHELOR063_PDF, bachelor63, TEN, id='bachelor63'),
-])  # yapf:enable
+    pytest.param(power.BACHELOR063_PDF, 'bachelor063', TEN, id='bachelor63'),
+])
+# yapf:enable
 @utilatest.nightly
 def test_toc_validate(source, validate, pages, monkeypatch, testdir):
     """Verify parsing behavior and check that toc is located
@@ -619,4 +606,10 @@ def test_toc_validate(source, validate, pages, monkeypatch, testdir):
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
 
     toc = serializeraw.load_toc(testdir.tmpdir)
-    validate(toc)
+
+    if callable(validate):
+        validate(toc)
+        return
+    validate = file_read(validate)
+    titles = merge_required(toc)
+    assert titles == validate, validate
