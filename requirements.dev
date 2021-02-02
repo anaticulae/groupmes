@@ -14,7 +14,7 @@ power==1.1.2
 
 # test data generator
 jam==0.2.18
-genex==0.6.2
+genex==0.7.0
 
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.12.1
