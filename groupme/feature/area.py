@@ -168,16 +168,16 @@ def dump_area(items) -> str:
     raw = []
     for page in items:
         outside = {
-            key: [tuple_tostr(item) for item in value
+            key: [utila.from_tuple(item) for item in value
                  ] if value else value for key, value in page.outside.items()
         }
         border = {
-            key: [tuple_tostr(item) for item in border
+            key: [utila.from_tuple(item) for item in border
                  ] if border else border for key, border in page.border.items()
         }
         textual = page.textual
         if textual:
-            textual = [tuple_tostr(item) for item in textual]
+            textual = [utila.from_tuple(item) for item in textual]
 
         content = {
             'border': border,
@@ -218,9 +218,3 @@ def load_area(content: str, pages: tuple = None) -> PageContentTextualAreas:
                 textual=textual,
             ))
     return result
-
-
-def tuple_tostr(item):
-    item = utila.roundme(item)
-    item = [str(var) for var in item]
-    return ' '.join(item)
