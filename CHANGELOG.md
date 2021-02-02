@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.8.0
+
+### Feature
+
+* make table resource optional (dd325c79c68e)
+
 ## v0.7.5
 
 ### Feature
