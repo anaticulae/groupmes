@@ -17,6 +17,7 @@ TODO:
 """
 
 import collections
+import os
 import typing
 
 import serializeraw
@@ -155,7 +156,10 @@ def load(
         text_positions=textpositions,
     )
     boxes = serializeraw.load_boxes(boxes, pages=pages)
-    tables = serializeraw.load_tables(tables, pages=pages)
+    if os.path.exists(tables):
+        tables = serializeraw.load_tables(tables, pages=pages)
+    else:
+        tables = []
     result = RequiredResources(
         boxes=boxes,
         tables=tables,
