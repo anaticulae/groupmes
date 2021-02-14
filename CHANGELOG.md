@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.8.1
+
+### Feature
+
+* add footnote bounding to footnote parser (f26136c6371b)
+
 ## v0.8.0
 
 ### Feature
