@@ -33,10 +33,12 @@ def parse(content: list, width: float = 594.0) -> list:
             number, content = -1, text
         else:
             number, content = int(matched['number']), matched['text']
+        bounding = tuple(multiline[0].bounding)
         footnote = iamraw.FootRawNote(
+            bounding=bounding,
             number=number,
-            text=content.strip(),
             style=None,
+            text=content.strip(),
         )
         result.append(footnote)
     return result

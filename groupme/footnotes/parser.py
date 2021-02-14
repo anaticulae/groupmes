@@ -39,7 +39,6 @@ import groupme.footnotes.highnotes
 def parse(content: str):
     assert isinstance(content, str), type(content)
     result = []
-
     for item in footnote_split(content):
         number, text = item.split(maxsplit=1)
         if not text.strip():
@@ -130,11 +129,13 @@ def parse_with_highnotes(content: list, width: float = 594.0) -> list:
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
+        bounding = tuple(number.bounding)
         footnote = iamraw.FootRawNote(
+            bounding=bounding,
             number=notenumber,
-            text=note.text,
             raw='',  # TODO: REMOVE THIS?
             style=(number.style, note.style),
+            text=note.text,
         )
         result.append(footnote)
     return result
