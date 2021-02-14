@@ -101,18 +101,6 @@ def count_empty(items: iamraw.PageContentFooterHeader) -> int:
     return result
 
 
-def parse_footer(content):
-    footnotes = []
-    splitted = groupme.footnotes.highnotes.split(content)
-    for item in splitted:
-        parsed = parse(item)
-        if not parsed:
-            utila.info(f'footer - could not parse: "{item}"')
-            continue
-        footnotes.extend(parsed)
-    return footnotes
-
-
 def parse_with_highnotes(content: list, width: float = 594.0) -> list:
     """\
     Args:
