@@ -11,6 +11,7 @@ import iamraw
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import tests.groupme_
@@ -32,18 +33,10 @@ def test_footer_validate(source, pages, expected, testdir, monkeypatch):
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
 
     footnotes = serializeraw.load_footnotes(testdir.tmpdir)
-    footnotes = flatten_content(footnotes)
+    footnotes = utila.flatten_content(footnotes)
 
     expected = 0 if expected is None else expected
     if callable(expected):
         expected(footnotes)
     else:
         assert len(footnotes) == expected, len(footnotes)
-
-
-def flatten_content(items: iamraw.PageContents) -> list:
-    # TODO: MOVE TO UTILA
-    result = []
-    for item in items:
-        result.extend(item.content)
-    return result
