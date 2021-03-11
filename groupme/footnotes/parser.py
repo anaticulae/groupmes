@@ -36,7 +36,7 @@ import utila
 import groupme.footnotes.highnotes
 
 
-def parse(content: str):
+def parse(content: str, pagenumber: int = None):
     assert isinstance(content, str), type(content)
     result = []
     for item in footnote_split(content):
@@ -48,6 +48,7 @@ def parse(content: str):
             number=int(number),
             text=text,
             raw=item,
+            page=pagenumber if pagenumber is not None else -1,
         )
         result.append(footnote)
     return result
@@ -100,11 +101,16 @@ def count_empty(items: iamraw.PageContentFooterHeader) -> int:
     return result
 
 
-def parse_with_highnotes(content: list, width: float = 594.0) -> list:
+def parse_with_highnotes(
+        content: list,
+        width: float = 594.0,
+        pagenumber: int = None,
+) -> list:
     """\
     Args:
         content(list): content of footnote area
         width(float): width in pixel of current page. As default use DINA4.
+        pagenumber(int): pdf raw page number
     Returns:
         List of parsed footnotes
     """
@@ -136,6 +142,7 @@ def parse_with_highnotes(content: list, width: float = 594.0) -> list:
             raw='',  # TODO: REMOVE THIS?
             style=(number.style, note.style),
             text=note.text,
+            page=pagenumber if pagenumber is not None else -1,
         )
         result.append(footnote)
     return result

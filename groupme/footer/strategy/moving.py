@@ -154,6 +154,7 @@ def extract_footer(
     footnotes = groupme.footnotes.parser.parse_with_highnotes(
         content,
         pagetextnavigator.width,
+        pagenumber=pagetextnavigator.page,
     )
     if not footnotes:
         # no footnotes parsed, therefore do not return MovingFooterInformation

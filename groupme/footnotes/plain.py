@@ -17,7 +17,7 @@ import groupme.footnotes
 NUMBER_TEXT = r'(?P<number>\d+)[ ]*(?P<text>.{3,})'
 
 
-def parse(content: list, width: float = 594.0) -> list:
+def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
     neighbors = groupme.footnotes.neighbors(content)
     collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
     result = []
@@ -38,6 +38,7 @@ def parse(content: list, width: float = 594.0) -> list:
             bounding=bounding,
             number=number,
             style=None,
+            page=pagenumber if pagenumber is not None else -1,
             text=content.strip(),
         )
         result.append(footnote)

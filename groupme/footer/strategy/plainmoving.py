@@ -128,7 +128,7 @@ def extract_footer(
         footerstart: float,
         pageheight: int,
         pagenumber_location,
-        pagetextnavigator,
+        pagetextnavigator: texmex.PageTextNavigator,
 ):
     begin = footerstart / pageheight
     # in the current parser state, the location of tiny distances between
@@ -151,7 +151,10 @@ def extract_footer(
 
     # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
-    footnotes = groupme.footnotes.plain.parse(content)
+    footnotes = groupme.footnotes.plain.parse(
+        content,
+        pagenumber=pagetextnavigator.page,
+    )
     footer = iamraw.MovingFooterInformation(
         begin=begin,
         end=end,
