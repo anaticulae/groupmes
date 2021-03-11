@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw
 import power
 import pytest
 import serializeraw
@@ -21,10 +20,17 @@ def homework18(footnotes):
     assert len(footnotes) == 96  # TODO: 94!
 
 
+def master72(footnotes):
+    page21 = [item for item in footnotes if item.page == 21]
+    assert len(page21) == 6
+    assert len(footnotes) == 269  # TODO: 260!
+
+
 @pytest.mark.parametrize('source, pages, expected', [
     pytest.param(power.HOME018_PDF, None, homework18, id='homework18'),
     pytest.param(power.BACHELOR063_PDF, None, 0, id='bachelor63'),
     pytest.param(power.MASTER116_PDF, None, 0, id='master116'),
+    pytest.param(power.MASTER072_PDF, None, master72, id='master72'),
 ])
 @utilatest.longrun
 def test_footer_validate(source, pages, expected, testdir, monkeypatch):
