@@ -21,7 +21,7 @@ import tests.groupme_.figuretable
         id='master89_page85_86_87_88',
     ),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
     extracted = tests.groupme_.figuretable.extract_figuretable(
         source,

@@ -138,7 +138,7 @@ def test_footer_master99_page8(testdir, monkeypatch):
     assert footer.endswith('nachgelesen werden.')
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_footer_master155_page107(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
         power.MASTER155_PDF,

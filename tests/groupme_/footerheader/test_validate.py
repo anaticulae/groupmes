@@ -32,7 +32,7 @@ def master72(footnotes):
     pytest.param(power.MASTER116_PDF, None, 0, id='master116'),
     pytest.param(power.MASTER072_PDF, None, master72, id='master72'),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_footer_validate(source, pages, expected, testdir, monkeypatch):
     pages = '' if pages is None else f'--pages={pages}'
     cmd = f'-i {power.link(source)}  --footer {pages}'
