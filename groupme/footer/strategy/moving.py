@@ -61,7 +61,6 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
                 page.page,
             )
             processed = process_page(
-                pagenumber=page.page,
                 pagenumber_location=pagenumber_location,
                 horizontals=page.content,
                 sizeandborder=sizeandborder,
@@ -96,12 +95,12 @@ BOTTOM_BORDER = 0.60  # TODO: HOLY VALUE
 
 
 def process_page(
-        pagenumber,
         pagenumber_location,
         horizontals,
         sizeandborder,
         pagetextnavigator,
 ):
+    pagenumber = pagetextnavigator.page
     pageheight = sizeandborder.size.height
 
     footer_start = pageheight * BOTTOM_BORDER
