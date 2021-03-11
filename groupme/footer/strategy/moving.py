@@ -101,11 +101,11 @@ def process_page(
         pagetextnavigator,
 ):
     pagenumber = pagetextnavigator.page
+    pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
 
-    footer_start = pageheight * BOTTOM_BORDER
-    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
-    bottomed = max([item.box.y0 for item in filtered], default=None)
+    # check PAGENUMBR RAW? OR INHERIT FROM PTN?
+    bottomed = select_footer_line(horizontals, pagewidth, pageheight)
 
     footer = None
     header = None
@@ -124,6 +124,19 @@ def process_page(
         page=pagenumber,
     )
     return result
+
+
+def select_footer_line(horizontals, pagewidth, pageheight) -> float:
+    # TODO: USE MOST COMMON FOOTER DECIDER
+    footer_start = pageheight * BOTTOM_BORDER
+    # skip horizontals which are located too top
+    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
+    # potential footer is located too right
+    x0_max = groupme.footnotes.MAX_FOOTNOTE_X0(pagewidth)
+    filtered = [item for item in filtered if item.box.x0 <= x0_max]
+    # determine y-level
+    bottomed = max([item.box.y0 for item in filtered], default=None)
+    return bottomed
 
 
 def extract_footer(
