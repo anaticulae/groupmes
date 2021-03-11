@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.9.0
+
+### Feature
+
+* skip potential horizontal line which is too right (dc48699749de)
+* add page number to parser footnote (006b7fa397e2)
+
 ## v0.8.2
 
 ## v0.8.1
