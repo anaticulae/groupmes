@@ -89,6 +89,7 @@ def parse_page(page: texmex.PageTextNavigator) -> iamraw.Abbreviations:
             iamraw.Abbreviation(
                 short=short.text.strip(),
                 description=description,
+                position=iamraw.AbbreviationPosition(page=page.page),
             ))
     return result
 
