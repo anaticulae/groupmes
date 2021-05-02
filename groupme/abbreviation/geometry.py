@@ -52,7 +52,7 @@ class GeometryAbbreviationParser(groupme.abbreviation.AbbreviationExtractorStrat
         return ready
 
 
-def parse_page(page) -> iamraw.Abbreviations:
+def parse_page(page: texmex.PageTextNavigator) -> iamraw.Abbreviations:
     line_gaps = lines(page)
     if not line_gaps:
         utila.debug(f'no linegap on page {page.page}')
