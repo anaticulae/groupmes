@@ -34,9 +34,9 @@ import tests.resources
         ),
     ])
 def test_footer_pagenumber_strategy(
-        document,
-        pages,
-        expected_pagenumbers,
+    document,
+    pages,
+    expected_pagenumbers,
 ):
     pages = tuple(range(pages))
     horizontallines = serializeraw.load_horizontals(

@@ -48,10 +48,10 @@ PageContentAreaDistances = typing.List[PageContentAreaDistance]
 
 
 def work(
-        area: str,
-        text: str,
-        textpositions: str,
-        pages: tuple = None,
+    area: str,
+    text: str,
+    textpositions: str,
+    pages: tuple = None,
 ) -> str:
     loaded = load(area, text, textpositions, pages=pages)
 
@@ -166,10 +166,10 @@ def create_distance(items) -> Distance:
 
 
 def load(
-        area: str,
-        text: str,
-        textpositions: str,
-        pages: tuple = None,
+    area: str,
+    text: str,
+    textpositions: str,
+    pages: tuple = None,
 ) -> RequiredResources:
     area = groupme.feature.area.load_area(area, pages=pages)
     text = serializeraw.load_document(text, pages=pages)
@@ -200,8 +200,8 @@ def dump_distance(items: PageContentAreaDistances) -> str:
 
 
 def load_distance(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> PageContentAreaDistances:
     # TODO: MOVE TO SERIALIZERAW
     content = utila.from_raw_or_path(content, ftype='yaml')

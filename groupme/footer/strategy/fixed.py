@@ -96,9 +96,9 @@ class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy)
 
 
 def extract_common_footer(
-        horizontals: iamraw.PagesWithHorizontalList,
-        pageheight: int,
-        max_group_count: int = 1,
+    horizontals: iamraw.PagesWithHorizontalList,
+    pageheight: int,
+    max_group_count: int = 1,
 ) -> typing.Tuple[int, int]:
     """Extract common footer and header based on horizontal lines.
 
@@ -154,11 +154,11 @@ def extract_common_footer(
 
 
 def extract_page_footerheader(
-        horizontals: iamraw.PagesWithHorizontalList,
-        top: float,
-        bottom: float,
-        pageheight: float,
-        pagetextnavigators: texmex.PageTextNavigators,
+    horizontals: iamraw.PagesWithHorizontalList,
+    top: float,
+    bottom: float,
+    pageheight: float,
+    pagetextnavigators: texmex.PageTextNavigators,
 ) -> iamraw.PageContentFooterHeaders:
     """Extract footer and header which matches `top` and `bottom`.
 
@@ -223,12 +223,12 @@ def create_header(top, pageheight, textnavigator):
 
 
 def extract_inarea(
-        clusters: typing.List,
-        pageheight: int,
-        upper_bound: float = texmex.START,
-        lower_bound: float = texmex.END,
-        max_group_count: int = 1,
-        min_group_size: int = MIN_CLUSTER_SIZE,
+    clusters: typing.List,
+    pageheight: int,
+    upper_bound: float = texmex.START,
+    lower_bound: float = texmex.END,
+    max_group_count: int = 1,
+    min_group_size: int = MIN_CLUSTER_SIZE,
 ) -> float:
     """Determine all elements in the potential footer/header area"""
     ymin = pageheight * upper_bound

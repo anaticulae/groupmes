@@ -37,11 +37,11 @@ MIN_TOC_COUNT = 4  # TODO: HOLY VALUE
 
 
 def work(
-        text: str,
-        textpositions: str,
-        headerfooter: str,
-        sizeandborder: str,
-        pages: tuple = None,
+    text: str,
+    textpositions: str,
+    headerfooter: str,
+    sizeandborder: str,
+    pages: tuple = None,
 ) -> str:
     """Extract table of content out of `document`.
 

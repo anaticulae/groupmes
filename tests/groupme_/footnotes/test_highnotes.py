@@ -78,32 +78,32 @@ def test_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylin
 # yapf:disable
 ITEMS = [
     texmex.TextInfo(**{
-        'text':'8Data Length Code\n',
-        'bounding':iamraw.BoundingBox(x0=86.85, y0=623.17, x1=171.64, y1=636.74),
-        'style':texmex.TextStyle(content=[
+        'text': '8Data Length Code\n',
+        'bounding': iamraw.BoundingBox(x0=86.85, y0=623.17, x1=171.64, y1=636.74),
+        'style': texmex.TextStyle(content=[
             texmex.CharStyle(start=0, end=1, size=7.57, rise=4.29, font=773298602),
             texmex.CharStyle(start=1, end=18, size=9.96, rise=0.0, font=904427114)
         ]),
-        'bounding_mean':12.01,
+        'bounding_mean': 12.01,
         },),
     texmex.TextInfo(**{
-        'text':'9\n',
-        'bounding':iamraw.BoundingBox(x0=86.85, y0=635.54, x1=90.64, y1=644.82),
-        'style':texmex.TextStyle(content=[
+        'text': '9\n',
+        'bounding': iamraw.BoundingBox(x0=86.85, y0=635.54, x1=90.64, y1=644.82),
+        'style': texmex.TextStyle(content=[
             texmex.CharStyle(start=0, end=2, size=7.57, rise=0.0, font=773298602)
         ]),
-        'bounding_mean':9.28,
+        'bounding_mean': 9.28,
         },),
     texmex.TextInfo(**{
-        'text':'„Die Hamming-Distanz d(C) eines Codes C gibt den minimalen Abstand zwischen zwei gültigen,\n',
-        'bounding':iamraw.BoundingBox(x0=91.14, y0=636.88, x1=514.1, y1=655.01),
-        'style':texmex.TextStyle(content=[
+        'text': '„Die Hamming-Distanz d(C) eines Codes C gibt den minimalen Abstand zwischen zwei gültigen,\n',
+        'bounding': iamraw.BoundingBox(x0=91.14, y0=636.88, x1=514.1, y1=655.01),
+        'style': texmex.TextStyle(content=[
             texmex.CharStyle(start=0, end=1, size=9.96, rise=0.0, font=904427114),
             texmex.CharStyle(start=1, end=84, size=9.96, rise=5.9, font=904427114),
             texmex.CharStyle(start=84, end=85, size=9.96, rise=5.92, font=904427114),
             texmex.CharStyle(start=85, end=93, size=9.96, rise=5.9, font=904427114)
         ]),
-        'bounding_mean':12.21,
+        'bounding_mean': 12.21,
         },),
 ]
 #yapf:enable

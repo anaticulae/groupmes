@@ -97,8 +97,8 @@ class LeftRightDetected:
 
 
 def run(
-        textpositions: iamraw.PageContentTextPositions,
-        pagesizes: iamraw.PageSizeBorderList,
+    textpositions: iamraw.PageContentTextPositions,
+    pagesizes: iamraw.PageSizeBorderList,
 ) -> LeftRightDetected:
     """Run LeftRight-Strategy to determine that document contains
     special leftright-border or a normal equal border for every page."""
@@ -273,8 +273,8 @@ def determine_pageborder(textpositions, pagesizes):
 
 
 def maximize_leftright(
-        boundings: utila.Rectangles,
-        size: iamraw.PageSizeBorder,
+    boundings: utila.Rectangles,
+    size: iamraw.PageSizeBorder,
 ) -> LeftRight:
     """Determine the left and right border of a page based on `mode`
     selection in `size`.

@@ -17,9 +17,9 @@ import groupme.likelihood
 
 
 def match(
-        content: iamraw.PageContentHorizontals,
-        vertical_position: float,
-        maxdiff=2.0,
+    content: iamraw.PageContentHorizontals,
+    vertical_position: float,
+    maxdiff=2.0,
 ) -> bool:
     """Check if any horizontal match the `vertical_position`
 
@@ -46,11 +46,11 @@ def assert_horizontal(bounding):
 
 
 def biggest_hlinecluster_in_area(
-        clusters: typing.List,
-        ymin: float,
-        ymax: float,
-        max_group_count: int = 1,  # pylint:disable=W0613
-        min_group_size: int = 1,
+    clusters: typing.List,
+    ymin: float,
+    ymax: float,
+    max_group_count: int = 1,  # pylint:disable=W0613
+    min_group_size: int = 1,
 ) -> typing.List[int]:
     """Determine cluster with maximal horizontal line count which fits
     in area between [ymin and ymax]. Return y-coordinate of cluster as a

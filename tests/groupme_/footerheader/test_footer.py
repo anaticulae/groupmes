@@ -49,8 +49,8 @@ def test_footer_work(testdir):  #pylint:disable=W0621
         (gfs.pages.PageNumberStrategy, 0),
     ])
 def test_footer_footerheader_detectionstategy(
-        strategy,
-        expected_results,
+    strategy,
+    expected_results,
 ):
     """Check that different strategies work proper with given resources
 

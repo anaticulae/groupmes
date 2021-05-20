@@ -95,11 +95,11 @@ def disable_strategy(footers) -> bool:
 
 
 def process_page(
-        pagenumber,
-        pagenumber_location,
-        horizontals,
-        sizeandborder,
-        pagetextnavigator,
+    pagenumber,
+    pagenumber_location,
+    horizontals,
+    sizeandborder,
+    pagetextnavigator,
 ):
     pageheight = sizeandborder.size.height
 
@@ -125,10 +125,10 @@ def process_page(
 
 
 def extract_footer(
-        footerstart: float,
-        pageheight: int,
-        pagenumber_location,
-        pagetextnavigator: texmex.PageTextNavigator,
+    footerstart: float,
+    pageheight: int,
+    pagenumber_location,
+    pagetextnavigator: texmex.PageTextNavigator,
 ):
     begin = footerstart / pageheight
     # in the current parser state, the location of tiny distances between

@@ -95,10 +95,10 @@ BOTTOM_BORDER = 0.60  # TODO: HOLY VALUE
 
 
 def process_page(
-        pagenumber_location,
-        horizontals,
-        sizeandborder,
-        pagetextnavigator,
+    pagenumber_location,
+    horizontals,
+    sizeandborder,
+    pagetextnavigator,
 ):
     pagenumber = pagetextnavigator.page
     pagewidth = sizeandborder.size.width
@@ -140,10 +140,10 @@ def select_footer_line(horizontals, pagewidth, pageheight) -> float:
 
 
 def extract_footer(
-        footerstart: float,
-        pageheight: int,
-        pagenumber_location,
-        pagetextnavigator,
+    footerstart: float,
+    pageheight: int,
+    pagenumber_location,
+    pagetextnavigator,
 ):
     begin = footerstart / pageheight
     # in the current parser state, the location of tiny distances between

@@ -46,8 +46,8 @@ def run(sizeandborder: iamraw.PageSizeBorderList) -> MostBoundingDetected:
 
 
 def most_boundingbox(
-        boxes: utila.Rectangles,
-        roundme: bool = False,
+    boxes: utila.Rectangles,
+    roundme: bool = False,
 ) -> utila.Rectangle:
     """Extract bounding box of most common occurence for every side.
 

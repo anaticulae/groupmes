@@ -19,16 +19,11 @@ UTF8 = 'utf8'
 with open(os.path.join(ROOT, 'README.md'), mode='rt', encoding=UTF8) as fp:
     README = fp.read()
 
-with open(
-        os.path.join(ROOT, 'groupme/__init__.py'), mode='rt',
-        encoding=UTF8) as fp:
+with open(os.path.join(ROOT, 'groupme/__init__.py'), encoding=UTF8) as fp:
     VERSION = re.search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
 
-with open(
-        os.path.join(ROOT, "requirements.txt"), mode='rt', encoding=UTF8) as fp:
-    INSTALL_REQUIRES = [
-        line for line in fp.readlines() if line and '#' not in line
-    ]
+with open(os.path.join(ROOT, "requirements.txt"), encoding=UTF8) as fp:
+    REQUIRES = [line for line in fp.readlines() if line and '#' not in line]
 
 if __name__ == "__main__":
     # allow ssetup.py to run from another directory
@@ -37,7 +32,7 @@ if __name__ == "__main__":
         author='Helmut Konrad Fahrendholz',
         author_email='info@checkitweg.de',
         description='good old times',
-        install_requires=INSTALL_REQUIRES,
+        install_requires=REQUIRES,
         long_description=README,
         name='groupme',
         platforms='any',
@@ -47,6 +42,7 @@ if __name__ == "__main__":
         classifiers=[
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
         ],
         packages=[
             'groupme',

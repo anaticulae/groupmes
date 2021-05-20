@@ -40,11 +40,11 @@ PageContentTextualAreas = typing.List[PageContentTextualArea]
 
 
 def work(
-        boxes: str,
-        tables: str,
-        text: str,
-        textpositions: str,
-        pages: tuple = None,
+    boxes: str,
+    tables: str,
+    text: str,
+    textpositions: str,
+    pages: tuple = None,
 ) -> str:
     """Extract different areas out of given data.
 
@@ -143,11 +143,11 @@ def table_checker(items) -> utila.RectangleCheck:
 
 
 def load(
-        boxes: str,
-        tables: str,
-        text: str,
-        textpositions: str,
-        pages: tuple = None,
+    boxes: str,
+    tables: str,
+    text: str,
+    textpositions: str,
+    pages: tuple = None,
 ) -> RequiredResources:
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)

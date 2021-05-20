@@ -82,10 +82,10 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
 
 
 def create_footerinformation(
-        processed,
-        navigator,
-        pageheight,
-        rawpage,
+    processed,
+    navigator,
+    pageheight,
+    rawpage,
 ) -> iamraw.PagesFooterInformation:
     # footer detection
     bounding = processed[1]
@@ -132,10 +132,10 @@ def distance(bounding, items, page):
 
 
 def pagenumber_location(
-        horizontals,
-        sizeandborders,
-        pagenumbers,
-        pagetextnavigators,
+    horizontals,
+    sizeandborders,
+    pagenumbers,
+    pagetextnavigators,
 ):
     strategy = PageNumberStrategy(
         horizontals,

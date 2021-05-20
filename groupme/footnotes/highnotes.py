@@ -145,9 +145,9 @@ def union(chunks: TextChunks) -> texmex.TextInfo:
 
 
 def char_bounding(
-        bounding: iamraw.BoundingBox,
-        text: str,
-        style: texmex.TextStyle,
+    bounding: iamraw.BoundingBox,
+    text: str,
+    style: texmex.TextStyle,
 ) -> iamraw.BoundingBox:
     width = bounding.x1 - bounding.x0
     char_width = width / len(text)

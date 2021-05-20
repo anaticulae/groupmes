@@ -19,8 +19,7 @@ STRATEGIES = [
 ]
 
 
-def parse(data: groupme.abbreviation.AbbreviationData,
-         ) -> iamraw.AbbreviationResult:
+def parse(data: groupme.abbreviation.AbbreviationData) -> iamraw.AbbreviationResult:  # yapf:disable
     assert isinstance(data.normal, list), type(data)
     assert isinstance(data.oneline, list), type(data)
 

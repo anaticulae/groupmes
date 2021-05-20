@@ -78,13 +78,13 @@ def header(navigators):
 
 
 def footer(
-        navigators,
-        *,
-        max_area: float = BOTTOM_MAX_AREA,
-        max_difference: float = BOTTOM_MAX_DIFFERENCE,
-        min_elements: int = 4,
-        numbers_only: bool = True,
-        remove_empty: bool = True,
+    navigators,
+    *,
+    max_area: float = BOTTOM_MAX_AREA,
+    max_difference: float = BOTTOM_MAX_DIFFERENCE,
+    min_elements: int = 4,
+    numbers_only: bool = True,
+    remove_empty: bool = True,
 ) -> list:
     """Detect similar elements in footer area which are duplicated on
     different pages.

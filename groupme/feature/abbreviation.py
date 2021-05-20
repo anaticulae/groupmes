@@ -15,11 +15,11 @@ import groupme.abbreviation.parser
 
 
 def work(
-        text: str,
-        textposition: str,
-        text_oneline: str,
-        textposition_oneline: str,
-        pages: tuple = None,
+    text: str,
+    textposition: str,
+    text_oneline: str,
+    textposition_oneline: str,
+    pages: tuple = None,
 ) -> str:
     text_oneline = serializeraw.load_document(text_oneline, pages=pages)
     textposition_oneline = serializeraw.load_textpositions(

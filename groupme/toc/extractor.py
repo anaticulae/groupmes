@@ -17,9 +17,9 @@ import groupme.toc.strategy.regex
 
 
 def extract(
-        data: groupme.toc.strategy.ExtractionData,
-        active: list = None,
-        min_detection_count: int = 1,
+    data: groupme.toc.strategy.ExtractionData,
+    active: list = None,
+    min_detection_count: int = 1,
 ) -> groupme.toc.strategy.ExtractionResult:
     """Run various strategies to extract ``toc-lines`` out of given ``data``.
 

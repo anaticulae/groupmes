@@ -25,11 +25,11 @@ MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(20, limit=100).value
 
 
 def work(
-        text: str,
-        textpositions: str,
-        headerfooter: str,
-        sizeandborder: str,
-        pages: tuple = None,
+    text: str,
+    textpositions: str,
+    headerfooter: str,
+    sizeandborder: str,
+    pages: tuple = None,
 ) -> str:
     """Extract table of figures out of `document`.
 

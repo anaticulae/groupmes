@@ -31,14 +31,14 @@ import groupme.utils
 
 
 def work(
-        text: str,
-        text_positions: str,
-        fontheader: str,
-        fontcontent: str,
-        horizontals: str,
-        sizeandborders: str,
-        pagenumbers: str,
-        pages=None,
+    text: str,
+    text_positions: str,
+    fontheader: str,
+    fontcontent: str,
+    horizontals: str,
+    sizeandborders: str,
+    pagenumbers: str,
+    pages=None,
 ) -> str:
     """Extract footer and header area out of horizontal lines
 
@@ -75,10 +75,10 @@ def work(
 
 
 def extract_footerheader(
-        horizontals: iamraw.PagesWithHorizontalList,
-        sizeandborders: iamraw.PageSizeBorderList,
-        pagenumbers,
-        pagetextnavigators: texmex.PageTextNavigators,
+    horizontals: iamraw.PagesWithHorizontalList,
+    sizeandborders: iamraw.PageSizeBorderList,
+    pagenumbers,
+    pagetextnavigators: texmex.PageTextNavigators,
 ) -> iamraw.PageContentFooterHeaders:
     """Extract most common header/footer of the document
 
@@ -98,8 +98,9 @@ def extract_footerheader(
     return result
 
 
-def judge_strategy(results: typing.List[iamraw.PageContentFooterHeaders],
-                  ) -> iamraw.PageContentFooterHeaders:
+def judge_strategy(
+    results: typing.List[iamraw.PageContentFooterHeaders],
+) -> iamraw.PageContentFooterHeaders:
     """Decide which results fits best.
 
     Zip result of different strategies. Sometimes there are multiple

@@ -30,13 +30,13 @@ MIN_FIGURE_ITEM_COUNT = 1
 
 
 def work(
-        text: str,
-        textpositions: str,
-        oneline_text: str,
-        oneline_textpositions: str,
-        headerfooter: str,
-        sizeandborder: str,
-        pages: tuple = None,
+    text: str,
+    textpositions: str,
+    oneline_text: str,
+    oneline_textpositions: str,
+    headerfooter: str,
+    sizeandborder: str,
+    pages: tuple = None,
 ) -> str:
     """Extract table of figures out of `document`.
 

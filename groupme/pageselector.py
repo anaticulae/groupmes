@@ -18,11 +18,11 @@ MIN_HEADLINE_SIZE = configo.HV_FLOAT_PLUS(15.0).value
 
 
 def select_contentpages(
-        textnavigators: texmex.PageTextNavigators,
-        wrong_table=None,
-        strategy: callable = None,
-        skip_higherqual_level_three: bool = True,
-        min_valid_lines_perpage=None,
+    textnavigators: texmex.PageTextNavigators,
+    wrong_table=None,
+    strategy: callable = None,
+    skip_higherqual_level_three: bool = True,
+    min_valid_lines_perpage=None,
 ) -> utila.Ints:
     """Use simple approach to decide which page contains table content."""
     if strategy is None:

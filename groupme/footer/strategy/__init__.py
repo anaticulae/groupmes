@@ -49,11 +49,11 @@ class FooterHeaderDetectionStrategy(abc.ABC):
     # TODO: Relative or absolute result dimension?
 
     def __init__(
-            self,
-            horizontals: iamraw.PagesWithHorizontalList,
-            sizeandborders: iamraw.PageSizeBorderList,
-            pagenumbers,
-            pagetextnavigators: texmex.PageTextNavigators,
+        self,
+        horizontals: iamraw.PagesWithHorizontalList,
+        sizeandborders: iamraw.PageSizeBorderList,
+        pagenumbers,
+        pagetextnavigators: texmex.PageTextNavigators,
     ):
         assert isinstance(horizontals, typing.List), str(horizontals)
         self.horizontals = horizontals
@@ -94,9 +94,9 @@ class FooterHeaderDetectionStrategy(abc.ABC):
 
 
 def create_strategy(
-        path: str,
-        strategy: FooterHeaderDetectionStrategy,
-        pages=None,
+    path: str,
+    strategy: FooterHeaderDetectionStrategy,
+    pages=None,
 ):
     horizontals = iamraw.path.horizontals(path)
     horizontals = serializeraw.load_horizontals(horizontals, pages=pages)

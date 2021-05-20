@@ -18,7 +18,7 @@ CONTENT = """
 6.1 Evaluierung des Systems . . . . . . . . . . . . . . . . . . . . . 62
 6.1.1 Modularit3t und Erweiterbarkeit . . . . . . . . . . . . 62
 6.1.2 Funktionalität und Benutzbarkeit . . . . . . . . . . . . 63
-6.2 Demonstration des Prototypen . . . . . . . . . . . . . . . . . . 66
+6.2 Demonstration des Prototypen . . . . 66
 6.2.1 Anwendungsstart und Konfiguration eines Projektes . . 66
 6.2.2 Auswahl von Projekten und KNX-Gruppen . . . . . . . 69
 6.2.3 Steuern und Überwachen von KNX-Geräten . . . . . . 71
@@ -32,25 +32,26 @@ HEADLINES = [
         level='6.1.2',
         title='Funktionalität und Benutzbarkeit',
         page='63',
-        raw='6.1.2 Funktionalität und Benutzbarkeit . . . . . . . . . . . . 63'
+        raw='6.1.2 Funktionalität und Benutzbarkeit . . . . . . . . . . . . 63',
     ),
     groupme.toc.TocLine(
         level='6.2',
         title='Demonstration des Prototypen',
         page='66',
-        raw=
-        '6.2 Demonstration des Prototypen . . . . . . . . . . . . . . . . . . 66'
+        raw='6.2 Demonstration des Prototypen . . . . 66',
     ),
     groupme.toc.TocLine(
         level='6',
         title='Evaluierung und Demonstration des Prototypen',
         page='62',
-        raw='6 Evaluierung und Demonstration des Prototypen 62'),
+        raw='6 Evaluierung und Demonstration des Prototypen 62',
+    ),
     groupme.toc.TocLine(
         level='7',
         title='Zusammenfassung und Ausblick',
         page='76',
-        raw='7 Zusammenfassung und Ausblick 76'),
+        raw='7 Zusammenfassung und Ausblick 76',
+    ),
 ]
 
 

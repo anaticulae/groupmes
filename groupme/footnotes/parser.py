@@ -102,9 +102,9 @@ def count_empty(items: iamraw.PageContentFooterHeader) -> int:
 
 
 def parse_with_highnotes(
-        content: list,
-        width: float = 594.0,
-        pagenumber: int = None,
+    content: list,
+    width: float = 594.0,
+    pagenumber: int = None,
 ) -> list:
     """\
     Args:

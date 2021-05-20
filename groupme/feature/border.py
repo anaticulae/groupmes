@@ -18,9 +18,9 @@ import groupme.border.most
 
 
 def work(
-        sizeandborder: str,
-        textpositions: str,
-        pages: tuple = None,
+    sizeandborder: str,
+    textpositions: str,
+    pages: tuple = None,
 ) -> typing.Tuple[str]:
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
@@ -32,8 +32,8 @@ def work(
 
 
 def determine_border(
-        textpositions: iamraw.PageContentTextPositions,
-        pagesizes: iamraw.PageSizeBorderList,
+    textpositions: iamraw.PageContentTextPositions,
+    pagesizes: iamraw.PageSizeBorderList,
 ):
     clustered = pagecluster(pagesizes)
     result = []

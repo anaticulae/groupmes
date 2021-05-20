@@ -82,11 +82,11 @@ def validate_homework18(result):
     ])
 @utilatest.longrun
 def test_footer_moving(
-        document,
-        pages,
-        expected_footer,
-        strategy,
-        validate,
+    document,
+    pages,
+    expected_footer,
+    strategy,
+    validate,
 ):
     """Hint: This test is dependend on moving footer strategy. If this
     test fails, may the footer is not extracted correctly. Look at the
