@@ -68,7 +68,7 @@ def biggest_hlinecluster_in_area(
     """
     assert len(clusters) >= 1, 'no clusters provided'
     valid = cluster_in_area(clusters, ymin, ymax)
-    if not any([item for item in valid]):
+    if not any(valid):
         # no cluster is in range
         return None
 

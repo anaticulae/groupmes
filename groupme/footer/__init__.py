@@ -9,11 +9,11 @@
 
 
 def strategies():
-    import groupme.footer.strategy.common
-    import groupme.footer.strategy.fixed
-    import groupme.footer.strategy.moving
-    import groupme.footer.strategy.pages
-    import groupme.footer.strategy.plainmoving
+    import groupme.footer.strategy.common  # pylint:disable=C0415
+    import groupme.footer.strategy.fixed  # pylint:disable=C0415
+    import groupme.footer.strategy.moving  # pylint:disable=C0415
+    import groupme.footer.strategy.pages  # pylint:disable=C0415
+    import groupme.footer.strategy.plainmoving  # pylint:disable=C0415
     # TODO: Automate collection
     result = [
         groupme.footer.strategy.common.CommonTextStrategy,

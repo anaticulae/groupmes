@@ -22,7 +22,7 @@ import tests
 def test_abbreviation_validate(source, expected, pages, monkeypatch, testdir):
     source = power.link(source)
     pages = (pages,) if isinstance(pages, int) else pages
-    pages = utila.from_tuple(pages, separator=',') if pages else ':'
+    pages: str = utila.from_tuple(pages, separator=',') if pages else ':'
     cmd = f'-i {source} --abbreviation --pages={pages}'
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
 

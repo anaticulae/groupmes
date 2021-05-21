@@ -43,7 +43,7 @@ def decide(items: gts.ExtractionResults) -> gts.ExtractionResult:
     if not items:
         return None
     analyzed = [analyze_result(item) for item in items]
-    selector = {result: item for result, item in zip(analyzed, items)}
+    selector = dict(zip(analyzed, items))
     order = sorted(analyzed)
     first_item = order[0]
     selected = selector[first_item]

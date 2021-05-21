@@ -87,8 +87,7 @@ def _select(items, decider, caller, count):
 
 def _uniform_list(items):
     assert isinstance(items, list), type(items)
-    assert all([isinstance(item, (int, float)) for item in items])
-
+    assert all(isinstance(item, (int, float)) for item in items)
     features = sum(items)
     if not features:
         return None
@@ -102,8 +101,7 @@ def _uniform_dict(items: dict) -> dict:
     uniformed = _uniform_list(values)
     if uniformed is None:
         return None
-
-    result = {key: value for key, value in zip(items.keys(), uniformed)}
+    result = dict(zip(items.keys(), uniformed))
     return result
 
 

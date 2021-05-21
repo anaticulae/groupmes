@@ -151,7 +151,7 @@ def oneline(page) -> str:
         lines = [item.text for item in lines]
     else:
         # PageTextNavigator
-        lines = oneline_merge([item for item in page])
+        lines = oneline_merge(list(page))
         lines = [item.text for item in lines]
     lines = split_newlines(lines)
     lines = [item.strip() for item in lines]

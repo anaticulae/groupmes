@@ -32,11 +32,11 @@ def test_extract_toc_from_master_pages72_page_1and2():
 
     result_page1 = gtsr.parse_page(page1)
     assert len(result_page1) == 23
-    assert all([not '...' in item.title for item in result_page1])
+    assert all(not '...' in item.title for item in result_page1)
 
     result_page2 = gtsr.parse_page(page2)
     assert len(result_page2) == 9
-    assert all([not '...' in item.title for item in result_page2])
+    assert all(not '...' in item.title for item in result_page2)
 
 
 FIRST_LINE = ('2.1 Web 2.0, Social Web und Social Media: '

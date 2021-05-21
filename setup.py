@@ -57,8 +57,6 @@ if __name__ == "__main__":
             'groupme.utils',
         ],
         entry_points={
-            'console_scripts': [
-                'groupme = groupme.cli:main',
-            ],
+            'console_scripts': ['groupme = groupme.cli:main',],
         },
     )

@@ -265,6 +265,6 @@ def decide_multiple(items):
                 selected[item.page] = item
         except KeyError:
             selected[item.page] = item
-    result = [item for item in selected.values()]
+    result = list(selected.values())
     result = sorted(result, key=lambda x: x.page)
     return result
