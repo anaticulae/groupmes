@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.9.1
+
+### Feature
+
+* dump page to abbr geometry parser (8d1ac2eb8e85)
+
+### Documentation
+
+* extend interface documentation (f4a80bffa64c)
+
 ## v0.9.0
 
 ### Feature
