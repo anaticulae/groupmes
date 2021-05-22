@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.9.2
+
+### Fix
+
+* replace with utila code (703d7f7a7128)
+
 ## v0.9.1
 
 ### Feature
