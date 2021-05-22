@@ -14,4 +14,4 @@ configo>=0.10.1<1.0.0
 geostrat>=1.1.12<2.0.0
 
 konrad>=0.4.1<1.0.0
-elements>=0.5.1<1.0.0
+elements>=0.5.2<1.0.0
