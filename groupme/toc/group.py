@@ -12,7 +12,6 @@ import dataclasses
 
 import elements
 import iamraw
-import texmex.numbers
 import utila
 
 import groupme.toc
@@ -94,7 +93,7 @@ def level(item: str) -> Level:
         return Level(value=number, raw=item)
 
     with contextlib.suppress(KeyError):
-        value = texmex.numbers.arabic(item.upper())
+        value = utila.arabic(item)
         return RomanLevel(value=value, raw=item)
 
     try:
