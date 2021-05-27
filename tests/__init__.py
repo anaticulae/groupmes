@@ -12,7 +12,6 @@ import utila
 import utilatest
 
 import groupme
-import tests.resources
 
 power.setup(groupme.ROOT)
 

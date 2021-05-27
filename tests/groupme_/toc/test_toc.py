@@ -15,7 +15,6 @@ import utila
 import groupme.feature.toc
 import groupme.pageselector
 import groupme.toc.group
-import tests.resources
 
 
 def test_toc_groupby_level():
@@ -42,13 +41,13 @@ def test_toc_groupby_level():
     pytest.param(
         power.link(power.DOCU27_PDF),
         (2,),
-        tests.resources.RESTRUCT_TOC_LINES,
+        13,
         id='restructured',
     ),
     pytest.param(
         power.link(power.DOCU07_PDF),
         (0,),
-        tests.resources.HOWTO_PYPORTING_TOC_LINES,
+        12,
         marks=pytest.mark.xfail,
         id='simple',
     ),

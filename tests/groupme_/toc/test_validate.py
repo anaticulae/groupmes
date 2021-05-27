@@ -18,7 +18,7 @@ import utilatest
 
 import groupme
 import groupme.path
-import tests.resources
+import tests
 
 EXPECTED = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
 file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pylint:disable=C0103

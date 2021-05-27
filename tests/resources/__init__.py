@@ -13,11 +13,4 @@ import groupme
 
 power.setup(groupme.ROOT)
 
-RESTRUCT_TOC_LINES = 13
-# the simple example has two 2 chapters, but there are on the same page,
-# therfore 1 page_count.
-HOWTO_PYPORTING_TOC_LINES = 12
-
-BACHELOR111_PAGE_COUNT = 111
-TECHNICAL24_PAGE_COUNT = 24
 HOWTO_ARGPARSE_PAGE_COUNT = 14

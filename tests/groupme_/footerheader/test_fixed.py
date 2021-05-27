@@ -18,7 +18,6 @@ import utilatest
 
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.fixed as gfsf
-import tests.resources
 
 
 def _restructed():
@@ -114,7 +113,8 @@ def test_footer_fixed_bachelor111page_extract_page_footerheader():
 
     footerheader = _bachelor111_footerheader()
     msg = 'more footer than pages, remove duplication'
-    assert len(footerheader) < tests.resources.BACHELOR111_PAGE_COUNT, msg
+    bachelor111pagecount = 111
+    assert len(footerheader) < bachelor111pagecount, msg
 
     header = [item.header for item in footerheader if item.header]
     assert len(header) == 94, utila.log_raw(header)

@@ -13,23 +13,17 @@ import pytest
 import serializeraw
 
 import groupme.footer.strategy.pages
-import tests.resources
 
 
 @pytest.mark.parametrize(
     'document, pages, expected_pagenumbers',
     [
-        pytest.param(
-            power.link(power.DOCU14_PDF),
-            tests.resources.HOWTO_ARGPARSE_PAGE_COUNT,
-            tests.resources.HOWTO_ARGPARSE_PAGE_COUNT,
-            id='howtoargparse',
-        ),
+        pytest.param(power.link(power.DOCU14_PDF), 14, 14, id='docu14'),
         pytest.param(
             power.link(power.TECH024_PDF),
-            tests.resources.TECHNICAL24_PAGE_COUNT,
+            24,
             # header page has no page number
-            tests.resources.TECHNICAL24_PAGE_COUNT - 1,
+            24 - 1,
             id='technical24pages',
         ),
     ])
