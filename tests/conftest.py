@@ -21,6 +21,7 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 PACKAGE = groupme.PACKAGE
 
 RESOURCES = [
+    power.MASTER091A_PDF,
     (power.MASTER116_PDF, '50:117'),
     (power.MASTER099_PDF, '0:30'),
     (power.MASTER098_PDF, '0:15'),
