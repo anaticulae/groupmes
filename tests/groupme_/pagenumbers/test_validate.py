@@ -20,6 +20,7 @@ import groupme
     pytest.param(power.link(power.BACHELOR111_PDF), 16, id='bachelor111'),
     pytest.param(power.link(power.MASTER072_PDF), 69, id='master72pages'),
     pytest.param(power.link(power.TECH024_PDF), 23, id='technical24pages'),
+    pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
 ])
 @utilatest.longrun
 def test_validate_pagenumbers(resource, expected):
