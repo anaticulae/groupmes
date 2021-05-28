@@ -112,24 +112,6 @@ def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
     return numbers
 
 
-@pytest.mark.parametrize('resource, expected_numbers', [
-    pytest.param(power.link(power.BACHELOR111_PDF), 16, id='bachelor111'),
-    pytest.param(power.link(power.MASTER072_PDF), 69, id='master72pages'),
-    pytest.param(power.link(power.TECH024_PDF), 23, id='technical24pages'),
-])
-@utilatest.longrun
-def test_numbers_work_single(resource, expected_numbers):
-    # TODO: bottom only, add header page extraction
-    text = iamraw.path.text(resource)
-    text_positions = iamraw.path.textposition(resource)
-
-    result = groupme.feature.pagenumbers.work(text, text_positions)
-    result = serializeraw.load_pagenumbers(result)
-
-    assert isinstance(result, list), f'wrong page detection type {type(result)}'
-    assert len(result) == expected_numbers
-
-
 def test_numbers_restructured_without_title():
     """Ensure to extract correct pdf page on document which starts with
     empty page. Before this patch, the pdfpages started with zero
