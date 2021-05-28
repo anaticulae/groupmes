@@ -37,14 +37,12 @@ PageContentTextPosition = collections.namedtuple(
 )
 
 
-def work(documentpath: str, positionpath: str, pages: tuple = None) -> str:
+def work(text: str, textpositions: str, pages: tuple = None) -> str:
     utila.call('numbers')
-    document = serializeraw.load_document(documentpath, pages=pages)
-    position = serializeraw.load_textpositions(positionpath, pages=pages)
-
-    navigator = texmex.create_pagetextnavigators(
-        text=document,
-        text_positions=position,
+    navigator = serializeraw.create_pagetextnavigators_fromfile(
+        text=text,
+        textpositions=textpositions,
+        pages=pages,
     )
     footer_pagenumbers = determine_pagenumbers(navigator)
     dumped = serializeraw.dump_pagenumbers(footer_pagenumbers)
