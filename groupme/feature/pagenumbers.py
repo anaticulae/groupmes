@@ -46,13 +46,17 @@ def work(text: str, textpositions: str, pages: tuple = None) -> str:
     )
     footer_pagenumbers = determine_pagenumbers(navigators)
     dumped = serializeraw.dump_pagenumbers(footer_pagenumbers)
-
     return dumped
 
 
 def determine_pagenumbers(navigators):
-    footer_ = footer(navigators)
-    return pagenumbers(footer_)
+    rotated, normal = utila.partition(isrotated, navigators)
+    footers = footer(normal)
+    return pagenumbers(footers)
+
+
+def isrotated(navigator) -> bool:
+    return navigator.width > navigator.height
 
 
 # TODO: REPLACE HOLY VALUE
