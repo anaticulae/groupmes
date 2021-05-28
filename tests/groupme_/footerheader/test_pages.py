@@ -15,7 +15,7 @@ import groupme.footer.strategy.pages
 
 
 @pytest.mark.parametrize(
-    'document,  expected_pagenumbers',
+    'source, expected',
     [
         pytest.param(power.link(power.DOCU14_PDF), 14, id='docu14'),
         pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
@@ -26,28 +26,20 @@ import groupme.footer.strategy.pages
             id='technical24pages',
         ),
     ])
-def test_footer_pagenumber_strategy(
-    document,
-    expected_pagenumbers,
-):
-    horizontallines = serializeraw.load_horizontals(
-        iamraw.path.horizontals(document),)
-    sizeandborder = serializeraw.load_pageborders(
-        iamraw.path.sizeandborder(document),)
-    pagenumbers = serializeraw.load_pagenumbers(
-        groupme.path.pagenumbers(document),)
-
-    pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(
-        document,)
-
+def test_footer_pagenumber_strategy(source, expected):
+    # prepare data
+    horizontallines = serializeraw.load_horizontals(source)
+    sizeandborder = serializeraw.load_pageborders(source)
+    pagenumbers = serializeraw.load_pagenumbers(source)
+    pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(source)
     strategy = groupme.footer.strategy.pages.PageNumberStrategy(
         horizontals=horizontallines,
         sizeandborders=sizeandborder,
         pagenumbers=pagenumbers,
         pagetextnavigators=pagetextnavigators,
     )
-
+    # run strategy
     result = strategy.result()
-
+    # verify
     assert result is not None, result
-    assert len(result) == expected_pagenumbers, result
+    assert len(result) == expected, result
