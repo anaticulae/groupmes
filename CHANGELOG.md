@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.10.0
+
+### Feature
+
+* detect page numbers in header area (3e468582efdd)
+* decide between normal and rotated pages (61faf84af366)
+
+### Fix
+
+* decide between header and footer (f1198ba5bbb1)
+
+### Documentation
+
+* clarify docs (c8789e3c8129)
+
 ## v0.9.2
 
 ### Fix
