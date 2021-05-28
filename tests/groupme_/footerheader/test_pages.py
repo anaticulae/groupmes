@@ -18,6 +18,7 @@ import groupme.footer.strategy.pages
     'document,  expected_pagenumbers',
     [
         pytest.param(power.link(power.DOCU14_PDF), 14, id='docu14'),
+        pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
         pytest.param(
             power.link(power.TECH024_PDF),
             # header page has no page number
