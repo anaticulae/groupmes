@@ -39,19 +39,19 @@ PageContentTextPosition = collections.namedtuple(
 
 def work(text: str, textpositions: str, pages: tuple = None) -> str:
     utila.call('numbers')
-    navigator = serializeraw.create_pagetextnavigators_fromfile(
+    navigators = serializeraw.create_pagetextnavigators_fromfile(
         text=text,
         textpositions=textpositions,
         pages=pages,
     )
-    footer_pagenumbers = determine_pagenumbers(navigator)
+    footer_pagenumbers = determine_pagenumbers(navigators)
     dumped = serializeraw.dump_pagenumbers(footer_pagenumbers)
 
     return dumped
 
 
-def determine_pagenumbers(navigator):
-    footer_ = footer(navigator)
+def determine_pagenumbers(navigators):
+    footer_ = footer(navigators)
     return pagenumbers(footer_)
 
 
