@@ -130,11 +130,6 @@ def test_numbers_work_single(resource, expected_numbers):
     assert len(result) == expected_numbers
 
 
-@pytest.mark.parametrize('nopagenumber', ['', 'a'])
-def test_groumpe_numbers_ispagenumber_negative(nopagenumber):
-    assert not groupme.feature.pagenumbers.ispagenumber(nopagenumber)
-
-
 def test_numbers_restructured_without_title():
     """Ensure to extract correct pdf page on document which starts with
     empty page. Before this patch, the pdfpages started with zero

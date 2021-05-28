@@ -23,9 +23,9 @@ Required API:
 """
 
 import collections
-import re
 import typing
 
+import elements
 import iamraw
 import serializeraw
 import texmex
@@ -116,7 +116,7 @@ def footer(
             if remove_empty and not text:
                 # filter empty items
                 continue
-            if numbers_only and not ispagenumber(text):
+            if numbers_only and not elements.ispagenumber(text):
                 # remove non numeric items
                 continue
             # support -1-, -2-, ...
@@ -133,40 +133,6 @@ def footer(
         min_elements=min_elements,
     )
     return common
-
-
-def ispagenumber(number: str) -> bool:
-    """Determine if passed `number` is a page number. Empty `number` is
-    not a page number.
-
-    Args:
-        number(str): string to check if it is a number
-    Returns:
-        True if roman or numeric number is given
-
-    >>> ispagenumber('99')
-    True
-    >>> ispagenumber('-1-')
-    True
-    >>> ispagenumber('iv')
-    True
-    >>> ispagenumber('32/54')
-    True
-    >>> ispagenumber('0.5')
-    False
-    """
-    # - 1 -, -2-,
-    number = str(number).replace('-', '', 2)
-    number = number.strip()
-    if not number:
-        return False
-    if number.isnumeric():
-        return True
-    if utila.isroman(number):
-        return True
-    if re.match(r'\d{1,3}/\d{1,3}', number):
-        return True
-    return False
 
 
 def isrightpage(pdf_pagenumber: int) -> bool:
@@ -195,7 +161,7 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     for clusterid, cluster in enumerate(clusters):
         for _, (bounding, content, pdf_page) in cluster:
             content = str(content)
-            if not ispagenumber(content):
+            if not elements.ispagenumber(content):
                 continue
             try:
                 content = int(content)  # pylint:disable=R0204

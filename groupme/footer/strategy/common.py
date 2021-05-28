@@ -19,6 +19,7 @@ text and images. There is no horizontal line required.
 import collections
 
 import configo
+import elements
 import iamraw
 import texmex
 import utila
@@ -108,7 +109,7 @@ def prepare_clustering(pagetextnavigators):
     for page in collected:
         content = [
             item for item in page if item[1].text.strip() in valid or
-            groupme.feature.pagenumbers.ispagenumber(item[1].text)
+            elements.ispagenumber(item[1].text)
         ]
         result.append(content)
     return result
