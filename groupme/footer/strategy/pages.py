@@ -26,7 +26,7 @@ import utila
 
 import groupme.footer.strategy as gfs
 
-MIN_DISTANCE_TO_HORIZONTAL = configo.HV_INT_PLUS(25, limit=250).value
+MIN_DISTANCE_TO_HORIZONTAL = configo.HV_INT_PLUS(15, limit=250).value
 
 
 class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):

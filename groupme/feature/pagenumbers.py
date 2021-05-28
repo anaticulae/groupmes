@@ -36,6 +36,17 @@ PageContentTextPosition = collections.namedtuple(
     'content, page',
 )
 
+# TODO: REPLACE HOLY VALUE
+TOP_BORDER = 0.2  # Header in the range of 0% till 20%
+TOP_MAX_DIFFERENCE = 20.0
+
+# TODO: Think about scaling this value depending on result
+BOTTOM_BORDER = 0.8  # Footer is in range of 80% till 100%
+BOTTOM_MAX_DIFFERENCE = 20.0
+BOTTOM_MAX_AREA = 2500.0  # page number is not very big
+
+PAGE_ELEMENTS_MIN = 4
+
 
 def work(text: str, textpositions: str, pages: tuple = None) -> str:
     utila.call('numbers')
@@ -44,37 +55,28 @@ def work(text: str, textpositions: str, pages: tuple = None) -> str:
         textpositions=textpositions,
         pages=pages,
     )
-    footer_pagenumbers = determine_pagenumbers(navigators)
-    dumped = serializeraw.dump_pagenumbers(footer_pagenumbers)
+    pagenumbers = determine_pagenumbers(navigators)
+    dumped = serializeraw.dump_pagenumbers(pagenumbers)
     return dumped
 
 
 def determine_pagenumbers(navigators):
     rotated, normal = utila.partition(isrotated, navigators)
-    footers = footer(normal)
-    return pagenumbers(footers)
+    detected = header(normal) + footer(normal)
+    return pagenumbers(detected)
 
 
-def isrotated(navigator) -> bool:
-    return navigator.width > navigator.height
-
-
-# TODO: REPLACE HOLY VALUE
-TOP_BORDER = 0.1  # Header in the range of 0% till 10%
-TOP_MAX_DIFFERENCE = 20.0
-
-# TODO: Think about scaling this value depending on result
-BOTTOM_BORDER = 0.8  # Footer is in range of 80% till 100%
-BOTTOM_MAX_DIFFERENCE = 20.0
-BOTTOM_MAX_AREA = 2500.0  # page number is not very big
-
-
-def header(navigators):
-    collected = [page.before(TOP_BORDER) for page in navigators]
-    common = utila.common_items(
+def header(
+    navigators,
+    *,
+    numbers_only: bool = True,
+    remove_empty: bool = True,
+) -> list:
+    collected = [(page.page, page.before(TOP_BORDER)) for page in navigators]
+    common = valid_content(
         collected,
-        max_difference=TOP_MAX_DIFFERENCE,
-        selector=lambda x: x.bounding,
+        numbers_only=numbers_only,
+        remove_empty=remove_empty,
     )
     return common
 
@@ -82,9 +84,6 @@ def header(navigators):
 def footer(
     navigators,
     *,
-    max_area: float = BOTTOM_MAX_AREA,
-    max_difference: float = BOTTOM_MAX_DIFFERENCE,
-    min_elements: int = 4,
     numbers_only: bool = True,
     remove_empty: bool = True,
 ) -> list:
@@ -93,22 +92,32 @@ def footer(
 
     Args:
         navigators(list): list of text navgiators
-        max_area(float): size of items which are grouped to a cluster
-        max_difference(float): difference of BoundingBox-coordinates in
-                               same cluster
-        min_elements(int): minimum elements of detected clusters
         numbers_only(bool): if True, remove all non numeric/romanic elements
         remove_empty(bool): remove empty elements, e.g. whitespaces
     Returns:
         A list of clustered page footer content which are expected of
         beeing the page numbers.
     """
-    # TODO: MOVE THIS METHOD TO MORE GENERAL FOOTER FILE BECAUSE THIS CODE
-    # HAS NOTHING TODO WITH NUMBERS
-    # TODO: Split method into numbers part and grouping part
     collected = [(page.page, page.after(BOTTOM_BORDER)) for page in navigators]
+    common = valid_content(
+        collected,
+        numbers_only=numbers_only,
+        remove_empty=remove_empty,
+    )
+    return common
+
+
+def valid_content(
+    navigators,
+    max_area: float = BOTTOM_MAX_AREA,
+    max_difference: float = BOTTOM_MAX_DIFFERENCE,
+    min_elements: int = PAGE_ELEMENTS_MIN,
+    numbers_only: bool = True,
+    remove_empty: bool = True,
+):
+    """Detect similar elements which are duplicated on different pages."""
     filtered = []
-    for pagenumber, footercontent in collected:
+    for pagenumber, footercontent in navigators:
         pagecontent = []
         for item in footercontent:
             text = item.text.strip()
@@ -137,6 +146,10 @@ def footer(
     return common
 
 
+def isrotated(navigator) -> bool:
+    return navigator.width > navigator.height
+
+
 def isrightpage(pdf_pagenumber: int) -> bool:
     """What pdf page is the left side?
     The first page is the right page? """
@@ -158,10 +171,9 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     Returns:
         singlepage or (left, right)
     """
-    used_cluster = set()
     left, right = [], []
     for clusterid, cluster in enumerate(clusters):
-        for _, (bounding, content, pdf_page) in cluster:
+        for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
             if not elements.ispagenumber(content):
                 continue
@@ -171,22 +183,44 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
                 # roman number
                 pass
             # save number as tuple of pdf_page and detected page
-            used_cluster.add(clusterid)
-            content = (
-                pdf_page,
-                bounding,
-                content,
-            )
-            if isrightpage(pdf_page):
-                right.append(content)
+            item = (pdfpage, bounding, content)
+            if isrightpage(pdfpage):
+                right.append(item)
             else:
-                left.append(content)
-    if len(used_cluster) == 1:
-        # One cluster is used, we do not have right and left pagenumber
-        singlepage = []
-        singlepage.extend(left)
-        singlepage.extend(right)
-        # Sort by pdfpage
-        singlepage = sorted(singlepage, key=lambda number: number[0])
-        return singlepage
-    return left, right
+                left.append(item)
+    if morethanone(clusters):
+        # TODO: INTRODUCE MORE THAN, LEFT, RIGHT ETC.
+        return left, right
+    # One cluster is used, we do not have right and left pagenumber
+    singlepage = left + right
+    # Sort by pdfpage
+    singlepage = sorted(singlepage, key=lambda number: number[0])
+    return singlepage
+
+
+def morethanone(clusters) -> bool:
+    """Determine vector to position of detected page numbers.
+
+    If this maxdistance/diff is higher than a threshold, we have left
+    and right page numbers.
+    """
+    collected = []
+    for cluster in clusters:
+        for _, item in cluster:
+            centered = rectangle_center(item[0])
+            length = utila.length(*(0, 0, centered[0], centered[1]))
+            collected.append(length)
+    collected = utila.make_unique(collected)
+    if not collected:
+        return False
+    mins, maxs = utila.mins(collected), utila.maxs(collected)
+    diff = maxs - mins
+    result = diff > 100  # HOLY VALUE
+    return result
+
+
+def rectangle_center(rectangle) -> tuple:
+    # TODO: MOVE TO UTILA
+    x = (rectangle[0] + rectangle[2]) / 2
+    y = (rectangle[1] + rectangle[3]) / 2
+    return utila.roundme((x, y))

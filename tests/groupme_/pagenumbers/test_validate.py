@@ -17,7 +17,7 @@ import groupme
 
 
 @pytest.mark.parametrize('resource, expected', [
-    pytest.param(power.link(power.BACHELOR111_PDF), 16, id='bachelor111'),
+    pytest.param(power.link(power.BACHELOR111_PDF), 110, id='bachelor111'),
     pytest.param(power.link(power.MASTER072_PDF), 69, id='master72pages'),
     pytest.param(power.link(power.TECH024_PDF), 23, id='technical24pages'),
     pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
@@ -31,5 +31,8 @@ def test_validate_pagenumbers(resource, expected):
     result = groupme.feature.pagenumbers.work(text, text_positions)
     result = serializeraw.load_pagenumbers(result)
 
+    if isinstance(result, tuple):
+        # left right, or multiple pages positions
+        result = result[0] + result[1]
     assert isinstance(result, list), f' page detection type {type(result)}'
     assert len(result) == expected

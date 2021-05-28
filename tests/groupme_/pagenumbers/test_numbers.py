@@ -58,7 +58,7 @@ def test_footer_restructured():
 def test_header_restructured():
     source = power.link(power.DOCU27_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
-    result = groupme.feature.pagenumbers.header(navigators)
+    result = groupme.feature.pagenumbers.footer(navigators)
     # Example:
     # (5,
     # (BoundingBox(x_bottom=72.00, y_bottom=746.33, x_top=336.99, y_top=758.84),
