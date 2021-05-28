@@ -116,7 +116,7 @@ def footer(
             if remove_empty and not text:
                 # filter empty items
                 continue
-            if numbers_only and not is_pagenumber(text):
+            if numbers_only and not ispagenumber(text):
                 # remove non numeric items
                 continue
             # support -1-, -2-, ...
@@ -135,7 +135,7 @@ def footer(
     return common
 
 
-def is_pagenumber(number: str) -> bool:
+def ispagenumber(number: str) -> bool:
     """Determine if passed `number` is a page number. Empty `number` is
     not a page number.
 
@@ -144,15 +144,15 @@ def is_pagenumber(number: str) -> bool:
     Returns:
         True if roman or numeric number is given
 
-    >>> is_pagenumber('99')
+    >>> ispagenumber('99')
     True
-    >>> is_pagenumber('-1-')
+    >>> ispagenumber('-1-')
     True
-    >>> is_pagenumber('iv')
+    >>> ispagenumber('iv')
     True
-    >>> is_pagenumber('32/54')
+    >>> ispagenumber('32/54')
     True
-    >>> is_pagenumber('0.5')
+    >>> ispagenumber('0.5')
     False
     """
     # - 1 -, -2-,
@@ -169,7 +169,7 @@ def is_pagenumber(number: str) -> bool:
     return False
 
 
-def is_rightpage(pdf_pagenumber: int) -> bool:
+def isrightpage(pdf_pagenumber: int) -> bool:
     """What pdf page is the left side?
     The first page is the right page? """
     pdf_pagenumber = int(pdf_pagenumber)
@@ -195,7 +195,7 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     for clusterid, cluster in enumerate(clusters):
         for _, (bounding, content, pdf_page) in cluster:
             content = str(content)
-            if not is_pagenumber(content):
+            if not ispagenumber(content):
                 continue
             try:
                 content = int(content)  # pylint:disable=R0204
@@ -209,7 +209,7 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
                 bounding,
                 content,
             )
-            if is_rightpage(pdf_page):
+            if isrightpage(pdf_page):
                 right.append(content)
             else:
                 left.append(content)

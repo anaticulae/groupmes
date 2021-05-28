@@ -108,7 +108,7 @@ def prepare_clustering(pagetextnavigators):
     for page in collected:
         content = [
             item for item in page if item[1].text.strip() in valid or
-            groupme.feature.pagenumbers.is_pagenumber(item[1].text)
+            groupme.feature.pagenumbers.ispagenumber(item[1].text)
         ]
         result.append(content)
     return result

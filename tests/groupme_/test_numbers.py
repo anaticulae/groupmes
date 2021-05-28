@@ -131,8 +131,8 @@ def test_numbers_work_single(resource, expected_numbers):
 
 
 @pytest.mark.parametrize('nopagenumber', ['', 'a'])
-def test_groumpe_numbers_is_pagenumber_negative(nopagenumber):
-    assert not groupme.feature.pagenumbers.is_pagenumber(nopagenumber)
+def test_groumpe_numbers_ispagenumber_negative(nopagenumber):
+    assert not groupme.feature.pagenumbers.ispagenumber(nopagenumber)
 
 
 def test_numbers_restructured_without_title():
