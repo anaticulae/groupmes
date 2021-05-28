@@ -24,7 +24,6 @@ import iamraw
 import texmex
 import utila
 
-import groupme.feature.pagenumbers
 import groupme.footer.strategy as gfs
 
 COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE

@@ -133,11 +133,7 @@ def process_page(page, rawpage, horizontals):
     if rawpage is None:
         return None
     pagenumber_bounding = rawpage[0]
-    distance_to_firsthorizontal = distance(
-        pagenumber_bounding,
-        horizontals,
-        page,
-    )
+    distance_to_firsthorizontal = distance(pagenumber_bounding, horizontals)
     if distance_to_firsthorizontal <= MIN_DISTANCE_TO_HORIZONTAL:
         # Require some distance to horizontal line
         # TODO: ADD DOCU HERE
@@ -145,7 +141,7 @@ def process_page(page, rawpage, horizontals):
     return (page, pagenumber_bounding)
 
 
-def distance(bounding, items, page):
+def distance(bounding, items):
     items = items.content if items else []
     ydistance = [rectangle_distance_y(bounding, item.box) for item in items]
     if not ydistance:

@@ -28,7 +28,6 @@ import typing
 import elements
 import iamraw
 import serializeraw
-import texmex
 import utila
 
 PageContentTextPosition = collections.namedtuple(
@@ -55,13 +54,13 @@ def work(text: str, textpositions: str, pages: tuple = None) -> str:
         textpositions=textpositions,
         pages=pages,
     )
-    pagenumbers = determine_pagenumbers(navigators)
-    dumped = serializeraw.dump_pagenumbers(pagenumbers)
+    detected = determine_pagenumbers(navigators)
+    dumped = serializeraw.dump_pagenumbers(detected)
     return dumped
 
 
 def determine_pagenumbers(navigators):
-    rotated, normal = utila.partition(isrotated, navigators)
+    rotated, normal = utila.partition(isrotated, navigators)  #  pylint:disable=W0612
     detected = header(normal) + footer(normal)
     return pagenumbers(detected)
 
@@ -172,7 +171,7 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
         singlepage or (left, right)
     """
     left, right = [], []
-    for clusterid, cluster in enumerate(clusters):
+    for cluster in clusters:
         for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
             if not elements.ispagenumber(content):

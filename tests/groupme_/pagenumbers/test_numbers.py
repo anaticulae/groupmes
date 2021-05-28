@@ -10,12 +10,10 @@
 
 import typing
 
-import iamraw.path
 import power
 import pytest
 import serializeraw
 import utila
-import utilatest
 
 import groupme.feature.pagenumbers
 # pylint:disable=W0611
