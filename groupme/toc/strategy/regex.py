@@ -191,29 +191,3 @@ def split_newlines(items):
     for item in items:
         result.extend(item.splitlines())
     return result
-
-
-MIN_DOTS_IN_TOC_LINE = 4  # TODO: HOLY VALUE
-
-
-def is_tocline(index, lines) -> bool:
-
-    def tocline(item):
-        if item.count('.') < MIN_DOTS_IN_TOC_LINE:
-            return False
-        # avoid count sentence endings.
-        return any((
-            item.count('. .') >= (MIN_DOTS_IN_TOC_LINE / 2),
-            item.count('..') >= (MIN_DOTS_IN_TOC_LINE / 2),
-            item.count('…') >= (MIN_DOTS_IN_TOC_LINE / 2),
-        ))
-
-    item = lines[index]
-    if tocline(item):
-        return True
-    try:
-        before = lines[index - 1]
-        after = lines[index + 1]
-    except IndexError:
-        return False
-    return tocline(before) and tocline(after)
