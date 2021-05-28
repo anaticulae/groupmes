@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw.path
 import power
 import pytest
 import serializeraw
@@ -16,12 +15,11 @@ import groupme.footer.strategy.pages
 
 
 @pytest.mark.parametrize(
-    'document, pages, expected_pagenumbers',
+    'document,  expected_pagenumbers',
     [
-        pytest.param(power.link(power.DOCU14_PDF), 14, 14, id='docu14'),
+        pytest.param(power.link(power.DOCU14_PDF), 14, id='docu14'),
         pytest.param(
             power.link(power.TECH024_PDF),
-            24,
             # header page has no page number
             24 - 1,
             id='technical24pages',
@@ -29,27 +27,17 @@ import groupme.footer.strategy.pages
     ])
 def test_footer_pagenumber_strategy(
     document,
-    pages,
     expected_pagenumbers,
 ):
-    pages = tuple(range(pages))
     horizontallines = serializeraw.load_horizontals(
-        iamraw.path.horizontals(document),
-        pages,
-    )
+        iamraw.path.horizontals(document),)
     sizeandborder = serializeraw.load_pageborders(
-        iamraw.path.sizeandborder(document),
-        pages,
-    )
+        iamraw.path.sizeandborder(document),)
     pagenumbers = serializeraw.load_pagenumbers(
-        groupme.path.pagenumbers(document),
-        pages,
-    )
+        groupme.path.pagenumbers(document),)
 
     pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(
-        document,
-        pages=pages,
-    )
+        document,)
 
     strategy = groupme.footer.strategy.pages.PageNumberStrategy(
         horizontals=horizontallines,
