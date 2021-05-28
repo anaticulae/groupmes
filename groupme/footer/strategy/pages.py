@@ -48,7 +48,6 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
 
     def process_pageside(self, pagenumbers):
         result = []
-        # TODO: ???
         pagenumbers = {item[0]: (item[1], item[2]) for item in pagenumbers}
         for pdfpage, rawpage in pagenumbers.items():
             pageheight = self.pageheight(pdfpage)
@@ -59,16 +58,25 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
             processed = process_page(pdfpage, rawpage, horizontals)
             if processed is None:
                 continue
-
-            header = None
-
-            footer = create_footerinformation(
-                processed,
-                navigator,
-                pageheight,
-                rawpage,
-            )
-
+            _, location = processed
+            header, footer = None, None
+            # TODO: CHECK ROTATED PAGES
+            if location[3] < 250:  # y1 TODO: HOLY VALUE
+                # header
+                header = create_headerinformation(
+                    location,
+                    navigator,
+                    pageheight,
+                    rawpage,
+                )
+            else:
+                # footer
+                footer = create_footerinformation(
+                    location,
+                    navigator,
+                    pageheight,
+                    rawpage,
+                )
             footer_header = iamraw.PageContentFooterHeader(
                 header=header,
                 footer=footer,
@@ -81,14 +89,34 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
         pass
 
 
-def create_footerinformation(
-    processed,
+def create_headerinformation(
+    location,
     navigator,
     pageheight,
     rawpage,
 ) -> iamraw.PagesFooterInformation:
     # footer detection
-    bounding = processed[1]
+    bounding = location
+    begin = texmex.START
+    end = utila.roundme(bounding.y1 / pageheight)
+    raw = navigator.find(bounding).text.strip()
+    result = iamraw.PagesFooterInformation(
+        begin=begin,
+        end=end,
+        page_location=bounding,
+        page=iamraw.PageInformation(value=rawpage[1], raw=raw),
+    )
+    return result
+
+
+def create_footerinformation(
+    location,
+    navigator,
+    pageheight,
+    rawpage,
+) -> iamraw.PagesFooterInformation:
+    # footer detection
+    bounding = location
     begin = utila.roundme(bounding.y0 / pageheight)
     end = texmex.END
     raw = navigator.find(bounding).text.strip()
@@ -110,8 +138,6 @@ def process_page(page, rawpage, horizontals):
         horizontals,
         page,
     )
-    if distance_to_firsthorizontal < 0.0:
-        return None
     if distance_to_firsthorizontal <= MIN_DISTANCE_TO_HORIZONTAL:
         # Require some distance to horizontal line
         # TODO: ADD DOCU HERE
@@ -121,14 +147,18 @@ def process_page(page, rawpage, horizontals):
 
 def distance(bounding, items, page):
     items = items.content if items else []
-    bounding = bounding.y0
-    ydistance = [bounding - item.box.y1 for item in items]
-    result = min(ydistance, default=utila.INF)
+    ydistance = [rectangle_distance_y(bounding, item.box) for item in items]
+    if not ydistance:
+        return utila.INF
+    result = min(ydistance)
     result = utila.roundme(result)
-    if result < 0:
-        utila.error(f'negative distance: {result} to first horizontal,'
-                    f' page: {page}')
     return result
+
+
+def rectangle_distance_y(first, second) -> float:
+    firsty = (first[1] + first[3]) / 2
+    secondy = (second[1] + second[3]) / 2
+    return abs(firsty - secondy)
 
 
 def pagenumber_location(
