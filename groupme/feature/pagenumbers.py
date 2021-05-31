@@ -172,6 +172,8 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     """
     left, right = [], []
     for cluster in clusters:
+        if multiple_number_perpage(cluster):
+            continue
         for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
             if not elements.ispagenumber(content):
@@ -216,6 +218,17 @@ def morethanone(clusters) -> bool:
     diff = maxs - mins
     result = diff > 100  # HOLY VALUE
     return result
+
+
+def multiple_number_perpage(cluster) -> bool:
+    """More than one number is detected as page number. Skip this cluster.
+
+    TODO: Try to merbe items to other cluster!
+    """
+    pdfpages = [page for page, _ in cluster]
+    if len(pdfpages) != len(set(pdfpages)):
+        return True
+    return False
 
 
 def rectangle_center(rectangle) -> tuple:
