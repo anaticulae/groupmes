@@ -74,7 +74,7 @@ def parse(content: str) -> groupme.toc.TocLines:
     for pattern in [
             groupme.toc.lineregex.EXTENDED_PATTERN,
             groupme.toc.lineregex.EXTENDED_PATTERN_LETTER,
-            groupme.toc.lineregex.DICTONARY,
+            groupme.toc.lineregex.DICTIONARY,
             groupme.toc.lineregex.NO_LEVEL,
             groupme.toc.lineregex.NO_DOTS,
     ]:

@@ -25,7 +25,7 @@ def parse(line: str) -> groupme.toc.TocLine:
             EXTENDED_PATTERN,
             NO_DOTS,
             NO_LEVEL,
-            DICTONARY,
+            DICTIONARY,
     ]:
         matched = re.match(pattern, line)
         if matched:
@@ -117,7 +117,7 @@ LIST = [
 
 JOINED_LIST = '|'.join(LIST)
 
-DICTONARY = re.compile(
+DICTIONARY = re.compile(
     ('^'
      f'(?P<text>({JOINED_LIST}))'
      r'([ \.]{0,})'
