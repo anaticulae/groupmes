@@ -116,6 +116,7 @@ def test_footer_master110(testdir, monkeypatch):
         power.MASTER110_PDF,
         testdir,
         monkeypatch,
+        pages='0:50',
     )
     footers = [item.footer for item in extracted if item.footer]
     # changes in the future if data generator is extended
