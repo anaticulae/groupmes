@@ -82,13 +82,10 @@ def test_footer_master72_extract(testdir, monkeypatch):
     footnotes = headfoot[0].footer.notes
     assert len(footnotes) == 6, str(footnotes)
 
-    first = normalize_whitespaces(footnotes[0].text)
+    first = utila.normalize_whitespaces(footnotes[0].text)
     assert first.startswith('Aus Gründen der besseren Lesbarkeit'), first
 
 
-def normalize_whitespaces(text: str) -> str:
-    text = ' '.join(text.strip().split())
-    return text
 
 
 def test_footer_homework18(testdir, monkeypatch):
