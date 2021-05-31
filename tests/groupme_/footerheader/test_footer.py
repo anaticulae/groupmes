@@ -86,8 +86,6 @@ def test_footer_master72_extract(testdir, monkeypatch):
     assert first.startswith('Aus Gründen der besseren Lesbarkeit'), first
 
 
-
-
 def test_footer_homework18(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
         power.HOME018_PDF,

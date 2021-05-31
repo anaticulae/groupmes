@@ -31,6 +31,7 @@ def master72(footnotes):
     pytest.param(power.BACHELOR063_PDF, None, 0, id='bachelor63'),
     pytest.param(power.MASTER116_PDF, None, 0, id='master116'),
     pytest.param(power.MASTER072_PDF, None, master72, id='master72'),
+    pytest.param(power.MASTER110_PDF, None, 0, id='master110'),
 ])
 @utilatest.nightly
 def test_footer_validate(source, pages, expected, testdir, monkeypatch):
