@@ -46,6 +46,7 @@ RESOURCES = [
     power.DOCU07_PDF,
     power.BOOK007_PDF,
     power.DOCU09_PDF,
+    (power.BACHELOR128_PDF, '0:30'),
     (power.BACHELOR051_PDF, '0:25'),
     (power.HOME050_PDF, '0:10'),
     (power.ORDER009_PDF, '0:10'),
