@@ -14,26 +14,21 @@ import utilatest
 
 import groupme.footnotes.highnotes
 import groupme.footnotes.parser
-# pylint:disable=W0611
-from tests.groupme_.footnotes.fixtures import bachelor111_page10
-from tests.groupme_.footnotes.fixtures import master72_page14
-from tests.groupme_.footnotes.fixtures import master89_page7
-from tests.groupme_.footnotes.fixtures import master89_page19
 
 
 @utilatest.longrun
-def test_footnote_highnotes_split(master72_page14):  # pylint:disable=W0621
-    footer = master72_page14
+def test_footnote_highnotes_split(master72page14):
+    footer = master72page14
     splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 7, splitted
 
 
 @utilatest.longrun
-def test_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disable=W0621
+def test_footnote_highnotes_split_mixed_in_text(master89page7):
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow."""
-    footer = master89_page7
+    footer = master89page7
     splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 2, splitted
@@ -42,11 +37,11 @@ def test_footnote_highnotes_split_mixed_in_text(master89_page7):  # pylint:disab
 
 
 @utilatest.longrun
-def test_footnote_highnotes_split_mixed_in_text_tripple(master89_page19):  # pylint:disable=W0621
+def test_footnote_highnotes_split_mixed_in_text_tripple(master89page19):
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow and after this there are two more
     footnotes."""
-    footer = master89_page19
+    footer = master89page19
     splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 4, splitted
@@ -62,14 +57,14 @@ def test_footnote_highnotes_split_mixed_in_text_tripple(master89_page19):  # pyl
 
 
 @utilatest.longrun
-def test_footnote_parse_footer_with_highnotes(master89_page7):  # pylint:disable=W0621
-    parsed = groupme.footnotes.parser.parse_with_highnotes(master89_page7)
+def test_footnote_parse_footer_with_highnotes(master89page7):
+    parsed = groupme.footnotes.parser.parse_with_highnotes(master89page7)
     assert len(parsed) == 1, parsed
 
 
 @utilatest.longrun
-def test_footnote_highnotes_oneline_with_intention(bachelor111_page10):  # pylint:disable=W0621,W0613
-    parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111_page10)
+def test_footnote_highnotes_oneline_with_intention(bachelor111page10):
+    parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111page10)
     assert len(parsed) == 3, str(parsed)
     notes = [item.number for item in parsed]
     assert notes == [3, 4, 5], str(notes)
