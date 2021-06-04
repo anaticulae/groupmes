@@ -12,19 +12,19 @@ import re
 import iamraw
 import utila
 
-import groupme.footnotes
+import groupme.footnotes.utils
 
 NUMBER_TEXT = r'(?P<number>\d+)[ ]*(?P<text>.{3,})'
 
 
 def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
-    neighbors = groupme.footnotes.neighbors(content)
+    neighbors = groupme.footnotes.utils.neighbors(content)
     collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
     result = []
     # parse footnote
     for multiline in collected:
         x0 = multiline[0].bounding[0]  # first line x0
-        if x0 >= groupme.footnotes.MAX_FOOTNOTE_X0(width):
+        if x0 >= groupme.footnotes.utils.MAX_FOOTNOTE_X0(width):
             # potential highnote is located too right
             continue
         text = ''.join([item.text for item in multiline])

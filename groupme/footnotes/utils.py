@@ -1,7 +1,7 @@
 # =============================================================================
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
-# Copyright (c) 2020-2021 by Helmut Konrad Fahrendholz. All rights reserved.
+# Copyright (c) 2021 by Helmut Konrad Fahrendholz. All rights reserved.
 # This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
@@ -14,28 +14,42 @@ import typing
 import configo
 import iamraw
 import texmex
+import utila
+
+VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0).value
+HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=3.0).value
+
+MAX_FOOTNOTE_X0 = configo.HolyTable(  # TODO: HOLY VALUE
+    items=(
+        (440, 100),  # TODO: US Letter?
+        (550, 150),  # DINA4
+    ),
+    left_outranges_none=False,
+    right_outranges_none=False,
+)
 
 
-def split(content):
-    # Split by highnotes at start of line content
+def group_footnote_area(content):
+    neighbors_ = neighbors(content)
     result = []
-    collected = []
-    for line in content:
-        first = line.style.content[0].rise
-        if first > 4.0 and collected:
-            joined = '\n'.join([item.text for item in collected])
-            result.append(joined)
-            collected = []
-        collected.append(line)
-    if collected:
-        joined = '\n'.join([item.text for item in collected])
-        result.append(joined)
+    for group in neighbors_:
+        splitted = split_textinfo(group)
+        merged = merge_online(splitted)
+        result.extend(merged)
     return result
 
 
-VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0).value
-
-HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=3.0).value
+def neighbors(items):
+    if not items:
+        return []
+    result = [[items[0]]]
+    for item in items[1:]:
+        before = result[-1][-1]
+        if connected(before, item):
+            result[-1].append(item)
+        else:
+            result.append([item])
+    return result
 
 
 def split_textinfo(content) -> list:
@@ -107,6 +121,19 @@ def merge_online(items) -> list:
                 shrink_tostyle(content.text, style) for style in content.style
             ]
     result.append((high, union(collected)))
+    return result
+
+
+def connected(first, second):
+    # TODO: HOLY VALUE
+    leftright = utila.near(first.bounding.x1, second.bounding.x0, diff=20.0)
+    # plus indention
+    sameorigin = utila.near(first.bounding.x0, second.bounding.x0, diff=35.0)
+
+    sameline = utila.near(first.bounding.y0, second.bounding.y0, diff=5.0)
+    underfirst = utila.near(first.bounding.y1, second.bounding.y0, diff=10.0)
+
+    result = (leftright or sameorigin) and (sameline or underfirst)
     return result
 
 

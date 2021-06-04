@@ -31,7 +31,7 @@ import utila
 import groupme.footer
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.pages as gfsp
-import groupme.footnotes.highnotes
+import groupme.footnotes.highnote
 import groupme.footnotes.parser
 
 
@@ -132,7 +132,7 @@ def select_footer_line(horizontals, pagewidth, pageheight) -> float:
     # skip horizontals which are located too top
     filtered = [item for item in horizontals if item.box.y0 >= footer_start]
     # potential footer is located too right
-    x0_max = groupme.footnotes.MAX_FOOTNOTE_X0(pagewidth)
+    x0_max = groupme.footnotes.utils.MAX_FOOTNOTE_X0(pagewidth)
     filtered = [item for item in filtered if item.box.x0 <= x0_max]
     # determine y-level
     bottomed = max([item.box.y0 for item in filtered], default=None)
@@ -163,7 +163,7 @@ def extract_footer(
 
     # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
-    footnotes = groupme.footnotes.parser.parse_with_highnotes(
+    footnotes = groupme.footnotes.highnote.parse(
         content,
         pagetextnavigator.width,
         pagenumber=pagetextnavigator.page,
@@ -181,7 +181,7 @@ def extract_footer(
 
 def analyze(results) -> MovingFooterResultReport:
     footer_count = gfs.count_footer(results)
-    emptyfooter_count = groupme.footnotes.parser.count_empty(results)
+    emptyfooter_count = count_empty(results)
     empty_factor = emptyfooter_count / footer_count if footer_count else 0
     too_many_empty_footer = empty_factor >= WRONG_STRATEGY_EMPTY_FOOTER_FACTOR
 
@@ -190,6 +190,14 @@ def analyze(results) -> MovingFooterResultReport:
         footer_empty=emptyfooter_count,
         too_many_empty_footer=too_many_empty_footer,
     )
+    return result
+
+
+def count_empty(items: iamraw.PageContentFooterHeader) -> int:
+    """Count `MovingFooterInformation` which contain a empty `notes` list"""
+    footers = [item.footer for item in items if item.footer]
+    empty_footnotes = [item for item in footers if len(item.notes) == 0]
+    result = len(empty_footnotes)
     return result
 
 

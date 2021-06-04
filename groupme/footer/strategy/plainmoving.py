@@ -16,7 +16,6 @@ import groupme.footer
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.moving as gfsm
 import groupme.footer.strategy.pages as gfsp
-import groupme.footnotes.highnotes
 import groupme.footnotes.parser
 import groupme.footnotes.plain
 

@@ -33,8 +33,6 @@ import re
 import iamraw
 import utila
 
-import groupme.footnotes.highnotes
-
 
 def parse(content: str, pagenumber: int = None):
     assert isinstance(content, str), type(content)
@@ -92,59 +90,3 @@ def footnote_split(raw: str) -> list:
                 result[-1].append(item)
     joined = [' '.join(item) for item in result if item]
     return joined
-
-
-def count_empty(items: iamraw.PageContentFooterHeader) -> int:
-    """Count `MovingFooterInformation` which contain a empty `notes` list"""
-    footers = [item.footer for item in items if item.footer]
-    empty_footnotes = [item for item in footers if len(item.notes) == 0]
-    result = len(empty_footnotes)
-    return result
-
-
-def parse_with_highnotes(
-    content: list,
-    width: float = 594.0,
-    pagenumber: int = None,
-) -> list:
-    """\
-    Args:
-        content(list): content of footnote area
-        width(float): width in pixel of current page. As default use DINA4.
-        pagenumber(int): pdf raw page number
-    Returns:
-        List of parsed footnotes
-    """
-    neighbors = groupme.footnotes.neighbors(content)
-    grouped = []
-    for group in neighbors:
-        splitted = groupme.footnotes.highnotes.split_textinfo(group)
-        merged = groupme.footnotes.highnotes.merge_online(splitted)
-        grouped.extend(merged)
-    result = []
-    for number, note in grouped:
-        x0 = number.bounding[0]
-        # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
-        if x0 >= groupme.footnotes.MAX_FOOTNOTE_X0(width):
-            # potential highnote is located too right
-            continue
-        try:
-            notenumber = int(number.text)
-        except ValueError:
-            utila.error(f'could not convert to int: {number.text}')
-            notenumber = number.text
-        if not note.text.strip():
-            utila.error(f'could not parse footnote: {number}, no text content')
-            continue
-        bounding = tuple(number.bounding)
-        text = utila.normalize_text(note.text)
-        footnote = iamraw.FootRawNote(
-            bounding=bounding,
-            number=notenumber,
-            raw='',  # TODO: REMOVE THIS?
-            style=(number.style, note.style),
-            text=text,
-            page=pagenumber if pagenumber is not None else -1,
-        )
-        result.append(footnote)
-    return result

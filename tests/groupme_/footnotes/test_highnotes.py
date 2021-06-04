@@ -12,59 +12,19 @@ import pytest
 import texmex
 import utilatest
 
-import groupme.footnotes.highnotes
+import groupme.footnotes.highnote
 import groupme.footnotes.parser
 
 
 @utilatest.longrun
-def test_footnote_highnotes_split(master72page14):
-    footer = master72page14
-    splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
-    assert splitted, splitted
-    assert len(splitted) == 7, splitted
-
-
-@utilatest.longrun
-def test_footnote_highnotes_split_mixed_in_text(master89page7):
-    """Test to extract only starting highnotes. In this example, there
-    is a highnote inside the text flow."""
-    footer = master89page7
-    splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
-    assert splitted, splitted
-    assert len(splitted) == 2, splitted
-    merged = groupme.footnotes.highnotes.merge_online(splitted)
-    assert len(merged) == 1, merged
-
-
-@utilatest.longrun
-def test_footnote_highnotes_split_mixed_in_text_tripple(master89page19):
-    """Test to extract only starting highnotes. In this example, there
-    is a highnote inside the text flow and after this there are two more
-    footnotes."""
-    footer = master89page19
-    splitted = list(groupme.footnotes.highnotes.split_textinfo(footer))
-    assert splitted, splitted
-    assert len(splitted) == 4, splitted
-    merged = groupme.footnotes.highnotes.merge_online(splitted)
-    assert len(merged) == 3, merged
-
-    thirdnote_text = merged[2][1].text
-    thirdnote_text = thirdnote_text.strip()  # TODO: REMOVE LATER
-    expected = ('Das Schema fasst Vogler (vgl. 21998: 74f.) wie folgt zusammen:'
-                ' Der Held wird in seinem Leben in der\ngewohnten Welt '
-                'vorgestellt und erh')
-    assert thirdnote_text.startswith(expected), thirdnote_text
-
-
-@utilatest.longrun
 def test_footnote_parse_footer_with_highnotes(master89page7):
-    parsed = groupme.footnotes.parser.parse_with_highnotes(master89page7)
+    parsed = groupme.footnotes.highnote.parse(master89page7)
     assert len(parsed) == 1, parsed
 
 
 @utilatest.longrun
 def test_footnote_highnotes_oneline_with_intention(bachelor111page10):
-    parsed = groupme.footnotes.parser.parse_with_highnotes(bachelor111page10)
+    parsed = groupme.footnotes.highnote.parse(bachelor111page10)
     assert len(parsed) == 3, str(parsed)
     notes = [item.number for item in parsed]
     assert notes == [3, 4, 5], str(notes)
@@ -114,6 +74,6 @@ def test_highnotes_prepare():
     # TODO: WE HAVE TO FIX THIS LATER. IT IS A LITTLE BIT COMPLICATED,
     # CAUSE HIGHNOTE/TEXT IS NOT PRINTED CORRECTLY, THEREFORE WE MAY
     # REQUIRE A NEW PARSING STRATEGY.
-    parsed = groupme.footnotes.parser.parse_with_highnotes(ITEMS)
+    parsed = groupme.footnotes.highnote.parse(ITEMS)
     lines = [item.text for item in parsed]
     assert lines == EXPECTED
