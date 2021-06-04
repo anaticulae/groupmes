@@ -34,12 +34,13 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
         else:
             number, content = int(matched['number']), matched['text']
         bounding = tuple(multiline[0].bounding)
+        text = utila.normalize_text(content.strip())
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=number,
             style=None,
             page=pagenumber if pagenumber is not None else -1,
-            text=content.strip(),
+            text=text,
         )
         result.append(footnote)
     return result

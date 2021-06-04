@@ -44,6 +44,7 @@ def parse(content: str, pagenumber: int = None):
         if not text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
+        text = utila.normalize_text(text)
         footnote = iamraw.FootRawNote(
             number=int(number),
             text=text,
@@ -136,12 +137,13 @@ def parse_with_highnotes(
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
         bounding = tuple(number.bounding)
+        text = utila.normalize_text(note.text)
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=notenumber,
             raw='',  # TODO: REMOVE THIS?
             style=(number.style, note.style),
-            text=note.text,
+            text=text,
             page=pagenumber if pagenumber is not None else -1,
         )
         result.append(footnote)
