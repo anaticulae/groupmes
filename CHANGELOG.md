@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.11.0
+
+### Feature
+
+* normalize parsed footnote (29f93d1f93dc)
+* do not detect more than one page number per page (0c45ad8bf9fb)
+* reduce verbosity (9d40f8ce9ebe)
+
+### Fix
+
+* increase possible indention of second footnotes line (62e173cc3e26)
+
 ## v0.10.0
 
 ### Feature
