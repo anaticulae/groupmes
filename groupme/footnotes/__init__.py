@@ -37,7 +37,7 @@ def connected(first, second):
     # TODO: HOLY VALUE
     leftright = utila.near(first.bounding.x1, second.bounding.x0, diff=20.0)
     # plus indention
-    sameorigin = utila.near(first.bounding.x0, second.bounding.x0, diff=25.0)
+    sameorigin = utila.near(first.bounding.x0, second.bounding.x0, diff=35.0)
 
     sameline = utila.near(first.bounding.y0, second.bounding.y0, diff=5.0)
     underfirst = utila.near(first.bounding.y1, second.bounding.y0, diff=10.0)
