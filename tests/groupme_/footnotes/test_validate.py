@@ -34,7 +34,7 @@ def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
 
     footnotes = serializeraw.load_footnotes(testdir.tmpdir)
     footnotes = utila.flatten_content(footnotes)
-    footnotes = [item.text.strip() for item in footnotes]
+    footnotes = [utila.normalize_text(item.text.strip()) for item in footnotes]
     footnotes: str = utila.NEWLINE.join(footnotes)
     expected = file_read(expected)
     assert footnotes == expected
