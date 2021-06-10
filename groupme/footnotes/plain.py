@@ -46,6 +46,9 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
     return result
 
 
+MERGE_MIN_LINE = len('1. Ebd.')  # TODO: HOLY VALUE
+
+
 def merges(content):
     if not content:
         return []
@@ -54,8 +57,8 @@ def merges(content):
     for line in content[1:]:
         text = line.text.strip()
         matched = re.match(NUMBER_TEXT, text, re.MULTILINE)
-        if not matched:
-            collected[-1].append(line)
-        else:
+        if matched and len(text) >= MERGE_MIN_LINE:
             collected.append([line])
+        else:
+            collected[-1].append(line)
     return collected
