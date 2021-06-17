@@ -174,6 +174,8 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     for cluster in clusters:
         if multiple_number_perpage(cluster):
             continue
+        if not valid_cluster(cluster):
+            continue
         for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
             if not elements.ispagenumber(content):
@@ -223,12 +225,38 @@ def morethanone(clusters) -> bool:
 def multiple_number_perpage(cluster) -> bool:
     """More than one number is detected as page number. Skip this cluster.
 
-    TODO: Try to merbe items to other cluster!
+    TODO: Try to merge items to other cluster!
     """
     pdfpages = [page for page, _ in cluster]
     if len(pdfpages) != len(set(pdfpages)):
         return True
     return False
+
+
+def valid_cluster(cluster) -> bool:
+    pages = []
+    for ___, (_, number, __) in cluster:
+        pages.append(parse_pagenumber(number))
+    # pages = utila.notnone(pages)
+    # diff=2 to support left right page numbers
+    grouped = utila.groupby_diff(utila.notnone(pages), diff=5)
+    if len(grouped) <= 2:
+        return True
+    if len(pages) <= 5:
+        # cluster too small
+        return False
+    notnone = utila.notnone(pages)
+    if sorted(notnone) == notnone:
+        return True
+    return False
+
+
+def parse_pagenumber(number: str) -> int:
+    if utila.isarabic(number):
+        return int(number)
+    # if utila.isroman(number):
+    #     return utila.arabic(number)
+    return None
 
 
 def rectangle_center(rectangle) -> tuple:
