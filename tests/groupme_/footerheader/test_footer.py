@@ -144,3 +144,22 @@ def test_footer_master155_page107(testdir, monkeypatch):
     )
     footer = utila.select_page(extracted, 107).footer
     assert isinstance(footer, iamraw.PagesFooterInformation), type(footer)
+
+
+def test_footer_master127(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER127_PDF,
+        testdir,
+        monkeypatch,
+        pages=':',
+    )
+    headers = [item.header for item in extracted if item.header is not None]
+    assert len(headers) == 126  # VALIDATED
+    footers = [
+        item.footer
+        for item in extracted
+        if isinstance(item.footer, iamraw.MovingFooterInformation)
+    ]
+    assert len(footers) == 73  # VALIDATED
+    footnotes = utila.flatten([item.notes for item in footers])
+    assert len(footnotes) == 135
