@@ -61,6 +61,7 @@ TEN = utila.make_tuple(10)
     pytest.param(power.BACHELOR090_PDF, 'bachelor090', TEN, id='bachelor90',
             marks=pytest.mark.xfail(reason='investigate later')),
     pytest.param(power.BACHELOR063_PDF, 'bachelor063', TEN, id='bachelor63'),
+    pytest.param(power.MASTER078_PDF, 'master078', TEN, id='master78'),
 ])
 # yapf:enable
 @utilatest.nightly
