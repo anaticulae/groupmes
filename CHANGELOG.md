@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.11.1
+
+### Feature
+
+* improve page number detector (89a11628e6f7)
+
+### Fix
+
+* adjust footnote merge algo (0fb9ff1695d1)
+
 ## v0.11.0
 
 ### Feature
