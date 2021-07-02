@@ -48,7 +48,9 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
 
     def result(self):
         header = cluster_pages(self.pagetextnavigators)
-
+        header_again = cluster_pages(self.pagetextnavigators, tryagain=True)
+        if header:
+            header = best(header, header_again)
         result = [
             iamraw.PageContentFooterHeader(
                 header=header,
@@ -59,12 +61,53 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
         return result
 
 
-def cluster_pages(pagenavigators):
+def best(*items):
+
+    def empty(collected) -> int:
+        # select hole in [20%,80%]
+        if not collected:
+            return None
+        # skip start and end of document cause we expect a lot of
+        # empty/skipped header.
+        start, end = int(len(collected) * 0.2), int(len(collected) * 0.8)
+        empty = [
+            item for item in collected[start:end]
+            if not item[1].title and not item[1].undefined
+        ]
+        return len(empty)
+
+    result = items[0]
+    value = empty(result)
+
+    for current in items[1:]:
+        wholes = empty(current)
+        if wholes is None:
+            continue
+        if wholes >= value:
+            continue
+        # better
+        result = current
+        value = wholes
+    return result
+
+
+def cluster_pages(
+    pagenavigators: texmex.PageTextNavigators,
+    tryagain: bool = False,
+):
     pagenumbers = len(pagenavigators)
     min_cluster_count = MIN_OCCURRENCE(pagenumbers)
-
-    with_box = utila.flatten(prepare_clustering(pagenavigators))
-
+    occurrence_min = MIN_HEADER_TEXT_OCCURENCE
+    if tryagain:
+        # run algorithmn with lower bound to gather more data but may be
+        # more instable.
+        occurrence_min = MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN
+    # prepare data
+    with_box = utila.flatten(
+        prepare_clustering(
+            pagenavigators,
+            occurrence_min=occurrence_min,
+        ))
     clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
         max_diff=COMMON_HEADER_MAX_ERROR,
@@ -106,7 +149,14 @@ def create_fixedheader(collected, text: str, pagenumber, end):
     current.undefined.append(iamraw.RawText(text=text))
 
 
-def prepare_clustering(pagetextnavigators):
+MIN_HEADER_TEXT_OCCURENCE = 5  # TODO: HOLY VALUE
+MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN = 3  # TODO: HOLY VALUE
+
+
+def prepare_clustering(
+    pagetextnavigators,
+    occurrence_min: int = MIN_HEADER_TEXT_OCCURENCE,
+):
     collected = []
     for page in pagetextnavigators:
         content = [(
@@ -116,7 +166,7 @@ def prepare_clustering(pagetextnavigators):
             page.page,
         ) for item in page.before(TOP_AREA)]
         collected.append(content)
-    valid = header_content(collected)
+    valid = header_content(collected, occurrence_min=occurrence_min)
     result = []
     for page in collected:
         content = [
@@ -127,10 +177,7 @@ def prepare_clustering(pagetextnavigators):
     return result
 
 
-MIN_HEADER_TEXT_OCCURENCE = 5  # TODO: HOLY VALUE
-
-
-def header_content(clusters) -> set:
+def header_content(clusters, occurrence_min: int) -> set:
     """Some documents does not have any header, but equal sized first line(s).
 
     We have to ignore this first content lines."""
@@ -139,8 +186,5 @@ def header_content(clusters) -> set:
         for item in cluster:
             text = item[1].text.strip()
             collected[text] += 1
-    valid = {
-        key for key, value in collected.items()
-        if value >= MIN_HEADER_TEXT_OCCURENCE
-    }
+    valid = {key for key, value in collected.items() if value >= occurrence_min}
     return valid
