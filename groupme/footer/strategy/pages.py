@@ -99,6 +99,9 @@ def create_headerinformation(
     bounding = location
     begin = texmex.START
     end = utila.roundme(bounding.y1 / pageheight)
+    # plus 2 percent off to ensure that content and header is separated
+    # correctly.
+    end = end + 0.02
     raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,

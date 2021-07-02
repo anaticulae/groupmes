@@ -119,6 +119,9 @@ def cluster_pages(
     for cluster in clusters:
         for bounding, text, pageheight, pagenumber in cluster:
             end = utila.roundme(bounding.y1 / pageheight)
+            # plus 2 percent off to ensure that content and header is
+            # separated correctly.
+            end = end + 0.02
             create_fixedheader(grouped, text.text, pagenumber, end)
     result = list(grouped.items())
     # sort FixedHeaderInformation by page
