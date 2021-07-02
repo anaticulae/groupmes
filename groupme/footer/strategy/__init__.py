@@ -28,7 +28,6 @@ possible improvements.
 import abc
 import collections
 import dataclasses
-import os
 import typing
 
 import iamraw

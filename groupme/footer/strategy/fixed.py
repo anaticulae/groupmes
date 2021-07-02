@@ -210,7 +210,6 @@ def create_header(top, pageheight, textnavigator):
         top_,
     )
     parsed = groupme.footer.headnotes.parse(headercontent)
-
     result = iamraw.FixedHeaderInformation(begin=texmex.START, end=top_)
     for item in parsed:
         if isinstance(item, iamraw.HeaderTitle):
