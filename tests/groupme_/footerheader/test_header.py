@@ -136,3 +136,15 @@ def test_header_tech24(testdir, monkeypatch):
         pages='0:10',
     )
     assert len(loaded) == 9  # do not change
+
+
+def test_header_bachelor128(testdir, monkeypatch):
+    loaded = extract_header(
+        power.BACHELOR128_PDF,
+        testdir,
+        monkeypatch,
+    )
+    empty = [item for item in loaded if not item.title and not item.undefined]
+    # three may reduces later if we get better algorithms, but for now
+    # tuning this value will lead to more false positive.
+    assert len(empty) == 3  # VALIDATED
