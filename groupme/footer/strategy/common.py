@@ -109,11 +109,13 @@ def create_fixedheader(collected, text: str, pagenumber, end):
 def prepare_clustering(pagetextnavigators):
     collected = []
     for page in pagetextnavigators:
-        content = []
-        for item in page.before(TOP_AREA):
-            content.append((item.bounding, item, page.height, page.page))
+        content = [(
+            item.bounding,
+            item,
+            page.height,
+            page.page,
+        ) for item in page.before(TOP_AREA)]
         collected.append(content)
-
     valid = header_content(collected)
     result = []
     for page in collected:
