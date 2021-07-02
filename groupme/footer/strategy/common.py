@@ -131,8 +131,9 @@ MIN_HEADER_TEXT_OCCURENCE = 5  # TODO: HOLY VALUE
 
 
 def header_content(clusters) -> set:
-    """Some documents does not have any header, but equal sized first
-    line(s). We have to ignore this first content lines."""
+    """Some documents does not have any header, but equal sized first line(s).
+
+    We have to ignore this first content lines."""
     collected = collections.defaultdict(int)
     for cluster in clusters:
         for item in cluster:
