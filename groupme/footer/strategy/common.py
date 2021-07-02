@@ -72,12 +72,14 @@ def cluster_pages(pagenavigators):
     )
     if not clusters:
         return []
-    result = {}
+    grouped = {}
     for cluster in clusters:
         for bounding, text, pageheight, pagenumber in cluster:
             end = utila.roundme(bounding.y1 / pageheight)
-            create_fixedheader(result, text.text, pagenumber, end)
-    result = [(item, result[item]) for item in sorted(result.keys())]
+            create_fixedheader(grouped, text.text, pagenumber, end)
+    result = list(grouped.items())
+    # sort FixedHeaderInformation by page
+    result.sort(key=lambda x: x[0])
     return result
 
 
