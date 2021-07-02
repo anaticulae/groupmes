@@ -20,7 +20,6 @@ import groupme.toc.strategy.regex
 
 def parse(content: str):
     result = []
-
     strategies = [
         parse_rawtext,
         parse_title,
@@ -56,7 +55,6 @@ def parse_title(text: str, _=None) -> iamraw.HeaderTitle:  # pylint:disable=W061
     regex = parse_title_regex(text)
     if regex:
         return regex
-
     contemporary = parse_title_contemporary(text)
     if contemporary:
         return contemporary
@@ -65,11 +63,9 @@ def parse_title(text: str, _=None) -> iamraw.HeaderTitle:  # pylint:disable=W061
 
 def parse_title_regex(text: str) -> iamraw.HeaderTitle:
     parsed = groupme.toc.strategy.regex.parse(text)
-
     if not parsed:
         return None
     assert len(parsed) == 1, utila.log_raw(parsed)
-
     parsed = parsed[0]
     return iamraw.HeaderTitle(title=parsed.title, raw=parsed.raw)
 
