@@ -72,18 +72,7 @@ def parse_title_regex(text: str) -> iamraw.HeaderTitle:
 
 def parse_title_contemporary(text: str) -> iamraw.HeaderTitle:
     """Analyze `text` based on a contemporary(`TITLES`) lookup"""
-    raw = text
-    text = text.strip()
-    text = text.title()
-    if text not in TITLES:
+    if not elements.isheadline(text.strip().lower()):
         return None
-    return iamraw.HeaderTitle(title=text, raw=raw)
-
-
-TITLES = set([
-    'Aufbau und Gliederung',
-    'Aufbau',
-    'Inhaltsverzeichnis',
-    'Motivation und Zielsetzung',
-    'Zusammenfassung',
-])
+    title = text.strip().title()
+    return iamraw.HeaderTitle(title=title, raw=text)
