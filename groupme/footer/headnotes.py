@@ -21,9 +21,9 @@ import groupme.toc.strategy.regex
 def parse(content: str):
     result = []
     strategies = [
-        parse_rawtext,
         parse_title,
         parse_pagenumber,
+        parse_rawtext,
     ]
     for item in content:
         parsed = None
@@ -32,9 +32,8 @@ def parse(content: str):
             if parsed:
                 break
         if not parsed:
-            parsed = iamraw.RawText(text=item.text)
+            parsed: iamraw.RawText = iamraw.RawText(text=item.text)
         result.append(parsed)
-
     return result
 
 

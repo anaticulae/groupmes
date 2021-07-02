@@ -24,6 +24,7 @@ import iamraw
 import texmex
 import utila
 
+import groupme.footer.headnotes
 import groupme.footer.strategy as gfs
 
 COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE
@@ -71,28 +72,36 @@ def cluster_pages(pagenavigators):
     )
     if not clusters:
         return []
-
     result = {}
     for cluster in clusters:
         for bounding, text, pageheight, pagenumber in cluster:
             end = utila.roundme(bounding.y1 / pageheight)
-            # remove newline at end TODO: REMOVE LATER
-            text = text.text.strip()
-            try:
-                result[pagenumber].append(iamraw.RawText(text=text))
-                result[pagenumber].extend(end=end)
-            except KeyError:
-                header = iamraw.FixedHeaderInformation(
-                    begin=texmex.START,
-                    end=end,
-                    page=iamraw.PageInformation(value=pagenumber, raw=None),
-                    undefined=[
-                        iamraw.RawText(text=text),
-                    ],
-                )
-                result[pagenumber] = header
+            create_fixedheader(result, text.text, pagenumber, end)
     result = [(item, result[item]) for item in sorted(result.keys())]
     return result
+
+
+def create_fixedheader(collected, text: str, pagenumber, end):
+    # remove newline at end TODO: REMOVE LATER
+    text = text.strip()
+    try:
+        current = collected[pagenumber]
+    except KeyError:
+        current = iamraw.FixedHeaderInformation(
+            begin=texmex.START,
+            end=end,
+            page=iamraw.PageInformation(value=pagenumber, raw=None),
+        )
+        collected[pagenumber] = current
+    title = groupme.footer.headnotes.parse_title(text)
+    if title:
+        current.title = title
+        return
+    pagenumber = groupme.footer.headnotes.parse_pagenumber(text)
+    if pagenumber:
+        current.page = pagenumber
+        return
+    current.undefined.append(iamraw.RawText(text=text))
 
 
 def prepare_clustering(pagetextnavigators):
