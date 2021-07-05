@@ -91,6 +91,10 @@ def best(*items):
     return result
 
 
+# plus 1 percent off to ensure that content and header is separated correctly.
+HEADER_TOL = configo.HV_FLOAT_PLUS(default=0.01)
+
+
 def cluster_pages(
     pagenavigators: texmex.PageTextNavigators,
     tryagain: bool = False,
@@ -119,9 +123,7 @@ def cluster_pages(
     for cluster in clusters:
         for bounding, text, pageheight, pagenumber in cluster:
             end = utila.roundme(bounding.y1 / pageheight)
-            # plus 2 percent off to ensure that content and header is
-            # separated correctly.
-            end = end + 0.02
+            end = HEADER_TOL + end
             create_fixedheader(grouped, text.text, pagenumber, end)
     result = list(grouped.items())
     # sort FixedHeaderInformation by page

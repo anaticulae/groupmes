@@ -89,6 +89,10 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
         pass
 
 
+# plus 1 percent off to ensure that content and header is separated correctly.
+HEADER_TOL = configo.HV_FLOAT_PLUS(default=0.01)
+
+
 def create_headerinformation(
     location,
     navigator,
@@ -99,9 +103,7 @@ def create_headerinformation(
     bounding = location
     begin = texmex.START
     end = utila.roundme(bounding.y1 / pageheight)
-    # plus 2 percent off to ensure that content and header is separated
-    # correctly.
-    end = end + 0.02
+    end = HEADER_TOL + end
     raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,
