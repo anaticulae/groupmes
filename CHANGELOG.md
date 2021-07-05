@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.12.0
+
+### Feature
+
+* add option to run collector with lower requirements (575ea57817d0)
+* improve common headline parser (57f6efe0e5bb)
+* use improved title checker (0f7b0b8532aa)
+
+### Fix
+
+* ensure that header is separated correctly (364bb84b5cc6)
+
+### Documentation
+
+* format docs (686d231f8e30)
+
 ## v0.11.1
 
 ### Feature
