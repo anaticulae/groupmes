@@ -111,6 +111,16 @@ WORKPLAN = [
             ResultFile(producer='groupme', name='pagenumbers_pagenumbers'),
         ],
         output=('footerheader',),
+    ),
+    step(
+        'content',
+        inputs=[
+            ResultFile(producer='rawmaker', name='text_text'),
+            ResultFile(producer='rawmaker', name='text_positions'),
+            ResultFile(producer='rawmaker', name='border_pages'),
+            ResultFile(producer='groupme', name='footer_footerheader'),
+        ],
+        output=('content',),
     )
 ]
 
