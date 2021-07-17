@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.13.0
+
+### Feature
+
+* add content step to determine ptcn border (008492171238)
+
+### Fix
+
+* add missing rounding (87f097eab5f8)
+* adjust header tolerance (84613a15ea42)
+
 ## v0.12.0
 
 ### Feature
