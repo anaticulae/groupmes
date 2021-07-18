@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 import serializeraw
 import utila
 
@@ -41,6 +42,11 @@ def work(
     for page in navigators:
         top, bottom = page.content.top, page.content.bottom
         top, bottom = utila.roundme((top, bottom))
-        result.append((page.page, top, bottom))
+        result.append(
+            iamraw.ContentBoundingBox(
+                page=page.page,
+                top=top,
+                bottom=bottom,
+            ))
     dumped = serializeraw.dump_contentboundingbox(result)
     return dumped
