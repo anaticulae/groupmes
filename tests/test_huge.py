@@ -61,9 +61,9 @@ def params():
     ignore = []
     pdf = [
         item for item in power.PDF if all([
-            not tests.relative_path(item) in ignore,
+            tests.relative_path(item) not in ignore,
             # skip generated pdfs to avoid double work
-            not 'notitle' in item,
+            'notitle' not in item,
         ])
     ]
     result = []
@@ -83,7 +83,7 @@ def params():
                 '--char_margin 100.0 --boxes_flow 1.0',
                 '--char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3',
             ),
-            id=tests.relative_path(item),
+            id=tests.relative_path(item).replace('/', '_'),
             marks=determine_mark(item),
         )
         result.append(double)
