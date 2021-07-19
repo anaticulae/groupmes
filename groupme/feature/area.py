@@ -50,7 +50,7 @@ def work(
 
     Args:
         boxes(str): path to extract `rawmaker` content boxes
-        tables(str): path to extracted `linero` tables
+        tables(str): path to extracted `tablero` tables
         text(str): extracted `rawmaker` text
         textpositions(str): positions of extracted text
         pages(tuple): tuple of pages to process

@@ -8,7 +8,6 @@
 # =============================================================================
 
 import iamraw.path
-import linero.path
 import power
 import utila
 
@@ -19,7 +18,7 @@ def pyporting(pages: tuple = None):
     source = power.link(power.DOCU07_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
-    tables = linero.path.table(source)
+    tables = iamraw.path.tablero_result(source)
     boxes = iamraw.path.boxed(source)
     loaded = groupme.feature.area.load(
         boxes=boxes,
