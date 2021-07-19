@@ -101,16 +101,13 @@ def rawresult(request, testdir):
     pdf, toccmd, generalcmd = request.param
     rawtoc = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {tocpath} --prefix=oneline {toccmd}'
     rawgeneral = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {generalpath} {generalcmd}'
-    linero = f'linero -o {generalpath}'
+    utila.file_copy(pdf, os.path.join(testdir.tmpdir, 'table'))
+    groupme = f'groupme -i {generalpath} -o {generalpath} --content --pagenumbers --footer -j3'
+    tablero = f'tablero -i {generalpath} -o {generalpath} -j3'
 
-    done = utila.run(rawtoc)
-    assert done.returncode == utila.SUCCESS, utila.format_completed(done)
-
-    done = utila.run(rawgeneral)
-    assert done.returncode == utila.SUCCESS, utila.format_completed(done)
-
-    done = utila.run(linero)
-    assert done.returncode == utila.SUCCESS, utila.format_completed(done)
+    for todo in [rawtoc, rawgeneral, groupme, tablero]:
+        done = utila.run(todo)
+        assert done.returncode == utila.SUCCESS, utila.format_completed(done)
 
     return (tmpdir, tocpath, generalpath)
 
