@@ -159,6 +159,7 @@ def load(
     if os.path.exists(tables):
         tables = serializeraw.load_tables(tables, pages=pages)
     else:
+        utila.log(f'skip using tablero: {tables}, generation is required')
         tables = []
     result = RequiredResources(
         boxes=boxes,
