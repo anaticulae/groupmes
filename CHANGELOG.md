@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.14.0
+
+### Feature
+
+* replace linero with new tablero (5b2a23547095)
+* log skipping tables (6983a84fd210)
+
 ## v0.13.1
 
 ### Fix
