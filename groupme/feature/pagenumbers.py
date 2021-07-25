@@ -239,7 +239,7 @@ def valid_cluster(cluster) -> bool:
         pages.append(parse_pagenumber(number))
     # pages = utila.notnone(pages)
     # diff=2 to support left right page numbers
-    grouped = utila.groupby_diff(utila.notnone(pages), diff=5)
+    grouped = utila.groupby_diff(utila.notnone(pages), maxdiff=5)
     if len(grouped) <= 2:
         return True
     if len(pages) <= 5:

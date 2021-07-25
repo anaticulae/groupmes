@@ -65,7 +65,7 @@ def select_contentpages(
     selected = sorted(utila.make_unique(selected))
     # select biggest connected chunck
     if selected:
-        selected = utila.groupby_diff(selected, diff=1)
+        selected = utila.groupby_diff(selected, maxdiff=1)
         selected = utila.longest(selected)
     return selected
 

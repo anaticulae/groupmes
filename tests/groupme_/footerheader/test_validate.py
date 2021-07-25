@@ -17,7 +17,7 @@ import tests.groupme_
 
 
 def homework18(footnotes):
-    assert len(footnotes) == 96  # TODO: 94!
+    assert len(footnotes) == 95  # TODO: 94!
 
 
 def master72(footnotes):
