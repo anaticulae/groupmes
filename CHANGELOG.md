@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.14.1
+
+### Fix
+
+* remove senseless check (dd82870eb1b5)
+
 ## v0.14.0
 
 ### Feature
