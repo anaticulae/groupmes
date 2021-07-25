@@ -25,17 +25,12 @@ class MostBoundingDetected:
 
 def run(sizeandborder: iamraw.PageSizeBorderList) -> MostBoundingDetected:
     borders = [item.border for item in sizeandborder]
-
     most = most_boundingbox(borders)
     # x0, y0, x1, y1
     # left right
     assert most[0] < most[1]
     # top bottom
     assert most[2] < most[3]
-
-    assert most[0] < most[3]
-    assert most[2] < most[1]
-
     result = MostBoundingDetected(
         left=most[0],
         right=most[1],
