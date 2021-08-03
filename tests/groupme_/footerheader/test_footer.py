@@ -146,6 +146,7 @@ def test_footer_master155_page107(testdir, monkeypatch):
     assert isinstance(footer, iamraw.PagesFooterInformation), type(footer)
 
 
+@utilatest.longrun
 def test_footer_master127(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
         power.MASTER127_PDF,

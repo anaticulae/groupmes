@@ -138,6 +138,7 @@ def test_header_tech24(testdir, monkeypatch):
     assert len(loaded) == 9  # do not change
 
 
+@utilatest.longrun
 def test_header_bachelor128(testdir, monkeypatch):
     loaded = extract_header(
         power.BACHELOR128_PDF,

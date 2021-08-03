@@ -10,6 +10,7 @@
 import power
 import pytest
 import serializeraw
+import utilatest
 
 import groupme.footer.strategy.pages
 
@@ -26,6 +27,7 @@ import groupme.footer.strategy.pages
             id='technical24pages',
         ),
     ])
+@utilatest.longrun
 def test_footer_pagenumber_strategy(source, expected):
     # prepare data
     horizontallines = serializeraw.load_horizontals(source)
