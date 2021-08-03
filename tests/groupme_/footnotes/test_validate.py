@@ -32,10 +32,16 @@ def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
     pages = '' if pages is None else f'--pages={pages}'
     cmd = f'-i {power.link(source)}  --footer {pages}'
     tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    # verify
+    loaded = serializeraw.load_footnotes(testdir.tmpdir)
+    footnotes = plain(loaded)
+    expected = file_read(expected)
+    utila.log(footnotes)
+    assert footnotes == expected
 
-    footnotes = serializeraw.load_footnotes(testdir.tmpdir)
+
+def plain(footnotes) -> str:
     footnotes = utila.flatten_content(footnotes)
     footnotes = [utila.normalize_text(item.text.strip()) for item in footnotes]
-    footnotes: str = utila.NEWLINE.join(footnotes)
-    expected = file_read(expected)
-    assert footnotes == expected
+    result = utila.NEWLINE.join(footnotes)
+    return result
