@@ -34,63 +34,62 @@ def validate_homework18(result):
     footnotes = flat_footnotes(result)  # pylint:disable=W0612
 
 
-@pytest.mark.parametrize(
-    'document, pages, expected_footer, strategy, validate', [
-        pytest.param(
-            power.link(power.MASTER072_PDF),
-            tuple(range(20)),
-            [(3, 6), (6, 3), (7, 2), (8, 4), (9, 1), (10, 4), (11, 3), (12, 2),
-             (13, 6), (14, 7), (15, 8), (16, 10), (17, 8), (18, 7), (19, 8)],
-            groupme.footer.strategy.moving.MovingFooterStrategy,
-            validate_master72,
-            id='master72pages',
-        ),
-        pytest.param(
-            power.link(power.BACHELOR111_PDF),
-            tuple(range(20)),
-            [(9, 2), (10, 3), (11, 2), (12, 1), (13, 1), (15, 2), (16, 1),
-             (17, 8), (18, 3), (19, 1)],
-            groupme.footer.strategy.moving.MovingFooterStrategy,
-            None,
-            id='bachelor111pages',
-        ),
-        pytest.param(
-            power.link(power.DOCU27_PDF),
-            tuple(range(20)),
-            [],
-            groupme.footer.strategy.moving.MovingFooterStrategy,
-            None,
-            id='restructured',
-        ),
-        pytest.param(
-            power.link(power.MASTER110_PDF),
-            None,
-            [],
-            groupme.footer.strategy.moving.MovingFooterStrategy,
-            None,
-            id='master110',
-        ),
-        pytest.param(
-            power.link(power.HOME018_PDF),
-            tuple(range(6)),
-            [(3, 3), (4, 4), (5, 7)],
-            groupme.footer.strategy.plainmoving.PlainMovingFooterStrategy,
-            validate_homework18,
-            id='home18',
-        ),
-        pytest.param(
-            power.link(power.BACHELOR090_PDF),
-            tuple(range(18, 25)),
-            [(18, 2), (19, 1), (21, 1), (22, 3), (23, 4)],
-            groupme.footer.strategy.moving.MovingFooterStrategy,
-            validate_bachelor90,
-            id='bachelor90',
-            marks=pytest.mark.xfail(reason='pdf is not printed correctly'),
-        ),
-    ])
+@pytest.mark.parametrize('source, pages, expected_footer, strategy, validate', [
+    pytest.param(
+        power.MASTER072_PDF,
+        utila.ranged_tuple(20),
+        [(3, 6), (6, 3), (7, 2), (8, 4), (9, 1), (10, 4), (11, 3), (12, 2),
+         (13, 6), (14, 7), (15, 8), (16, 10), (17, 8), (18, 7), (19, 8)],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        validate_master72,
+        id='master72pages',
+    ),
+    pytest.param(
+        power.BACHELOR111_PDF,
+        utila.ranged_tuple(20),
+        [(9, 2), (10, 3), (11, 2), (12, 1), (13, 1), (15, 2), (16, 1), (17, 8),
+         (18, 3), (19, 1)],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        None,
+        id='bachelor111pages',
+    ),
+    pytest.param(
+        power.DOCU27_PDF,
+        utila.ranged_tuple(20),
+        [],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        None,
+        id='restructured',
+    ),
+    pytest.param(
+        power.MASTER110_PDF,
+        None,
+        [],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        None,
+        id='master110',
+    ),
+    pytest.param(
+        power.HOME018_PDF,
+        utila.ranged_tuple(6),
+        [(3, 3), (4, 4), (5, 7)],
+        groupme.footer.strategy.plainmoving.PlainMovingFooterStrategy,
+        validate_homework18,
+        id='home18',
+    ),
+    pytest.param(
+        power.BACHELOR090_PDF,
+        utila.ranged_tuple(18, 25),
+        [(18, 2), (19, 1), (21, 1), (22, 3), (23, 4)],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        validate_bachelor90,
+        id='bachelor90',
+        marks=pytest.mark.xfail(reason='pdf is not printed correctly'),
+    ),
+])
 @utilatest.longrun
 def test_footer_moving(
-    document,
+    source,
     pages,
     expected_footer,
     strategy,
@@ -99,8 +98,9 @@ def test_footer_moving(
     """Hint: This test is dependend on moving footer strategy. If this
     test fails, may the footer is not extracted correctly. Look at the
     holy value in moving.py:extract_footer."""
+    source = power.link(source)
     strategy = groupme.footer.strategy.create_strategy(
-        path=document,
+        path=source,
         strategy=strategy,
         pages=pages,
     )
