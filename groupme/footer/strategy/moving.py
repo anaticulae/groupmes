@@ -38,15 +38,13 @@ import groupme.footnotes.parser
 class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
 
     def result(self):
-        result = []
-
         pagenumber_locations = gfsp.pagenumber_location(
             self.horizontals,
             self.sizeandborders,
             self.pagenumbers,
             self.pagetextnavigators,
         )
-
+        result = []
         for page in self.horizontals:
             sizeandborder = utila.select_page(
                 self.sizeandborders,
@@ -69,7 +67,6 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             if processed.footer is None and processed.header is None:
                 continue
             result.append(processed)
-
         result = judge_detection(result)
         return result
 
@@ -103,13 +100,12 @@ def process_page(
     pagenumber = pagetextnavigator.page
     pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
-
     # check PAGENUMBR RAW? OR INHERIT FROM PTN?
     bottomed = select_footer_line(horizontals, pagewidth, pageheight)
-
-    footer = None
+    # this algo does not detect any header
     header = None
-
+    # determine start of footer
+    footer = None
     if bottomed is not None:
         footer = extract_footer(
             bottomed,
@@ -117,7 +113,6 @@ def process_page(
             pagenumber_location,
             pagetextnavigator,
         )
-
     result = iamraw.PageContentFooterHeader(
         header=header,
         footer=footer,
@@ -153,14 +148,12 @@ def extract_footer(
     if pagenumber_location and pagenumber_location.footer:
         end = pagenumber_location.footer.page_location.y0
     end = utila.roundme(end / pageheight)
-
     # TODO: USE TWO_THIRDS Strategy
     content = pagetextnavigator.between(
         begin,
         end,
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
-
     # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
     footnotes = groupme.footnotes.highnote.parse(
@@ -211,7 +204,6 @@ def judge_detection(items):
     - ( ) quality of extracted footnotes
     """
     report = analyze(items)
-
     # This can happen when using the wrong strategy. If we parse
     # FixedFooter with MovingFooterStrategy, there are a lot of footer
     # which are threated as MovingFooter with Footnote, but this detection
