@@ -28,11 +28,9 @@ import iamraw
 import texmex.navigator
 import utila
 
-import groupme.footer
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.pages as gfsp
 import groupme.footnotes.highnote
-import groupme.footnotes.parser
 
 
 class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
@@ -44,6 +42,7 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         pagenumbers,
         pagetextnavigators: texmex.PageTextNavigators,
         footnote_strategy: callable = None,
+        invalid_footer: callable = None,
     ):
         super().__init__(
             horizontals,
@@ -52,6 +51,7 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             pagetextnavigators,
         )
         self.footnote_strategy = footnote_strategy
+        self.invalid_footer = invalid_footer
 
     def result(self):
         pagenumber_locations = gfsp.pagenumber_location(
@@ -80,16 +80,17 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
                 sizeandborder=sizeandborder,
                 pagetextnavigator=pagetextnavigator,
                 footnote_strategy=self.footnote_strategy,
+                invalid_footer=self.invalid_footer,
             )
             if processed.footer is None and processed.header is None:
                 continue
             result.append(processed)
-        result = judge_detection(result)
         return result
 
     def report(self) -> gfs.FooterStrategyResultReport:
         # TODO: Avoid multiple computation, require  concept.
         detected = self.result()
+        detected = judge_detection(detected)
         report = analyze(detected)
         return report
 
@@ -114,6 +115,7 @@ def process_page(
     sizeandborder,
     pagetextnavigator,
     footnote_strategy: callable = None,
+    invalid_footer: callable = None,
 ) -> iamraw.PageContentFooterHeader:
     pagenumber = pagetextnavigator.page
     pagewidth = sizeandborder.size.width
@@ -131,6 +133,7 @@ def process_page(
             pagenumber_location,
             pagetextnavigator,
             footnote_strategy=footnote_strategy,
+            invalid_footer=invalid_footer,
         )
     result = iamraw.PageContentFooterHeader(
         header=header,
@@ -159,6 +162,7 @@ def extract_footer(
     pagenumber_location,
     pagetextnavigator,
     footnote_strategy: callable = None,
+    invalid_footer: callable = None,
 ) -> iamraw.MovingFooterInformation:
     if footnote_strategy is None:
         footnote_strategy = groupme.footnotes.highnote.parse
@@ -176,6 +180,8 @@ def extract_footer(
         end,
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
+    if invalid_footer and invalid_footer(begin, content):
+        return None
     # splitted by highnotes
     footnotes = footnote_strategy(
         content=content,

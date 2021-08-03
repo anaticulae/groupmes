@@ -14,54 +14,35 @@ import iamraw
 import texmex.navigator
 import utila
 
-import groupme.footer
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.moving as gfsm
-import groupme.footer.strategy.pages as gfsp
 import groupme.footnotes.parser
 import groupme.footnotes.plain
 
 
-class PlainMovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
+class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
 
-    def result(self):
-        result = []
-
-        pagenumber_locations = gfsp.pagenumber_location(
-            self.horizontals,
-            self.sizeandborders,
-            self.pagenumbers,
-            self.pagetextnavigators,
+    def __init__(
+        self,
+        horizontals: iamraw.PagesWithHorizontalList,
+        sizeandborders: iamraw.PageSizeBorderList,
+        pagenumbers,
+        pagetextnavigators: texmex.PageTextNavigators,
+    ):
+        super().__init__(
+            horizontals,
+            sizeandborders,
+            pagenumbers,
+            pagetextnavigators,
+            footnote_strategy=groupme.footnotes.plain.parse,
+            invalid_footer=invalid_footer,
         )
 
-        for page in self.horizontals:
-            sizeandborder = utila.select_page(
-                self.sizeandborders,
-                page.page,
-            )
-            pagetextnavigator = utila.select_page(
-                self.pagetextnavigators,
-                page.page,
-            )
-            pagenumber_location = utila.select_page(
-                pagenumber_locations,
-                page.page,
-            )
-            processed = process_page(
-                pagenumber=page.page,
-                pagenumber_location=pagenumber_location,
-                horizontals=page.content,
-                sizeandborder=sizeandborder,
-                pagetextnavigator=pagetextnavigator,
-            )
-            if processed.footer is None:
-                continue
-            result.append(processed)
-
-        result = gfsm.judge_detection(result)
-        if disable_strategy(result):
-            return []
-        return result
+    def result(self):
+        detected = super().result()
+        if disable_strategy(detected):
+            detected = []
+        return detected
 
     def report(self) -> gfs.FooterStrategyResultReport:
         # TODO: Avoid multiple computation, require  concept.
@@ -69,8 +50,6 @@ class PlainMovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         report = gfsm.analyze(detected)
         return report
 
-
-BOTTOM_BORDER = 0.60  # TODO: HOLY VALUE
 
 MAX_STRATEGY_ERROR = configo.HV_PERCENT_PLUS(10).value
 
@@ -95,74 +74,7 @@ def disable_strategy(footers) -> bool:
     return factor >= MAX_STRATEGY_ERROR
 
 
-def process_page(
-    pagenumber,
-    pagenumber_location,
-    horizontals,
-    sizeandborder,
-    pagetextnavigator,
-):
-    pageheight = sizeandborder.size.height
-
-    footer_start = pageheight * BOTTOM_BORDER
-    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
-    bottomed = max([item.box.y0 for item in filtered], default=None)
-
-    footer = None
-    if bottomed is not None:
-        footer = extract_footer(
-            bottomed,
-            pageheight,
-            pagenumber_location,
-            pagetextnavigator,
-        )
-
-    result = iamraw.PageContentFooterHeader(
-        header=None,
-        footer=footer,
-        page=pagenumber,
-    )
-    return result
-
-
-def extract_footer(
-    footerstart: float,
-    pageheight: int,
-    pagenumber_location,
-    pagetextnavigator: texmex.PageTextNavigator,
-):
-    begin = footerstart / pageheight
-    # in the current parser state, the location of tiny distances between
-    # objects is not interpreted correctly. The distance is often to small.
-    # TODO: HOW TO HANDLE NON DETECTED PAGENUMBER_LOCATION
-    end = pageheight
-    if pagenumber_location and pagenumber_location.footer:
-        end = pagenumber_location.footer.page_location.y0
-    end = utila.roundme(end / pageheight)
-
-    # TODO: USE TWO_THIRDS Strategy
-    content = pagetextnavigator.between(
-        begin,
-        end,
-        selector=texmex.navigator.SelectBounding.BOTTOM,
-    )
-
-    if invalid_footer(begin, content):
-        return None
-
-    # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
-    # splitted by highnotes
-    footnotes = groupme.footnotes.plain.parse(
-        content,
-        pagenumber=pagetextnavigator.page,
-    )
-    footer = iamraw.MovingFooterInformation(
-        begin=begin,
-        end=end,
-        notes=footnotes,
-    )
-    return footer
-
+BOTTOM_BORDER = 0.6
 
 FOOTER_MIN_COUNT = configo.HolyTable(
     items=(
@@ -177,8 +89,8 @@ FOOTER_MIN_COUNT = configo.HolyTable(
 
 
 def invalid_footer(begin, content) -> bool:
-    """Check if potential footer contain too few content and there can
-    not be a footer."""
+    """Check if potential footer contain too few content and therefore
+    can't be a footer."""
     # TODO: The distance between footer line and footer content is very
     # high in bachelor128. Think about to change invalidation method. May
     # introduce high distance check?
