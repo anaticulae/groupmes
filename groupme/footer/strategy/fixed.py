@@ -70,7 +70,6 @@ class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy)
         # DIFFERENT PAGE SIZE
         first_page = self.pagetextnavigators[0].page
         pageheight = self.pageheight(first_page)
-
         # determine most common border for all pages
         tops, bottoms = extract_common_footer(
             horizontals=self.horizontals,

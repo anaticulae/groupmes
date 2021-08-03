@@ -96,7 +96,7 @@ def process_page(
     horizontals,
     sizeandborder,
     pagetextnavigator,
-):
+)->iamraw.PageContentFooterHeader:
     pagenumber = pagetextnavigator.page
     pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
@@ -139,7 +139,7 @@ def extract_footer(
     pageheight: int,
     pagenumber_location,
     pagetextnavigator,
-):
+) -> iamraw.MovingFooterInformation:
     begin = footerstart / pageheight
     # in the current parser state, the location of tiny distances between
     # objects is not interpreted correctly. The distance is often to small.
