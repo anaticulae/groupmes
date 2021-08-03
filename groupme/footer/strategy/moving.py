@@ -37,6 +37,22 @@ import groupme.footnotes.parser
 
 class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
 
+    def __init__(
+        self,
+        horizontals: iamraw.PagesWithHorizontalList,
+        sizeandborders: iamraw.PageSizeBorderList,
+        pagenumbers,
+        pagetextnavigators: texmex.PageTextNavigators,
+        footnote_strategy: callable = None,
+    ):
+        super().__init__(
+            horizontals,
+            sizeandborders,
+            pagenumbers,
+            pagetextnavigators,
+        )
+        self.footnote_strategy = footnote_strategy
+
     def result(self):
         pagenumber_locations = gfsp.pagenumber_location(
             self.horizontals,
@@ -63,6 +79,7 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
                 horizontals=page.content,
                 sizeandborder=sizeandborder,
                 pagetextnavigator=pagetextnavigator,
+                footnote_strategy=self.footnote_strategy,
             )
             if processed.footer is None and processed.header is None:
                 continue
@@ -96,7 +113,8 @@ def process_page(
     horizontals,
     sizeandborder,
     pagetextnavigator,
-)->iamraw.PageContentFooterHeader:
+    footnote_strategy: callable = None,
+) -> iamraw.PageContentFooterHeader:
     pagenumber = pagetextnavigator.page
     pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
@@ -112,6 +130,7 @@ def process_page(
             pageheight,
             pagenumber_location,
             pagetextnavigator,
+            footnote_strategy=footnote_strategy,
         )
     result = iamraw.PageContentFooterHeader(
         header=header,
@@ -139,7 +158,10 @@ def extract_footer(
     pageheight: int,
     pagenumber_location,
     pagetextnavigator,
+    footnote_strategy: callable = None,
 ) -> iamraw.MovingFooterInformation:
+    if footnote_strategy is None:
+        footnote_strategy = groupme.footnotes.highnote.parse
     begin = footerstart / pageheight
     # in the current parser state, the location of tiny distances between
     # objects is not interpreted correctly. The distance is often to small.
@@ -154,11 +176,10 @@ def extract_footer(
         end,
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
-    # TODO: INTRODUCE STRATEGY TO PARSE OTHER FOOTNOTES
     # splitted by highnotes
-    footnotes = groupme.footnotes.highnote.parse(
-        content,
-        pagetextnavigator.width,
+    footnotes = footnote_strategy(
+        content=content,
+        width=pagetextnavigator.width,
         pagenumber=pagetextnavigator.page,
     )
     if not footnotes:
@@ -177,7 +198,7 @@ def analyze(results) -> MovingFooterResultReport:
     emptyfooter_count = count_empty(results)
     empty_factor = emptyfooter_count / footer_count if footer_count else 0
     too_many_empty_footer = empty_factor >= WRONG_STRATEGY_EMPTY_FOOTER_FACTOR
-
+    # create report
     result = MovingFooterResultReport(
         footer=footer_count,
         footer_empty=emptyfooter_count,
