@@ -85,6 +85,7 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             if processed.footer is None and processed.header is None:
                 continue
             result.append(processed)
+        result = merge_footer_pages(result)
         return result
 
     def report(self) -> gfs.FooterStrategyResultReport:
@@ -197,6 +198,36 @@ def extract_footer(
         notes=footnotes,
     )
     return footer
+
+
+def merge_footer_pages(footers):
+    """Merge following uncompleted footnotes together."""
+    # TODO: IMPROVE CHECK IF MERGING IS REQUIRED
+    # TODO: MERGE MORE THAN TWO PAGES
+    for current, after in zip(footers[0:-1], footers[1:]):
+        if (after.page - current.page) != 1:
+            continue
+        if not after.footer.notes:
+            continue
+        if not current.footer.notes:
+            continue
+        if current.footer.notes[-1].number == -1:
+            # could not merge, I am not a valid footnote
+            continue
+        if after.footer.notes[0].number != -1:
+            # no merge required, footnote have a number
+            continue
+        # merge notes together
+        current.footer.notes[-1] = iamraw.FootNoteMerged(
+            number=current.footer.notes[-1].number,
+            notes=[
+                current.footer.notes[-1],
+                after.footer.notes[0],
+            ],
+        )
+        # remove merged notes from after
+        after.footer.notes = after.footer.notes[1:]
+    return footers
 
 
 def analyze(results) -> MovingFooterResultReport:
