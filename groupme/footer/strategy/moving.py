@@ -166,7 +166,7 @@ def extract_footer(
 ) -> iamraw.MovingFooterInformation:
     if footnote_strategy is None:
         footnote_strategy = groupme.footnotes.highnote.parse
-    begin = footerstart / pageheight
+    begin = utila.roundme(footerstart / pageheight)
     # in the current parser state, the location of tiny distances between
     # objects is not interpreted correctly. The distance is often to small.
     # TODO: HOW TO HANDLE NON DETECTED PAGENUMBER_LOCATION
