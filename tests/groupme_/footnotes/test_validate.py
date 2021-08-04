@@ -25,6 +25,7 @@ file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pyli
 @pytest.mark.parametrize('source, pages, expected', [
     pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelor128'),
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
+    pytest.param(power.DISS143_PDF, None, 'diss143', id='diss143'),
 ])
 # yapf:enable
 # @utilatest.nightly
@@ -36,7 +37,6 @@ def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
     loaded = serializeraw.load_footnotes(testdir.tmpdir)
     footnotes = plain(loaded)
     expected = file_read(expected)
-    utila.log(footnotes)
     assert footnotes == expected
 
 
