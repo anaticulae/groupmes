@@ -16,10 +16,6 @@ import utilatest
 import tests.groupme_
 
 
-def homework18(footnotes):
-    assert len(footnotes) == 95  # TODO: 94!
-
-
 def master72(footnotes):
     page21 = [item for item in footnotes if item.page == 21]
     assert len(page21) == 6
@@ -27,7 +23,6 @@ def master72(footnotes):
 
 
 @pytest.mark.parametrize('source, pages, expected', [
-    pytest.param(power.HOME018_PDF, None, homework18, id='homework18'),
     pytest.param(power.BACHELOR063_PDF, None, 0, id='bachelor63'),
     pytest.param(power.MASTER116_PDF, None, 0, id='master116'),
     pytest.param(power.MASTER072_PDF, None, master72, id='master72'),

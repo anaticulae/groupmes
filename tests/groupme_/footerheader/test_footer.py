@@ -94,9 +94,7 @@ def test_footer_homework18(testdir, monkeypatch):
         pages='3:17',
     )
     content = utila.flatten([item.footer.notes for item in extracted])
-    # TODO: Change after fixing footnote merger
-    assert len(content) == 95, len(content)
-    # assert len(content) == 94, len(content)
+    assert len(content) == 94, len(content)
 
 
 @pytest.mark.xfail(reason='single false positive footnote detection')
