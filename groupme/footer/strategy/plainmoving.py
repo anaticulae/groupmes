@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import math
+
 import configo
 import iamraw
 import texmex.navigator
@@ -165,7 +167,8 @@ def extract_footer(
 FOOTER_MIN_COUNT = configo.HolyTable(
     items=(
         (BOTTOM_BORDER, 10),
-        (0.8, 4),
+        (0.8, 3),
+        (0.9, 2),
         (1.0, 0),
     ),
     strategy=utila.Strategy.LINEARISE,
@@ -180,6 +183,7 @@ def invalid_footer(begin, content) -> bool:
     # high in bachelor128. Think about to change invalidation method. May
     # introduce high distance check?
     mincount = FOOTER_MIN_COUNT(begin)
+    mincount = math.floor(mincount)
     if len(content) < mincount:
         return True
     return False
