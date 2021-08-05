@@ -25,7 +25,7 @@ file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pyli
 @pytest.mark.parametrize('source, pages, expected', [
     pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelor128'),
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
-    pytest.param(power.DISS143_PDF, None, 'diss143', id='diss143'),
+    pytest.param(power.DISS143_PDF, None, 'diss143', id='diss143all'),
     pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143page20'),
 ])
 # yapf:enable
