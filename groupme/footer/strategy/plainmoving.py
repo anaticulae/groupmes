@@ -51,7 +51,18 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
         return report
 
 
-MAX_STRATEGY_ERROR = configo.HV_PERCENT_PLUS(10).value
+MAX_STRATEGY_ERROR = configo.HolyTable(
+    items=[
+        (0, 0),
+        (5, 1),
+        (10, 2),
+        (20, 4),
+        (50, 8),
+        (100, 15),
+    ],
+    left_outranges_none=False,
+    right_outranges_none=False,
+)
 
 
 def disable_strategy(footers) -> bool:
@@ -70,8 +81,10 @@ def disable_strategy(footers) -> bool:
         nonumber = [item for item in page.footer.notes if item.number < 0]
         if nonumber:
             nonumber_count += 1
-    factor = nonumber_count / len(footers)
-    return factor >= MAX_STRATEGY_ERROR
+    max_error = MAX_STRATEGY_ERROR(len(footers))
+    if nonumber_count > max_error:
+        return True
+    return False
 
 
 BOTTOM_BORDER = 0.6
