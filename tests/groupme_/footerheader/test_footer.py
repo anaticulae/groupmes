@@ -165,3 +165,18 @@ def test_footer_master127(testdir, monkeypatch):
     assert len(footers) == 73  # VALIDATED
     footnotes = utila.flatten([item.notes for item in footers])
     assert len(footnotes) == 135
+
+
+def test_footer_master075(testdir, monkeypatch):
+    extracted = tests.groupme_.footerheader.extractor.footer(
+        power.MASTER075_PDF,
+        testdir,
+        monkeypatch,
+        pages=':',
+    )
+    footers = [
+        item.footer
+        for item in extracted
+        if isinstance(item.footer, iamraw.MovingFooterInformation)
+    ]
+    assert not footers
