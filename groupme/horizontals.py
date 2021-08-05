@@ -42,7 +42,7 @@ def assert_horizontal(bounding):
     # TODO HOLY VALUE
     # assert abs(bounding.y0 - bounding.y1) < 2.0, str(bounding)
     # assert that item is horizontal
-    assert abs(bounding.y0 - bounding.y1) < 2.0, str(bounding)
+    assert abs(bounding.y0 - bounding.y1) < 5.0, str(bounding)
 
 
 def biggest_hlinecluster_in_area(
