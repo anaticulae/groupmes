@@ -78,7 +78,7 @@ def remove_headline(
         content: texmex.PageTextNavigator) -> texmex.PageTextNavigator:
     """Remove table of content headline to improve extraction result."""
     result = texmex.PageTextNavigator(
-        size=(content.width, content.height),
+        pagesize=(content.width, content.height),
         page=content.page,
     )
     for item in content:
