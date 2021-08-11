@@ -2,6 +2,25 @@
 
 Every noteable change is logged here.
 
+## v0.15.0
+
+### Feature
+
+* make error notes dependent (2a1b24bdd24e)
+* increase potential horizontal line diff (5ab214f7db57)
+* merge unconnected footnotes (efb6e22b564d)
+* merge both together (0ce3baa56f6e)
+* add option to use different footnote parser (5e8c2101510b)
+* adjust plain footnote extractor (6e5138af62a0)
+
+### Fix
+
+* round footer start (4d179d53080a)
+
+### Documentation
+
+* extend interface documentation (6b9941aed997)
+
 ## v0.14.1
 
 ### Fix
