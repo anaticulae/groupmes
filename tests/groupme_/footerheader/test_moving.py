@@ -54,7 +54,7 @@ def validate_homework18(result):
         id='bachelor111pages',
     ),
     pytest.param(
-        power.DOCU27_PDF,
+        power.DOCU027_PDF,
         utila.ranged_tuple(20),
         [],
         groupme.footer.strategy.moving.MovingFooterStrategy,

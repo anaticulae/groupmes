@@ -22,7 +22,7 @@ import groupme.footer
         id='bachelor111',
     ),
     pytest.param(
-        power.link(power.DOCU27_PDF),
+        power.link(power.DOCU027_PDF),
         29,
         id='restruct',
     ),

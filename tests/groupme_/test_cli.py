@@ -19,9 +19,9 @@ import tests.groupme_
     ['-i', power.link(power.ORDER009_PDF), '-o', 'output'],
     ['-i', power.link(power.MASTER072_PDF), '-o', 'output'],
     ['-i', power.link(power.MASTER089_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU09_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU27_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU07_PDF), '-o', 'output'],
+    ['-i', power.link(power.DOCU009_PDF), '-o', 'output'],
+    ['-i', power.link(power.DOCU027_PDF), '-o', 'output'],
+    ['-i', power.link(power.DOCU007_PDF), '-o', 'output'],
 ])
 @pytest.mark.usefixtures('testdir')
 @utilatest.nightly

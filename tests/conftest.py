@@ -42,18 +42,18 @@ RESOURCES = [
     power.BACHELOR111_PDF,
     power.BACHELOR037_PDF,
     (power.BACHELOR063_PDF, '0:9,59:62'),
-    power.DOCU27_PDF,
+    power.DOCU027_PDF,
     power.TECH024_PDF,
     power.PAPER18_PDF,
-    power.DOCU14_PDF,
-    power.DOCU07_PDF,
+    power.DOCU014_PDF,
+    power.DOCU007_PDF,
     power.BOOK007_PDF,
-    power.DOCU09_PDF,
+    power.DOCU009_PDF,
     (power.BACHELOR051_PDF, '0:25'),
     (power.HOME050_PDF, '0:10'),
     (power.ORDER009_PDF, '0:10'),
     (power.MASTER083_PDF, '0:10'),
-    (power.DOCU35_PDF, '0:10'),
+    (power.DOCU035_PDF, '0:10'),
     (power.DISS180_PDF, '0:10'),
     (power.MASTER078_PDF, '0:10'),
 ]
@@ -78,7 +78,7 @@ def extract(resources):
 
 
 RESOURCES_NOTITLE = [
-    power.DOCU27_PDF,
+    power.DOCU027_PDF,
 ]
 
 

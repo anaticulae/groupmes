@@ -42,7 +42,7 @@ def test_header_simple(simple):  #pylint:disable=W0621
 
 
 def test_footer_restructured():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(
         navigators,
@@ -54,7 +54,7 @@ def test_footer_restructured():
 
 
 def test_header_restructured():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(navigators)
     # Example:
@@ -67,7 +67,7 @@ def test_header_restructured():
 
 
 def test_pagenumbers_restructured():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(navigators)
 
@@ -114,7 +114,7 @@ def test_numbers_restructured_without_title():
     """Ensure to extract correct pdf page on document which starts with
     empty page. Before this patch, the pdfpages started with zero
     instead of one."""
-    source = power.link(power.DOCU27_PDF, folder='notitle')
+    source = power.link(power.DOCU027_PDF, folder='notitle')
     navigator = serializeraw.create_pagetextnavigators_frompath(source)
     pagenumbers = groupme.feature.pagenumbers.determine_pagenumbers(navigator)
     pagenumbers = utila.flatten(pagenumbers)  # pylint:disable=R0204

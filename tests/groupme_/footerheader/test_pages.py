@@ -18,7 +18,7 @@ import groupme.footer.strategy.pages
 @pytest.mark.parametrize(
     'source, expected',
     [
-        pytest.param(power.link(power.DOCU14_PDF), 14, id='docu14'),
+        pytest.param(power.link(power.DOCU014_PDF), 14, id='docu14'),
         pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
         pytest.param(
             power.link(power.TECH024_PDF),

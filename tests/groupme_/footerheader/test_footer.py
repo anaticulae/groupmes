@@ -25,7 +25,7 @@ import tests.groupme_.footerheader.extractor
 
 def test_footer_work(testdir):  #pylint:disable=W0621
     root = str(testdir)
-    docu27 = power.link(power.DOCU27_PDF)
+    docu27 = power.link(power.DOCU027_PDF)
     dumped = groupme.feature.footer.work(
         iamraw.path.text(docu27),
         iamraw.path.textposition(docu27),
@@ -55,7 +55,7 @@ def test_footer_footerheader_detectionstategy(
     """Check that different strategies work proper with given resources
 
     TODO: SEE DUPLICATION test_footer_judgement_strategy_quality?"""
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     horizontals = serializeraw.load_horizontals(source)
     sizeandborders = serializeraw.load_pageborders(source)
     pagenumbers = groupme.path.pagenumbers(source)  # TODO: REMOVE AFTER UPGRADE

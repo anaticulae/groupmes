@@ -21,16 +21,16 @@ import groupme.footer.strategy.fixed as gfsf
 
 
 def _restructed():
-    horizontals = iamraw.path.horizontals(power.link(power.DOCU27_PDF))
+    horizontals = iamraw.path.horizontals(power.link(power.DOCU027_PDF))
     horizontals = serializeraw.load_horizontals(horizontals)
 
-    sizeandborder = iamraw.path.sizeandborder(power.link(power.DOCU27_PDF))
+    sizeandborder = iamraw.path.sizeandborder(power.link(power.DOCU027_PDF))
     sizeandborder = serializeraw.load_pageborders(sizeandborder)
 
     pageheight = utila.select_page(sizeandborder, 0).size.height
 
     navigators = serializeraw.create_pagetextnavigators_frompath(
-        power.link(power.DOCU27_PDF))
+        power.link(power.DOCU027_PDF))
     top, bottom = gfsf.extract_common_footer(
         horizontals=horizontals,
         pageheight=pageheight,

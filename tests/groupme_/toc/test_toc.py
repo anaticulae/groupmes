@@ -19,7 +19,7 @@ import groupme.toc.group
 
 def test_toc_groupby_level():
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(
-        power.link(power.DOCU07_PDF),
+        power.link(power.DOCU007_PDF),
         prefix='oneline',
     )
     selected = groupme.pageselector.select_contentpages(navigators)
@@ -39,20 +39,20 @@ def test_toc_groupby_level():
 
 @pytest.mark.parametrize('resources, pages, expected', [
     pytest.param(
-        power.link(power.DOCU27_PDF),
+        power.link(power.DOCU027_PDF),
         (2,),
         13,
         id='restructured',
     ),
     pytest.param(
-        power.link(power.DOCU07_PDF),
+        power.link(power.DOCU007_PDF),
         (0,),
         12,
         marks=pytest.mark.xfail,
         id='simple',
     ),
     pytest.param(
-        power.link(power.DOCU35_PDF),
+        power.link(power.DOCU035_PDF),
         (5,),
         0,
         id='notoc',

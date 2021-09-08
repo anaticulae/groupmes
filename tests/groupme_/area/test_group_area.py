@@ -15,7 +15,7 @@ import groupme.feature.area
 
 
 def pyporting(pages: tuple = None):
-    source = power.link(power.DOCU07_PDF)
+    source = power.link(power.DOCU007_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
     tables = iamraw.path.tablero_result(source)
