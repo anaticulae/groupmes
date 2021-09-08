@@ -25,23 +25,14 @@ def bachelor37():
 
 
 @pytest.mark.parametrize('source, pages, expected', [
-    pytest.param(
-        power.link(power.BACHELOR037_PDF),
-        1,
-        26,
-        id='bachelor37_abbrev',
-    ),
-    pytest.param(
-        power.link(power.BACHELOR037_PDF),
-        2,
-        10,
-        id='bachelor37_figure',
-    ),
-    pytest.param(power.link(power.HOME050_PDF), 6, 0, id='homework50'),
-    pytest.param(power.link(power.MASTER116_PDF), 96, 8, id='master116'),
+    pytest.param(power.BACHELOR037_PDF, 1, 26, id='bachelor37_abbrev'),
+    pytest.param(power.BACHELOR037_PDF, 2, 10, id='bachelor37_figure'),
+    pytest.param(power.HOME050_PDF, 6, 0, id='homework50'),
+    pytest.param(power.MASTER116_PDF, 96, 8, id='master116'),
 ])
 @utilatest.longrun
 def test_abbreviation_parse_strategy_geometry(source, pages, expected):
+    source = power.link(source)
     content = serializeraw.create_pagetextnavigators_frompath(
         source,
         pages=pages,
