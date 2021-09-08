@@ -50,27 +50,3 @@ def test_abbreviation_parse_strategy_geometry(source, pages, expected):
     strategy = groupme.abbreviation.geometry.GeometryAbbreviationParser(content)
     parsed = strategy.result()
     assert len(parsed) == expected, len(parsed)
-
-
-@utilatest.longrun
-def test_abbreviation_geometry_columns():
-    page = bachelor37().normal[0]  # pylint:disable=E1136
-    columns = groupme.abbreviation.geometry.columns(page)
-    content = [
-        groupme.abbreviation.geometry.column_data(page, column)
-        for column in columns
-    ]
-    assert len(content) == 2
-    assert len(content[0]) == 11
-    assert len(content[1]) == 20, str(content[1])
-
-
-@utilatest.longrun
-def test_abbreviation_geometry_all_columns():
-    page = bachelor37().normal[0]  # pylint:disable=E1136
-    columns = [
-        groupme.abbreviation.geometry.column_data(page, x0=item)
-        for item in groupme.abbreviation.geometry.columns(page)
-    ]
-    all_columns = groupme.abbreviation.geometry.all_columns(columns)
-    assert len(all_columns) == 20, str(all_columns)
