@@ -46,13 +46,16 @@ def parse_page(content):
 
 
 def isexcluded(item):
-    item = item.strip()
-    excluded = {
-        'Abkürzung',
-        'Abkürzungen',
-        'Abkürzungsverzeichnis',
-        'Beschreibung',
-        'Glossar',
-        'Tabellenverzeichnis',
-    }
-    return item in excluded
+    # TODO: ADD MORE SOPHISTICATED DOUBLE COLUMN CHECKER
+    item = item.strip().lower()
+    return item in NO_ABBREVIATION
+
+
+NO_ABBREVIATION = utila.splitlines("""\
+ABKÜRZUNG
+ABKÜRZUNGEN
+ABKÜRZUNGSVERZEICHNIS
+BESCHREIBUNG
+GLOSSAR
+TABELLENVERZEICHNIS
+""")
