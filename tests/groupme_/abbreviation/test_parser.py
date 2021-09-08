@@ -20,6 +20,7 @@ import groupme.abbreviation.parser
     pytest.param(power.BACHELOR037_PDF, 1, 26, id='bachelor37'),
     pytest.param(power.HOME050_PDF, 6, 18, id='homework50'),
     pytest.param(power.MASTER116_PDF, 96, 8, id='master116'),
+    pytest.param(power.DISS205_PDF, 14, 17, id='diss205'),
 ])
 @utilatest.longrun
 def test_abbreviation_parser(source, pages, expected):
