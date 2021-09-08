@@ -49,6 +49,7 @@ def isexcluded(item):
     item = item.strip()
     excluded = {
         'Abkürzung',
+        'Abkürzungen',
         'Abkürzungsverzeichnis',
         'Beschreibung',
         'Glossar',
