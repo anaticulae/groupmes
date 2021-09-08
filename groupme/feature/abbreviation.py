@@ -8,7 +8,6 @@
 # =============================================================================
 
 import serializeraw
-import texmex
 
 import groupme.abbreviation
 import groupme.abbreviation.parser
@@ -21,28 +20,35 @@ def work(
     textposition_oneline: str,
     pages: tuple = None,
 ) -> str:
-    text_oneline = serializeraw.load_document(text_oneline, pages=pages)
-    textposition_oneline = serializeraw.load_textpositions(
-        textposition_oneline,
-        pages=pages,
-    )
-
-    text = serializeraw.load_document(text, pages=pages)
-    textposition = serializeraw.load_textpositions(textposition, pages=pages)
-
-    oneline = texmex.create_pagetextnavigators(
-        text_oneline,
-        textposition_oneline,
-    )
-
-    normal = texmex.create_pagetextnavigators(
+    data = load_data(
         text,
         textposition,
+        text_oneline,
+        textposition_oneline,
+        pages,
     )
-
-    data = groupme.abbreviation.AbbreviationData(normal=normal, oneline=oneline)
-
     parsed = groupme.abbreviation.parser.parse(data)
-
+    # dump result
     dumped = serializeraw.dump_abbreviation_table(parsed)
     return dumped
+
+
+def load_data(
+    text: str,
+    textposition: str,
+    text_oneline: str,
+    textposition_oneline: str,
+    pages: tuple = None,
+) -> groupme.abbreviation.AbbreviationData:
+    normal = serializeraw.ptn_fromfile(
+        text=text,
+        textpositions=textposition,
+        pages=pages,
+    )
+    oneline = serializeraw.ptn_fromfile(
+        text=text_oneline,
+        textpositions=textposition_oneline,
+        pages=pages,
+    )
+    data = groupme.abbreviation.AbbreviationData(normal=normal, oneline=oneline)
+    return data
