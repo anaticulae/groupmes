@@ -54,8 +54,10 @@ def parse(content: str, pagenumber: int = None):
 
 
 def footnote_split(raw: str) -> list:
-    """Split footnote into chunks. A empty newline or a starting
-    footnote([int, whitespace]) marks the ending of a multiline footnote.
+    """Split footnotes into chunks.
+
+    A empty newline or a starting footnote([int, whitespace]) marks the
+    ending of a multiline footnote.
 
     Example:
     .. code-block:: none
@@ -81,12 +83,11 @@ def footnote_split(raw: str) -> list:
         if not item:
             # empty newline separates list elements from text
             result.append(None)
-        if re.match(pattern, item):
+        elif re.match(pattern, item):
             # match line start pattern
             result.append([item])
-        else:
-            if result and result[-1]:
-                # ensure to have valid predecessor
-                result[-1].append(item)
+        elif result and result[-1]:
+            # ensure to have valid predecessor
+            result[-1].append(item)
     joined = [' '.join(item) for item in result if item]
     return joined

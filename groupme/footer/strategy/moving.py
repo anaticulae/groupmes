@@ -250,7 +250,7 @@ def analyze(results) -> MovingFooterResultReport:
 def count_empty(items: iamraw.PageContentFooterHeader) -> int:
     """Count `MovingFooterInformation` which contain a empty `notes` list"""
     footers = [item.footer for item in items if item.footer]
-    empty_footnotes = [item for item in footers if len(item.notes) == 0]
+    empty_footnotes = [item for item in footers if not item.notes]
     result = len(empty_footnotes)
     return result
 

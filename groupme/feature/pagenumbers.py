@@ -151,9 +151,13 @@ def isrotated(navigator) -> bool:
 
 def isrightpage(pdf_pagenumber: int) -> bool:
     """What pdf page is the left side?
-    The first page is the right page? """
-    pdf_pagenumber = int(pdf_pagenumber)
-    return pdf_pagenumber % 2 == 0
+
+    The first page is the right page?
+    """
+    # TODO: REQUIRE SMART ALTERNATIVE
+    if utila.iseven(pdf_pagenumber):
+        return True
+    return False
 
 
 Cluster = typing.List[typing.Tuple[iamraw.BoundingBox, str]]

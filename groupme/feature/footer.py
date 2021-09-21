@@ -141,12 +141,11 @@ def judge_strategy(
         if common and common.header:
             if not header:
                 header = common.header
-            else:
+            elif qualities[0] == max(qualities):
                 # compare quality of both extractions
-                if qualities[0] == max(qualities):
-                    # TODO: MORE THAN ONE EXTRACTION CAN HAVE BEST
-                    # EXTRACTION QUALITY.
-                    header = common.header
+                # TODO: MORE THAN ONE EXTRACTION CAN HAVE BEST
+                # EXTRACTION QUALITY.
+                header = common.header
 
         if not (moving and moving.footer) and plainmoving and plainmoving.footer: # yapf:disable
             # use plain moving only if no other strategy works

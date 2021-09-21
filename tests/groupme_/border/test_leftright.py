@@ -45,7 +45,7 @@ def test_leftright_run_noleftright():
     border for left and right but only a single border."""
     textpositions, pagesizes = load_example(power.link(power.MASTER072_PDF))
     result = groupme.border.leftright.run(textpositions, pagesizes)
-    assert result.valid is False, result
+    assert not result.valid, result
     # ensure that left border is more left then right
     assert result.left < result.right, result
 

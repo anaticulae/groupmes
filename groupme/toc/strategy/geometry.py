@@ -89,7 +89,7 @@ def group_areas(items):
                 # connected.
                 result.append((lastpage, current))
                 current = []
-            elif level_ == 0:
+            elif level_ == 0:  # pylint:disable=C2001
                 # new group
                 result.append((page, current))
                 current = []

@@ -160,8 +160,8 @@ def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint
             update every level to ensure
         """
         # TODO: REMOVE THIS?
-        zero_level = min([item.level for item in items], default=utila.INF) == 0
-        if zero_level:
+        level_min = min([item.level for item in items], default=utila.INF)
+        if not level_min:
             for item in items:
                 item.level = item.level + 1
         return items
