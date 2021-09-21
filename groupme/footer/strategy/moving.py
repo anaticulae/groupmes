@@ -225,6 +225,9 @@ def merge_footer_pages(footers):
                 after.footer.notes[0],
             ],
         )
+        #update bounding
+        current.footer.notes[-1].bounding = utila.rectangle_max(
+            [item.bounding for item in current.footer[-1].notes])
         # remove merged notes from after
         after.footer.notes = after.footer.notes[1:]
     return footers
