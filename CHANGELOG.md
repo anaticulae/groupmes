@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.15.1
+
+### Fix
+
+* update FootNoteMerged bounding (31347d54768e)
+* extend invalid abbr list (4b370c81001c)
+
 ## v0.15.0
 
 ### Feature
