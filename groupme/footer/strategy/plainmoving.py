@@ -60,8 +60,6 @@ MAX_STRATEGY_ERROR = configo.HolyTable(
         (50, 8),
         (100, 15),
     ],
-    left_outranges_none=False,
-    right_outranges_none=False,
 )
 
 
