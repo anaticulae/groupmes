@@ -27,6 +27,7 @@ file_read = lambda x: utila.file_read(os.path.join(EXPECTED, x)).strip()  # pyli
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
     pytest.param(power.DISS143_PDF, None, 'diss143', id='diss143all'),
     pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143page20'),
+    pytest.param(power.BACHELOR037_PDF, None, 'bachelor037', id='bachelor037'),
 ])
 # yapf:enable
 # @utilatest.nightly
