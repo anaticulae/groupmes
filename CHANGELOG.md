@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.15.2
+
+### Feature
+
+* skip bad parsing as a result of invalid footer line (ad9a3496cf7e)
+
+### Fix
+
+* add missing page parameter (a4e4fccf4066)
+
 ## v0.15.1
 
 ### Fix
