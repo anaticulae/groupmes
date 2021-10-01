@@ -219,6 +219,7 @@ def merge_footer_pages(footers):
             continue
         # merge notes together
         current.footer.notes[-1] = iamraw.FootNoteMerged(
+            page=current.footer.notes[-1].page,
             number=current.footer.notes[-1].number,
             notes=[
                 current.footer.notes[-1],
