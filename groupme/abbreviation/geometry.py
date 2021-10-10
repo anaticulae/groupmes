@@ -57,6 +57,7 @@ def parse_page(page: texmex.PageTextNavigator) -> iamraw.Abbreviations:
         return None
     result = []
     for short, description in parsed:
+        short, description = short.strip(), description.strip()
         result.append(
             iamraw.Abbreviation(
                 short=short,
