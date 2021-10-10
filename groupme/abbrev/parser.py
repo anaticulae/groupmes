@@ -9,17 +9,17 @@
 
 import iamraw
 
-import groupme.abbreviation
-import groupme.abbreviation.geometry
-import groupme.abbreviation.simple
+import groupme.abbrev
+import groupme.abbrev.geometry
+import groupme.abbrev.simple
 
 STRATEGIES = [
-    groupme.abbreviation.simple.SimpleAbbreviationParser,
-    groupme.abbreviation.geometry.GeometryAbbreviationParser,
+    groupme.abbrev.simple.SimpleAbbreviationParser,
+    groupme.abbrev.geometry.GeometryAbbreviationParser,
 ]
 
 
-def parse(data: groupme.abbreviation.AbbreviationData) -> iamraw.AbbreviationResult:  # yapf:disable
+def parse(data: groupme.abbrev.AbbreviationData) -> iamraw.AbbreviationResult:
     assert isinstance(data.normal, list), type(data)
     assert isinstance(data.oneline, list), type(data)
 

@@ -9,8 +9,8 @@
 
 import serializeraw
 
-import groupme.abbreviation
-import groupme.abbreviation.parser
+import groupme.abbrev
+import groupme.abbrev.parser
 
 
 def work(
@@ -27,7 +27,7 @@ def work(
         textposition_oneline,
         pages,
     )
-    parsed = groupme.abbreviation.parser.parse(data)
+    parsed = groupme.abbrev.parser.parse(data)
     # dump result
     dumped = serializeraw.dump_abbreviation_table(parsed)
     return dumped
@@ -39,7 +39,7 @@ def load_data(
     text_oneline: str,
     textposition_oneline: str,
     pages: tuple = None,
-) -> groupme.abbreviation.AbbreviationData:
+) -> groupme.abbrev.AbbreviationData:
     normal = serializeraw.ptn_fromfile(
         text=text,
         textpositions=textposition,
@@ -50,5 +50,5 @@ def load_data(
         textpositions=textposition_oneline,
         pages=pages,
     )
-    data = groupme.abbreviation.AbbreviationData(normal=normal, oneline=oneline)
+    data = groupme.abbrev.AbbreviationData(normal=normal, oneline=oneline)
     return data

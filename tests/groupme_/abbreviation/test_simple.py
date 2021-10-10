@@ -12,7 +12,7 @@ import pytest
 import serializeraw
 import utilatest
 
-import groupme.abbreviation.simple
+import groupme.abbrev.simple
 
 
 @pytest.mark.parametrize('source, pages, expected', [
@@ -33,8 +33,8 @@ def test_abbreviation_parse_simple(source, pages, expected):
         prefix='oneline',
         pages=pages,
     )
-    content = groupme.abbreviation.AbbreviationData(oneline=content)
-    strategy = groupme.abbreviation.simple.SimpleAbbreviationParser(content)
+    content = groupme.abbrev.AbbreviationData(oneline=content)
+    strategy = groupme.abbrev.simple.SimpleAbbreviationParser(content)
     parsed = strategy.result()
     assert parsed, parsed
     assert len(parsed) == expected, str(parsed)

@@ -46,7 +46,7 @@ if __name__ == "__main__":
         ],
         packages=[
             'groupme',
-            'groupme.abbreviation',
+            'groupme.abbrev',
             'groupme.border',
             'groupme.feature',
             'groupme.footer',

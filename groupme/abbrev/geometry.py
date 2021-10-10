@@ -34,10 +34,10 @@ import iamraw
 import texmex
 import utila
 
-import groupme.abbreviation
+import groupme.abbrev
 
 
-class GeometryAbbreviationParser(groupme.abbreviation.AbbreviationExtractorStrategy): # yapf:disable
+class GeometryAbbreviationParser(groupme.abbrev.AbbreviationExtractorStrategy):
 
     def result(self) -> iamraw.AbbreviationResult:
         ready = iamraw.AbbreviationResult()

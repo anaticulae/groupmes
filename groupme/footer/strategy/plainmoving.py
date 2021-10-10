@@ -51,16 +51,14 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
         return report
 
 
-MAX_STRATEGY_ERROR = configo.HolyTable(
-    items=[
-        (0, 0),
-        (5, 1),
-        (10, 2),
-        (20, 4),
-        (50, 8),
-        (100, 15),
-    ],
-)
+MAX_STRATEGY_ERROR = configo.HolyTable(items=[
+    (0, 0),
+    (5, 1),
+    (10, 2),
+    (20, 4),
+    (50, 8),
+    (100, 15),
+],)
 
 
 def disable_strategy(footers) -> bool:

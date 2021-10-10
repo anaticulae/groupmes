@@ -12,7 +12,7 @@ import pytest
 import serializeraw
 import utilatest
 
-import groupme.abbreviation.geometry
+import groupme.abbrev.geometry
 
 
 def bachelor37():
@@ -20,7 +20,7 @@ def bachelor37():
         power.link(power.BACHELOR037_PDF),
         pages=2,
     )
-    content = groupme.abbreviation.AbbreviationData(normal=content)
+    content = groupme.abbrev.AbbreviationData(normal=content)
     return content
 
 
@@ -37,7 +37,7 @@ def test_abbreviation_parse_strategy_geometry(source, pages, expected):
         source,
         pages=pages,
     )
-    content = groupme.abbreviation.AbbreviationData(normal=content)
-    strategy = groupme.abbreviation.geometry.GeometryAbbreviationParser(content)
+    content = groupme.abbrev.AbbreviationData(normal=content)
+    strategy = groupme.abbrev.geometry.GeometryAbbreviationParser(content)
     parsed = strategy.result()
     assert len(parsed) == expected, len(parsed)

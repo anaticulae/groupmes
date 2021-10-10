@@ -10,10 +10,10 @@
 import iamraw
 import utila
 
-import groupme.abbreviation
+import groupme.abbrev
 
 
-class SimpleAbbreviationParser(groupme.abbreviation.AbbreviationExtractorStrategy): # yapf:disable
+class SimpleAbbreviationParser(groupme.abbrev.AbbreviationExtractorStrategy):
 
     def result(self) -> iamraw.AbbreviationResult:
         ready = iamraw.AbbreviationResult()
