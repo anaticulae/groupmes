@@ -37,19 +37,19 @@ import groupme.utils
 NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
 
 # max difference between left and right y-coordinate
-COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0).value # yapf:disable
+COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0)
 
 # minimal horizontal line count in cluster to avoid low item cluster
-MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10).value
+MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10)
 
 # maximal count of different header/footer areas
-MAX_FOOTERHEADER_AREA_COUNT = configo.HV_INT_PLUS(default=5).value
+MAX_FOOTERHEADER_AREA_COUNT = configo.HV_INT_PLUS(default=5)
 
 # maximal distance from page top in percent where header can be detected
-HEADER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=15, limit=100).value
+HEADER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=15, limit=100)
 
 # maximal distance from page bottom in percent where footer can be detected
-FOOTER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=20, limit=100).value
+FOOTER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=20, limit=100)
 
 class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy): # yapf:disable
     """The `FixedFooterStrategy` detects footer and header depending on

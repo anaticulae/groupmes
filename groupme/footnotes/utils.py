@@ -16,8 +16,8 @@ import iamraw
 import texmex
 import utila
 
-VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0).value
-HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=3.0).value
+VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0)
+HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=3.0)
 
 MAX_FOOTNOTE_X0 = configo.HolyTable(  # TODO: HOLY VALUE
     items=(

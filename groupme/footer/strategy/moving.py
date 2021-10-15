@@ -107,7 +107,7 @@ class MovingFooterResultReport(gfs.FooterStrategyResultReport):  # pylint:disabl
 
 
 # relation between detected and empty detected footer to reduce miss detection
-WRONG_STRATEGY_EMPTY_FOOTER_FACTOR = configo.HV_PERCENT_PLUS(default=20,).value
+WRONG_STRATEGY_EMPTY_FOOTER_FACTOR = configo.HV_PERCENT_PLUS(default=20)
 
 BOTTOM_BORDER = 0.60  # TODO: HOLY VALUE
 

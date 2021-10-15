@@ -21,7 +21,7 @@ import groupme.toc.group
 import groupme.toc.strategy
 
 # minimal percentage of tabletable lines per page
-MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(20, limit=100).value
+MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(default=20, limit=100)
 
 
 def work(

@@ -25,7 +25,7 @@ import groupme.toc.group
 import groupme.toc.strategy
 
 # minimal percentage of figure lines per page
-MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(20, limit=100.0).value
+MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(default=20, limit=100.0)
 MIN_FIGURE_ITEM_COUNT = 1
 
 

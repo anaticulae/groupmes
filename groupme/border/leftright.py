@@ -46,7 +46,7 @@ import iamraw
 import utila
 
 # max diff to match in common group.
-MAX_SIDE_DIFF = configo.HV_INT_PLUS(default=2.0)
+MAX_SIDE_DIFF = configo.HV_INT_PLUS(default=2)
 # exceptions which are allowed cause of user defined error.
 MAX_FIRSTSECOND_ERROR = configo.HolyTable(
     items=(
