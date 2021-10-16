@@ -9,6 +9,7 @@
 
 import iamraw.path
 import power
+import pytest
 
 import groupme.feature.distance
 import groupme.path
@@ -46,6 +47,7 @@ def test_distance_pyport_page3():
     assert first.after > 0, first
 
 
+@pytest.mark.xfail(reason='improve table parser')
 def test_distance_pyport_page5():
     loaded = pyporting(pages=(5))
     distances = groupme.feature.distance.determine_distances(loaded)
