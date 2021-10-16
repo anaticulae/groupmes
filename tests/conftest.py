@@ -46,7 +46,7 @@ RESOURCES = [
     power.HOME018_PDF,
     power.PAPER18_PDF,
     power.DOCU014_PDF,
-    power.DOCU007_PDF,
+    genex.todo(power.DOCU007_PDF, tablero=True),
     power.BOOK007_PDF,
     power.DOCU009_PDF,
     (power.BACHELOR051_PDF, '0:25'),
