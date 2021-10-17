@@ -84,28 +84,11 @@ RESOURCES_NOTITLE = [
 
 
 def extract_notitle(resources):
-    destination = power.generated(folder='notitle')
-    files = [item[0] if isinstance(item, tuple) else item for item in resources]
-    # prepare
-    without_titlepage = [
-        os.path.join(destination, f'{item}.pdf')
-        for item in utilatest.simplify_testfile_names(
-            files + [power.REPOSITORY],  # ensure correct parent
-            sort=False,
-        )
-    ]
-    # jam
-    todo = []
-    for inpath, outpath in zip(files, without_titlepage):
-        todo.append(f'jam -i {inpath} -o {outpath} --remove=0')
-    utila.run_parallel(todo)
-
-    # generate
-    genex.extract(
-        without_titlepage,
-        destination,
-        groupme=True,
+    genex.extract_removepages(
+        resources,
+        removepages='0',
+        folder='notitle',
         pages='0:10',
+        groupme=True,
         worker=1,
-        base=destination,
     )
