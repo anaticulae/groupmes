@@ -28,6 +28,7 @@ import copy
 import math
 import re
 
+import configo
 import iamraw
 import utila
 
@@ -35,7 +36,9 @@ import groupme.toc
 import groupme.toc.lineregex
 import groupme.toc.strategy
 
-MAX_TOC_LINE_LENGTH = 250  # TODO: HOLY VALUE
+MAX_TOC_LINE_LENGTH = configo.HV_FLOAT_PLUS(default=250.0)
+
+ONELINE_MERGE_Y_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
@@ -171,12 +174,11 @@ def oneline_merge(lines):
     lines = sorted(lines, key=lambda item: item.bounding.x0)
     # top to down
     lines = sorted(lines, key=lambda item: item.bounding.y0)
-
     result = [lines[0]]
     for item in lines[1:]:
         last_y = result[-1].bounding.y0
         current_y = item.bounding.y0
-        if math.fabs(last_y - current_y) > 5.0:  # TODO: HOLY VALUE
+        if math.fabs(last_y - current_y) > ONELINE_MERGE_Y_DIFF_MAX:
             result.append(item)
             continue
         # TODO: MERGE BOUNDING

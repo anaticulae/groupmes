@@ -33,7 +33,7 @@ MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(default=30, limit=100)
 # limit possible toc to the first 15 pages
 POSSIBLE_PAGES = utila.make_tuple(15)
 
-MIN_TOC_COUNT = 4  # TODO: HOLY VALUE
+MIN_TOC_COUNT = configo.HV_INT_PLUS(default=4)
 
 
 def work(

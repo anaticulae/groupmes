@@ -22,13 +22,14 @@ Strategy:
 
 """
 
+import configo
 import texmex
 import utila
 
 import groupme.toc.strategy
 import groupme.toc.strategy.utils
 
-MIN_GROUP_GAP = 30.0  # TODO HOLY VALUE
+MIN_GROUP_GAP = configo.HV_FLOAT_PLUS(default=30.0)
 
 
 class GeometryRegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):

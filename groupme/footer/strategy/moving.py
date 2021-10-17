@@ -32,6 +32,8 @@ import groupme.footer.strategy as gfs
 import groupme.footer.strategy.pages as gfsp
 import groupme.footnotes.highnote
 
+FOOTNOTE_NUMBER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=0.4)
+
 
 class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
 
@@ -109,7 +111,7 @@ class MovingFooterResultReport(gfs.FooterStrategyResultReport):  # pylint:disabl
 # relation between detected and empty detected footer to reduce miss detection
 WRONG_STRATEGY_EMPTY_FOOTER_FACTOR = configo.HV_PERCENT_PLUS(default=20)
 
-BOTTOM_BORDER = 0.60  # TODO: HOLY VALUE
+BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
 
 
 def process_page(
@@ -222,7 +224,7 @@ def footnote_number_error(footers):
     if not error:
         return False
     error_rate = utila.rate_sum(error, fit)
-    if error_rate > 0.4:  # TODO: HOLY VALUE
+    if error_rate > FOOTNOTE_NUMBER_ERROR_MAX:
         return True
     return False
 

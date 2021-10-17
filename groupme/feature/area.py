@@ -20,12 +20,13 @@ import collections
 import os
 import typing
 
+import configo
 import serializeraw
 import texmex
 import utila
 import yaml
 
-RECTANGLE_MAX_DIFF = 10.0  # TODO: HOLY VALUE
+RECTANGLE_MAX_DIFF = configo.HV_FLOAT_PLUS(default=10.0)
 
 RequiredResources = collections.namedtuple(
     'RequiredResources',

@@ -25,6 +25,7 @@ Required API:
 import collections
 import typing
 
+import configo
 import elements
 import iamraw
 import serializeraw
@@ -35,16 +36,17 @@ PageContentTextPosition = collections.namedtuple(
     'content, page',
 )
 
-# TODO: REPLACE HOLY VALUE
-TOP_BORDER = 0.2  # Header in the range of 0% till 20%
-TOP_MAX_DIFFERENCE = 20.0
+# Header in the range of 0% till 20%
+TOP_BORDER = configo.HV_PERCENT_PLUS(default=20)
 
 # TODO: Think about scaling this value depending on result
-BOTTOM_BORDER = 0.8  # Footer is in range of 80% till 100%
-BOTTOM_MAX_DIFFERENCE = 20.0
-BOTTOM_MAX_AREA = 2500.0  # page number is not very big
+# Footer is in range of 80% till 100%
+BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=80)
+BOTTOM_MAX_DIFFERENCE = configo.HV_FLOAT_PLUS(default=20.0)
+# page number is not very big
+BOTTOM_MAX_AREA = configo.HV_FLOAT_PLUS(default=2500.0)
 
-PAGE_ELEMENTS_MIN = 4
+PAGE_ELEMENTS_MIN = configo.HV_INT_PLUS(default=4)
 
 
 def work(text: str, textpositions: str, pages: tuple = None) -> str:

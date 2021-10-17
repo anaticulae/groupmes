@@ -9,6 +9,7 @@
 
 import typing
 
+import configo
 import iamraw
 import serializeraw
 import utila
@@ -81,16 +82,21 @@ def expected_border(leftright, most, pagesizes, page: int):
     return result
 
 
+PAGE_CLUSTER_SIZE_MIN = configo.HV_INT_PLUS(default=3)
+
+PAGE_CLUSTER_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+
+
 def pagecluster(pagesizes) -> list:
 
-    def equal_size(candidat, clusteritem):
-        # TODO: HOLY VALUE
-        return utila.norms(candidat[0], clusteritem[0]) < 10.0
+    def equal_size(candidat, clusteritem) -> bool:
+        diff = utila.norms(candidat[0], clusteritem[0])
+        return diff < PAGE_CLUSTER_DIFF_MAX
 
     grouped = utila.determine_cluster(
         pagesizes,
         classifier=equal_size,
-        min_elements=3,  # TODO: HOLY VALUE
+        min_elements=PAGE_CLUSTER_SIZE_MIN,
     )
 
     pages = [sorted(item.page for item in cluster) for cluster in grouped]

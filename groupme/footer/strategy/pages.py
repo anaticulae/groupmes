@@ -28,6 +28,8 @@ import groupme.footer.strategy as gfs
 
 MIN_DISTANCE_TO_HORIZONTAL = configo.HV_INT_PLUS(default=15, limit=250)
 
+PAGE_NUMBER_Y_MAX = configo.HV_FLOAT_PLUS(default=250.0)
+
 
 class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
 
@@ -61,7 +63,7 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
             _, location = processed
             header, footer = None, None
             # TODO: CHECK ROTATED PAGES
-            if location[3] < 250:  # y1 TODO: HOLY VALUE
+            if location[3] < PAGE_NUMBER_Y_MAX:
                 # header
                 header = create_headerinformation(
                     location,

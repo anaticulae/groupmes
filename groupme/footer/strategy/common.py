@@ -27,7 +27,7 @@ import utila
 import groupme.footer.headnotes
 import groupme.footer.strategy as gfs
 
-COMMON_HEADER_MAX_ERROR = 10.0  # TODO: HOLY VALUE
+COMMON_HEADER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=10.0)
 # minimal items in a cluster to be detected and accepted as feature.
 MIN_OCCURRENCE = configo.HolyTable(
     items=(
@@ -41,7 +41,7 @@ MIN_OCCURRENCE = configo.HolyTable(
     right_outranges_none=False,
 )
 
-TOP_AREA = 0.15  # TODO: HOLY VALUE
+TOP_AREA = configo.HV_PERCENT_PLUS(default=15)
 
 
 class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W0223
@@ -154,8 +154,9 @@ def create_fixedheader(collected, text: str, pagenumber, end):
     current.undefined.append(iamraw.RawText(text=text))
 
 
-MIN_HEADER_TEXT_OCCURENCE = 5  # TODO: HOLY VALUE
-MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN = 3  # TODO: HOLY VALUE
+MIN_HEADER_TEXT_OCCURENCE = configo.HV_INT_PLUS(default=5)
+
+MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN = configo.HV_INT_PLUS(default=3)
 
 
 def prepare_clustering(

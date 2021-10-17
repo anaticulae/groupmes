@@ -9,11 +9,14 @@
 
 import typing
 
+import configo
 import iamraw
 import utila
 
 import groupme
 import groupme.likelihood
+
+ASSERT_HORIZONTAL_MAX_DIFF = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 def match(
@@ -39,10 +42,10 @@ def match(
 
 
 def assert_horizontal(bounding):
-    # TODO HOLY VALUE
     # assert abs(bounding.y0 - bounding.y1) < 2.0, str(bounding)
     # assert that item is horizontal
-    assert abs(bounding.y0 - bounding.y1) < 5.0, str(bounding)
+    diff = abs(bounding.y0 - bounding.y1)
+    assert diff < ASSERT_HORIZONTAL_MAX_DIFF, str(bounding)
 
 
 def biggest_hlinecluster_in_area(
@@ -95,7 +98,6 @@ def cluster_in_area(clusters, ymin, ymax):
         # because all items in cluster have the same location.
         bounding = cluster[0]
         assert_horizontal(bounding)
-
         if iamraw.between(bounding, ymin, ymax):
             result.append(cluster)
     return result

@@ -309,11 +309,14 @@ def maximize_leftright(
     return left, right
 
 
+CLUSTER_CANDIAT_DIFF_MAX = configo.HV_FLOAT_PLUS(default=2.0)
+
+
 def longest_two(items: utila.Numbers) -> typing.Tuple[float, float]:
 
-    def close(candidat, clusteritem):
-        # TODO: HOLY VALUE
-        return math.fabs(candidat - clusteritem) < 2.0
+    def close(candidat, clusteritem) -> bool:
+        diff = math.fabs(candidat - clusteritem)
+        return diff < CLUSTER_CANDIAT_DIFF_MAX
 
     clustered = utila.determine_cluster(items, close)
     result = sorted(clustered, key=len, reverse=True)

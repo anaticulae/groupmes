@@ -10,15 +10,16 @@
 ====================================
 """
 
+import configo
 import texmex
 import utila
 
 import groupme.toc.strategy
 import groupme.toc.strategy.utils
 
-MAX_HEADLINE_LEVEL = 3  # TODO: HOLY VALUE
+MAX_HEADLINE_LEVEL = configo.HV_INT_PLUS(default=3)
 
-MAX_HEADLINE_HEIGHT = 20  # TODO: HOLY VALUE
+MAX_HEADLINE_HEIGHT = configo.HV_FLOAT_PLUS(default=20.0)
 
 
 class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
@@ -55,9 +56,11 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
     @property
     def textfeed(self):
         # TODO: ADD CACHE
+        # .value is required cause of further processing
+        count = MAX_HEADLINE_LEVEL.value
         feeds = texmex.document_textfeed(
             self.loaded.content,
-            count=MAX_HEADLINE_LEVEL,
+            count=count,
         )
         feed = sorted(feeds)
         return feed
