@@ -19,7 +19,7 @@ import tests.groupme_
 def master72(footnotes):
     page21 = [item for item in footnotes if item.page == 21]
     assert len(page21) == 6
-    assert len(footnotes) == 268  # TODO: 260!
+    assert len(footnotes) == 260
 
 
 @pytest.mark.parametrize('source, pages, expected', [
