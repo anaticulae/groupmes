@@ -124,15 +124,37 @@ def merge_online(items) -> list:
     return result
 
 
+LEFTRIGHT_DIFF_MAX = configo.HV_FLOAT_PLUS(default=20.0)
+
+SAMEORIGIN_DIFF_MAX = configo.HV_FLOAT_PLUS(default=35.0)
+
+SAMELINE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
+
+UNDERFIRST_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+
+
 def connected(first, second):
-    # TODO: HOLY VALUE
-    leftright = utila.near(first.bounding.x1, second.bounding.x0, diff=20.0)
+    leftright = utila.near(
+        first.bounding.x1,
+        second.bounding.x0,
+        diff=LEFTRIGHT_DIFF_MAX,
+    )
     # plus indention
-    sameorigin = utila.near(first.bounding.x0, second.bounding.x0, diff=35.0)
-
-    sameline = utila.near(first.bounding.y0, second.bounding.y0, diff=5.0)
-    underfirst = utila.near(first.bounding.y1, second.bounding.y0, diff=10.0)
-
+    sameorigin = utila.near(
+        first.bounding.x0,
+        second.bounding.x0,
+        diff=SAMEORIGIN_DIFF_MAX,
+    )
+    sameline = utila.near(
+        first.bounding.y0,
+        second.bounding.y0,
+        diff=SAMELINE_DIFF_MAX,
+    )
+    underfirst = utila.near(
+        first.bounding.y1,
+        second.bounding.y0,
+        diff=UNDERFIRST_DIFF_MAX,
+    )
     result = (leftright or sameorigin) and (sameline or underfirst)
     return result
 

@@ -207,6 +207,9 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     return singlepage
 
 
+MORETHANONE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=100.0)
+
+
 def morethanone(clusters) -> bool:
     """Determine vector to position of detected page numbers.
 
@@ -224,7 +227,7 @@ def morethanone(clusters) -> bool:
         return False
     mins, maxs = utila.mins(collected), utila.maxs(collected)
     diff = maxs - mins
-    result = diff > 100  # HOLY VALUE
+    result = diff > MORETHANONE_DIFF_MAX
     return result
 
 
