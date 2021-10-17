@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.16.0
+
+### Feature
+
+* replace with modifiable holy values (a07de10c3b05)
+
+### Fix
+
+* adjust holy value definition (0fbda91dfd72)
+* strip parsed abbreviation (2448577f92f9)
+
 ## v0.15.2
 
 ### Feature
