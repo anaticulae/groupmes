@@ -141,13 +141,13 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
         # TODO: INVESTIGATE HERE
         utila.error('could not run simple approach')
         return None
-    mixed = utila.diff_mode(left, max_diff=SIDE_DIFF_MAX.value)
+    mixed = utila.diff_mode(left, max_diff=SIDE_DIFF_MAX)
     # first side
     first = left[::2]
-    first_matched = utila.diff_mode(first, max_diff=SIDE_DIFF_MAX.value)
+    first_matched = utila.diff_mode(first, max_diff=SIDE_DIFF_MAX)
     # second side
     second = left[1::2]
-    second_matched = utila.diff_mode(second, max_diff=SIDE_DIFF_MAX.value)
+    second_matched = utila.diff_mode(second, max_diff=SIDE_DIFF_MAX)
 
     mixed_error = 1 - len(mixed) / len(left)
     first_error = 1 - len(first_matched) / len(first)
@@ -289,8 +289,8 @@ def maximize_leftright(
     Returns:
         tuple with left and right content bounding
     """
-    left_max = size.size.width * LEFT_PERCENT.value
-    right_min = size.size.width * (1 - RIGHT_PERCENT.value)
+    left_max = size.size.width * LEFT_PERCENT
+    right_min = size.size.width * (1 - RIGHT_PERCENT)
     left_max, right_min = utila.roundme(left_max, right_min)
     assert left_max <= right_min, 'left and right bounds are flipped'
 
