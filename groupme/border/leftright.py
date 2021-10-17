@@ -25,8 +25,8 @@ Simple Approach
 ~~~~~~~~~~~~~~~
 
 Some documents have exceptions on some pages. We handle this via allowed
-errors defined with the HolyValues `MAX_FIRSTSECOND_ERROR` and
-`MIN_MIXED_ERROR`.
+errors defined with the HolyValues `FIRSTSECOND_ERROR_COUNT_MAX` and
+`MIXED_ERROR_MIN`.
 
 Raising Edge
 ~~~~~~~~~~~~
@@ -46,9 +46,9 @@ import iamraw
 import utila
 
 # max diff to match in common group.
-MAX_SIDE_DIFF = configo.HV_INT_PLUS(default=2)
+SIDE_DIFF_MAX = configo.HV_INT_PLUS(default=2)
 # exceptions which are allowed cause of user defined error.
-MAX_FIRSTSECOND_ERROR = configo.HolyTable(
+FIRSTSECOND_ERROR_COUNT_MAX = configo.HolyTable(
     items=(
         (2, 0.5),
         (3, 0.35),
@@ -60,13 +60,13 @@ MAX_FIRSTSECOND_ERROR = configo.HolyTable(
     right_outranges_none=False,
 )
 # errors which are a result of handle alternating border as single border.
-MIN_MIXED_ERROR = configo.HV_PERCENT_PLUS(default=15)
+MIXED_ERROR_MIN = configo.HV_PERCENT_PLUS(default=15)
 # area where left border can be located.
 LEFT_PERCENT = configo.HV_PERCENT_PLUS(default=30)
 # area where right border can be located.
 RIGHT_PERCENT = configo.HV_PERCENT_PLUS(default=30)
 
-MIN_RAISING_EDGE = configo.HV_PERCENT_PLUS(default=75)
+RAISING_EDGE_MIN = configo.HV_PERCENT_PLUS(default=75)
 
 # TODO: SHOULD WE DISABLE ALGO ON BIG FAIL COUNT?
 RAISING_FAILRATE = configo.HolyTable(
@@ -141,13 +141,13 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
         # TODO: INVESTIGATE HERE
         utila.error('could not run simple approach')
         return None
-    mixed = utila.diff_mode(left, max_diff=MAX_SIDE_DIFF.value)
+    mixed = utila.diff_mode(left, max_diff=SIDE_DIFF_MAX.value)
     # first side
     first = left[::2]
-    first_matched = utila.diff_mode(first, max_diff=MAX_SIDE_DIFF.value)
+    first_matched = utila.diff_mode(first, max_diff=SIDE_DIFF_MAX.value)
     # second side
     second = left[1::2]
-    second_matched = utila.diff_mode(second, max_diff=MAX_SIDE_DIFF.value)
+    second_matched = utila.diff_mode(second, max_diff=SIDE_DIFF_MAX.value)
 
     mixed_error = 1 - len(mixed) / len(left)
     first_error = 1 - len(first_matched) / len(first)
@@ -159,8 +159,8 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
 
     # left right
     # TODO: DEFINE BETTER CONFIDENCE APPROACH
-    max_firstsecond_error = MAX_FIRSTSECOND_ERROR(len(first))
-    if mixed_error > MIN_MIXED_ERROR.value and all([
+    max_firstsecond_error = FIRSTSECOND_ERROR_COUNT_MAX(len(first))
+    if mixed_error > MIXED_ERROR_MIN.value and all([
             first_error < max_firstsecond_error,
             second_error < max_firstsecond_error,
     ]):
@@ -212,7 +212,7 @@ def raising(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
     edges = utila.diffs(left)
     failures = [
         index for index, item in enumerate(edges)
-        if item < edge * MIN_RAISING_EDGE.value
+        if item < edge * RAISING_EDGE_MIN.value
     ]
     failrate = len(failures) / len(edges)
     max_failrate = RAISING_FAILRATE(len(edges))

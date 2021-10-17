@@ -17,9 +17,9 @@ import texmex
 import utila
 
 VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0)
-HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=3.0)
+HIGHNOTE_RISE_MIN = configo.HV_FLOAT_PLUS(default=3.0)
 
-MAX_FOOTNOTE_X0 = configo.HolyTable(
+FOOTNOTE_X0_MAX = configo.HolyTable(
     items=(
         (440, 100),  # TODO: US Letter?
         (550, 150),  # DINA4
@@ -64,7 +64,7 @@ def split_textinfo(content) -> list:
     collected = []
     for item in content:
         for style in item.style.content:
-            if style.rise >= HIGHNOTE_MIN_RISE:
+            if style.rise >= HIGHNOTE_RISE_MIN:
                 if highnote:
                     result.append((highnote, union(collected)))
                     collected = []

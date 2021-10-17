@@ -26,7 +26,7 @@ import texmex
 import utila
 import yaml
 
-RECTANGLE_MAX_DIFF = configo.HV_FLOAT_PLUS(default=10.0)
+RECTANGLE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 
 RequiredResources = collections.namedtuple(
     'RequiredResources',
@@ -130,14 +130,14 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
 
 
 def boxed_checker(items) -> utila.RectangleCheck:
-    result = utila.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
+    result = utila.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
     for item in items:
         result.extend(*item.box)
     return result
 
 
 def table_checker(items) -> utila.RectangleCheck:
-    result = utila.RectangleCheck(max_diff=RECTANGLE_MAX_DIFF)
+    result = utila.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
     for item in items:
         result.extend(*item.bounding)
     return result

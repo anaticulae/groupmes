@@ -42,9 +42,9 @@ TOP_BORDER = configo.HV_PERCENT_PLUS(default=20)
 # TODO: Think about scaling this value depending on result
 # Footer is in range of 80% till 100%
 BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=80)
-BOTTOM_MAX_DIFFERENCE = configo.HV_FLOAT_PLUS(default=20.0)
+BOTTOM_DIFFERENCE_MAX = configo.HV_FLOAT_PLUS(default=20.0)
 # page number is not very big
-BOTTOM_MAX_AREA = configo.HV_FLOAT_PLUS(default=2500.0)
+BOTTOM_AREA_MAX = configo.HV_FLOAT_PLUS(default=2500.0)
 
 PAGE_ELEMENTS_MIN = configo.HV_INT_PLUS(default=4)
 
@@ -110,8 +110,8 @@ def footer(
 
 def valid_content(
     navigators,
-    max_area: float = BOTTOM_MAX_AREA,
-    max_difference: float = BOTTOM_MAX_DIFFERENCE,
+    max_area: float = BOTTOM_AREA_MAX,
+    max_difference: float = BOTTOM_DIFFERENCE_MAX,
     min_elements: int = PAGE_ELEMENTS_MIN,
     numbers_only: bool = True,
     remove_empty: bool = True,

@@ -17,9 +17,7 @@ import utila
 import groupme.toc.strategy
 import groupme.toc.strategy.utils
 
-MAX_HEADLINE_LEVEL = configo.HV_INT_PLUS(default=3)
-
-MAX_HEADLINE_HEIGHT = configo.HV_FLOAT_PLUS(default=20.0)
+HEADLINE_LEVEL_MAX = configo.HV_INT_PLUS(default=3)
 
 
 class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
@@ -57,7 +55,7 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
     def textfeed(self):
         # TODO: ADD CACHE
         # .value is required cause of further processing
-        count = MAX_HEADLINE_LEVEL.value
+        count = HEADLINE_LEVEL_MAX.value
         feeds = texmex.document_textfeed(
             self.loaded.content,
             count=count,

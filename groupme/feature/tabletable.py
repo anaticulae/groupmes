@@ -21,7 +21,7 @@ import groupme.toc.group
 import groupme.toc.strategy
 
 # minimal percentage of tabletable lines per page
-MIN_TOFS_PER_PAGE = configo.HV_PERCENT_PLUS(default=20, limit=100)
+TOFS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=20, limit=100)
 
 
 def work(
@@ -53,7 +53,7 @@ def work(
     selected = groupme.pageselector.select_contentpages(
         navigators,
         wrong_table=NO_TABLES,
-        min_valid_lines_perpage=MIN_TOFS_PER_PAGE,
+        min_valid_lines_perpage=TOFS_PER_PAGE_MIN,
     )
     # select toc pages only
     navigators = utila.select_pages(navigators, pages=selected)

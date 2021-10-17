@@ -14,7 +14,7 @@ import utila
 import groupme.toc.group
 import groupme.toc.strategy.regex
 
-MIN_HEADLINE_SIZE = configo.HV_FLOAT_PLUS(15.0)
+HEADLINE_SIZE_MIN = configo.HV_FLOAT_PLUS(15.0)
 
 
 def select_contentpages(
@@ -78,7 +78,7 @@ def headline(page):
             continue
         # most item is more robust than max item
         textsize = item.style.textsize()
-        if textsize < MIN_HEADLINE_SIZE:
+        if textsize < HEADLINE_SIZE_MIN:
             continue
         result.append(item.text.strip())
     if not result:

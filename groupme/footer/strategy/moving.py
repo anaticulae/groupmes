@@ -154,7 +154,7 @@ def select_footer_line(horizontals, pagewidth, pageheight) -> float:
     # skip horizontals which are located too top
     filtered = [item for item in horizontals if item.box.y0 >= footer_start]
     # potential footer is located too right
-    x0_max = groupme.footnotes.utils.MAX_FOOTNOTE_X0(pagewidth)
+    x0_max = groupme.footnotes.utils.FOOTNOTE_X0_MAX(pagewidth)
     filtered = [item for item in filtered if item.box.x0 <= x0_max]
     # determine y-level
     bottomed = max([item.box.y0 for item in filtered], default=None)

@@ -27,9 +27,9 @@ import utila
 import groupme.footer.headnotes
 import groupme.footer.strategy as gfs
 
-COMMON_HEADER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=10.0)
+COMMON_HEADER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 # minimal items in a cluster to be detected and accepted as feature.
-MIN_OCCURRENCE = configo.HolyTable(
+OCCURRENCE_MIN = configo.HolyTable(
     items=(
         (0, 5),
         (10, 7),
@@ -100,12 +100,12 @@ def cluster_pages(
     tryagain: bool = False,
 ):
     pagenumbers = len(pagenavigators)
-    min_cluster_count = MIN_OCCURRENCE(pagenumbers)
-    occurrence_min = MIN_HEADER_TEXT_OCCURENCE
+    min_cluster_count = OCCURRENCE_MIN(pagenumbers)
+    occurrence_min = HEADER_TEXT_OCCURENCE_MIN
     if tryagain:
         # run algorithmn with lower bound to gather more data but may be
         # more instable.
-        occurrence_min = MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN
+        occurrence_min = HEADER_TEXT_OCCURENCE_TRYAGAIN_MIN
     # prepare data
     with_box = utila.flatten(
         prepare_clustering(
@@ -114,7 +114,7 @@ def cluster_pages(
         ))
     clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
-        max_diff=COMMON_HEADER_MAX_ERROR,
+        max_diff=COMMON_HEADER_ERROR_MAX,
         min_elements=min_cluster_count,
     )
     if not clusters:
@@ -154,14 +154,14 @@ def create_fixedheader(collected, text: str, pagenumber, end):
     current.undefined.append(iamraw.RawText(text=text))
 
 
-MIN_HEADER_TEXT_OCCURENCE = configo.HV_INT_PLUS(default=5)
+HEADER_TEXT_OCCURENCE_MIN = configo.HV_INT_PLUS(default=5)
 
-MIN_HEADER_TEXT_OCCURENCE_TRYAGAIN = configo.HV_INT_PLUS(default=3)
+HEADER_TEXT_OCCURENCE_TRYAGAIN_MIN = configo.HV_INT_PLUS(default=3)
 
 
 def prepare_clustering(
     pagetextnavigators,
-    occurrence_min: int = MIN_HEADER_TEXT_OCCURENCE,
+    occurrence_min: int = HEADER_TEXT_OCCURENCE_MIN,
 ):
     collected = []
     for page in pagetextnavigators:

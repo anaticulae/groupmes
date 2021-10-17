@@ -15,7 +15,7 @@ Example:
 - technical/page_24_color_figures_images.pdf
 
 Extract page numbers as footer if the distance between page number and
-next horizontal line is greater than `MIN_DISTANCE_TO_HORIZONTAL`.
+next horizontal line is greater than `DISTANCE_TO_HORIZONTAL_MIN`.
 
 """
 
@@ -26,7 +26,7 @@ import utila
 
 import groupme.footer.strategy as gfs
 
-MIN_DISTANCE_TO_HORIZONTAL = configo.HV_INT_PLUS(default=15, limit=250)
+DISTANCE_TO_HORIZONTAL_MIN = configo.HV_INT_PLUS(default=15, limit=250)
 
 PAGE_NUMBER_Y_MAX = configo.HV_FLOAT_PLUS(default=250.0)
 
@@ -141,7 +141,7 @@ def process_page(page, rawpage, horizontals):
         return None
     pagenumber_bounding = rawpage[0]
     distance_to_firsthorizontal = distance(pagenumber_bounding, horizontals)
-    if distance_to_firsthorizontal <= MIN_DISTANCE_TO_HORIZONTAL:
+    if distance_to_firsthorizontal <= DISTANCE_TO_HORIZONTAL_MIN:
         # Require some distance to horizontal line
         # TODO: ADD DOCU HERE
         return None

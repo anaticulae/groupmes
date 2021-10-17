@@ -28,12 +28,12 @@ import groupme.toc.group
 import groupme.toc.strategy
 
 # minimal percentage of toc lines per page
-MIN_TOCS_PER_PAGE = configo.HV_PERCENT_PLUS(default=30, limit=100)
+TOCS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=30, limit=100)
 
 # limit possible toc to the first 15 pages
 POSSIBLE_PAGES = utila.make_tuple(15)
 
-MIN_TOC_COUNT = configo.HV_INT_PLUS(default=4)
+TOC_COUNT_MIN = configo.HV_INT_PLUS(default=4)
 
 
 def work(
@@ -67,14 +67,14 @@ def work(
         textnavigators=navigators,
         wrong_table=NO_TOC,
         skip_higherqual_level_three=False,
-        min_valid_lines_perpage=MIN_TOCS_PER_PAGE,
+        min_valid_lines_perpage=TOCS_PER_PAGE_MIN,
     )
     navigators = utila.select_pages(navigators, pages=selected)
 
     loaded = groupme.toc.strategy.load(navigators)
     extracted = groupme.toc.extractor.extract(
         loaded,
-        min_detection_count=MIN_TOC_COUNT,
+        min_detection_count=TOC_COUNT_MIN,
     )
 
     flat = utila.flatten(extracted.content)

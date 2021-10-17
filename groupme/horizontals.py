@@ -16,7 +16,7 @@ import utila
 import groupme
 import groupme.likelihood
 
-ASSERT_HORIZONTAL_MAX_DIFF = configo.HV_FLOAT_PLUS(default=5.0)
+ASSERT_HORIZONTAL_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 def match(
@@ -45,7 +45,7 @@ def assert_horizontal(bounding):
     # assert abs(bounding.y0 - bounding.y1) < 2.0, str(bounding)
     # assert that item is horizontal
     diff = abs(bounding.y0 - bounding.y1)
-    assert diff < ASSERT_HORIZONTAL_MAX_DIFF, str(bounding)
+    assert diff < ASSERT_HORIZONTAL_DIFF_MAX, str(bounding)
 
 
 def biggest_hlinecluster_in_area(

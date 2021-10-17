@@ -13,7 +13,7 @@ Use the geometry of the page to extract the table of content.
 
 Strategy:
 
-* split area by `MIN_GROUP_GAP`
+* split area by `GROUP_GAP_MIN`
     * run regex for every item in group
     * group items which not pass the parser
     * run parser on grouped items
@@ -29,7 +29,7 @@ import utila
 import groupme.toc.strategy
 import groupme.toc.strategy.utils
 
-MIN_GROUP_GAP = configo.HV_FLOAT_PLUS(default=30.0)
+GROUP_GAP_MIN = configo.HV_FLOAT_PLUS(default=30.0)
 
 
 class GeometryRegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
@@ -75,7 +75,7 @@ def group_areas(content: texmex.PageTextNavigator):
     grouped = []
     for item, distance in zip(content, linedistances):
         grouped.append(item)
-        if distance > MIN_GROUP_GAP:
+        if distance > GROUP_GAP_MIN:
             result.append(grouped)
             grouped = []
     # add last one, cause last one has no linedistance

@@ -36,7 +36,7 @@ import groupme.toc
 import groupme.toc.lineregex
 import groupme.toc.strategy
 
-MAX_TOC_LINE_LENGTH = configo.HV_FLOAT_PLUS(default=250.0)
+TOC_LINE_LENGTH_MAX = configo.HV_FLOAT_PLUS(default=250.0)
 
 ONELINE_MERGE_Y_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 
@@ -106,7 +106,7 @@ def parse(content: str) -> groupme.toc.TocLines:
     result = groupme.toc.remove_duplication(result)
 
     # remove long lines which can not be real lines
-    result = [item for item in result if len(item.title) < MAX_TOC_LINE_LENGTH]
+    result = [item for item in result if len(item.title) < TOC_LINE_LENGTH_MAX]
 
     # Ensure that toc list is ordered by position on pdf page
     result = groupme.toc.sort_byposition(result, duplicated)

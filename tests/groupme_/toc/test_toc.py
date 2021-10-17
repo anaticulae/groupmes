@@ -67,7 +67,7 @@ def test_extract_toc_from_path(resources, pages, expected):
     loaded = groupme.toc.strategy.load(navigators)
     extracted = groupme.toc.extractor.extract(
         loaded,
-        min_detection_count=groupme.feature.toc.MIN_TOC_COUNT,
+        min_detection_count=groupme.feature.toc.TOC_COUNT_MIN,
     )
     flat = utila.flatten(extracted)
     assert len(flat) == expected, str(flat)

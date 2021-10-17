@@ -24,7 +24,7 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
     # parse footnote
     for multiline in collected:
         x0 = multiline[0].bounding[0]  # first line x0
-        if x0 >= groupme.footnotes.utils.MAX_FOOTNOTE_X0(width):
+        if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
             # potential highnote is located too right
             continue
         text = ''.join([item.text for item in multiline])
@@ -46,7 +46,7 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
     return result
 
 
-MERGE_MIN_LINE = len('1. Ebd.')  # TODO: HOLY VALUE
+MERGE_LINE_MIN = len('1. Ebd.')  # TODO: HOLY VALUE
 
 
 def merges(content):
@@ -57,7 +57,7 @@ def merges(content):
     for line in content[1:]:
         text = line.text.strip()
         matched = re.match(NUMBER_TEXT, text, re.MULTILINE)
-        if matched and len(text) >= MERGE_MIN_LINE:
+        if matched and len(text) >= MERGE_LINE_MIN:
             collected.append([line])
         else:
             collected[-1].append(line)

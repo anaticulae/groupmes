@@ -51,7 +51,7 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
         return report
 
 
-MAX_STRATEGY_ERROR = configo.HolyTable(items=[
+STRATEGY_ERROR_MAX = configo.HolyTable(items=[
     (0, 0),
     (5, 1),
     (10, 2),
@@ -77,7 +77,7 @@ def disable_strategy(footers) -> bool:
         nonumber = [item for item in page.footer.notes if item.number < 0]
         if nonumber:
             nonumber_count += 1
-    max_error = MAX_STRATEGY_ERROR(len(footers))
+    max_error = STRATEGY_ERROR_MAX(len(footers))
     if nonumber_count > max_error:
         return True
     return False
@@ -85,7 +85,7 @@ def disable_strategy(footers) -> bool:
 
 BOTTOM_BORDER = 0.6
 
-FOOTER_MIN_COUNT = configo.HolyTable(
+FOOTER_COUNT_MIN = configo.HolyTable(
     items=(
         (BOTTOM_BORDER, 10),
         (0.8, 3),
@@ -103,7 +103,7 @@ def invalid_footer(begin, content) -> bool:
     # TODO: The distance between footer line and footer content is very
     # high in bachelor128. Think about to change invalidation method. May
     # introduce high distance check?
-    mincount = FOOTER_MIN_COUNT(begin)
+    mincount = FOOTER_COUNT_MIN(begin)
     mincount = math.floor(mincount)
     if len(content) < mincount:
         return True

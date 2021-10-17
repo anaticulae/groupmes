@@ -37,27 +37,27 @@ import groupme.utils
 NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
 
 # max difference between left and right y-coordinate
-COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR = configo.HV_FLOAT_PLUS(default=2.0)
+COMMON_HORIZONTAL_CLASSIFIER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=2.0)
 
 # minimal horizontal line count in cluster to avoid low item cluster
-MIN_CLUSTER_SIZE = configo.HV_INT_PLUS(default=10)
+CLUSTER_SIZE_MIN = configo.HV_INT_PLUS(default=10)
 
 # maximal count of different header/footer areas
-MAX_FOOTERHEADER_AREA_COUNT = configo.HV_INT_PLUS(default=5)
+FOOTERHEADER_AREA_COUNT_MAX = configo.HV_INT_PLUS(default=5)
 
 # maximal distance from page top in percent where header can be detected
-HEADER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=15, limit=100)
+HEADER_SIZE_MAX = configo.HV_PERCENT_PLUS(default=15, limit=100)
 
 # maximal distance from page bottom in percent where footer can be detected
-FOOTER_MAX_SIZE = configo.HV_PERCENT_PLUS(default=20, limit=100)
+FOOTER_SIZE_MAX = configo.HV_PERCENT_PLUS(default=20, limit=100)
 
 class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy): # yapf:disable
     """The `FixedFooterStrategy` detects footer and header depending on
     horizontal line position. The strategy detects the most common
     border for header and footer.
 
-    The header is located in [top, `HEADER_MAX_SIZE`]
-    The footer is located in [bottom-`FOOTER_MAX_SIZE`, bottom].
+    The header is located in [top, `HEADER_SIZE_MAX`]
+    The footer is located in [bottom-`FOOTER_SIZE_MAX`, bottom].
 
     TODO: Run strategy with second common, third common header/footer again.
     """
@@ -74,7 +74,7 @@ class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy)
         tops, bottoms = extract_common_footer(
             horizontals=self.horizontals,
             pageheight=pageheight,
-            max_group_count=MAX_FOOTERHEADER_AREA_COUNT,
+            max_group_count=FOOTERHEADER_AREA_COUNT_MAX,
         )
         footerheader = []
         for top, bottom in itertools.zip_longest(tops, bottoms):
@@ -119,7 +119,7 @@ def extract_common_footer(
     # instead of the whole line.
     clusters = utila.same_line_cluster(
         todo=bounding,
-        max_diff=COMMON_HORIZONTAL_CLASSIFIER_MAX_ERROR,
+        max_diff=COMMON_HORIZONTAL_CLASSIFIER_ERROR_MAX,
     )
 
     if not clusters:
@@ -129,13 +129,13 @@ def extract_common_footer(
         clusters,
         pageheight=pageheight,
         upper_bound=texmex.START,
-        lower_bound=HEADER_MAX_SIZE,
+        lower_bound=HEADER_SIZE_MAX,
         max_group_count=max_group_count,
     )
     bottom = extract_inarea(
         clusters,
         pageheight=pageheight,
-        upper_bound=texmex.END - FOOTER_MAX_SIZE,
+        upper_bound=texmex.END - FOOTER_SIZE_MAX,
         lower_bound=texmex.END,
         max_group_count=max_group_count,
     )
@@ -226,7 +226,7 @@ def extract_inarea(
     upper_bound: float = texmex.START,
     lower_bound: float = texmex.END,
     max_group_count: int = 1,
-    min_group_size: int = MIN_CLUSTER_SIZE,
+    min_group_size: int = CLUSTER_SIZE_MIN,
 ) -> float:
     """Determine all elements in the potential footer/header area"""
     ymin = pageheight * upper_bound
