@@ -10,11 +10,14 @@
 import contextlib
 import dataclasses
 
+import configo
 import elements
 import iamraw
 import utila
 
 import groupme.toc
+
+APPENDIX_LEVEL = configo.HV_INT_PLUS(default=100)
 
 
 def group_bychapter(items: groupme.toc.TocLines):
@@ -66,7 +69,7 @@ class AppendixLevel(Level):
     character: str = None
 
     def __int__(self):
-        return 100  # HOLY VALUE
+        return APPENDIX_LEVEL
 
 
 def level(item: str) -> Level:
