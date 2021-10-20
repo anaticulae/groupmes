@@ -9,6 +9,7 @@
 
 import re
 
+import configo
 import iamraw
 import utila
 
@@ -46,10 +47,10 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
     return result
 
 
-MERGE_LINE_MIN = len('1. Ebd.')  # TODO: HOLY VALUE
+MERGE_LINE_MIN = configo.HV_INT_PLUS(default=len('1. Ebd.'))
 
 
-def merges(content):
+def merges(content, merge_line_min: int = MERGE_LINE_MIN):
     if not content:
         return []
     collected = [[content[0]]]
@@ -57,7 +58,7 @@ def merges(content):
     for line in content[1:]:
         text = line.text.strip()
         matched = re.match(NUMBER_TEXT, text, re.MULTILINE)
-        if matched and len(text) >= MERGE_LINE_MIN:
+        if matched and len(text) >= merge_line_min:
             collected.append([line])
         else:
             collected[-1].append(line)
