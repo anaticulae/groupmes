@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.16.1
+
+### Feature
+
+* introduce holy value (775eb73f141f)
+
+### Fix
+
+* do not use magic parameter (13094613af4a)
+
 ## v0.16.0
 
 ### Feature
