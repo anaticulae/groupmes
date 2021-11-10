@@ -37,7 +37,7 @@ def work(
     fontcontent: str,
     horizontals: str,
     sizeandborders: str,
-    pagenumbers: str,
+    pagenumber: str,
     pages=None,
 ) -> str:
     """Extract footer and header area out of horizontal lines
@@ -50,7 +50,7 @@ def work(
     # load
     horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
     sizeandborders = serializeraw.load_pageborders(sizeandborders, pages=pages)
-    pagenumbers = serializeraw.load_pagenumbers(pagenumbers, pages=pages)
+    pagenumber = serializeraw.load_pagenumbers(pagenumber, pages=pages)
 
     ptns = serializeraw.create_pagetextnavigators_fromfile(
         text,
@@ -64,7 +64,7 @@ def work(
     result = extract_footerheader(
         horizontals=horizontals,
         sizeandborders=sizeandborders,
-        pagenumbers=pagenumbers,
+        pagenumbers=pagenumber,
         pagetextnavigators=ptns,
     )
 

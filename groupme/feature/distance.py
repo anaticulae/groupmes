@@ -48,15 +48,13 @@ PageContentAreaDistances = typing.List[PageContentAreaDistance]
 
 
 def work(
-    area: str,
+    areas: str,
     text: str,
     textpositions: str,
     pages: tuple = None,
 ) -> str:
-    loaded = load(area, text, textpositions, pages=pages)
-
+    loaded = load(areas, text, textpositions, pages=pages)
     distances = determine_distances(loaded)
-
     dumped = dump_distance(distances)
     return dumped
 
