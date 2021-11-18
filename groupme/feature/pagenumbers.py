@@ -38,10 +38,10 @@ PageContentTextPosition = collections.namedtuple(
 
 # Header in the range of 0% till 20%
 TOP_BORDER = configo.HV_PERCENT_PLUS(default=20)
-
 # TODO: Think about scaling this value depending on result
 # Footer is in range of 80% till 100%
 BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=80)
+
 BOTTOM_DIFFERENCE_MAX = configo.HV_FLOAT_PLUS(default=20.0)
 # page number is not very big
 BOTTOM_AREA_MAX = configo.HV_FLOAT_PLUS(default=2500.0)
@@ -62,6 +62,7 @@ def work(text: str, textpositions: str, pages: tuple = None) -> str:
 
 
 def determine_pagenumbers(navigators):
+    # TODO: DETERMINE PAGE NUMBER OF ROTATED PAGES
     rotated, normal = utila.partition(isrotated, navigators)  #  pylint:disable=W0612
     detected = header(normal) + footer(normal)
     return pagenumbers(detected)
@@ -176,7 +177,7 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     Returns:
         singlepage or (left, right)
     """
-    left, right = [], []
+    result = []
     for cluster in clusters:
         if multiple_number_perpage(cluster):
             continue
@@ -187,24 +188,30 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
             if not elements.ispagenumber(content):
                 continue
             try:
-                content = int(content)  # pylint:disable=R0204
+                content: int = int(content)
             except ValueError:
                 # roman number
                 pass
             # save number as tuple of pdf_page and detected page
-            item = (pdfpage, bounding, content)
-            if isrightpage(pdfpage):
-                right.append(item)
-            else:
-                left.append(item)
-    if morethanone(clusters):
-        # TODO: INTRODUCE MORE THAN, LEFT, RIGHT ETC.
-        return left, right
-    # One cluster is used, we do not have right and left pagenumber
-    singlepage = left + right
-    # Sort by pdfpage
-    singlepage = sorted(singlepage, key=lambda number: number[0])
-    return singlepage
+            item = iamraw.PageNumber(
+                pdfpage=pdfpage,
+                bounding=bounding,
+                detected=content,
+                direction=determine_orientation(pdfpage, clusters),
+            )
+            result.append(item)
+    # sort by pdfpage number
+    result = sorted(result)
+    return result
+
+
+def determine_orientation(pdfpage, clusters) -> iamraw.PageNumberOrientation:
+    multiple = morethanone(clusters)
+    if not multiple:
+        return iamraw.PageNumberOrientation.NORMAL
+    if isrightpage(pdfpage):
+        return iamraw.PageNumberOrientation.RIGHT
+    return iamraw.PageNumberOrientation.LEFT
 
 
 MORETHANONE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=100.0)
