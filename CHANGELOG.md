@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.16.2
+
+### Feature
+
+* detect pagenumbers as a single list (7ae83e0a9eca)
+
 ## v0.16.1
 
 ### Feature
