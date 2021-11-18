@@ -10,6 +10,7 @@
 
 import typing
 
+import iamraw
 import power
 import pytest
 import serializeraw
@@ -30,7 +31,6 @@ def test_simple_example(simple):  #pylint:disable=W0621
 def test_footer_simple(simple):  #pylint:disable=W0621
     navigator, _ = simple
     result = groupme.feature.pagenumbers.footer(navigator)
-
     # cluster with page numbers
     assert len(result) == 1
 
@@ -61,7 +61,6 @@ def test_header_restructured():
     # (5,
     # (BoundingBox(x_bottom=72.00, y_bottom=746.33, x_top=336.99, y_top=758.84),
     # 'The RestructuredText Book Documentation, Release 0.1'))
-
     # 2 lines of header, one for the left and one for the right page/side
     assert len(result) == 2, utila.log_raw(result)
 
@@ -70,31 +69,22 @@ def test_pagenumbers_restructured():
     source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(navigators)
-
+    expected = ['i', 'ii'] + utila.ranged_list(start=1, end=24)
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
-
+    # yapf:disable
+    assert any(item for item in numbers if item.direction == iamraw.PageNumberOrientation.LEFT)
+    assert any(item for item in numbers if item.direction == iamraw.PageNumberOrientation.RIGHT)
+    # yapf:enable
     # left and right page
-    assert len(numbers) == 2
-
-    # need number in left and/or right page
-    assert sum([len(number) for number in numbers])
-
-    left = [item[2] for item in numbers[0]]
-    right = [item[2] for item in numbers[1]]
-
-    expected_left = ['ii', 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22]
-    expected_right = ['i', 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]
-
-    assert left == expected_left
-    assert right == expected_right
+    assert len(numbers) == 25
+    detected = [item.detected for item in numbers]
+    assert detected == expected
 
 
 def test_pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
     result = groupme.feature.pagenumbers.footer(simple_navigator)
-
     # single page
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
-
     assert isinstance(numbers, typing.Iterable), numbers
     assert numbers
 
@@ -104,7 +94,6 @@ def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
     result = groupme.feature.pagenumbers.footer(simple_navigator)
     # single page
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
-
     assert isinstance(numbers, typing.Iterable), numbers
     assert numbers
     return numbers
@@ -117,8 +106,7 @@ def test_numbers_restructured_without_title():
     source = power.link(power.DOCU027_PDF, folder='notitle')
     navigator = serializeraw.create_pagetextnavigators_frompath(source)
     pagenumbers = groupme.feature.pagenumbers.determine_pagenumbers(navigator)
-    pagenumbers = utila.flatten(pagenumbers)  # pylint:disable=R0204
-    pagenumbers = sorted(pagenumbers, key=lambda x: x[0])
+    pagenumbers = sorted(pagenumbers)
     expected_pdfpages = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     current = [item[0] for item in pagenumbers]
     assert current == expected_pdfpages, str(current)
