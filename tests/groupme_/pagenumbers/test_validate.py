@@ -11,15 +11,23 @@ import iamraw
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import groupme
 
 
+def bachelor111(result):
+    assert len(result) == 110
+    expected = 'i ii iii iv'.split() + utila.ranged_list(start=1, end=107)
+    current = [item.detected for item in result]
+    assert current == expected
+
+
 # master110: 86 and xii is currently not detected
 # VALIDATED: master110: 110-15
 @pytest.mark.parametrize('source, expected', [
-    pytest.param(power.BACHELOR111_PDF, 110, id='bachelor111'),
+    pytest.param(power.BACHELOR111_PDF, bachelor111, id='bachelor111'),
     pytest.param(power.MASTER072_PDF, 69, id='master72pages'),
     pytest.param(power.TECH024_PDF, 23, id='technical24pages'),
     pytest.param(power.MASTER091A_PDF, 88, id='master91a'),
@@ -35,6 +43,9 @@ def test_validate_pagenumbers(source, expected):
     # run extractor
     result = groupme.feature.pagenumbers.work(text, text_positions)
     result = serializeraw.load_pagenumbers(result)
+    if callable(expected):
+        expected(result)
+        return
     if isinstance(result, tuple):
         # left right, or multiple pages positions
         result = result[0] + result[1]
