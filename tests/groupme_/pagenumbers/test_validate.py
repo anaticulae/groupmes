@@ -18,23 +18,23 @@ import groupme
 
 # master110: 86 and xii is currently not detected
 # VALIDATED: master110: 110-15
-@pytest.mark.parametrize('resource, expected', [
-    pytest.param(power.link(power.BACHELOR111_PDF), 110, id='bachelor111'),
-    pytest.param(power.link(power.MASTER072_PDF), 69, id='master72pages'),
-    pytest.param(power.link(power.TECH024_PDF), 23, id='technical24pages'),
-    pytest.param(power.link(power.MASTER091A_PDF), 88, id='master91a'),
-    pytest.param(power.link(power.MASTER110_PDF), 91, id='master110'),
-    pytest.param(power.link(power.MASTER127_PDF), 127 - 1, id='master127'),
+@pytest.mark.parametrize('source, expected', [
+    pytest.param(power.BACHELOR111_PDF, 110, id='bachelor111'),
+    pytest.param(power.MASTER072_PDF, 69, id='master72pages'),
+    pytest.param(power.TECH024_PDF, 23, id='technical24pages'),
+    pytest.param(power.MASTER091A_PDF, 88, id='master91a'),
+    pytest.param(power.MASTER110_PDF, 91, id='master110'),
+    pytest.param(power.MASTER127_PDF, 127 - 1, id='master127'),
 ])
 @utilatest.longrun
-def test_validate_pagenumbers(resource, expected):
+def test_validate_pagenumbers(source, expected):
+    extracted = power.link(source)
     # TODO: bottom only, add header page extraction
-    text = iamraw.path.text(resource)
-    text_positions = iamraw.path.textposition(resource)
-
+    text = iamraw.path.text(extracted)
+    text_positions = iamraw.path.textposition(extracted)
+    # run extractor
     result = groupme.feature.pagenumbers.work(text, text_positions)
     result = serializeraw.load_pagenumbers(result)
-
     if isinstance(result, tuple):
         # left right, or multiple pages positions
         result = result[0] + result[1]
