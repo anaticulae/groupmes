@@ -26,7 +26,6 @@ def group_bychapter(items: groupme.toc.TocLines):
     assert isinstance(items, list), type(items)
     for item in items:
         assert isinstance(item, groupme.toc.TocLine), type(item)
-
     result = []
     collected = []
     for item in items:
@@ -117,7 +116,7 @@ def level(item: str) -> Level:
 # TODO: MOVE TO ELEMENTS
 
 
-def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint:disable=R1260
+def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
     Determine level of toc line and replace it with determined int-level.
@@ -128,15 +127,6 @@ def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint
         Table of content with replaced levels.`
     """
     assert isinstance(tableofcontent, list), type(tableofcontent)
-
-    def determine_level(level_) -> int:
-        if level_ is None:
-            return 1
-        numbered = elements.level_numbered(level_)
-        if numbered is None:
-            return 1
-        return numbered
-
     outlines = []
     for line in tableofcontent:
         if not line:
@@ -153,22 +143,31 @@ def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:  # pylint
             raw_location=line.raw_location,
         )
         outlines.append(section)
-
-    def level_zero(items):
-        """Ensure that no toc has level zero
-
-        Problem:
-            1 Einleitung
-            1.1 Aufbau der Arbeit
-            update every level to ensure
-        """
-        # TODO: REMOVE THIS?
-        level_min = min([item.level for item in items], default=utila.INF)
-        if not level_min:
-            for item in items:
-                item.level = item.level + 1
-        return items
-
     outlines = level_zero(outlines)
     result = iamraw.create_toc(outlines)
     return result
+
+
+def level_zero(items):
+    """Ensure that no toc has level zero
+
+    Problem:
+        1 Einleitung
+        1.1 Aufbau der Arbeit
+        update every level to ensure
+    """
+    # TODO: REMOVE THIS?
+    level_min = min([item.level for item in items], default=utila.INF)
+    if not level_min:
+        for item in items:
+            item.level = item.level + 1
+    return items
+
+
+def determine_level(level_) -> int:
+    if level_ is None:
+        return 1
+    numbered = elements.level_numbered(level_)
+    if numbered is None:
+        return 1
+    return numbered
