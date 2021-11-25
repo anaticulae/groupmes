@@ -90,7 +90,6 @@ def parse(content: str) -> groupme.toc.TocLines:
             # remove already matched content to do not confuse lower
             # strict pattern
             content = content.replace(item.raw, '')
-
     # TODO: improve this
     for line in [item for item in content.splitlines() if item.strip()]:
         if re.match(r'^\d', line):
@@ -100,14 +99,11 @@ def parse(content: str) -> groupme.toc.TocLines:
             continue
         matched = groupme.toc.lineregex.extract_match(matched)
         result.append(matched)
-
     # remove duplications, which can occur when table of content is on the
     # same page as first headline.
     result = groupme.toc.remove_duplication(result)
-
     # remove long lines which can not be real lines
     result = [item for item in result if len(item.title) < TOC_LINE_LENGTH_MAX]
-
     # Ensure that toc list is ordered by position on pdf page
     result = groupme.toc.sort_byposition(result, duplicated)
     return result
@@ -121,7 +117,6 @@ def parse_page(page: iamraw.Page) -> groupme.toc.TocLines:
     """
     # prepare data
     oneline_text = oneline(page)
-
     # remove single word line
     # HOMEWORK PAGE 4, remove `Inhaltsverzeichnis` in header.
     # # TODO: Look for a better header exclusion strategy
@@ -133,13 +128,10 @@ def parse_page(page: iamraw.Page) -> groupme.toc.TocLines:
         if len(item.strip().split()) > 1
     ]
     result = utila.NEWLINE.join(result)
-
     result = parse(result)
-
     # setup parse page location
     for item in result:
         item.raw_location = page.page
-
     return result
 
 
@@ -158,7 +150,6 @@ def oneline(page) -> str:
         lines = [item.text for item in lines]
     lines = split_newlines(lines)
     lines = [item.strip() for item in lines]
-
     text = utila.NEWLINE.join(lines)
     return text
 

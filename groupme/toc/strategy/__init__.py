@@ -68,8 +68,7 @@ def create(content: texmex.PageTextContentNavigators) -> ExtractionData:
     return data
 
 
-def remove_headline(
-        content: texmex.PageTextNavigator) -> texmex.PageTextNavigator:
+def remove_headline(content: texmex.PageTextNavigator) -> texmex.PageTextNavigator:  # yapf:disable
     """Remove table of content headline to improve extraction result."""
     result = texmex.PageTextNavigator(
         pagesize=(content.width, content.height),
