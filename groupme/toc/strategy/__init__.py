@@ -90,25 +90,13 @@ def remove_nonconnected_tocs(items):
         return []
     pagenumbers = [item.raw_location for item in items]
     pagenumbers = sorted(pagenumbers)
-
     result = [[pagenumbers[0]]]
     for item in pagenumbers[1:]:
         if item > (result[-1][-1] + 1):
             result.append([item])
         else:
             result[-1].append(item)
-    valid_pages = set(longest(result))
-
+    valid_pages = set(utila.longest(result))
     # remove non included items
     include = [item for item in items if item.raw_location in valid_pages]
     return include
-
-
-def longest(items):
-    if not items:
-        return None
-    max_ = 0
-    for index, item in enumerate(items[1:]):
-        if len(item) > max_:
-            max_ = index
-    return items[max_]
