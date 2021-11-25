@@ -20,7 +20,7 @@ import groupme.toc
 APPENDIX_LEVEL = configo.HV_INT_PLUS(default=100)
 
 
-def group_bychapter(items: groupme.toc.TocLines):
+def groupby_chapter(items: groupme.toc.TocLines):
     """Group by chapter."""
     # TODO: DONT KNOW WHY WE NEED THIS?
     assert isinstance(items, list), type(items)

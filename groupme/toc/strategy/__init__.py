@@ -55,15 +55,11 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
         key=lambda x: isinstance(x, groupme.toc.TocLine),
         items=extracted,
     )
-
     valid = remove_nonconnected_tocs(right)
-
     for item in right:
         if item not in valid:
             invalid.append(item)
-
-    content = groupme.toc.group.group_bychapter(valid)
-
+    content = groupme.toc.group.groupby_chapter(valid)
     result = ExtractionResult(content=content, invalid=invalid)
     return result
 
