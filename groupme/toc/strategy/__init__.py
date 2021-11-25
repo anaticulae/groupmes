@@ -63,8 +63,7 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
     return result
 
 
-def load(content: texmex.PageTextContentNavigators) -> ExtractionData:
-    # TODO: RENAME TO CREATE?
+def create(content: texmex.PageTextContentNavigators) -> ExtractionData:
     data = ExtractionData(content=content)
     return data
 
