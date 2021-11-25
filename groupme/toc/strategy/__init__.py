@@ -14,15 +14,14 @@ import typing
 import texmex
 import utila
 
-import groupme.toc as gt
+import groupme.toc
 import groupme.toc.group
-import groupme.toc.lineregex
 import groupme.utils
 
 
 @dataclasses.dataclass
 class ExtractionResult:
-    content: typing.List[gt.TocLines] = dataclasses.field(default_factory=list)
+    content: typing.List['TocLines'] = dataclasses.field(default_factory=list)
     invalid: typing.List[typing.Any] = dataclasses.field(default_factory=list)
 
     def __len__(self):
