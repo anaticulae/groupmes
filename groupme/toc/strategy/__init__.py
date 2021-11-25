@@ -11,6 +11,7 @@ import abc
 import dataclasses
 import typing
 
+import elements.headline.lookup
 import texmex
 import utila
 
@@ -75,7 +76,10 @@ def remove_headline(content: texmex.PageTextNavigator) -> texmex.PageTextNavigat
         page=content.page,
     )
     for item in content:
-        if item.text == 'Inhaltsverzeichnis':
+        if utila.verysimilar(
+                current=item.text,
+                expected=elements.headline.lookup.TOC,
+        ):
             continue
         result.insert(item.text, item.style, item.bounding)
     return result
