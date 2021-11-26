@@ -1,0 +1,26 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2021 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+import power
+import serializeraw
+
+import tests.groupme_
+
+
+def test_appendix_level(testdir, monkeypatch):
+    """Before this test, all appendix level where set to level 4."""
+    tests.groupme_.run(
+        f'--toc -i {power.link(power.DISS157_PDF)} -o {testdir.tmpdir}',
+        monkeypatch=monkeypatch,
+    )
+    loaded = serializeraw.load_toc(testdir.tmpdir)
+    appendix = loaded.children[-2].children
+    assert len(appendix) == 3
+    levels = [item.level for item in appendix]
+    assert levels == [2, 2, 2]
