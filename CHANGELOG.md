@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.16.3
+
+### Feature
+
+* use improved remover (c05723b5fd34)
+
 ## v0.16.2
 
 ### Feature
