@@ -96,6 +96,7 @@ WORKPLAN = [
         inputs=[
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
+            ResultFile(producer='rawmaker', name='border_pages'),
         ],
         output=('pagenumbers',),
     ),

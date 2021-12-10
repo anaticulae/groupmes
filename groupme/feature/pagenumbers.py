@@ -50,24 +50,45 @@ BOTTOM_AREA_MAX = configo.HV_FLOAT_PLUS(default=2500.0)
 PAGE_ELEMENTS_MIN = configo.HV_INT_PLUS(default=4)
 
 
-def work(text: str, textpositions: str, pages: tuple = None) -> str:
+def work(
+    text: str,
+    textpositions: str,
+    sizeandborder: str = None,
+    pages: tuple = None,
+) -> str:
     utila.call('numbers')
     navigators = serializeraw.create_pagetextnavigators_fromfile(
         text=text,
         textpositions=textpositions,
         pages=pages,
     )
-    detected = determine_pagenumbers(navigators)
+    if utila.exists(sizeandborder):
+        # TODO: WRITE EVERY PAGE SIZE TO DOCUMENT?
+        sizeandborder = serializeraw.load_pageborders(
+            sizeandborder,
+            pages=pages,
+        )
+    else:
+        sizeandborder = None
+    detected = determine_pagenumbers(navigators, sizeandborders=sizeandborder)
     dumped = serializeraw.dump_pagenumbers(detected)
     return dumped
 
 
-def determine_pagenumbers(navigators):
+def determine_pagenumbers(navigators, sizeandborders=None) -> list:
+    if sizeandborders:
+        for ptn in navigators:
+            ptn.pagesize = utila.select_page(sizeandborders, page=ptn.page).size
+    numbers = []
     rotated, normal = utila.partition(isrotated, navigators)
     detected = header(normal) + footer(normal)
-    rotated = [texmex.rotate_left(page) for page in navigators]
+    if detected:
+        numbers.extend(detected)
+    rotated = [texmex.rotate_left(page) for page in rotated]
     detected_rotated = header(rotated) + footer(rotated)
-    return pagenumbers(detected + detected_rotated)
+    if detected_rotated:
+        numbers.extend(detected_rotated)
+    return pagenumbers(numbers)
 
 
 def header(
