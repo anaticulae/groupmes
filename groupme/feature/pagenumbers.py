@@ -74,6 +74,7 @@ def determine_pagenumbers(navigators) -> list:
     detected = header(normal) + footer(normal)
     if detected:
         numbers.extend(detected)
+    # TODO: REMOVE ROATED CAUSE WE ROTATE PTN BACK IF REQUIRED
     rotated = [texmex.rotate_left(page) for page in rotated]
     detected_rotated = header(rotated) + footer(rotated)
     if detected_rotated:
