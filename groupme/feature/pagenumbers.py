@@ -29,6 +29,7 @@ import configo
 import elements
 import iamraw
 import serializeraw
+import texmex
 import utila
 
 PageContentTextPosition = collections.namedtuple(
@@ -62,10 +63,11 @@ def work(text: str, textpositions: str, pages: tuple = None) -> str:
 
 
 def determine_pagenumbers(navigators):
-    # TODO: DETERMINE PAGE NUMBER OF ROTATED PAGES
-    rotated, normal = utila.partition(isrotated, navigators)  #  pylint:disable=W0612
+    rotated, normal = utila.partition(isrotated, navigators)
     detected = header(normal) + footer(normal)
-    return pagenumbers(detected)
+    rotated = [texmex.rotate_left(page) for page in navigators]
+    detected_rotated = header(rotated) + footer(rotated)
+    return pagenumbers(detected + detected_rotated)
 
 
 def header(
