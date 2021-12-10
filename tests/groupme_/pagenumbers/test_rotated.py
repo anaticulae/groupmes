@@ -19,10 +19,8 @@ def test_rotated_master116page102():
     pages = (102, 103, 104, 105, 106, 107, 108)
     ptn = serializeraw.ptn_frompath(source, pages=pages)
     sizeandborders = serializeraw.load_pageborders(source, pages=pages)
-    numbers = groupme.feature.pagenumbers.determine_pagenumbers(
-        ptn,
-        sizeandborders=sizeandborders,
-    )
+    ptn = groupme.feature.pagenumbers.rotate_ifrequired(ptn, sizeandborders)
+    numbers = groupme.feature.pagenumbers.determine_pagenumbers(ptn)
     assert len(numbers) == 7
 
 
@@ -31,8 +29,6 @@ def test_rotated_normal_mixed_master116page102():
     pages = utila.ranged_tuple(100, 117)
     ptn = serializeraw.ptn_frompath(source, pages=pages)
     sizeandborders = serializeraw.load_pageborders(source, pages=pages)
-    numbers = groupme.feature.pagenumbers.determine_pagenumbers(
-        ptn,
-        sizeandborders,
-    )
+    ptn = groupme.feature.pagenumbers.rotate_ifrequired(ptn, sizeandborders)
+    numbers = groupme.feature.pagenumbers.determine_pagenumbers(ptn)
     assert len(numbers) == 14

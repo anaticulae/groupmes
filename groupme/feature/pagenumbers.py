@@ -62,23 +62,13 @@ def work(
         textpositions=textpositions,
         pages=pages,
     )
-    if utila.exists(sizeandborder):
-        # TODO: WRITE EVERY PAGE SIZE TO DOCUMENT?
-        sizeandborder = serializeraw.load_pageborders(
-            sizeandborder,
-            pages=pages,
-        )
-    else:
-        sizeandborder = None
-    detected = determine_pagenumbers(navigators, sizeandborders=sizeandborder)
+    navigators = rotate_ifrequired(navigators, sizeandborders=sizeandborder)
+    detected = determine_pagenumbers(navigators)
     dumped = serializeraw.dump_pagenumbers(detected)
     return dumped
 
 
-def determine_pagenumbers(navigators, sizeandborders=None) -> list:
-    if sizeandborders:
-        for ptn in navigators:
-            ptn.pagesize = utila.select_page(sizeandborders, page=ptn.page).size
+def determine_pagenumbers(navigators) -> list:
     numbers = []
     rotated, normal = utila.partition(isrotated, navigators)
     detected = header(normal) + footer(normal)
@@ -89,6 +79,31 @@ def determine_pagenumbers(navigators, sizeandborders=None) -> list:
     if detected_rotated:
         numbers.extend(detected_rotated)
     return pagenumbers(numbers)
+
+
+def rotate_ifrequired(navigators, sizeandborders=None):
+    if not sizeandborders:
+        return navigators
+    if isinstance(sizeandborders, str):
+        if not utila.exists(sizeandborders):
+            utila.error('missing size and borders: pagenumber')
+            return navigators
+        pages = [page.page for page in navigators]
+        sizeandborders = serializeraw.load_pageborders(
+            sizeandborders,
+            pages=pages,
+        )
+    result = []
+    for ptn in navigators:
+        pagesize = utila.select_page(sizeandborders, page=ptn.page)
+        if pagesize is None:
+            # empty navigator or only a part of ptn is extracted
+            continue
+        pagesize = pagesize.size
+        if isrotated(pagesize):
+            ptn = texmex.rotate_left(ptn)
+        result.append(ptn)
+    return result
 
 
 def header(
