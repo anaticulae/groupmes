@@ -9,6 +9,7 @@
 
 import power
 import serializeraw
+import utila
 
 import groupme.feature.pagenumbers
 
@@ -19,3 +20,11 @@ def test_rotated_master116page102():
     ptn = serializeraw.ptn_frompath(source, pages=pages)
     numbers = groupme.feature.pagenumbers.determine_pagenumbers(ptn)
     assert len(numbers) == 7
+
+
+def test_rotated_normal_mixed_master116page102():
+    source = power.link(power.MASTER116_PDF)
+    pages = utila.ranged_tuple(100, 117)
+    ptn = serializeraw.ptn_frompath(source, pages=pages)
+    numbers = groupme.feature.pagenumbers.determine_pagenumbers(ptn)
+    assert len(numbers) == 14
