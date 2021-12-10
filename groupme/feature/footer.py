@@ -21,6 +21,7 @@ import serializeraw
 import texmex
 import utila
 
+import groupme.feature.pagenumbers
 import groupme.footer
 import groupme.footer.strategy
 import groupme.footer.strategy.common
@@ -59,7 +60,7 @@ def work(
         fontcontent,
         pages=pages,
     )
-
+    ptns = groupme.feature.pagenumbers.rotate_ifrequired(ptns, sizeandborders)
     # work
     result = extract_footerheader(
         horizontals=horizontals,

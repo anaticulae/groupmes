@@ -88,9 +88,9 @@ def rotate_ifrequired(navigators, sizeandborders=None):
         if not utila.exists(sizeandborders):
             utila.error('missing size and borders: pagenumber')
             return navigators
-        pages = [page.page for page in navigators]
+        pages = tuple(page.page for page in navigators)
         sizeandborders = serializeraw.load_pageborders(
-            sizeandborders,
+            content=sizeandborders,
             pages=pages,
         )
     result = []
