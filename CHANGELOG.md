@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.17.0
+
+### Feature
+
+* rotate rotated page to use normal header detector (fa44e5e7aaa2)
+* simplify code (189734dfe074)
+* detected rotated page numbers (c8ce472de634)
+
+### Fix
+
+* add page size (0930b8f2760d)
+
 ## v0.16.3
 
 ### Feature
