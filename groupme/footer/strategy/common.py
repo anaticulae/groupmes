@@ -185,14 +185,26 @@ def prepare_clustering(
     return result
 
 
-def header_content(clusters, occurrence_min: int) -> set:
+def header_content(pagecontents, occurrence_min: int) -> set:
     """Some documents does not have any header, but equal sized first line(s).
 
     We have to ignore this first content lines."""
     collected = collections.defaultdict(int)
-    for cluster in clusters:
-        for item in cluster:
+    for pagecontent in pagecontents:
+        for item in pagecontent:
             text = item[1].text.strip()
             collected[text] += 1
-    valid = {key for key, value in collected.items() if value >= occurrence_min}
+    # sum textual equal as equal items
+    # 6.3 evaluation 106
+    # 6.3 evaluation 107
+    # 6.3 evaluation 108
+    # HINT: if layout is better parsed page numbers are may not included
+    maxdiff = 0.8  # TODO: HOLY VALUE
+    counted = {
+        key: sum([
+            val for current, val in collected.items()
+            if utila.similar(expected=key, current=current, maxdiff=maxdiff)
+        ]) for key in collected.keys()
+    }
+    valid = {key for key in collected.keys() if counted[key] >= occurrence_min}
     return valid
