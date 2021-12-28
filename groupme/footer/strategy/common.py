@@ -62,33 +62,41 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
 
 
 def best(*items):
-
-    def empty(collected) -> int:
-        # select hole in [20%,80%]
-        if not collected:
-            return None
-        # skip start and end of document cause we expect a lot of
-        # empty/skipped header.
-        start, end = int(len(collected) * 0.2), int(len(collected) * 0.8)
-        empty = [
-            item for item in collected[start:end]
-            if not item[1].title and not item[1].undefined
-        ]
-        return len(empty)
-
     result = items[0]
-    value = empty(result)
-
+    value = count_empty(result)
     for current in items[1:]:
-        wholes = empty(current)
+        wholes = count_empty(current)
         if wholes is None:
+            # nothing to count
             continue
         if wholes >= value:
+            # worser than current result
             continue
         # better
         result = current
         value = wholes
     return result
+
+
+# count holes in [20%,80%]
+COUNT_EMPTY_DOCUMENT_PAGE_START = configo.HV_PERCENT_PLUS(default=20)
+
+COUNT_EMPTY_DOCUMENT_PAGE_END = configo.HV_PERCENT_PLUS(default=80)
+
+
+def count_empty(collected) -> int:
+    # count holes in [20%,80%]
+    if not collected:
+        return None
+    # skip start and end of document cause we expect a lot of
+    # empty/skipped header.
+    start = int(len(collected) * COUNT_EMPTY_DOCUMENT_PAGE_START)
+    end = int(len(collected) * COUNT_EMPTY_DOCUMENT_PAGE_END)
+    empty = [
+        item for item in collected[start:end]
+        if not item[1].title and not item[1].undefined
+    ]
+    return len(empty)
 
 
 # plus 1 percent off to ensure that content and header is separated correctly.
