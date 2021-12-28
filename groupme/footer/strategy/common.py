@@ -99,8 +99,6 @@ def cluster_pages(
     pagenavigators: texmex.PageTextNavigators,
     tryagain: bool = False,
 ):
-    pagenumbers = len(pagenavigators)
-    min_cluster_count = OCCURRENCE_MIN(pagenumbers)
     occurrence_min = HEADER_TEXT_OCCURENCE_MIN
     if tryagain:
         # run algorithmn with lower bound to gather more data but may be
@@ -112,6 +110,8 @@ def cluster_pages(
             pagenavigators,
             occurrence_min=occurrence_min,
         ))
+    pagenumbers = len(pagenavigators)
+    min_cluster_count = OCCURRENCE_MIN(pagenumbers)
     clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
         max_diff=COMMON_HEADER_ERROR_MAX,
