@@ -149,3 +149,24 @@ def test_header_bachelor128(testdir, monkeypatch):
     # three may reduces later if we get better algorithms, but for now
     # tuning this value will lead to more false positive.
     assert len(empty) == 3  # VALIDATED
+
+
+@utilatest.longrun
+def test_header_diss172page110p130(testdir, monkeypatch):
+    loaded = extract_header(
+        power.DISS172_PDF,
+        testdir,
+        monkeypatch,
+        pages='110:130',
+    )
+    assert len(loaded) == 16  # MAY CHANGE LATER
+
+
+@utilatest.nightly
+def test_header_diss172(testdir, monkeypatch):
+    loaded = extract_header(
+        power.DISS172_PDF,
+        testdir,
+        monkeypatch,
+    )
+    assert len(loaded) == 148  # NOT VALIDATED
