@@ -132,6 +132,8 @@ def cluster_pages(
 
 
 def create_fixedheader(collected, text: str, pagenumber, end):
+    # TODO: REMOVE SIDE EFFECT, CHANGE TO A MORE CLEAR CODE STYLE
+    # PASS DATA IN AND RETURN RESULT DATA
     # remove newline at end TODO: REMOVE LATER
     text = text.strip()
     try:
