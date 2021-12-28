@@ -32,10 +32,10 @@ COMMON_HEADER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 OCCURRENCE_MIN = configo.HolyTable(
     items=(
         (0, 5),
-        (10, 7),
-        (15, 10),
-        (30, 15),
-        (50, 20),
+        (10, 5),
+        (15, 8),
+        (30, 12),
+        (50, 14),
         (100, 25),
     ),
     right_outranges_none=False,
@@ -112,6 +112,8 @@ def cluster_pages(
         ))
     pagenumbers = len(pagenavigators)
     min_cluster_count = OCCURRENCE_MIN(pagenumbers)
+    # TODO: REMOVE LATER, SWITCH TABLE BASED ENTROPY OF POTENTIAL HEADER AREA?
+    min_cluster_count = 5
     clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
         max_diff=COMMON_HEADER_ERROR_MAX,
