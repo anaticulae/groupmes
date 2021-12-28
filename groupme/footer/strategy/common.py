@@ -129,6 +129,11 @@ def cluster_pages(
     )
     if not clusters:
         return []
+    result = convert_cluster(clusters)
+    return result
+
+
+def convert_cluster(clusters) -> list:
     grouped = {}
     for cluster in clusters:
         for bounding, text, pageheight, pagenumber in cluster:
