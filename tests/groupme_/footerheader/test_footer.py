@@ -166,6 +166,7 @@ def test_footer_master127(testdir, monkeypatch):
     assert len(footnotes) == 135
 
 
+@utilatest.longrun
 def test_footer_master075(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
         power.MASTER075_PDF,

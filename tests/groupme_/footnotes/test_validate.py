@@ -31,6 +31,7 @@ ARCHIVE = os.path.join(groupme.ROOT, 'tests/groupme_/footnotes/expected')
     pytest.param(power.BACHELOR037_PDF, None, 'bachelor037', id='bachelor037'),
 ])
 # yapf:enable
+@utilatest.longrun
 def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
     Evaluate(
         source=source,
