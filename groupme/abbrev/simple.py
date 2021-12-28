@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import elements.headline.lookup
 import iamraw
 import utila
 
@@ -45,17 +46,16 @@ def parse_page(content):
     return result
 
 
-def isexcluded(item):
+def isexcluded(item: str) -> bool:
     # TODO: ADD MORE SOPHISTICATED DOUBLE COLUMN CHECKER
     item = item.strip().lower()
-    return item in NO_ABBREVIATION
+    if item in elements.headline.lookup.HEADLINES:
+        return True
+    if item in NO_ABBREVIATION:
+        return True
+    return False
 
 
 NO_ABBREVIATION = utila.splitlines("""\
-ABKÜRZUNG
-ABKÜRZUNGEN
-ABKÜRZUNGSVERZEICHNIS
 BESCHREIBUNG
-GLOSSAR
-TABELLENVERZEICHNIS
 """)
