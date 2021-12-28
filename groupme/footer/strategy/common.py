@@ -190,7 +190,8 @@ def prepare_clustering(
 def header_content(pagecontents, occurrence_min: int) -> set:
     """Some documents does not have any header, but equal sized first line(s).
 
-    We have to ignore this first content lines."""
+    We have to ignore these first content lines.
+    """
     collected = collections.defaultdict(int)
     for pagecontent in pagecontents:
         for item in pagecontent:
