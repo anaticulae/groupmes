@@ -134,36 +134,39 @@ def cluster_pages(
         for bounding, text, pageheight, pagenumber in cluster:
             end = bounding.y1 / pageheight
             end = utila.roundme(HEADER_TOL + end)
-            create_fixedheader(grouped, text.text, pagenumber, end)
+            current = grouped.get(pagenumber, None)
+            current = create_fixedheader(current, text.text, pagenumber, end)
+            grouped[pagenumber] = current
     result = list(grouped.items())
     # sort FixedHeaderInformation by page
     result.sort(key=lambda x: x[0])
     return result
 
 
-def create_fixedheader(collected, text: str, pagenumber, end):
-    # TODO: REMOVE SIDE EFFECT, CHANGE TO A MORE CLEAR CODE STYLE
-    # PASS DATA IN AND RETURN RESULT DATA
+def create_fixedheader(
+    current,
+    text: str,
+    pagenumber,
+    end,
+) -> iamraw.FixedHeaderInformation:
     # remove newline at end TODO: REMOVE LATER
     text = text.strip()
-    try:
-        current = collected[pagenumber]
-    except KeyError:
+    if current is None:
         current = iamraw.FixedHeaderInformation(
             begin=texmex.START,
             end=end,
             page=iamraw.PageInformation(value=pagenumber, raw=None),
         )
-        collected[pagenumber] = current
     title = groupme.footer.headnotes.parse_title(text)
     if title:
         current.title = title
-        return
-    pagenumber = groupme.footer.headnotes.parse_pagenumber(text)
-    if pagenumber:
-        current.page = pagenumber
-        return
+        return current
+    parsed = groupme.footer.headnotes.parse_pagenumber(text)
+    if parsed:
+        current.page = parsed
+        return current
     current.undefined.append(iamraw.RawText(text=text))
+    return current
 
 
 HEADER_TEXT_OCCURENCE_MIN = configo.HV_INT_PLUS(default=5)
