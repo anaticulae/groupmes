@@ -61,6 +61,7 @@ def parse_title(text: str, _=None) -> iamraw.HeaderTitle:  # pylint:disable=W061
 
 
 def parse_title_regex(text: str) -> iamraw.HeaderTitle:
+    # TODO: REPLACE WITH ELEMENTS APPROACH?
     parsed = groupme.toc.strategy.regex.parse(text)
     if not parsed:
         return None
