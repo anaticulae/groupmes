@@ -47,12 +47,12 @@ TOP_AREA = configo.HV_PERCENT_PLUS(default=15)
 class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W0223
 
     def result(self):
-        headers = cluster_pages(self.pagetextnavigators)
-        header_again = cluster_pages(self.pagetextnavigators, tryagain=True)
-        if headers:
-            headers = best(headers, header_again)
+        extracted = cluster_pages(self.pagetextnavigators)
+        tryagain = cluster_pages(self.pagetextnavigators, tryagain=True)
+        if extracted:
+            headers = best(extracted[0], tryagain[0])
         else:
-            headers = header_again
+            headers = tryagain[0] if tryagain else []
         result = [
             iamraw.PageContentFooterHeader(
                 header=header,
@@ -130,9 +130,9 @@ def cluster_pages(
         min_elements=min_cluster_count,
     )
     if not clusters:
-        return []
+        return None
     result = convert_cluster(clusters)
-    return result
+    return result, clusters
 
 
 def convert_cluster(clusters) -> list:
