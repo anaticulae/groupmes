@@ -51,6 +51,8 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
         header_again = cluster_pages(self.pagetextnavigators, tryagain=True)
         if header:
             header = best(header, header_again)
+        else:
+            header = header_again
         result = [
             iamraw.PageContentFooterHeader(
                 header=header,
