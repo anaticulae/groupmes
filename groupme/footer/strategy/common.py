@@ -231,9 +231,18 @@ def potential_header_data(ptns):
             item,
             page.height,
             page.page,
-        ) for item in page.before(TOP_AREA)]
+        ) for item in page.before(TOP_AREA) if not noheader_content(item.text)]
         collected.append(content)
     return collected
+
+
+def noheader_content(text: str):
+    text = text.strip()
+    if text.count('.') > 5:
+        return True
+    if text[0] in '•':
+        return True
+    return False
 
 
 def header_content(pagecontents, occurrence_min: int) -> set:
