@@ -34,23 +34,37 @@ def parse(
         if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
             # potential highnote is located too right
             continue
-        try:
-            notenumber = int(number.text)
-        except ValueError:
-            utila.error(f'could not convert to int: {number.text}')
-            notenumber = number.text
+        notenumber = parse_footnote_number(number.text)
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
         bounding = tuple(number.bounding)
-        text = utila.normalize_text(note.text)
+        # TODO: USE STRIP=True AFTER UPGRADING UTILA
+        text = utila.normalize_text(note.text).strip()
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=notenumber,
             raw='',  # TODO: REMOVE THIS?
+            raw_number=number.text.strip(),
             style=(number.style, note.style),
             text=text,
             page=pagenumber if pagenumber is not None else -1,
         )
         result.append(footnote)
+    return result
+
+
+NUMBER = utila.compiles(r'\[?(\d{1,4})\]?')
+
+
+def parse_footnote_number(text: str) -> int:
+    """\
+    >>> parse_footnote_number('[133]')
+    133
+    """
+    matched = NUMBER.match(text)
+    if not matched:
+        utila.error(f'could not convert to int: {text}')
+        return text
+    result = int(matched[1])
     return result
