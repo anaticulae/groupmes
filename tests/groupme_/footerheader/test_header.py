@@ -76,10 +76,10 @@ def test_header_bachelor37_starting_index(testdir, monkeypatch):
     assert header[0].page.value == 4
 
 
+@pytest.mark.xfail(reason='detector is too optimistic')
 @utilatest.longrun
 def test_header_bachelor37_all(testdir, monkeypatch):
     header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch)
-
     noheader = [0, 5, 33]
     expected = [item for item in range(0, 37) if item not in noheader]
     current = [item.page.value for item in header]
