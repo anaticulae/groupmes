@@ -185,15 +185,7 @@ def prepare_clustering(
     pagetextnavigators,
     occurrence_min: int = HEADER_TEXT_OCCURENCE_MIN,
 ):
-    collected = []
-    for page in pagetextnavigators:
-        content = [(
-            item.bounding,
-            item,
-            page.height,
-            page.page,
-        ) for item in page.before(TOP_AREA)]
-        collected.append(content)
+    collected = potential_header_data(pagetextnavigators)
     valid = header_content(collected, occurrence_min=occurrence_min)
     result = []
     for page in collected:
@@ -203,6 +195,19 @@ def prepare_clustering(
         ]
         result.append(content)
     return result
+
+
+def potential_header_data(ptns):
+    collected = []
+    for page in ptns:
+        content = [(
+            item.bounding,
+            item,
+            page.height,
+            page.page,
+        ) for item in page.before(TOP_AREA)]
+        collected.append(content)
+    return collected
 
 
 def header_content(pagecontents, occurrence_min: int) -> set:
