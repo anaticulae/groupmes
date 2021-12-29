@@ -53,9 +53,9 @@ def test_validate_pagenumbers(source, expected):
     extracted = power.link(source)
     # TODO: bottom only, add header page extraction
     text = iamraw.path.text(extracted)
-    text_positions = iamraw.path.textposition(extracted)
+    textpositions = iamraw.path.textposition(extracted)
     # run extractor
-    result = groupme.feature.pagenumbers.work(text, text_positions)
+    result = groupme.feature.pagenumbers.work(text, textpositions)
     result = serializeraw.load_pagenumbers(result)
     if callable(expected):
         expected(result)
