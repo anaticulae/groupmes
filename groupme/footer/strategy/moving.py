@@ -204,7 +204,7 @@ def extract_footer(
     return footer
 
 
-def footnote_number_error(footers):
+def footnote_number_error(footers: list) -> bool:
     numbers = []
     for footer in footers:
         for note in footer.footer.notes:
