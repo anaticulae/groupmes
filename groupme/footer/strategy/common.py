@@ -17,6 +17,7 @@ text and images. There is no horizontal line required.
 """
 
 import collections
+import math
 
 import configo
 import elements
@@ -276,7 +277,7 @@ def more_magic(ptns, clusters):
     return result
 
 
-def matches(base, current) -> float:
+def matches(base, current) -> float:  # pylint:disable=R0911
     x0, y0, x1, y1 = base[0]
     xx0, yy0, xx1, yy1 = current[0]
     if utila.rectangle_inside(base[0], current[0]):
@@ -284,5 +285,17 @@ def matches(base, current) -> float:
     if utila.norm(x0, y0, xx0, yy0) > 50.0:
         return False
     if utila.norm(x1, y1, xx1, yy1) > 50.0:
+        return False
+    if math.fabs(y1 - yy1) > 20.0:
+        return False
+    if math.fabs(y0 - yy0) > 20.0:
+        return False
+    # 30 percent
+    fontdiff = not utila.pnear(
+        reference=(y1 - y0),
+        current=(yy1 - yy0),
+        rel_tol=0.3,
+    )
+    if fontdiff:
         return False
     return True
