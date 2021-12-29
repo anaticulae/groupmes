@@ -175,6 +175,8 @@ def valid_content(
             clean_number = text.replace('-', '', 2).strip()
             # 32/54
             clean_number = clean_number.split('/')[0]
+            # remove gaps: 10 4
+            clean_number = clean_number.replace(' ', ' ')
             # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
             item = (item.bounding, clean_number, pagenumber)
             pagecontent.append(item)
@@ -224,6 +226,8 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
             continue
         for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
+            # remove a single gap
+            content = content.replace(' ', '', 1)
             if not elements.ispagenumber(content):
                 continue
             try:
