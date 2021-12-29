@@ -47,12 +47,10 @@ TOP_AREA = configo.HV_PERCENT_PLUS(default=15)
 class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W0223
 
     def result(self):
-        extracted = cluster_pages(self.pagetextnavigators)
-        tryagain = cluster_pages(self.pagetextnavigators, tryagain=True)
-        if extracted:
-            headers = best(extracted[0], tryagain[0])
-        else:
-            headers = tryagain[0] if tryagain else []
+        headers, clusters = self.determine_header()
+        if not headers:
+            return []
+        headers = self.second_try(headers, clusters)
         result = [
             iamraw.PageContentFooterHeader(
                 header=header,
@@ -60,6 +58,33 @@ class CommonTextStrategy(gfs.FooterHeaderDetectionStrategy):  # pylint:disable=W
                 page=page,
             ) for (page, header) in headers
         ]
+        return result
+
+    def determine_header(self):
+        extracted = cluster_pages(self.pagetextnavigators)
+        tryagain = cluster_pages(self.pagetextnavigators, tryagain=True)
+        clusters = None
+        if extracted:
+            headers = best(extracted[0], tryagain[0])
+            if headers == extracted[0]:
+                clusters = extracted[1]
+            else:
+                clusters = tryagain[1]
+        else:
+            headers = tryagain[0] if tryagain else []
+            if tryagain:
+                clusters = tryagain[1]
+            else:
+                clusters = None
+        return headers, clusters
+
+    def second_try(self, headers, clusters):
+        # do not revisit pages with already detected header
+        skip = {item[0] for item in headers}
+        ptns_left = [
+            page for page in self.pagetextnavigators if page.page not in skip
+        ]
+        result = more_magic(ptns_left, clusters)
         return result
 
 
@@ -234,3 +259,30 @@ def header_content(pagecontents, occurrence_min: int) -> set:
     }
     valid = {key for key in collected.keys() if counted[key] >= occurrence_min}
     return valid
+
+
+def more_magic(ptns, clusters):
+    """Revisit pages without detected header and try to match header
+    items with already detected areas."""
+    valid = utila.flatten([list(cluster) for cluster in clusters])
+    data = potential_header_data(ptns)
+    result = []
+    for page in data:
+        for item in page:
+            if not any((matches(val, item) for val in valid)):
+                continue
+            result.append(item)
+    result = convert_cluster([result] + [valid])
+    return result
+
+
+def matches(base, current) -> float:
+    x0, y0, x1, y1 = base[0]
+    xx0, yy0, xx1, yy1 = current[0]
+    if utila.rectangle_inside(base[0], current[0]):
+        return True
+    if utila.norm(x0, y0, xx0, yy0) > 50.0:
+        return False
+    if utila.norm(x1, y1, xx1, yy1) > 50.0:
+        return False
+    return True
