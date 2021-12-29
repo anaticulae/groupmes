@@ -201,15 +201,15 @@ def extract_page_footerheader(
 
 
 def create_header(top, pageheight, textnavigator):
-    top_ = utila.roundme(top / pageheight)  # TODO: Replace with utila method
+    top = utila.roundme(top / pageheight)  # TODO: Replace with utila method
     # XXX: 10% percent cause of bad font-bounding-boxing
-    top_ = utila.roundme(top_ * 1.1)
+    top = utila.roundme(top * 1.1)
     headercontent = textnavigator.between(
         texmex.START,
-        top_,
+        top,
     )
     parsed = groupme.footer.headnotes.parse(headercontent)
-    result = iamraw.FixedHeaderInformation(begin=texmex.START, end=top_)
+    result = iamraw.FixedHeaderInformation(begin=texmex.START, end=top)
     for item in parsed:
         if isinstance(item, iamraw.HeaderTitle):
             result.title = item
