@@ -30,7 +30,7 @@ def select_contentpages(
     selected = []
     for page in textnavigators:
         firstheadline = headline(page)
-        if firstheadline is not None and firstheadline in wrong_table:
+        if firstheadline is not None and firstheadline.lower() in wrong_table:
             # This approach works only forward and not backwards.
             # TODO: WHAT SHOULD WE DO WHEN BOTH ARE ON THE SAME PAGE?
             continue
@@ -71,6 +71,7 @@ def select_contentpages(
 
 
 def headline(page):
+    # TODO: REPLACE WITH SECTIONS CODE?
     result = []
     for item in page:
         parsed = groupme.toc.strategy.regex.parse(item.text)

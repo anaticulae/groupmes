@@ -17,6 +17,7 @@ Outdated approaches
 """
 
 import configo
+import elements
 import serializeraw
 import utila
 
@@ -84,12 +85,4 @@ def work(
     return dumped
 
 
-NO_TOC = {
-    'Abbildungsverzeichnis',
-    'Abkürzungsverzeichnis',
-    'Anhang',
-    'Eidesstattliche Erklärung',
-    'Glossar',
-    'Literaturverzeichnis',
-    'Tabellenverzeichnis',
-}
+NO_TOC = elements.headline.lookup.HEADLINES - elements.headline.lookup.TOC
