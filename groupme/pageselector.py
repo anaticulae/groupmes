@@ -29,10 +29,7 @@ def select_contentpages(
         strategy = groupme.toc.strategy.regex.parse_page
     selected = []
     for page in textnavigators:
-        firstheadline = headline(page)
-        if firstheadline is not None and firstheadline.lower() in wrong_table:
-            # This approach works only forward and not backwards.
-            # TODO: WHAT SHOULD WE DO WHEN BOTH ARE ON THE SAME PAGE?
+        if skip_page_byheadline(page, noheadline=wrong_table):
             continue
         utila.debug(f'page: {page.page}')
         current_page = strategy(page)
@@ -68,6 +65,21 @@ def select_contentpages(
         selected = utila.groupby_diff(selected, maxdiff=1)
         selected = utila.longest(selected)
     return selected
+
+
+def skip_page_byheadline(ptn, noheadline) -> bool:
+    # This approach works only forward and not backwards.
+    # TODO: WHAT SHOULD WE DO WHEN BOTH ARE ON THE SAME PAGE?
+    firstheadline = headline(ptn)
+    if not firstheadline:
+        return False
+    wrong_headline = utila.verysimilar(
+        current=firstheadline,
+        expected=noheadline,
+    )
+    if not wrong_headline:
+        return False
+    return True
 
 
 def headline(page):
