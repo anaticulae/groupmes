@@ -47,7 +47,7 @@ def master110(result):
     pytest.param(power.MASTER091A_PDF, 88, id='master91a'),
     pytest.param(power.MASTER110_PDF, master110, id='master110'),
     pytest.param(power.MASTER127_PDF, 127 - 1, id='master127'),
-    pytest.param(power.DISS406_PDF, 50, id='diss406'),
+    pytest.param(power.DISS406_PDF, 55, id='diss406'),
 ])
 @utilatest.longrun
 def test_validate_pagenumbers(source, expected):
