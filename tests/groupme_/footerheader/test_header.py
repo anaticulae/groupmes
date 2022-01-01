@@ -180,3 +180,14 @@ def test_header_diss144(testdir, monkeypatch):
         monkeypatch,
     )
     assert len(loaded) == 142  # NOT VALIDATED
+
+
+@utilatest.longrun
+def test_header_diss406(testdir, monkeypatch):
+    loaded = extract_header(
+        power.DISS406_PDF,
+        testdir,
+        monkeypatch,
+    )
+    # this document does not contain any header
+    assert not loaded
