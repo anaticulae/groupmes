@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.18.1
+
+### Feature
+
+* disable header strategy on too few results (055460d2452b)
+
+### Documentation
+
+* Happy New Year! (a2be43289880)
+
 ## v0.18.0
 
 ### Feature
