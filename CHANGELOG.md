@@ -2,6 +2,29 @@
 
 Every noteable change is logged here.
 
+## v0.18.0
+
+### Feature
+
+* support optional seite or page in toc line (1ea946d4cc2f)
+* improve headline skipper (1401f3aca24c)
+* ensure that matches with correct font size (49d602ad8659)
+* add second try strategy (fcdd45212a6a)
+* return cluster data for further processing (966b44445e86)
+* add support for page numbers with gaps (de89a34e9c0d)
+* support [133] as highnote (86e9beaaa147)
+* reduce required occurrence to catch lower occurrence (54397ffed2ff)
+* use text tolerance to group more in pre selection process (0e0b75b65304)
+
+### Fix
+
+* skip table line as potential header (6cc62b85584d)
+* use backup result if first one fails (62ff52016ad1)
+
+### Documentation
+
+* extend interface documentation (6146a1ecf7df)
+
 ## v0.17.0
 
 ### Feature
