@@ -71,6 +71,10 @@ def parse(content: str) -> groupme.toc.TocLines:
         .. code-block :: none
 
             Eidesstattliche Erklärung ........... 69
+
+    Regression test that this example last very long.
+    >>> parse('35689101315161819202325262829303132331247111214172122242')
+    []
     """
     duplicated = content
     result = []
