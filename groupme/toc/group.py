@@ -8,6 +8,7 @@
 # =============================================================================
 
 import dataclasses
+import re
 
 import configo
 import elements
@@ -58,6 +59,10 @@ class RomanLevel(Level):
     pass
 
 
+class StepLevel(Level):
+    pass
+
+
 @dataclasses.dataclass
 class AppendixLevel(Level):
     """\
@@ -105,6 +110,10 @@ def level(item: str) -> Level:
 
     if letter in ('A', 'B', 'C', 'D'):
         result = AppendixLevel(value=letter, character=letter, raw=item)
+        return result
+
+    if converted := level_steps(item):
+        result = StepLevel(value=converted, raw=item)  # pylint:disable=R0204
         return result
 
     utila.error(f'could not convert to level: {item}')
@@ -190,11 +199,71 @@ def determine_level(levels) -> int:
 
 def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
     """\
-    Example:
+    Example
         A Lateinische Buchstaben
             I. Roman numbers
                 1. Arabische Zahlen
                     a. Lateinische Kleinbuchstaben
     """
-    result = iamraw.create_toc([])
+    assert isinstance(toc, list), type(toc)
+    outlines = []
+    for line in toc:
+        if not line:
+            utila.error(f'problem while processing lines: {line}')
+            continue
+        if not isinstance(line, groupme.toc.TocLine):
+            continue
+        levels = level_steps(line.level)
+        section = iamraw.SectionRaw(
+            level=levels,
+            page=line.page,
+            title=line.title,
+            raw=line.raw,
+            raw_location=line.raw_location,
+        )
+        outlines.append(section)
+    outlines = level_zero(outlines)
+    result = iamraw.create_toc(outlines)
     return result
+
+
+def level_steps(raw: str) -> int:  # pylint:disable=R0911
+    """Convert number to raw level.
+
+    Example:
+        A Lateinische Buchstaben
+            I. Roman numbers
+                1. Arabische Zahlen
+                    a. Lateinische Kleinbuchstaben
+
+    >>> level_steps('KAPITEL 1 WAS IST HUMAN SECURITY?')
+    1
+    >>> level_steps('A. Was ist Sicherheit?')
+    2
+    >>> level_steps('III. Umwelt und Klimawandel')
+    3
+    >>> level_steps('2. Politische und wenige(r) rechtliche Aspekte')
+    4
+    >>> level_steps('a) Konzepte')
+    5
+    >>> level_steps('dd) Bewertung')
+    6
+    """
+    # TODO: MOVE TO ELEMENTS
+    raw = raw.strip() if raw else None
+    if not raw:
+        return 1
+    if re.match(r'^(KAPITEL)[ ]{1,3}\d{1,2}', raw, re.IGNORECASE):
+        return 1
+    if re.match(r'^(A|B|C|D|E|F|G|H)\.', raw, re.IGNORECASE):
+        return 2
+    if re.match(r'^(I|II|III|IIII|IV|V|VI|VII|VIII)\.?', raw, re.IGNORECASE):
+        return 3
+    if re.match(r'^\d{1,2}\.', raw, re.IGNORECASE):
+        return 4
+    if re.match(r'^[a-h]\)', raw, re.IGNORECASE):
+        return 5
+    if re.match(r'^[a-h]{2}\)', raw, re.IGNORECASE):
+        return 6
+    assert 0, raw
+    return None
