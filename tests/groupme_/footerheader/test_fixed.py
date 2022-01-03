@@ -20,7 +20,7 @@ import groupme.footer.strategy as gfs
 import groupme.footer.strategy.fixed as gfsf
 
 
-def _restructed():
+def _docu027():
     horizontals = iamraw.path.horizontals(power.link(power.DOCU027_PDF))
     horizontals = serializeraw.load_horizontals(horizontals)
 
@@ -38,15 +38,15 @@ def _restructed():
     return horizontals, pageheight, top, bottom, navigators
 
 
-def test_footer_fixed_restructed_extract_common_footer():
-    _, __, top, bottom, ___ = _restructed()
+def test_footer_fixed_docu027_extract_common_footer():
+    _, __, top, bottom, ___ = _docu027()
     assert top  # document has header
     assert bottom  # document has footer
     assert top < bottom
 
 
-def test_footer_fixed_restructed_extract_page_footerheader():
-    horizontals, pageheight, top, bottom, pagetextnavigators = _restructed()
+def test_footer_fixed_docu027_extract_page_footerheader():
+    horizontals, pageheight, top, bottom, pagetextnavigators = _docu027()
     top, bottom = top[0], bottom[0]
     extracted = gfsf.extract_page_footerheader(
         horizontals,
