@@ -68,6 +68,8 @@ PAGE = r"""
     )\b
 """
 
+FLAGS = re.VERBOSE | re.MULTILINE | re.UNICODE | re.IGNORECASE
+
 EXTENDED_PATTERN = re.compile(
     ('^'
      f'{LEVEL_DOTTED_OPTIONAL}'
@@ -76,7 +78,7 @@ EXTENDED_PATTERN = re.compile(
      f'{DOTTED}'
      f'{PAGE}'
      '$'),
-    re.VERBOSE | re.MULTILINE | re.UNICODE,
+    FLAGS,
 )
 
 EXTENDED_PATTERN_LETTER = re.compile(
@@ -87,7 +89,7 @@ EXTENDED_PATTERN_LETTER = re.compile(
      f'{DOTTED}'
      f'{PAGE}'
      '$'),
-    re.VERBOSE | re.MULTILINE | re.UNICODE,
+    FLAGS,
 )
 
 NO_DOTS = re.compile(
@@ -98,7 +100,7 @@ NO_DOTS = re.compile(
      f'{WHITESPACES}'
      f'{PAGE}'
      '$'),
-    re.VERBOSE | re.MULTILINE | re.UNICODE,
+    FLAGS,
 )
 
 NO_LEVEL = re.compile(
@@ -109,7 +111,7 @@ NO_LEVEL = re.compile(
      f'{WHITESPACES_OPT}'
      f'{PAGE}'
      '$'),
-    re.VERBOSE | re.MULTILINE | re.UNICODE,
+    FLAGS,
 )
 
 
