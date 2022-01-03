@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import contextlib
 import dataclasses
 
 import configo
@@ -94,8 +93,7 @@ def level(item: str) -> Level:
     if number is not None:
         return Level(value=number, raw=item)
 
-    with contextlib.suppress(KeyError):
-        value = utila.arabic(item)
+    if value := utila.arabic(item):
         return RomanLevel(value=value, raw=item)
 
     try:
