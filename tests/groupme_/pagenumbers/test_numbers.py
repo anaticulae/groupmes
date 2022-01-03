@@ -101,12 +101,14 @@ def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
 
 def test_numbers_restructured_without_title():
     """Ensure to extract correct pdf page on document which starts with
-    empty page. Before this patch, the pdfpages started with zero
-    instead of one."""
+    empty page.
+
+    Before this patch, the pdfpages started with zero instead of one.
+    """
     source = power.link(power.DOCU027_PDF, folder='notitle')
     navigator = serializeraw.create_pagetextnavigators_frompath(source)
     pagenumbers = groupme.feature.pagenumbers.determine_pagenumbers(navigator)
     pagenumbers = sorted(pagenumbers)
-    expected_pdfpages = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    expected_pdfpages = utila.ranged_list(1, 26)
     current = [item[0] for item in pagenumbers]
     assert current == expected_pdfpages, str(current)

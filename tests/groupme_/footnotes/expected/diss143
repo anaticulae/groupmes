@@ -4,7 +4,8 @@ Hier treffen hohe Ströme und die damit einhergehende Erwärmung auf immer klein
 Der Widerstand in anderen Stoffgruppen ist durch Unreinheiten, Dotierungen bzw. Kristallfehler bestimmt und somit keine Eigenschaft eines reinen Stoffes.
 Eine Schwebung ist das Ergebnis einer Superposition zweier Schwingungen, deren Frequenzen sich nur wenig voneinander unterscheiden. Sie weist eine zu- und abnehmende Amplitude auf. Ergeben sich Ausgangssignale mit variierender Amplitude und Periodendauern von mehreren Sekunden, so ist die Abstimmung zwischen Eingangssignal und Modulationsquelle (in diesem Fall die mechanische Zykelfrequenz) nicht perfekt.
 Der thermische Ausdehnungskoeffzieint ist ein stoffspezifischer, temperaturabhängiger Materialwert. Die ursächliche Wärmedehnung erfolgt oft nicht gleichmäßig über den Temperaturbereich, so dass der thermische Ausdehungskoeffzieint für einen bestimmten Temperaturbereich oder eine bestimmte Bezugstemperatur angegeben wird.
-Für f τ th < 0,5 gilt ∆T ∼ ∆R ∼ 1. Eine Herleitung dieser Zusammenhänge wird in Kapitel 2.2 ab Seite 26 gezeigt.
+Für f τ th < 0,5 gilt ∆T ∼ ∆R ∼ 1. Eine Herleitung dieser Zusammenhänge wird in Kapitel
+.2 ab Seite 26 gezeigt.
 Bei drahtgebundener Übertragung entspricht der Kanal einer elektrisch leitfähigen Verbindung zwischen Sender und Empfänger, also Quelle und Senke. Diese Verbindung genügt den in Kapitel 1.1 dargestellen Zusammenhängen.
 Es ergeben sich für verschiedene Potenzen einer Sinusschwingung auch verschiedene Frequenzen im Ausgangsspektrum z. B. sin2 α = 1 (1 − cos 2α), sin3 α = 1 (3 sin α − sin(3α)),
 sin4 α = 1 (cos(4α) − 4 cos(2α) + 3)).
@@ -19,6 +20,7 @@ Ein anderer Weg dies zu zeigen ist der Vergleich von sin2 x = 1 (1 − cos 2x), 
 (3 sin x − sin 3x) und sin4 x = 1 (cos 4x − 4 cos 2x + 3). Je nach Therm werden unter- 4
 schiedliche Frequenzen generiert.
 Der elektrische Widerstand ergibt sich für a = 0 zu Rel = 2ρ πd . Für Geometrien, die
+von kreisrunden Kontaktflächen abweichen oder Fremdschichten aufweisen wird in [87] die Formel des Engewiderstandes mit einem empirisch ermittelten Faktor Φemp erweitert zu RS = Φemp · ρ πd .
 Die dargestellten Zeitkonstanten sind größer als in der Praxis an Querschnittseinengungen erwartet werden können und dienen hier der übersichtlichen Darstellung der Zusammenhänge.
 Eine Untersuchung eines günstigen Messfrequenzbereichs wird im nachfolgenden Kapitel
 .3 durchgeführt.
@@ -47,7 +49,7 @@ Komplexe Signale werden grafisch in zweidimensionaler Darstellung mit senkrecht 
 Als Beispiel dient hier ein zylindrischer Draht, da zyklisches Öffnen und Schließen eines sich zunehmend verringernden Querschnitts in Leiterbahnen in der Praxis sehr selten auftritt.
 Der Aluminiumdraht wird mit einem Prozent Silizium legiert, um die Zuverlässigkeit einer Bondverbindung auf Silizium-Chips durch geringere Diffusion zu steigern. Der unterdrückte Effekt wird Spiking genannt.
 Additionstheorem: cos(α)cos(β) = 1 cos(α + β) + 1 cos(α − β)
-2Die Zeitkonstante des Filters τ wird so gewählt, dass die Schwankungen des Ausgangssignals durch die Länge des Integrationsintervalls minimiert werden. Auch hier wird Gdc(ω) wegen der geringen Bandbreite als konstanter Verstärkungsfaktor angenommen.
+Die Zeitkonstante des Filters τ wird so gewählt, dass die Schwankungen des Ausgangssignals durch die Länge des Integrationsintervalls minimiert werden.
+Auch hier wird Gdc(ω) wegen der geringen Bandbreite als konstanter Verstärkungsfaktor angenommen.
 Die Messzeit muss mindestens über eine Periodendauer der Frequenz fr −fs erfolgen, damit der Einfluss der Modulation entfernt werden kann.
 Additionstheorem: sin(α)cos(β) = 1 sin(α + β) + 1 sin(α − β)
-Trigonometrischer Pythagoras: sin2(α) + cos2(α) = 1
