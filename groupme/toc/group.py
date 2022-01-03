@@ -149,9 +149,9 @@ def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
             continue
         if not isinstance(line, groupme.toc.TocLine):
             continue
-        level_ = determine_level(line.level)
+        levels = determine_level(line.level)
         section = iamraw.SectionRaw(
-            level=level_,
+            level=levels,
             page=line.page,
             title=line.title,
             raw=line.raw,
@@ -179,10 +179,10 @@ def level_zero(items):
     return items
 
 
-def determine_level(level_) -> int:
-    if level_ is None:
+def determine_level(levels) -> int:
+    if levels is None:
         return 1
-    numbered = elements.level_numbered(level_)
+    numbered = elements.level_numbered(levels)
     if numbered is None:
         return 1
     return numbered
