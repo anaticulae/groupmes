@@ -10,6 +10,7 @@
 import contextlib
 import re
 
+import elements
 import utila
 
 import groupme.toc
@@ -111,25 +112,18 @@ NO_LEVEL = re.compile(
     re.VERBOSE | re.MULTILINE | re.UNICODE,
 )
 
-LIST = [
-    'A',
-    'Abbildungsverzeichnis',
-    'Anhang',
-    'Bildquellen',
-    'Glossar',
-    'Internetquellen',
-    'Listings',
-    'Literatur',
-    'Literaturverzeichnis',
-    'Tabellenverzeichnis',
-    r'Eidesstattliche\ Erklärung',
-]
 
-JOINED_LIST = '|'.join(LIST)
+def dictpattern() -> str:
+    special = {'A'}
+    headlines = special | elements.HEADLINES
+    escaped = [re.escape(item) for item in headlines]
+    result = '|'.join(escaped)
+    return result
+
 
 DICTIONARY = utila.compiles(
     '^'
-    f'(?P<text>({JOINED_LIST}))'
+    f'(?P<text>({dictpattern()}))'
     r'([ \.]{0,})'
     f'{PAGE}',)
 
