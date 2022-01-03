@@ -112,21 +112,38 @@ def level(item: str) -> Level:
 
 
 # TODO: MOVE TO ELEMENTS
+def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
+    if isnumbered(toc):
+        return groupby_level_numbered(toc)
+    return groupby_level_steps(toc)
 
 
-def groupby_level(tableofcontent: groupme.toc.TocLines) -> iamraw.Toc:
+def isnumbered(toc) -> bool:
+    if not toc:
+        return True
+    levels = len([
+        item for item in toc if item.level and
+        elements.headline.level.level_numbered_dots(item.level)
+    ])
+    rate = levels / len(toc)
+    if rate < 0.8:
+        return False
+    return True
+
+
+def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
     Determine level of toc line and replace it with determined int-level.
 
     Args:
-        tableofcontent: extracted table of content.
+        toc: extracted table of content.
     Returns:
         Table of content with replaced levels.`
     """
-    assert isinstance(tableofcontent, list), type(tableofcontent)
+    assert isinstance(toc, list), type(toc)
     outlines = []
-    for line in tableofcontent:
+    for line in toc:
         if not line:
             utila.error(f'problem while processing lines: {line}')
             continue
@@ -169,3 +186,15 @@ def determine_level(level_) -> int:
     if numbered is None:
         return 1
     return numbered
+
+
+def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
+    """\
+    Example:
+        A Lateinische Buchstaben
+            I. Roman numbers
+                1. Arabische Zahlen
+                    a. Lateinische Kleinbuchstaben
+    """
+    result = iamraw.create_toc([])
+    return result

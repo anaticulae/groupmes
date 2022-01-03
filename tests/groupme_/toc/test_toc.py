@@ -30,7 +30,7 @@ def test_toc_groupby_level():
 
     tableofcontent = utila.flatten(tableofcontent.content)
 
-    result = groupme.toc.group.groupby_level(tableofcontent)
+    result = groupme.toc.group.groupby_level_numbered(tableofcontent)
     assert result
     dumped = serializeraw.dump_toc(result)
     assert dumped
