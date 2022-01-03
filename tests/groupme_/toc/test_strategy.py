@@ -23,7 +23,7 @@ def test_toc_strategy_master72():
     expected = [3, 9, 11, 6, 1, 1, 1]
     grouped = gte.extract(headlines)
     assert len(grouped) == len(expected)
-
+    # verify
     count = [len(item) for item in grouped]
     assert count == expected
 
@@ -31,7 +31,6 @@ def test_toc_strategy_master72():
 @utilatest.longrun
 def test_toc_strategy_technial24():
     headlines = tft.technical24_toc()
-
     expected = [1, 1, 2, 7, 5, 1, 16, 1]
     grouped = gte.extract(headlines)
     assert len(grouped) == len(expected)

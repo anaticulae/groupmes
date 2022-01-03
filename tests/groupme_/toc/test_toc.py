@@ -39,26 +39,27 @@ def test_toc_groupby_level():
 
 @pytest.mark.parametrize('resources, pages, expected', [
     pytest.param(
-        power.link(power.DOCU027_PDF),
+        power.DOCU027_PDF,
         (2,),
         13,
         id='docu027',
     ),
     pytest.param(
-        power.link(power.DOCU007_PDF),
+        power.DOCU007_PDF,
         (0,),
         12,
         marks=pytest.mark.xfail,
         id='simple',
     ),
     pytest.param(
-        power.link(power.DOCU035_PDF),
+        power.DOCU035_PDF,
         (5,),
         0,
         id='notoc',
     ),
 ])
 def test_extract_toc_from_path(resources, pages, expected):
+    resources = power.link(resources)
     navigators = serializeraw.create_pagetextcontentnavigators_frompath(
         path=resources,
         prefix='oneline',
