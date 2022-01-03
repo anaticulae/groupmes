@@ -67,11 +67,12 @@ SECOND_LINE = (
         SECOND_LINE,
         [
             groupme.toc.TocLine(
-                '2.',
+                level='2.',
+                title=
                 ('Das Social Web und die Privatsphäre Selbstdarstellungsverhalten '
                  'der Nutzer aus Sicht von Massenmedien und Literatur'),
-                '4',
-                SECOND_LINE,
+                page='4',
+                raw=SECOND_LINE,
             )
         ],
         id='second_line',
