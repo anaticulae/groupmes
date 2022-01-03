@@ -42,7 +42,7 @@ def test_toc_groupby_level():
         power.link(power.DOCU027_PDF),
         (2,),
         13,
-        id='restructured',
+        id='docu027',
     ),
     pytest.param(
         power.link(power.DOCU007_PDF),

@@ -59,7 +59,7 @@ def validate_homework18(result):
         [],
         groupme.footer.strategy.moving.MovingFooterStrategy,
         None,
-        id='restructured',
+        id='docu027',
     ),
     pytest.param(
         power.MASTER110_PDF,

@@ -41,7 +41,7 @@ def test_header_simple(simple):  #pylint:disable=W0621
     assert not result
 
 
-def test_footer_restructured():
+def test_footer_docu027():
     source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(
@@ -53,7 +53,7 @@ def test_footer_restructured():
     assert len(result) == 3, utila.log_raw(result)
 
 
-def test_header_restructured():
+def test_header_docu027():
     source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(navigators)
@@ -65,7 +65,7 @@ def test_header_restructured():
     assert len(result) == 2, utila.log_raw(result)
 
 
-def test_pagenumbers_restructured():
+def test_pagenumbers_docu027():
     source = power.link(power.DOCU027_PDF)
     navigators = serializeraw.create_pagetextnavigators_frompath(source)
     result = groupme.feature.pagenumbers.footer(navigators)
@@ -99,7 +99,7 @@ def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
     return numbers
 
 
-def test_numbers_restructured_without_title():
+def test_numbers_docu027_without_title():
     """Ensure to extract correct pdf page on document which starts with
     empty page.
 
