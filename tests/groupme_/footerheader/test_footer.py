@@ -97,6 +97,7 @@ def test_footer_homework18(testdir, monkeypatch):
     assert len(content) == 94, len(content)
 
 
+@utilatest.longrun
 def test_footer_bachelor51(testdir, monkeypatch):
     """There are no footnotes. We have to verify pages-pattern.
     `current/maxpage`"""
@@ -109,6 +110,7 @@ def test_footer_bachelor51(testdir, monkeypatch):
     assert len(pages) >= 23
 
 
+@utilatest.longrun
 def test_footer_master110(testdir, monkeypatch):
     extracted = tests.groupme_.footerheader.extractor.footer(
         power.MASTER110_PDF,

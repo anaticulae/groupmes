@@ -40,7 +40,7 @@ TEN = utila.make_tuple(10)
     utilatest.step(power.MASTER099_PDF, TEN),
     utilatest.step(power.DISS406_PDF, (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)),
 ])
-# @utilatest.nightly
+@utilatest.nightly
 def test_toc_validate(source, pages, monkeypatch, testdir):
     """Verify parsing behavior and check that toc is located
     automatically in range of `TEN` pages."""

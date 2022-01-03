@@ -9,10 +9,12 @@
 
 import power
 import utila
+import utilatest
 
 import tests.groupme_.footerheader.extractor
 
 
+@utilatest.longrun
 def test_footer_paper18_page3(testdir, monkeypatch):
     """Regression test to avoid parsing formula as footnote."""
     extracted = tests.groupme_.footerheader.extractor.footer(
