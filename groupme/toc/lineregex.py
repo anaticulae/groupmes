@@ -111,7 +111,6 @@ NO_LEVEL = re.compile(
     re.VERBOSE | re.MULTILINE | re.UNICODE,
 )
 
-#  r'([ \.]{2,})'
 LIST = [
     'A',
     'Abbildungsverzeichnis',
@@ -128,13 +127,11 @@ LIST = [
 
 JOINED_LIST = '|'.join(LIST)
 
-DICTIONARY = re.compile(
-    ('^'
-     f'(?P<text>({JOINED_LIST}))'
-     r'([ \.]{0,})'
-     f'{PAGE}'),
-    re.VERBOSE | re.UNICODE,
-)
+DICTIONARY = utila.compiles(
+    '^'
+    f'(?P<text>({JOINED_LIST}))'
+    r'([ \.]{0,})'
+    f'{PAGE}',)
 
 
 def extract_match(match: re.Match) -> groupme.toc.TocLine:
