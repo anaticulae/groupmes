@@ -269,7 +269,7 @@ def morethanone(clusters) -> bool:
     collected = []
     for cluster in clusters:
         for _, item in cluster:
-            centered = rectangle_center(item[0])
+            centered = utila.rectangle_center(item[0])
             length = utila.length(*(0, 0, centered[0], centered[1]))
             collected.append(length)
     collected = utila.make_unique(collected)
@@ -316,10 +316,3 @@ def parse_pagenumber(number: str) -> int:
     # if utila.isroman(number):
     #     return utila.arabic(number)
     return None
-
-
-def rectangle_center(rectangle) -> tuple:
-    # TODO: MOVE TO UTILA
-    x = (rectangle[0] + rectangle[2]) / 2
-    y = (rectangle[1] + rectangle[3]) / 2
-    return utila.roundme((x, y))
