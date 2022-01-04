@@ -7,10 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import iamraw
 import utila
 
 import groupme.footnotes.utils
+
+FOOTNOTE_TEXT_LENGTH_MIN = configo.HV_INT_PLUS(default=len('ebd.'))
 
 
 def parse(
@@ -33,6 +36,9 @@ def parse(
         # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
         if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
             # potential highnote is located too right
+            continue
+        if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
+            utila.debug(f'footnote too short: {note.text}')
             continue
         notenumber = parse_footnote_number(number.text)
         if not note.text.strip():
