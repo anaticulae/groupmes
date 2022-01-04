@@ -32,7 +32,6 @@ import groupme.footer
 import groupme.footer.headnotes
 import groupme.footer.strategy
 import groupme.horizontals
-import groupme.utils
 
 NO_CLUSTER = [texmex.START], [texmex.END] # yapf:disable
 

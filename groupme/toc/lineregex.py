@@ -14,7 +14,6 @@ import elements
 import utila
 
 import groupme.toc
-import groupme.utils.text_regex
 
 
 @utila.cacheme
@@ -49,12 +48,28 @@ LEVEL_LETTER = r"""(?P<level>
                     )
                 )"""
 
-TEXT = (
-    '(?P<text>'
-    fr'{groupme.utils.text_regex.UC_NWS}'  # ensure that text does not start with whitespace
-    fr'{groupme.utils.text_regex.UC_WS_NL}+?'
-    fr'{groupme.utils.text_regex.UC_NWS}+?'  # ensure that text does not end with whitespace
-    ')')
+USER_CHARACTER = [
+    r'\w\d\(\)\-\.\[\]',
+    "'!\"&,/:;?ß",
+    '’‚“”„…',
+    '–',  # special minus sign
+]
+
+UC_NWS = ''.join(USER_CHARACTER)
+UC = UC_NWS + ' '  # user content with whitespace
+UC_WS_NL = UC + r'\s'  # content with whitespace, newline
+
+UC_NWS = f'[{UC_NWS}]'
+UC = f'[{UC}]'
+UC_WS_NL = f'[{UC_WS_NL}]'
+
+TEXT = fr"""
+    (?P<text>
+    {UC_NWS}        # ensure that text does not start with whitespace
+    {UC_WS_NL}+?
+    {UC_NWS}+?      # ensure that text does not end with whitespace
+    )
+"""
 
 WHITESPACES = r'[ ]{1,5}'
 WHITESPACES_OPT = r'[ ]{0,3}'

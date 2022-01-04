@@ -11,7 +11,6 @@ import utila
 
 import groupme.toc.group
 import groupme.toc.lineregex
-import groupme.utils
 
 
 def parse_group(items, page) -> groupme.toc.TocLines:

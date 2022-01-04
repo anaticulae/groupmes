@@ -17,7 +17,6 @@ import utila
 
 import groupme.toc
 import groupme.toc.group
-import groupme.utils
 
 
 @dataclasses.dataclass

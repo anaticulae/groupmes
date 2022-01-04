@@ -28,7 +28,6 @@ import groupme.footer.strategy.common
 import groupme.footer.strategy.fixed
 import groupme.footer.strategy.moving
 import groupme.footer.strategy.pages
-import groupme.utils
 
 
 def work(
