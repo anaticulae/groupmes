@@ -32,7 +32,6 @@ def extract(
     Returns:
         List of ``ExtractionResult`` with extracted data.
     """
-
     strategies = [
         groupme.toc.strategy.geometry.GeometryTocExtractor,
         groupme.toc.strategy.georegex.GeometryRegexTocExtractor,
@@ -44,7 +43,6 @@ def extract(
         # decide if strategy is active
         if active is None or strategy in active
     ]
-
     decision = groupme.toc.decider.decide(results)
     if len(utila.flatten(decision.content)) < min_detection_count:
         decision = groupme.toc.strategy.ExtractionResult()
