@@ -127,6 +127,21 @@ def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
     return groupby_level_steps(toc)
 
 
+def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
+    return grouper_level(toc, levelme=determine_level)
+
+
+def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
+    """\
+    Example
+        A Lateinische Buchstaben
+            I. Roman numbers
+                1. Arabische Zahlen
+                    a. Lateinische Kleinbuchstaben
+    """
+    return grouper_level(toc, levelme=level_steps)
+
+
 def isnumbered(toc) -> bool:
     if not toc:
         return True
@@ -140,17 +155,23 @@ def isnumbered(toc) -> bool:
     return True
 
 
-def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
+def grouper_level(
+    toc: groupme.toc.TocLines,
+    levelme=None,
+) -> iamraw.Toc:
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
     Determine level of toc line and replace it with determined int-level.
 
     Args:
         toc: extracted table of content.
+        levelme(callable): convert raw to int level
     Returns:
         Table of content with replaced levels.`
     """
     assert isinstance(toc, list), type(toc)
+    if levelme is None:
+        levelme = determine_level
     outlines = []
     for line in toc:
         if not line:
@@ -158,7 +179,7 @@ def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
             continue
         if not isinstance(line, groupme.toc.TocLine):
             continue
-        levels = determine_level(line.level)
+        levels = levelme(line.level)
         section = iamraw.SectionRaw(
             level=levels,
             page=line.page,
@@ -195,36 +216,6 @@ def determine_level(levels) -> int:
     if numbered is None:
         return 1
     return numbered
-
-
-def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
-    """\
-    Example
-        A Lateinische Buchstaben
-            I. Roman numbers
-                1. Arabische Zahlen
-                    a. Lateinische Kleinbuchstaben
-    """
-    assert isinstance(toc, list), type(toc)
-    outlines = []
-    for line in toc:
-        if not line:
-            utila.error(f'problem while processing lines: {line}')
-            continue
-        if not isinstance(line, groupme.toc.TocLine):
-            continue
-        levels = level_steps(line.level)
-        section = iamraw.SectionRaw(
-            level=levels,
-            page=line.page,
-            title=line.title,
-            raw=line.raw,
-            raw_location=line.raw_location,
-        )
-        outlines.append(section)
-    outlines = level_zero(outlines)
-    result = iamraw.create_toc(outlines)
-    return result
 
 
 def level_steps(raw: str) -> int:  # pylint:disable=R0911
