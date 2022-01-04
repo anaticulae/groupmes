@@ -17,6 +17,7 @@ import groupme.toc
 import groupme.utils.text_regex
 
 
+@utila.cacheme
 def parse(line: str) -> groupme.toc.TocLine:
     assert isinstance(line, str), type(line)
     # TODO: REMOVE LATER
