@@ -167,7 +167,7 @@ def grouper_level(
         toc: extracted table of content.
         levelme(callable): convert raw to int level
     Returns:
-        Table of content with replaced levels.`
+        Table of content with replaced levels.
     """
     assert isinstance(toc, list), type(toc)
     if levelme is None:
