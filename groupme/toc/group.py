@@ -175,7 +175,7 @@ def grouper_level(
         )
         outlines.append(section)
     outlines = level_zero(outlines)
-    numbered = levelme == determine_level
+    numbered = levelme == determine_level  # pylint:disable=W0143
     result = iamraw.create_toc(outlines, numbered=numbered)
     return result
 
