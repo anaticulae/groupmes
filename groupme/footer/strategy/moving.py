@@ -217,6 +217,9 @@ def footnote_number_error(footers: list) -> bool:
     diffed = utila.diffs(numbers)
     if not diffed:
         return False
+    if len(diffed) == 1 and diffed[0] > 0:
+        # [13, -1] for example
+        return True
     fit, error = utila.partition(
         key=lambda x: 1 <= x <= 2,
         items=diffed,
