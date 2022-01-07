@@ -165,5 +165,6 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
         title=title,
         page=page,
         raw=utila.extract_match(match),
+        raw_level=level,
     )
     return result

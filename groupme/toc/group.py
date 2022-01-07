@@ -172,6 +172,7 @@ def grouper_level(
             title=line.title,
             raw=line.raw,
             raw_location=line.raw_location,
+            raw_level=line.level,
         )
         outlines.append(section)
     outlines = level_zero(outlines)
