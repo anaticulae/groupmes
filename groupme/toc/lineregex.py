@@ -44,6 +44,7 @@ LEVEL_LETTER = r"""(?P<level>
                     (I|II|III|IV|V|VI|VII|VIII)(\)|\.)|
                     (A|B|C|D)\.(\d{1,2}\.?)+\d{0,2}|
                     KAPITEL[ ]\d{1,2}|
+                    (SECTION|PART)[ ]{0,3}\d{1,2}:|
                     Anhang[ ](A|B|C|D)\: # TODO: Exclude Anhang and :
                     )
                 )"""
