@@ -8,6 +8,7 @@
 # =============================================================================
 
 import dataclasses
+import re
 
 import configo
 import elements
@@ -59,6 +60,10 @@ class RomanLevel(Level):
 
 
 class StepLevel(Level):
+    pass
+
+
+class SectionsLevel(Level):
     pass
 
 
@@ -123,6 +128,8 @@ def level(item: str) -> Level:
 def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
     if elements.istocnumbered(toc):
         return groupby_level_numbered(toc)
+    if istocsections(toc):
+        return grouper_level(toc, levelme=level_sections)
     return groupby_level_steps(toc)
 
 
@@ -204,3 +211,48 @@ def determine_level(levels) -> int:
     if numbered is None:
         return 1
     return numbered
+
+
+@utila.cacheme
+def level_sections(raw: str) -> int:  # pylint:disable=R0911
+    """Convert number to raw level.
+
+    Example:
+
+        Section 3: Data
+        Section 4: Methodology
+        Section 5: Results
+            Part 1: Time series analysis
+            Part 2: Looking for pair-wise cointegration
+                Cointegrating pairs
+
+    >>> level_sections('Section 1: Introduction')
+    1
+    >>> level_sections('Part 3:Was ist Sicherheit?')
+    2
+    >>> level_sections('Umwelt und Klimawandel')
+    3
+    """
+    # TODO: MOVE TO ELEMENTS
+    raw = raw.strip() if raw else None
+    if not raw:
+        return 3
+    if re.match(r'^(SECTION)[ ]{1,3}\d{1,2}\:', raw, re.IGNORECASE):
+        return 1
+    if re.match(r'^(Part)[ ]{1,3}\d{1,2}\:', raw, re.IGNORECASE):
+        return 2
+    return 3
+
+
+def istocsections(toc) -> bool:
+    """Decide if a toc contains headlines with numbered or steps pattern."""
+    if not toc:
+        return True
+    levels = len([
+        item for item in toc
+        if item.level and level_sections(item.level) in (1, 2)
+    ])
+    rate = levels / len(toc)
+    if rate < 0.65:  # TODO: HOLY VALUE
+        return False
+    return True
