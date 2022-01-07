@@ -57,6 +57,12 @@ def test_toc_groupby_level():
         0,
         id='notoc',
     ),
+    pytest.param(
+        power.MASTER099B_PDF,
+        (2,),
+        14,
+        id='master099b',
+    ),
 ])
 def test_extract_toc_from_path(resources, pages, expected):
     resources = power.link(resources)
