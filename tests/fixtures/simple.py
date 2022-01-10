@@ -18,23 +18,6 @@ SIMPLE_PAGESIZE = iamraw.path.sizeandborder(DOCU007)
 SIMPLE_HORIZONTAL = iamraw.path.horizontals(DOCU007)
 SIMPLE_TEXT_POSITION = iamraw.path.textposition(DOCU007)
 SIMPLE_TEXT = iamraw.path.text(DOCU007)
-SIMPLE_ONELINE_TEXT = iamraw.path.text(
-    DOCU007,
-    prefix='oneline',
-)
-SIMPLE_ONELINE_FONT_HEADER = iamraw.path.fontheader(
-    DOCU007,
-    prefix='oneline',
-)
-SIMPLE_ONELINE_FONT_CONTENT = iamraw.path.fontcontent(
-    DOCU007,
-    prefix='oneline',
-)
-SIMPLE_FONT_HEADER = iamraw.path.fontheader(DOCU007)
-SIMPLE_FONT_CONTENT = iamraw.path.fontcontent(DOCU007)
-SIMPLE_FOOTER = iamraw.path.headerfooters(DOCU007)
-SIMPLE_TOC = iamraw.path.toc(DOCU007)
-SIMPLE_FOOTERS = iamraw.path.headerfooters(DOCU007)
 
 
 @pytest.fixture
