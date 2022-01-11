@@ -64,6 +64,9 @@ def neighbors(items):
 def split_textinfo(content) -> list:
     """Split text by `hightnote` and preserve TextInfo.
 
+    Go line by line from top to bottom. Collect lines till highnote
+    occurrs. If highnote occurrs merge content and add to result.
+
     Returns:
         list of a tuple of highnote and content
     """
