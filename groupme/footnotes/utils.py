@@ -113,9 +113,10 @@ def ishighnote(style, text: str) -> bool:
 
 
 def merge_online(items) -> list:
-    """Ensure that high notes are located on a vertical line. Therefore
-    we have to ignore highnotes which are located inside the text and
-    not part of the text flow.
+    """Ensure that high notes are located on a vertical line.
+
+    Therefore we have to ignore highnotes which are located inside the
+    text and not part of the text flow.
 
     Steps:
         1. Determine the most left highnotes
