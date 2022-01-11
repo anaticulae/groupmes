@@ -83,7 +83,7 @@ def disable_strategy(footers) -> bool:
     return False
 
 
-BOTTOM_BORDER = 0.6
+BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
 
 FOOTER_COUNT_MIN = configo.HolyTable(
     items=(
