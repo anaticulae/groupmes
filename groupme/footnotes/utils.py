@@ -31,11 +31,20 @@ FOOTNOTE_X0_MAX = configo.HolyTable(
 
 def group_footnote_area(content):
     neighbors_ = neighbors(content)
+    if not neighbors:
+        return []
     result = []
+    has_highnote = 0
     for group in neighbors_:
         splitted = split_textinfo(group)
+        if any(high for high, _ in splitted):
+            has_highnote += 1
         merged = merge_online(splitted)
         result.extend(merged)
+    rate = utila.rate_rel(has_highnote, len(neighbors_))
+    if rate < 0.5:  # TODO: HOLY VALUE
+        utila.debug(f'no highnotes: {rate} detected, skip footnote result')
+        return []
     return result
 
 
