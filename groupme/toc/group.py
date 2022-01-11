@@ -130,6 +130,9 @@ def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
         return groupby_level_numbered(toc)
     if istocsections(toc):
         return grouper_level(toc, levelme=level_sections)
+    if istocnolevel(toc):
+        # TODO: VERIFY THIS
+        return grouper_level(toc, levelme=lambda x: 1 if x is not None else 2)
     return groupby_level_steps(toc)
 
 
@@ -252,6 +255,16 @@ def istocsections(toc) -> bool:
         item for item in toc
         if item.level and level_sections(item.level) in (1, 2)
     ])
+    rate = levels / len(toc)
+    if rate < 0.65:  # TODO: HOLY VALUE
+        return False
+    return True
+
+
+def istocnolevel(toc) -> bool:
+    if not toc:
+        return True
+    levels = len([item for item in toc if item.level is None])
     rate = levels / len(toc)
     if rate < 0.65:  # TODO: HOLY VALUE
         return False
