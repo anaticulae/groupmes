@@ -70,6 +70,14 @@ def validate_homework18(result):
         id='master110',
     ),
     pytest.param(
+        power.DISS178_PDF,
+        (22,),
+        [(22, 5)],
+        groupme.footer.strategy.moving.MovingFooterStrategy,
+        None,
+        id='diss178page22',
+    ),
+    pytest.param(
         power.HOME018_PDF,
         utila.ranged_tuple(6),
         [(3, 3), (4, 4), (5, 7)],
