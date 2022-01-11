@@ -76,8 +76,8 @@ def split_textinfo(content) -> list:
     collected = []
     for item in content:
         for style in item.style.content:
-            if style.rise >= HIGHNOTE_RISE_MIN:
-                if highnote:
+            if ishighnote(style, item.text):
+                if collected:
                     result.append((highnote, union(collected)))
                     collected = []
                 style = style.copy()
@@ -99,6 +99,17 @@ def split_textinfo(content) -> list:
         # ?THERE IS ALWAYS A REST?
         result.append((highnote, union(collected)))
     return result
+
+
+def ishighnote(style, text: str) -> bool:
+    highnote_occurs = style.rise >= HIGHNOTE_RISE_MIN
+    if not highnote_occurs:
+        return False
+    text = text[style.start:style.end]
+    if text.isnumeric():
+        # TODO: ADD 1) or [1]
+        return True
+    return False
 
 
 def merge_online(items) -> list:
