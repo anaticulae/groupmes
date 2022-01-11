@@ -95,8 +95,8 @@ def split_textinfo(content) -> list:
                     len(item.text),
                 )
                 collected.append(TextChunk(item.text, style, bounding))
-    if highnote:
-        # ?THERE IS ALWAYS A REST?
+    if highnote or collected:
+        # there is always content left at the end
         result.append((highnote, union(collected)))
     return result
 
@@ -126,9 +126,14 @@ def merge_online(items) -> list:
     if not items:
         return []
     result = []
-    mostleft = min([item.bounding.x0 for item, _ in items])
+    # skip None-Highnotes => if item
+    with_highnote = [high.bounding.x0 for high, _ in items if high]
+    mostleft = min(with_highnote) if with_highnote else None
     high, collected = None, []
     for highnote, content in items:
+        if not highnote:
+            result.append((None, content))
+            continue
         diff = math.fabs(highnote.bounding.x0 - mostleft)
         if diff > VERTICAL_LINE_DIFF_OF_HIGHNOTES:
             # highnote in content

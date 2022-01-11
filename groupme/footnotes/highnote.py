@@ -32,27 +32,29 @@ def parse(
     grouped = groupme.footnotes.utils.group_footnote_area(content)
     result = []
     for number, note in grouped:
-        x0 = number.bounding[0]
-        # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
-        if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
-            # potential highnote is located too right
-            continue
+        hashighnote = number is not None
+        if hashighnote:
+            x0 = number.bounding[0]
+            # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
+            if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
+                # potential highnote is located too right
+                continue
         if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
             utila.debug(f'footnote too short: {note.text}')
             continue
-        notenumber = parse_footnote_number(number.text)
+        notenumber = parse_footnote_number(number.text) if hashighnote else None
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
-        bounding = tuple(number.bounding)
+        bounding = tuple(number.bounding) if hashighnote else None
         # TODO: USE STRIP=True AFTER UPGRADING UTILA
         text = utila.normalize_text(note.text).strip()
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=notenumber,
             raw='',  # TODO: REMOVE THIS?
-            raw_number=number.text.strip(),
-            style=(number.style, note.style),
+            raw_number=number.text.strip() if hashighnote else None,
+            style=(number.style if hashighnote else None, note.style),
             text=text,
             page=pagenumber if pagenumber is not None else -1,
         )

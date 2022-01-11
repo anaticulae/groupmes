@@ -240,6 +240,7 @@ def merge_footer_pages(footers):
     # TODO: MERGE MORE THAN TWO PAGES
     for current, after in zip(footers[0:-1], footers[1:]):
         if (after.page - current.page) != 1:
+            # no page neighbours
             continue
         if not after.footer.notes:
             continue
@@ -248,7 +249,7 @@ def merge_footer_pages(footers):
         if current.footer.notes[-1].number == -1:
             # could not merge, I am not a valid footnote
             continue
-        if after.footer.notes[0].number != -1:
+        if after.footer.notes[0].number not in (-1, None):
             # no merge required, footnote have a number
             continue
         # merge notes together
@@ -261,8 +262,9 @@ def merge_footer_pages(footers):
             ],
         )
         #update bounding
-        current.footer.notes[-1].bounding = utila.rectangle_max(
-            [item.bounding for item in current.footer[-1].notes])
+        # TODO: UPDATE PAGE BOUNDING OVER TWO PAGES MAKES NO SENCE?
+        # current.footer.notes[-1].bounding = utila.rectangle_max(
+        #     [item.bounding for item in current.footer[-1].notes])
         # remove merged notes from after
         after.footer.notes = after.footer.notes[1:]
     return footers
