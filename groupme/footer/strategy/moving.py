@@ -208,6 +208,8 @@ def footnote_number_error(footers: list) -> bool:
     numbers = []
     for footer in footers:
         for note in footer.footer.notes:
+            if note.number is None:
+                continue
             if not isinstance(note.number, int):
                 utila.log(f'invalid footenumber: {note.number}')
                 continue
