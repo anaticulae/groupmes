@@ -18,10 +18,10 @@ import groupme.footer.strategy.pages
 @pytest.mark.parametrize(
     'source, expected',
     [
-        pytest.param(power.link(power.DOCU014_PDF), 14, id='docu14'),
-        pytest.param(power.link(power.MASTER091A_PDF), 86, id='master91a'),
+        pytest.param(power.DOCU014_PDF, 14, id='docu14'),
+        pytest.param(power.MASTER091A_PDF, 86, id='master91a'),
         pytest.param(
-            power.link(power.TECH024_PDF),
+            power.TECH024_PDF,
             # header page has no page number
             24 - 1,
             id='technical24pages',
@@ -29,6 +29,7 @@ import groupme.footer.strategy.pages
     ])
 @utilatest.longrun
 def test_footer_pagenumber_strategy(source, expected):
+    source = power.link(source)
     # prepare data
     horizontallines = serializeraw.load_horizontals(source)
     sizeandborder = serializeraw.load_pageborders(source)
