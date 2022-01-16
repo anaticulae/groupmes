@@ -40,6 +40,17 @@ def master110(result):
     assert current == expected
 
 
+def master049(result):
+    assert len(result) == 45
+    current = [item.detected for item in result]
+    expected = [
+        'ii', 'iii', 'iv', 'v', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+        15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+        33, 34, 35, 36, 37, 38, 39, 40, 41
+    ]
+    assert current == expected
+
+
 # yapf:disable
 @pytest.mark.parametrize('source,pages,expected', [
     pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
@@ -50,6 +61,7 @@ def master110(result):
     pytest.param(power.MASTER127_PDF, None, 127 - 1, id='master127'),
     pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
     pytest.param(power.DISS218_PDF, utila.ranged_list(0, 100), 93, id='diss218'),
+    pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
 ])
 # yapf:enable
 @utilatest.longrun

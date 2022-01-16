@@ -224,6 +224,8 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
             continue
         if not valid_cluster(cluster):
             continue
+        if already_done(cluster, result):
+            continue
         for _, (bounding, content, pdfpage) in cluster:
             content = str(content)
             # remove a single gap
@@ -246,6 +248,28 @@ def pagenumbers(clusters: typing.List[Cluster]) -> list:
     # sort by pdfpage number
     result = sorted(result)
     return result
+
+
+def already_done(cluster, result) -> bool:
+    """Check that page number is not detect twice on the same page.
+
+    This can happen when headline number is also detected as a page number.
+    See master049.
+    """
+    pages = set(item.pdfpage for item in result)
+    dones = []
+    for item in cluster:
+        pdfpage = item[1][2]
+        if pdfpage not in pages:
+            continue
+        dones.append(pdfpage)
+    if not dones:
+        return False
+    rate = utila.rate_rel(len(dones), len(cluster))
+    if rate > 0.75:
+        utila.debug(f'multiple page number cluster on page: {dones}')
+        return True
+    return False
 
 
 def determine_orientation(pdfpage, clusters) -> iamraw.PageNumberOrientation:
