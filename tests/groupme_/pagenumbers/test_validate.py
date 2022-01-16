@@ -40,23 +40,28 @@ def master110(result):
     assert current == expected
 
 
-@pytest.mark.parametrize('source, expected', [
-    pytest.param(power.BACHELOR111_PDF, bachelor111, id='bachelor111'),
-    pytest.param(power.MASTER072_PDF, 69, id='master72pages'),
-    pytest.param(power.TECH024_PDF, 23, id='technical24pages'),
-    pytest.param(power.MASTER091A_PDF, 88, id='master91a'),
-    pytest.param(power.MASTER110_PDF, master110, id='master110'),
-    pytest.param(power.MASTER127_PDF, 127 - 1, id='master127'),
-    pytest.param(power.DISS406_PDF, 119, id='diss406'),
+# yapf:disable
+@pytest.mark.parametrize('source,pages,expected', [
+    pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
+    pytest.param(power.MASTER072_PDF, None, 69, id='master72pages'),
+    pytest.param(power.TECH024_PDF, None, 23, id='technical24pages'),
+    pytest.param(power.MASTER091A_PDF, None, 88, id='master91a'),
+    pytest.param(power.MASTER110_PDF, None, master110, id='master110'),
+    pytest.param(power.MASTER127_PDF, None, 127 - 1, id='master127'),
+    pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
+    pytest.param(power.DISS218_PDF, utila.ranged_list(0, 100), 93, id='diss218'),
 ])
+# yapf:enable
 @utilatest.longrun
-def test_validate_pagenumbers(source, expected):
+def test_validate_pagenumbers(source, pages, expected):
     extracted = power.link(source)
     # TODO: bottom only, add header page extraction
-    text = iamraw.path.text(extracted)
-    textpositions = iamraw.path.textposition(extracted)
     # run extractor
-    result = groupme.feature.pagenumbers.work(text, textpositions)
+    result = groupme.feature.pagenumbers.work(
+        iamraw.path.text(extracted),
+        iamraw.path.textposition(extracted),
+        pages=pages,
+    )
     result = serializeraw.load_pagenumbers(result)
     if callable(expected):
         expected(result)
