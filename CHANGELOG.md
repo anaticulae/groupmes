@@ -2,6 +2,40 @@
 
 Every noteable change is logged here.
 
+## v0.19.0
+
+### Feature
+
+* improve footnote grouping (189db213be34)
+* add raw page location (dc702b486ece)
+* do not detect more than one page number per page (93c61df5a1b3)
+* support None highnotes correctly (9a5eb2d04337)
+* move highnote check to separate method (feed63d2a375)
+* allow None as valid highnote (7fba1f3211ec)
+* disable strategy if too few high notes are parsed (e0c45d208354)
+* add no level strategy to group toc with only few level (20341eed18cf)
+* add method to detect sections-pattern-toc (d29eebd76e42)
+* extend possible toc line pattern (11679c38e84a)
+* add attribute raw_level (2559a20346fa)
+* use numbered attribute (0df980e7fd5e)
+* cache line pattern to reduce execution time (20443da369c1)
+* add step wise toc level converter (8fc5281d6db9)
+* extend line regex pattern (3d459cf39807)
+* use headlines from elements (ff8a841b593a)
+
+### Fix
+
+* improve plain text parser (2625087af2ba)
+* footnote error in only a few items (fdb9e2d414c0)
+* skip potential footnotes with very short text (7d739a3427c8)
+* do not run forever (8e72f642612b)
+* split page number from page number (7067f2c7c6ec)
+
+### Documentation
+
+* describe how algorithm work (dd446d514042)
+* Happy New Year! (135858f97333)
+
 ## v0.18.1
 
 ### Feature
