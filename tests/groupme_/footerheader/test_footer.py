@@ -165,10 +165,7 @@ def test_footer_master127(testdir, monkeypatch):
     ]
     assert len(footers) == 73  # VALIDATED
     footnotes = utila.flatten([item.notes for item in footers])
-    with pytest.raises(AssertionError):
-        # TODO: IN CURRENT STATE FN 8 AND 9 ARE MERGED TOGETHER,
-        # INVESTIGATE WHY
-        assert len(footnotes) == 135  # VALIDATED
+    assert len(footnotes) == 135  # VALIDATED
 
 
 @utilatest.longrun

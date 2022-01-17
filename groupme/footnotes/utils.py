@@ -105,9 +105,8 @@ def ishighnote(style, text: str) -> bool:
     highnote_occurs = style.rise >= HIGHNOTE_RISE_MIN
     if not highnote_occurs:
         return False
-    text = text[style.start:style.end]
-    if text.isnumeric():
-        # TODO: ADD 1) or [1]
+    text = text[style.start:style.end].strip()
+    if NUMBER.match(text):
         return True
     return False
 

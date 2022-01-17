@@ -17,7 +17,9 @@ import groupme.footnotes.utils
 
 NUMBER_TEXT = re.compile(
     r"""
+    \[?
     (?P<number>\d+)
+    \]?
     (?!\d{0,4}(f{1,2}\.|p{1,2}\.)) # do not detect 229ff. as footnote
     [ ]{0,4}
     (?P<text>.{3,})
