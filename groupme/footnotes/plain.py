@@ -15,7 +15,15 @@ import utila
 
 import groupme.footnotes.utils
 
-NUMBER_TEXT = r'(?P<number>\d+)[ ]*(?P<text>.{3,})'
+NUMBER_TEXT = re.compile(
+    r"""
+    (?P<number>\d+)
+    (?!\d{0,4}(f{1,2}\.|p{1,2}\.)) # do not detect 229ff. as footnote
+    [ ]{0,4}
+    (?P<text>.{3,})
+""",
+    flags=(re.X | re.MULTILINE | re.DOTALL),
+)
 
 
 def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
@@ -29,22 +37,35 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
             # potential highnote is located too right
             continue
         text = ''.join([item.text for item in multiline])
-        matched = re.match(NUMBER_TEXT, text, flags=re.MULTILINE | re.DOTALL)
-        if not matched:
-            number, content = -1, text
-        else:
-            number, content = int(matched['number']), matched['text']
+        number, content = search_footnote(text)
         bounding = tuple(multiline[0].bounding)
-        text = utila.normalize_text(content.strip())
+        text = utila.normalize_text(content, normalize_spaces=True, strips=True)
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=number,
             style=None,
             page=pagenumber if pagenumber is not None else -1,
             text=text,
+            raw=content,
         )
         result.append(footnote)
     return result
+
+
+def search_footnote(text):
+    r"""\
+    >>> search_footnote('61 UNDP HDR 2007/2008, S.\n229ff. Die Weltfinanzkrise 2008-9'
+    ... '\n62 In der Tat wurde der Begriff bereits')
+    (61, 'UNDP HDR 2007/2008, S.\n229ff. Die Weltfinanzkrise 2008-9\n62 In der Tat wurde der Begriff bereits')
+    >>> search_footnote('229ff. Die Weltfinanzkrise 2008-9')
+    (-1, '229ff. Die Weltfinanzkrise 2008-9')
+    """
+    matched = NUMBER_TEXT.match(text)
+    if not matched:
+        number, content = -1, text
+    else:
+        number, content = int(matched['number']), matched['text']
+    return number, content
 
 
 MERGE_LINE_MIN = configo.HV_INT_PLUS(default=len('1. Ebd.'))
@@ -57,7 +78,7 @@ def merges(content, merge_line_min: int = MERGE_LINE_MIN):
     # merge multiple lines
     for line in content[1:]:
         text = line.text.strip()
-        matched = re.match(NUMBER_TEXT, text, re.MULTILINE)
+        matched = NUMBER_TEXT.match(text)
         if matched and len(text) >= merge_line_min:
             collected.append([line])
         else:
