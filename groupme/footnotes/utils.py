@@ -233,3 +233,19 @@ def char_bounding(
     x1 = bounding.x0 + char_width * style.end
     result = iamraw.BoundingBox(x0, bounding.y0, x1, bounding.y1)
     return result
+
+
+NUMBER = utila.compiles(r'\[?(\d{1,4})\]?')
+
+
+def parse_footnote_number(text: str) -> int:
+    """\
+    >>> parse_footnote_number('[133]')
+    133
+    """
+    matched = NUMBER.match(text)
+    if not matched:
+        utila.error(f'could not convert to int: {text}')
+        return text
+    result = int(matched[1])
+    return result

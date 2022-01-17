@@ -32,8 +32,8 @@ def parse(
     grouped = groupme.footnotes.utils.group_footnote_area(content)
     result = []
     for number, note in grouped:
-        hashighnote = number is not None
-        if hashighnote:
+        has_highnote = number is not None
+        if has_highnote:
             x0 = number.bounding[0]
             # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
             if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
@@ -42,37 +42,24 @@ def parse(
         if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
             utila.debug(f'footnote too short: {note.text}')
             continue
-        notenumber = parse_footnote_number(number.text) if hashighnote else None
+        notenumber = None
+        if has_highnote:
+            notenumber = groupme.footnotes.utils.parse_footnote_number(
+                number.text)
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
             continue
-        bounding = tuple(number.bounding) if hashighnote else None
+        bounding = tuple(number.bounding) if has_highnote else None
         # TODO: USE STRIP=True AFTER UPGRADING UTILA
         text = utila.normalize_text(note.text).strip()
         footnote = iamraw.FootRawNote(
             bounding=bounding,
             number=notenumber,
             raw='',  # TODO: REMOVE THIS?
-            raw_number=number.text.strip() if hashighnote else None,
-            style=(number.style if hashighnote else None, note.style),
+            raw_number=number.text.strip() if has_highnote else None,
+            style=(number.style if has_highnote else None, note.style),
             text=text,
             page=pagenumber if pagenumber is not None else -1,
         )
         result.append(footnote)
-    return result
-
-
-NUMBER = utila.compiles(r'\[?(\d{1,4})\]?')
-
-
-def parse_footnote_number(text: str) -> int:
-    """\
-    >>> parse_footnote_number('[133]')
-    133
-    """
-    matched = NUMBER.match(text)
-    if not matched:
-        utila.error(f'could not convert to int: {text}')
-        return text
-    result = int(matched[1])
     return result
