@@ -24,7 +24,6 @@ import configo
 import serializeraw
 import texmex
 import utila
-import yaml
 
 RECTANGLE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 
@@ -192,13 +191,12 @@ def dump_area(items) -> str:
             'textual': textual,
         }
         raw.append(content)
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
 def load_area(content: str, pages: tuple = None) -> PageContentTextualAreas:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
