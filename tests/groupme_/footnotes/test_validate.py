@@ -33,6 +33,7 @@ ARCHIVE = os.path.join(groupme.ROOT, 'tests/groupme_/footnotes/expected')
     pytest.param(power.DISS178_PDF, '0:30', 'diss178', id='diss178'),
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
     pytest.param(power.DISS273_PDF, '30:60', 'diss273', id='diss273'),
+    pytest.param(power.MASTER127_PDF, ':', 'master127', id='master127'),
 ])
 # yapf:enable
 @utilatest.longrun
