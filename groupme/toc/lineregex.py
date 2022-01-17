@@ -77,7 +77,7 @@ WHITESPACES_OPT = r'[ ]{0,3}'
 DOTTED = r'([ \.…]+)'
 # TODO: ENSURE TO NOT CUTTING CONTENT WHICH ENDS: "BASS.10 => BASS PAGE: 10"
 PAGE = r"""
-    \b(
+    \b(?P<raw_page>
         ((S|P)\.[ ]{0,3})?      # optional S. or P.
         (?P<page>
             (
@@ -152,11 +152,13 @@ DICTIONARY = utila.compiles(
 
 def extract_match(match: re.Match) -> groupme.toc.TocLine:
     assert isinstance(match, re.Match), type(match)
-    level, title, page = None, match['text'], None
+    level, title, page, raw_location = None, match['text'], None, None
     with contextlib.suppress(IndexError):
         page = match['page']
     with contextlib.suppress(IndexError):
         level = match['level']
+    with contextlib.suppress(IndexError):
+        raw_location = match['raw_page']
     # prepare title
     title = title.replace('\n', ' ')
     title = utila.normalize_whitespaces(title)
@@ -167,5 +169,6 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
         page=page,
         raw=utila.extract_match(match),
         raw_level=level,
+        raw_location=raw_location,
     )
     return result
