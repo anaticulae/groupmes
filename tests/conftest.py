@@ -62,6 +62,7 @@ RESOURCES = [
     (power.MASTER078_PDF, '0:10'),
     (power.DISS157_PDF, '6:10'),
     (power.MASTER099B_PDF, '2'),
+    (power.MASTER193_PDF, '3,4,5'),
 ]
 
 WORKER = 5
