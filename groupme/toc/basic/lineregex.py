@@ -19,8 +19,9 @@ import groupme.toc
 @utila.cacheme
 def parse(line: str) -> groupme.toc.TocLine:
     assert isinstance(line, str), type(line)
-    # TODO: REMOVE LATER
-    line = line.strip()
+    # see bachelor128
+    # 8.1         Fazit.................. 87
+    line = utila.normalize_whitespaces(line)
     for pattern in [
             EXTENDED_PATTERN_LETTER,
             EXTENDED_PATTERN,
