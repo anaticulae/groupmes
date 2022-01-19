@@ -13,14 +13,13 @@ import groupme.toc.group
 import groupme.toc.lineregex
 
 
-def parse_group(items, page) -> groupme.toc.TocLines:
+def parse_group(items, page: int) -> groupme.toc.TocLines:
     assert page is not None, page
     parsed = [groupme.toc.lineregex.parse(item.text) for item in items]
     matched = [item is not None for item in parsed]
-
     if all(matched):
-        for item in parsed:
-            item.raw_location = page
+        # all work is done
+        parsed = set_pagelocation(parsed, page=page)
         return parsed
     result = []
     collected = []
@@ -35,8 +34,7 @@ def parse_group(items, page) -> groupme.toc.TocLines:
                 result.append(extracted)
             else:
                 # log not parsed
-                # TODO: USE VERBOSE LEVEL
-                utila.debug('could not group and parse %s' % collected)
+                utila.debug(f'could not group and parse {collected}')
             collected = []
             continue
         result.append(parsed_item)
@@ -45,11 +43,18 @@ def parse_group(items, page) -> groupme.toc.TocLines:
         if extracted:
             # parsing was successful
             result.append(extracted)
-
-    # setup parse page location
-    for item in result:
-        item.raw_location = page
+    result = set_pagelocation(result, page=page)
     return result
+
+
+def set_pagelocation(
+    items: groupme.toc.TocLines,
+    page: int,
+) -> groupme.toc.TocLines:
+    # set parse page location
+    for item in items:
+        item.raw_location = page
+    return items
 
 
 def group_collection_and_parse(items):
