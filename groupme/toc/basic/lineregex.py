@@ -18,6 +18,10 @@ import groupme.toc
 
 @utila.cacheme
 def parse(line: str) -> groupme.toc.TocLine:
+    """\
+    >>> parse('5. Initiative: ´Demenzfreundliche Kommune`................. 45')
+    TocLine(level='5.', title='Initiative: ´Demenzfreundliche Kommune`', page='45'...')
+    """
     assert isinstance(line, str), type(line)
     # see bachelor128
     # 8.1         Fazit.................. 87
@@ -55,6 +59,7 @@ USER_CHARACTER = [
     r'\w\d\(\)\-\.\[\]',
     "'!\"&,/:;?ß",
     '’‚“”„…',
+    '´`',
     '–',  # special minus sign
 ]
 
