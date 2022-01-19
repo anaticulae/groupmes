@@ -10,6 +10,8 @@
 import functools
 import os
 
+import elements
+import iamraw
 import power
 import pytest
 import serializeraw
@@ -17,6 +19,8 @@ import utila
 import utilatest
 
 import groupme
+import groupme.toc.run
+import groupme.toc.strategy
 import tests
 
 ARCHIVE = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
@@ -83,3 +87,77 @@ class Evaluate(utilatest.BaseLiner):
         for child in item.children:
             result.extend(self.recursive(child, level + 1))
         return result
+
+
+@pytest.mark.parametrize('source,pages', [
+    utilatest.step(power.BACHELOR063_PDF, TEN),
+    utilatest.step(power.BACHELOR076_PDF, TEN),
+    utilatest.step(power.BACHELOR090_PDF, TEN),
+    utilatest.step(power.BACHELOR111_PDF, TEN),
+    utilatest.step(power.BACHELOR128_PDF, (3, 4, 5)),
+    utilatest.step(power.BACHELOR241_PDF, (4, 5, 6, 7)),
+    utilatest.step(power.DISS143_PDF, TEN),
+    utilatest.step(power.DISS157_PDF, (6, 7, 8)),
+    utilatest.step(power.DISS172_PDF, TEN),
+    utilatest.step(power.DISS180_PDF, (4, 5)),
+    utilatest.step(power.HOME050_PDF, (3, 4)),
+    utilatest.step(power.MASTER049_PDF, (4,)),
+    utilatest.step(power.MASTER072_PDF, None),
+    utilatest.step(power.MASTER078_PDF, TEN),
+    utilatest.step(power.MASTER083_PDF, TEN),
+    utilatest.step(power.MASTER089_PDF, TEN),
+    utilatest.step(power.MASTER098_PDF, TEN),
+    utilatest.step(power.MASTER099_PDF, TEN),
+    utilatest.step(power.MASTER110_PDF, TEN),
+    utilatest.step(power.MASTER127_PDF, TEN),
+    utilatest.step(power.MASTER155_PDF, (1, 2)),
+])
+@utilatest.longrun
+def test_toc_style_numbered(source, pages):
+    source = power.link(source)
+    ptcn = serializeraw.ptcn_frompath(
+        source,
+        prefix='oneline',
+        pages=pages,
+    )
+    loaded = groupme.toc.strategy.create(ptcn)
+    extracted = groupme.toc.run.extract(loaded)
+    extracted = utila.flatten(extracted)
+    current = elements.toc_style(extracted)
+    assert current == iamraw.TocStyle.NUMBERED
+
+
+@pytest.mark.parametrize('source,pages', [
+    utilatest.step(power.DISS406_PDF, (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)),
+])
+@utilatest.longrun
+def test_toc_style_stepped(source, pages):
+    source = power.link(source)
+    ptcn = serializeraw.ptcn_frompath(
+        source,
+        prefix='oneline',
+        pages=pages,
+    )
+    loaded = groupme.toc.strategy.create(ptcn)
+    extracted = groupme.toc.run.extract(loaded)
+    extracted = utila.flatten(extracted)
+    current = elements.toc_style(extracted)
+    assert current == iamraw.TocStyle.STEPPED
+
+
+@pytest.mark.parametrize('source,pages', [
+    utilatest.step(power.MASTER099B_PDF, (2,)),
+])
+@utilatest.longrun
+def test_toc_style_sectioned(source, pages):
+    source = power.link(source)
+    ptcn = serializeraw.ptcn_frompath(
+        source,
+        prefix='oneline',
+        pages=pages,
+    )
+    loaded = groupme.toc.strategy.create(ptcn)
+    extracted = groupme.toc.run.extract(loaded)
+    extracted = utila.flatten(extracted)
+    current = elements.toc_style(extracted)
+    assert current == iamraw.TocStyle.SECTIONED
