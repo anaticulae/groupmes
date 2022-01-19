@@ -34,7 +34,6 @@ def parse(line: str) -> groupme.toc.TocLine:
     return None
 
 
-LEVEL = r'(?P<level>(\d{1,2}\.)+\d{0,2})'
 LEVEL_DOTTED_OPTIONAL = r'(?P<level>(\d{1,2}\.?){1,3}\d{0,2})'
 
 LEVEL_LETTER = r"""(?P<level>
