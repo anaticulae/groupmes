@@ -111,6 +111,7 @@ class Evaluate(utilatest.BaseLiner):
     utilatest.step(power.MASTER110_PDF, TEN),
     utilatest.step(power.MASTER127_PDF, TEN),
     utilatest.step(power.MASTER155_PDF, (1, 2)),
+    utilatest.step(power.MASTER193_PDF, (2, 3, 4)),
 ])
 @utilatest.longrun
 def test_toc_style_numbered(source, pages):
