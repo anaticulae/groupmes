@@ -9,8 +9,8 @@
 
 import utilatest
 
-import groupme.toc.run as gte
-import tests.fixtures.tableofcontent as tft
+import groupme.toc.run
+import tests.fixtures.tableofcontent
 
 
 @utilatest.longrun
@@ -19,9 +19,9 @@ def test_toc_strategy_master72():
     disable checking content border in PageTextContentNavigator
     creation. If we do not, the third position `11` detects only `10`
     headlines."""
-    headlines = tft.master72_toc()
+    headlines = tests.fixtures.tableofcontent.master72_toc()
     expected = [3, 9, 11, 6, 1, 1, 1]
-    grouped = gte.extract(headlines)
+    grouped = groupme.toc.run.extract(headlines)
     assert len(grouped) == len(expected)
     # verify
     count = [len(item) for item in grouped]
@@ -30,7 +30,7 @@ def test_toc_strategy_master72():
 
 @utilatest.longrun
 def test_toc_strategy_technial24():
-    headlines = tft.technical24_toc()
+    headlines = tests.fixtures.tableofcontent.technical24_toc()
     expected = [1, 1, 2, 7, 5, 1, 16, 1]
-    grouped = gte.extract(headlines)
+    grouped = groupme.toc.run.extract(headlines)
     assert len(grouped) == len(expected)
