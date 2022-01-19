@@ -69,7 +69,9 @@ def analyse_page(content: texmex.PageTextNavigator):
     return result
 
 
-def group_areas(content: texmex.PageTextNavigator):
+def group_areas(content: texmex.PageTextNavigator) -> list:
+    if not content:
+        return []
     linedistances = texmex.linedistances(content, noneatend=False)
     result = []
     grouped = []
