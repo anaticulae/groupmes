@@ -33,7 +33,7 @@ import iamraw
 import utila
 
 import groupme.toc
-import groupme.toc.lineregex
+import groupme.toc.basic.lineregex
 import groupme.toc.strategy
 
 TOC_LINE_LENGTH_MAX = configo.HV_FLOAT_PLUS(default=250.0)
@@ -79,14 +79,14 @@ def parse(content: str) -> groupme.toc.TocLines:
     duplicated = content
     result = []
     for pattern in [
-            groupme.toc.lineregex.EXTENDED_PATTERN,
-            groupme.toc.lineregex.EXTENDED_PATTERN_LETTER,
-            groupme.toc.lineregex.DICTIONARY,
-            groupme.toc.lineregex.NO_LEVEL,
-            groupme.toc.lineregex.NO_DOTS,
+            groupme.toc.basic.lineregex.EXTENDED_PATTERN,
+            groupme.toc.basic.lineregex.EXTENDED_PATTERN_LETTER,
+            groupme.toc.basic.lineregex.DICTIONARY,
+            groupme.toc.basic.lineregex.NO_LEVEL,
+            groupme.toc.basic.lineregex.NO_DOTS,
     ]:
         for line in re.finditer(pattern, content):
-            item = groupme.toc.lineregex.extract_match(line)
+            item = groupme.toc.basic.lineregex.extract_match(line)
             if len(item.raw) <= 8:
                 # TODO: REMOVE HACK LATER
                 continue
@@ -98,10 +98,10 @@ def parse(content: str) -> groupme.toc.TocLines:
     for line in [item for item in content.splitlines() if item.strip()]:
         if re.match(r'^\d', line):
             continue
-        matched = re.match(groupme.toc.lineregex.NO_LEVEL, line)
+        matched = re.match(groupme.toc.basic.lineregex.NO_LEVEL, line)
         if not matched:
             continue
-        matched = groupme.toc.lineregex.extract_match(matched)
+        matched = groupme.toc.basic.lineregex.extract_match(matched)
         result.append(matched)
     # remove duplications, which can occur when table of content is on the
     # same page as first headline.

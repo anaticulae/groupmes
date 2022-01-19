@@ -14,8 +14,8 @@ import configo
 import texmex
 import utila
 
+import groupme.toc.basic.utils
 import groupme.toc.strategy
-import groupme.toc.strategy.utils
 
 HEADLINE_LEVEL_MAX = configo.HV_INT_PLUS(default=3)
 
@@ -30,7 +30,7 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 
         grouped = group_areas(extracted)
         content = [
-            groupme.toc.strategy.utils.parse_group(group, page)
+            groupme.toc.basic.utils.parse_group(group, page)
             for page, group in grouped
         ]
         # remove empty

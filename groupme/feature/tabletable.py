@@ -16,9 +16,9 @@ import utila
 
 import groupme.feature.figuretable
 import groupme.pageselector
-import groupme.toc.extractor
-import groupme.toc.group
+import groupme.toc.run
 import groupme.toc.strategy
+import groupme.toc.toc.create
 
 # minimal percentage of tabletable lines per page
 TOFS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=20, limit=100)
@@ -59,10 +59,10 @@ def work(
     navigators = utila.select_pages(navigators, pages=selected)
 
     loaded = groupme.toc.strategy.create(navigators)
-    extracted = groupme.toc.extractor.extract(loaded)
+    extracted = groupme.toc.run.extract(loaded)
 
     flat = utila.flatten(extracted.content)
-    leveled = groupme.toc.group.groupby_level(flat)
+    leveled = groupme.toc.toc.create.groupby_level(flat)
 
     dumped = serializeraw.dump_toc(leveled)
     return dumped

@@ -9,7 +9,7 @@
 
 import utilatest
 
-import groupme.toc.extractor
+import groupme.toc.run
 import groupme.toc.strategy.geometry
 import tests.fixtures.tableofcontent
 
@@ -28,7 +28,7 @@ def test_toc_strategy_geometry():
     active = [
         groupme.toc.strategy.geometry.GeometryTocExtractor,
     ]
-    grouped = groupme.toc.extractor.extract(
+    grouped = groupme.toc.run.extract(
         headlines,
         active=active,
     )
@@ -44,6 +44,6 @@ def test_toc_strategy_bachelor111():
     # expected = [3, 16, 8, 5, 7, 8, 3, 1, 4, 1, 1, 1, 9]
     expected = [3, 16, 8, 5, 7, 8, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8]
 
-    grouped = groupme.toc.extractor.extract(headlines)
+    grouped = groupme.toc.run.extract(headlines)
     current = [len(item) for item in grouped]
     assert current == expected

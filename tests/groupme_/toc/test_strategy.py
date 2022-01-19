@@ -9,7 +9,7 @@
 
 import utilatest
 
-import groupme.toc.extractor as gte
+import groupme.toc.run as gte
 import tests.fixtures.tableofcontent as tft
 
 

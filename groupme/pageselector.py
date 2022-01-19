@@ -11,8 +11,8 @@ import configo
 import texmex
 import utila
 
-import groupme.toc.group
 import groupme.toc.strategy.regex
+import groupme.toc.toc.create
 
 HEADLINE_SIZE_MIN = configo.HV_FLOAT_PLUS(15.0)
 
@@ -48,7 +48,8 @@ def select_contentpages(
         # TODO: group.level fails on failing level
         if skip_higherqual_level_three:
             level3 = [
-                groupme.toc.group.level(item.level) for item in current_page
+                groupme.toc.toc.create.level(item.level)
+                for item in current_page
             ]
             level3 = [
                 item for item in level3

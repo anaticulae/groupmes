@@ -20,9 +20,9 @@ import utila
 
 import groupme.pageselector
 import groupme.toc
-import groupme.toc.extractor
-import groupme.toc.group
+import groupme.toc.run
 import groupme.toc.strategy
+import groupme.toc.toc.create
 
 # minimal percentage of figure lines per page
 TOFS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=20, limit=100.0)
@@ -68,7 +68,7 @@ def work(
             pages=pages,
         )
         result = doublecolumn_figure_strategy(ptcns)
-    result = groupme.toc.group.groupby_level(result)  # pylint:disable=R0204
+    result = groupme.toc.toc.create.groupby_level(result)  # pylint:disable=R0204
     dumped = serializeraw.dump_toc(result)
     return dumped
 
@@ -83,7 +83,7 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
     oneline = utila.select_pages(oneline, pages=selected)
 
     loaded = groupme.toc.strategy.create(oneline)
-    extracted = groupme.toc.extractor.extract(loaded)
+    extracted = groupme.toc.run.extract(loaded)
 
     flat = utila.flatten(extracted.content)
 

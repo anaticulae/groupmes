@@ -26,8 +26,8 @@ import configo
 import texmex
 import utila
 
+import groupme.toc.basic.utils
 import groupme.toc.strategy
-import groupme.toc.strategy.utils
 
 GROUP_GAP_MIN = configo.HV_FLOAT_PLUS(default=30.0)
 
@@ -56,7 +56,7 @@ def analyse_page(content: texmex.PageTextNavigator):
     content = groupme.toc.strategy.remove_headline(content)
     grouped = group_areas(content)
     result = [
-        groupme.toc.strategy.utils.parse_group(items, content.page)
+        groupme.toc.basic.utils.parse_group(items, content.page)
         for items in grouped
     ]
     # remove not parsed

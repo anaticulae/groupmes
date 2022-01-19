@@ -53,7 +53,9 @@ if __name__ == "__main__":
             'groupme.footer.strategy',
             'groupme.footnotes',
             'groupme.toc',
+            'groupme.toc.basic',
             'groupme.toc.strategy',
+            'groupme.toc.toc',
         ],
         entry_points={
             'console_scripts': ['groupme = groupme.cli:main',],

@@ -9,13 +9,13 @@
 
 import utila
 
-import groupme.toc.group
-import groupme.toc.lineregex
+import groupme.toc.basic.lineregex
+import groupme.toc.toc.create
 
 
 def parse_group(items, page: int) -> groupme.toc.TocLines:
     assert page is not None, page
-    parsed = [groupme.toc.lineregex.parse(item.text) for item in items]
+    parsed = [groupme.toc.basic.lineregex.parse(item.text) for item in items]
     matched = [item is not None for item in parsed]
     if all(matched):
         # all work is done
@@ -59,5 +59,5 @@ def set_pagelocation(
 
 def group_collection_and_parse(items):
     line = ' '.join([item.text for item in items])
-    parsed = groupme.toc.lineregex.parse(line)
+    parsed = groupme.toc.basic.lineregex.parse(line)
     return parsed

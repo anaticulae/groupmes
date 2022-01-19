@@ -15,7 +15,7 @@ import utila
 import utilatest
 
 import groupme.feature.toc
-import groupme.toc.lineregex
+import groupme.toc.basic.lineregex
 import groupme.toc.strategy.regex as gtsr
 
 MASTER72_TEXT = iamraw.path.text(
@@ -101,7 +101,7 @@ def test_extract_toc_line_whitespace_decision():
 
 def test_toc_lineregex_parse():
     line = '2.2.3 Drahtlostechnologien fuer Nahbereichsnetzwerke (WPAN) 15'
-    parsed = groupme.toc.lineregex.parse(line)
+    parsed = groupme.toc.basic.lineregex.parse(line)
     assert parsed.level == '2.2.3'
     assert parsed.title == 'Drahtlostechnologien fuer Nahbereichsnetzwerke (WPAN)'
     assert parsed.page == '15'

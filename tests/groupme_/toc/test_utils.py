@@ -10,7 +10,7 @@
 import utila
 
 import groupme.toc
-import groupme.toc.group
+import groupme.toc.toc.create
 
 CONTENT = """
 5.1.5 Präsentationsschicht . . . . . . . . . . . . . . . . . . . 58

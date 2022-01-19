@@ -14,7 +14,7 @@ import utila
 
 import groupme.feature.toc
 import groupme.pageselector
-import groupme.toc.group
+import groupme.toc.toc.create
 
 
 def test_toc_groupby_level():
@@ -26,11 +26,11 @@ def test_toc_groupby_level():
     # select toc pages only
     navigators = [item for item in navigators if item.page in selected]
     loaded = groupme.toc.strategy.create(navigators)
-    tableofcontent = groupme.toc.extractor.extract(loaded)
+    tableofcontent = groupme.toc.run.extract(loaded)
 
     tableofcontent = utila.flatten(tableofcontent.content)
 
-    result = groupme.toc.group.groupby_level_numbered(tableofcontent)
+    result = groupme.toc.toc.create.groupby_level_numbered(tableofcontent)
     assert result
     dumped = serializeraw.dump_toc(result)
     assert dumped
@@ -72,7 +72,7 @@ def test_extract_toc_from_path(resources, pages, expected):
         pages=pages,
     )
     loaded = groupme.toc.strategy.create(navigators)
-    extracted = groupme.toc.extractor.extract(
+    extracted = groupme.toc.run.extract(
         loaded,
         min_detection_count=groupme.feature.toc.TOC_COUNT_MIN,
     )

@@ -16,7 +16,7 @@ import texmex
 import utila
 
 import groupme.toc
-import groupme.toc.group
+import groupme.toc.toc.create
 
 
 @dataclasses.dataclass
@@ -58,7 +58,7 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
     for item in right:
         if item not in valid:
             invalid.append(item)
-    content = groupme.toc.group.groupby_chapter(valid)
+    content = groupme.toc.toc.create.groupby_chapter(valid)
     result = ExtractionResult(content=content, invalid=invalid)
     return result
 
