@@ -126,13 +126,15 @@ def level(item: str) -> Level:
 
 # TODO: MOVE TO ELEMENTS
 def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
-    if elements.istocnumbered(toc):
+    current = elements.toc_style(toc)
+    if current == iamraw.TocStyle.NUMBERED:
         return groupby_level_numbered(toc)
-    if istocsections(toc):
+    if current == iamraw.TocStyle.SECTIONED:
         return grouper_level(toc, levelme=level_sections)
-    if istocnolevel(toc):
+    if current == iamraw.TocStyle.FIRSTLEVEL_ONLY:
         # TODO: VERIFY THIS
         return grouper_level(toc, levelme=lambda x: 1 if x is not None else 2)
+    assert current == iamraw.TocStyle.STEPPED, str(current)
     return groupby_level_steps(toc)
 
 
