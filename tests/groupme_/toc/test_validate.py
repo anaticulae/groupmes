@@ -114,16 +114,7 @@ class Evaluate(utilatest.BaseLiner):
 ])
 @utilatest.longrun
 def test_toc_style_numbered(source, pages):
-    source = power.link(source)
-    ptcn = serializeraw.ptcn_frompath(
-        source,
-        prefix='oneline',
-        pages=pages,
-    )
-    loaded = groupme.toc.strategy.create(ptcn)
-    extracted = groupme.toc.run.extract(loaded)
-    extracted = utila.flatten(extracted)
-    current = elements.toc_style(extracted)
+    current = tocstyle_frompath(source, pages)
     assert current == iamraw.TocStyle.NUMBERED
 
 
@@ -132,16 +123,7 @@ def test_toc_style_numbered(source, pages):
 ])
 @utilatest.longrun
 def test_toc_style_stepped(source, pages):
-    source = power.link(source)
-    ptcn = serializeraw.ptcn_frompath(
-        source,
-        prefix='oneline',
-        pages=pages,
-    )
-    loaded = groupme.toc.strategy.create(ptcn)
-    extracted = groupme.toc.run.extract(loaded)
-    extracted = utila.flatten(extracted)
-    current = elements.toc_style(extracted)
+    current = tocstyle_frompath(source, pages)
     assert current == iamraw.TocStyle.STEPPED
 
 
@@ -150,6 +132,11 @@ def test_toc_style_stepped(source, pages):
 ])
 @utilatest.longrun
 def test_toc_style_sectioned(source, pages):
+    current = tocstyle_frompath(source, pages)
+    assert current == iamraw.TocStyle.SECTIONED
+
+
+def tocstyle_frompath(source, pages):
     source = power.link(source)
     ptcn = serializeraw.ptcn_frompath(
         source,
@@ -160,4 +147,4 @@ def test_toc_style_sectioned(source, pages):
     extracted = groupme.toc.run.extract(loaded)
     extracted = utila.flatten(extracted)
     current = elements.toc_style(extracted)
-    assert current == iamraw.TocStyle.SECTIONED
+    return current
