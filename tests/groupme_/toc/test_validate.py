@@ -48,7 +48,7 @@ TEN = utila.make_tuple(10)
     utilatest.step(power.MASTER155_PDF, (1, 2)),
     utilatest.step(power.BACHELOR128_PDF, (3, 4, 5)),
     utilatest.step(power.MASTER193_PDF, (3, 4, 5)),
-    utilatest.step(power.DISS172_PDF, (7,8)),
+    utilatest.step(power.DISS172_PDF, (7, 8)),
 ])
 @utilatest.nightly
 def test_toc_validate(source, pages, monkeypatch, testdir):
