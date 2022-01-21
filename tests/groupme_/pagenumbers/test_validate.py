@@ -56,7 +56,14 @@ def diss480(result):
     assert utila.isascending(current)
 
 
-# yapf:disable
+def diss218(result):
+    current = [item.detected for item in result]
+    assert utila.isascending(current)
+
+
+HUNDRED = utila.ranged_list(100)
+
+
 @pytest.mark.parametrize('source,pages,expected', [
     pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
     pytest.param(power.MASTER072_PDF, None, 69, id='master72pages'),
@@ -65,11 +72,10 @@ def diss480(result):
     pytest.param(power.MASTER110_PDF, None, master110, id='master110'),
     pytest.param(power.MASTER127_PDF, None, 127 - 1, id='master127'),
     pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
-    pytest.param(power.DISS218_PDF, utila.ranged_list(0, 100), 93, id='diss218'),
+    pytest.param(power.DISS218_PDF, HUNDRED, diss218, id='diss218'),
     pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
     pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
 ])
-# yapf:enable
 @utilatest.longrun
 def test_validate_pagenumbers(source, pages, expected):
     extracted = power.link(source)
