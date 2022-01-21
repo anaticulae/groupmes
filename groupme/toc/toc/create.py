@@ -126,6 +126,9 @@ def level(item: str) -> Level:
 
 # TODO: MOVE TO ELEMENTS
 def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
+    if not toc:
+        # empty toc or no toc
+        return iamraw.Toc()
     current = elements.toc_style(toc)
     if current == iamraw.TocStyle.NUMBERED:
         return groupby_level_numbered(toc)
