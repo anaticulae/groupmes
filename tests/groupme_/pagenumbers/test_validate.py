@@ -51,6 +51,11 @@ def master049(result):
     assert current == expected
 
 
+def diss480(result):
+    current = [item.detected for item in result]
+    assert utila.isascending(current)
+
+
 # yapf:disable
 @pytest.mark.parametrize('source,pages,expected', [
     pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
@@ -62,6 +67,7 @@ def master049(result):
     pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
     pytest.param(power.DISS218_PDF, utila.ranged_list(0, 100), 93, id='diss218'),
     pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
+    pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
 ])
 # yapf:enable
 @utilatest.longrun
