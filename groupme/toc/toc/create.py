@@ -90,6 +90,8 @@ def level(item: str) -> Level:
 
     >>> level('A')
     AppendixLevel(value='A', raw='A', character='A')
+    >>> level('b')
+    AppendixLevel(value='B', raw='b', character='B')
     """
     # TODO: SUPPORT 1. Abbildung
     # TODO: SUPPORT 1. Abb.
@@ -97,29 +99,23 @@ def level(item: str) -> Level:
     # Abbildung, but this is not the correct Point.
     if item is None:
         return None
-
     number = elements.level_numbered(item)
     if number is not None:
         return Level(value=number, raw=item)
-
     if value := utila.arabic(item):
         return RomanLevel(value=value, raw=item)
-
     try:
         letter, _ = item.split('.', maxsplit=1)
         letter = letter.upper()
     except ValueError:
         # TODO: REMOVE THIS HACK AFTER FIXING LINEREGEX
-        letter = item.replace('Anhang', '').replace(':', '').strip()
-
-    if letter in ('A', 'B', 'C', 'D'):
+        letter = item.replace('Anhang', '').replace(':', '').strip().upper()
+    if letter in 'ABCDEFGH':
         result = AppendixLevel(value=letter, character=letter, raw=item)
         return result
-
     if converted := elements.level_steps(item):
         result = StepLevel(value=converted, raw=item)  # pylint:disable=R0204
         return result
-
     utila.error(f'could not convert to level: {item}')
     return None
 
