@@ -76,7 +76,7 @@ HUNDRED = utila.ranged_list(100)
     pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
     pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_validate_pagenumbers(source, pages, expected):
     extracted = power.link(source)
     # TODO: bottom only, add header page extraction

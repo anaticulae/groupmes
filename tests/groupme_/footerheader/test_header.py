@@ -30,7 +30,7 @@ import tests.groupme_
         id='master72',
     ),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_footer_extract_footerheader_technical(root, expected):
     pages = None
     pagetextnavigators = serializeraw.create_pagetextnavigators_frompath(
@@ -138,7 +138,7 @@ def test_header_tech24(testdir, monkeypatch):
     assert len(loaded) == 9  # do not change
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_header_bachelor128(testdir, monkeypatch):
     loaded = extract_header(
         power.BACHELOR128_PDF,
@@ -172,7 +172,7 @@ def test_header_diss172(testdir, monkeypatch):
     assert len(loaded) in (148, 152)  # NOT VALIDATED
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_header_diss144(testdir, monkeypatch):
     loaded = extract_header(
         power.DISS144_PDF,
@@ -182,7 +182,7 @@ def test_header_diss144(testdir, monkeypatch):
     assert len(loaded) == 142  # NOT VALIDATED
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_header_diss406(testdir, monkeypatch):
     loaded = extract_header(
         power.DISS406_PDF,
