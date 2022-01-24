@@ -22,7 +22,7 @@ def select_contentpages(
     wrong_table=None,
     strategy: callable = None,
     skip_higherqual_level_three: bool = True,
-    min_valid_lines_perpage=None,
+    valid_lines_perpage_min=None,
 ) -> utila.Ints:
     """Use simple approach to decide which page contains table content."""
     if strategy is None:
@@ -41,7 +41,7 @@ def select_contentpages(
             continue
         matched_percent = len(current_page) / pageslines
         utila.info(f'page percent: {matched_percent} on page: {page.page}')
-        if min_valid_lines_perpage is not None and matched_percent < min_valid_lines_perpage:
+        if valid_lines_perpage_min is not None and matched_percent < valid_lines_perpage_min:
             # avoid missdetection in random pages if only few lines are
             # missdetected as toc line.
             continue

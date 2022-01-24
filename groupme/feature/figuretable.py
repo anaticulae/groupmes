@@ -77,7 +77,7 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
     selected = groupme.pageselector.select_contentpages(
         oneline,
         wrong_table=NO_FIGURES,
-        min_valid_lines_perpage=TOFS_PER_PAGE_MIN,
+        valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
     )
     # select figure pages only
     oneline = utila.select_pages(oneline, pages=selected)
@@ -135,7 +135,7 @@ def doublecolumn_figure_strategy(ptcns) -> iamraw.Toc:
         ptcns,
         strategy=parse,
         wrong_table=NO_FIGURES,
-        min_valid_lines_perpage=TOFS_PER_PAGE_MIN,
+        valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
     )
     if not pages:
         return []

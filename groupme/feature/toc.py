@@ -68,7 +68,7 @@ def work(
         textnavigators=navigators,
         wrong_table=NO_TOC,
         skip_higherqual_level_three=False,
-        min_valid_lines_perpage=TOCS_PER_PAGE_MIN,
+        valid_lines_perpage_min=TOCS_PER_PAGE_MIN,
     )
     navigators = utila.select_pages(navigators, pages=selected)
 

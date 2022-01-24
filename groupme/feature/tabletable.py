@@ -53,7 +53,7 @@ def work(
     selected = groupme.pageselector.select_contentpages(
         navigators,
         wrong_table=NO_TABLES,
-        min_valid_lines_perpage=TOFS_PER_PAGE_MIN,
+        valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
     )
     # select toc pages only
     navigators = utila.select_pages(navigators, pages=selected)
