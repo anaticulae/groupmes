@@ -11,7 +11,6 @@
 """
 
 import configo
-import elements.headline.lookup
 import texmex
 import utila
 
@@ -65,20 +64,19 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         return feed
 
 
-NOTOC_LINE = elements.headline.lookup.TOC
-
-
-def analyse_page(navigator: texmex.PageTextContentNavigators, level_feed: list):
+def analyse_page(
+    navigator: texmex.PageTextContentNavigators,
+    level_feed: list,
+) -> list:
+    contentborder = navigator.content
+    navigator: 'PTN' = groupme.toc.strategy.remove_headline(navigator)
+    textbounds = texmex.textbounds(navigator, contentborder)
     result = []
-    textbounds = texmex.textbounds(navigator, navigator.content)
     for item in textbounds:
-        if utila.verysimilar(current=item.text, expected=NOTOC_LINE):
-            # headline at the start of the page
-            continue
-        # document_text feed is computed from left page border to text
+        # document_text feed is computed from left page border to text.
         # text feed is computed from expected content start till text start
         # convert local to global text feed
-        xdist = navigator.content.left + item.bounds.leftdist
+        xdist = contentborder.left + item.bounds.leftdist
         current_level = level(xdist, level_feed)
         result.append((navigator.page, (current_level, item)))
     return result
