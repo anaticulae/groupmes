@@ -60,8 +60,7 @@ def analyse_page(content: texmex.PageTextNavigator):
         for items in grouped
     ]
     # remove not parsed
-    result = [item for item in result if item]
-
+    result = utila.notempty(result)
     # set page where toc was parsed
     for group in result:
         for item in group:
