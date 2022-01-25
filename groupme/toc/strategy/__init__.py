@@ -63,11 +63,6 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
     return result
 
 
-def create(content: texmex.PageTextContentNavigators) -> ExtractionData:
-    data = ExtractionData(content=content)
-    return data
-
-
 def remove_headline(content: texmex.PageTextNavigator) -> texmex.PageTextNavigator:  # yapf:disable
     """Remove table of content headline to improve extraction result."""
     result = texmex.PageTextNavigator(

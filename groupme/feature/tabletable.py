@@ -58,7 +58,7 @@ def work(
     # select toc pages only
     navigators = utila.select_pages(navigators, pages=selected)
 
-    loaded = groupme.toc.strategy.create(navigators)
+    loaded = groupme.toc.strategy.ExtractionData(content=navigators)
     extracted = groupme.toc.run.extract(loaded)
 
     flat = utila.flatten(extracted.content)

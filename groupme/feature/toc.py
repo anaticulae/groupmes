@@ -71,8 +71,7 @@ def work(
         valid_lines_perpage_min=TOCS_PER_PAGE_MIN,
     )
     navigators = utila.select_pages(navigators, pages=selected)
-
-    loaded = groupme.toc.strategy.create(navigators)
+    loaded = groupme.toc.strategy.ExtractionData(content=navigators)
     extracted = groupme.toc.run.extract(
         loaded,
         min_detection_count=TOC_COUNT_MIN,

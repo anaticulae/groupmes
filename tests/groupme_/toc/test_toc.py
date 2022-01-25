@@ -25,7 +25,7 @@ def test_toc_groupby_level():
     selected = groupme.pageselector.select_contentpages(navigators)
     # select toc pages only
     navigators = [item for item in navigators if item.page in selected]
-    loaded = groupme.toc.strategy.create(navigators)
+    loaded = groupme.toc.strategy.ExtractionData(content=navigators)
     tableofcontent = groupme.toc.run.extract(loaded)
 
     tableofcontent = utila.flatten(tableofcontent.content)
@@ -71,7 +71,7 @@ def test_extract_toc_from_path(resources, pages, expected):
         prefix='oneline',
         pages=pages,
     )
-    loaded = groupme.toc.strategy.create(navigators)
+    loaded = groupme.toc.strategy.ExtractionData(content=navigators)
     extracted = groupme.toc.run.extract(
         loaded,
         min_detection_count=groupme.feature.toc.TOC_COUNT_MIN,

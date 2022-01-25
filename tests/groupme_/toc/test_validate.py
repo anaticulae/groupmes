@@ -147,7 +147,7 @@ def tocstyle_frompath(source, pages):
         prefix='oneline',
         pages=pages,
     )
-    loaded = groupme.toc.strategy.create(ptcn)
+    loaded = groupme.toc.strategy.ExtractionData(content=ptcn)
     extracted = groupme.toc.run.extract(loaded)
     extracted = utila.flatten(extracted)
     current = elements.toc_style(extracted)

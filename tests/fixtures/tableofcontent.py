@@ -20,7 +20,7 @@ def headlines_frompath(path: str, pages=None):
         prefix='oneline',
         validate_leftright=False,  # do not check writing text over border
     )
-    result = groupme.toc.strategy.create(content=loaded)
+    result = groupme.toc.strategy.ExtractionData(content=loaded)
     return result
 
 

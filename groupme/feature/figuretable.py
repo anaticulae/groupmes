@@ -82,7 +82,7 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
     # select figure pages only
     oneline = utila.select_pages(oneline, pages=selected)
 
-    loaded = groupme.toc.strategy.create(oneline)
+    loaded = groupme.toc.strategy.ExtractionData(content=oneline)
     extracted = groupme.toc.run.extract(loaded)
 
     flat = utila.flatten(extracted.content)
