@@ -24,8 +24,6 @@ Should we support following whitespaces?
     See: :class:`tests.groupme_.toc.test_regex.test_extract_toc_line_whitespace_decission`.
 """
 
-import copy
-import math
 import re
 
 import configo
@@ -33,12 +31,11 @@ import iamraw
 import utila
 
 import groupme.toc
+import groupme.toc.basic.layout
 import groupme.toc.basic.lineregex
 import groupme.toc.strategy
 
 TOC_LINE_LENGTH_MAX = configo.HV_FLOAT_PLUS(default=250.0)
-
-ONELINE_MERGE_Y_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
@@ -48,6 +45,22 @@ class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         flat = utila.flatten(parsed)
         grouped = groupme.toc.strategy.group(flat)
         return grouped
+
+
+def parse_page(page: iamraw.Page) -> groupme.toc.TocLines:
+    """Merge `page` to raw string and extract the lines of table of content.
+
+    Hint:
+        see `parse`
+    """
+    # prepare data
+    text: str = groupme.toc.basic.layout.oneline(page)
+    # run extraction
+    result = parse(text)
+    # setup parse page location
+    for item in result:
+        item.raw_location = page.page
+    return result
 
 
 def parse(content: str) -> groupme.toc.TocLines:
@@ -124,81 +137,4 @@ def parse_nolevel(content: str) -> list:
             continue
         matched = groupme.toc.basic.lineregex.extract_match(matched)
         result.append(matched)
-    return result
-
-
-def parse_page(page: iamraw.Page) -> groupme.toc.TocLines:
-    """Merge `page` to raw string and extract the lines of table of content.
-
-    Hint:
-        see `parse`
-    """
-    # prepare data
-    oneline_text = oneline(page)
-    # remove single word line
-    # HOMEWORK PAGE 4, remove `Inhaltsverzeichnis` in header.
-    # # TODO: Look for a better header exclusion strategy
-    # TODO: ONLY REQUIRED IF TO FEW PAGES ARE AVAILABLE, CAUSE HEADER
-    # FOOTER STRATEGY NEEDS SOME DATA
-    # TODO: THINK ABOUT REMOVING THIS
-    result = [
-        item for item in oneline_text.splitlines()
-        if len(item.strip().split()) > 1
-    ]
-    result = utila.NEWLINE.join(result)
-    result = parse(result)
-    # setup parse page location
-    for item in result:
-        item.raw_location = page.page
-    return result
-
-
-def oneline(page) -> str:
-    if isinstance(page, iamraw.Page):
-        lines = utila.flatten([
-            container for container in page
-            if isinstance(container, iamraw.TextContainer)
-        ])
-        # lines = oneline_merge(lines)
-        # TODO: CHECK FOR ONELINE_MERGE
-        lines = [item.text for item in lines]
-    else:
-        # PageTextNavigator
-        lines = oneline_merge(list(page))
-        lines = [item.text for item in lines]
-    lines = split_newlines(lines)
-    lines = [item.strip() for item in lines]
-    text = utila.NEWLINE.join(lines)
-    return text
-
-
-def oneline_merge(lines):
-    """Merge layout if required."""
-    # TODO: EXPERIMENTAL: IMPROVE, MOVE TO RAWMAKER?
-    if not lines:
-        return []
-    # TODO: REPLACE BY .copy
-    lines = [copy.deepcopy(item) for item in lines]
-    # left to right
-    lines = sorted(lines, key=lambda item: item.bounding.x0)
-    # top to down
-    lines = sorted(lines, key=lambda item: item.bounding.y0)
-    result = [lines[0]]
-    for item in lines[1:]:
-        last_y = result[-1].bounding.y0
-        current_y = item.bounding.y0
-        if math.fabs(last_y - current_y) > ONELINE_MERGE_Y_DIFF_MAX:
-            result.append(item)
-            continue
-        # TODO: MERGE BOUNDING
-        # merge
-        # do NOT strip second item, we do not want to lose the newline
-        result[-1].text = result[-1].text.strip() + ' ' + item.text
-    return result
-
-
-def split_newlines(items):
-    result = []
-    for item in items:
-        result.extend(item.splitlines())
     return result
