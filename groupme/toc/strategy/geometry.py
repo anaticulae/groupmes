@@ -10,6 +10,8 @@
 ====================================
 """
 
+import functools
+
 import configo
 import texmex
 import utila
@@ -51,9 +53,8 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         assert isinstance(result.content, list), type(result.content)
         return result
 
-    @property
+    @functools.cached_property
     def textfeed(self):
-        # TODO: ADD CACHE
         # .value is required cause of further processing
         count = HEADLINE_LEVEL_MAX.value
         feeds = texmex.document_textfeed(
