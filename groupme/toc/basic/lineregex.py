@@ -34,8 +34,9 @@ def parse(line: str) -> groupme.toc.TocLine:
             DICTIONARY,
     ]:
         matched = re.match(pattern, line)
-        if matched:
-            return extract_match(matched)
+        if not matched:
+            continue
+        return extract_match(matched)
     return None
 
 
