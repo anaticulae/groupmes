@@ -27,7 +27,7 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
     def result(self) -> groupme.toc.strategy.ExtractionResult:
         extracted = []
         for page in self.loaded.content:
-            analyzed = analyse_page(page, self.textfeed)
+            analyzed = analyse_page(page, level_feeds=self.textfeed)
             extracted.extend(analyzed)
 
         grouped = group_areas(extracted)
@@ -65,7 +65,7 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 
 def analyse_page(
     navigator: texmex.PageTextContentNavigators,
-    level_feed: list,
+    level_feeds: list,
 ) -> list:
     contentborder = navigator.content
     navigator: 'PTN' = groupme.toc.strategy.remove_headline(navigator)
@@ -76,7 +76,7 @@ def analyse_page(
         # text feed is computed from expected content start till text start
         # convert local to global text feed
         xdist = contentborder.left + item.bounds.leftdist
-        current_level = level(xdist, level_feed)
+        current_level = level(xdist, level_feeds)
         result.append((navigator.page, (current_level, item)))
     return result
 
