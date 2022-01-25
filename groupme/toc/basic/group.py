@@ -27,7 +27,7 @@ def parse_group(items, page: int) -> groupme.toc.TocLines:
         if not match:
             collected.append(item)
             continue
-        if match and collected:
+        if collected:
             collected.append(item)
             extracted = group_collection_and_parse(collected)
             if extracted:
