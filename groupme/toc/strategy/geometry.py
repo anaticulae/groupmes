@@ -55,11 +55,9 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 
     @functools.cached_property
     def textfeed(self):
-        # .value is required cause of further processing
-        count = HEADLINE_LEVEL_MAX.value
         feeds = texmex.document_textfeed(
             self.loaded.content,
-            count=count,
+            count=HEADLINE_LEVEL_MAX.value,
         )
         feed = sorted(feeds)
         return feed
