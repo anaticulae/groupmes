@@ -26,6 +26,7 @@ import configo
 import texmex
 import utila
 
+import groupme.toc
 import groupme.toc.basic.group
 import groupme.toc.strategy
 
@@ -51,20 +52,16 @@ class GeometryRegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         return result
 
 
-def analyse_page(content: texmex.PageTextNavigator):
+def analyse_page(content: texmex.PageTextNavigator) -> groupme.toc.TocLines:
     assert isinstance(content, texmex.NavigatorMixin), type(content)
     content = groupme.toc.strategy.remove_headline(content)
     grouped = group_areas(content)
     result = [
-        groupme.toc.basic.group.parse_group(items, content.page)
+        groupme.toc.basic.group.parse_group(items, page=content.page)
         for items in grouped
     ]
     # remove not parsed
     result = utila.notempty(result)
-    # set page where toc was parsed
-    for group in result:
-        for item in group:
-            item.raw_location = content.page
     return result
 
 
