@@ -94,15 +94,8 @@ def parse(content: str) -> groupme.toc.TocLines:
             # remove already matched content to do not confuse lower
             # strict pattern
             content = content.replace(item.raw, '')
-    # TODO: improve this
-    for line in [item for item in content.splitlines() if item.strip()]:
-        if re.match(r'^\d', line):
-            continue
-        matched = re.match(groupme.toc.basic.lineregex.NO_LEVEL, line)
-        if not matched:
-            continue
-        matched = groupme.toc.basic.lineregex.extract_match(matched)
-        result.append(matched)
+    nolevels = parse_nolevel(content)
+    result.extend(nolevels)
     # remove duplications, which can occur when table of content is on the
     # same page as first headline.
     result = groupme.toc.remove_duplication(result)
@@ -110,6 +103,27 @@ def parse(content: str) -> groupme.toc.TocLines:
     result = [item for item in result if len(item.title) < TOC_LINE_LENGTH_MAX]
     # Ensure that toc list is ordered by position on pdf page
     result = groupme.toc.sort_byposition(result, duplicated)
+    return result
+
+
+def parse_nolevel(content: str) -> list:
+    r"""\
+    >>> parse_nolevel(' 1.2.3 Register .... 10\n  Quellenverzeichnis .... 23')
+    [TocLine(level=None, title='Quellenverzeichnis', page='23'...)]
+    """
+    result = []
+    # TODO: improve this
+    for line in content.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if re.match(r'^\d', line):
+            continue
+        matched = re.match(groupme.toc.basic.lineregex.NO_LEVEL, line)
+        if not matched:
+            continue
+        matched = groupme.toc.basic.lineregex.extract_match(matched)
+        result.append(matched)
     return result
 
 
