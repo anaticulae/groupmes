@@ -85,14 +85,8 @@ def remove_nonconnected_tocs(items):
     if not items:
         return []
     pagenumbers = [item.raw_location for item in items]
-    pagenumbers = sorted(pagenumbers)
-    result = [[pagenumbers[0]]]
-    for item in pagenumbers[1:]:
-        if item > (result[-1][-1] + 1):
-            result.append([item])
-        else:
-            result[-1].append(item)
-    valid_pages = set(utila.longest(result))
+    pagenumbers = utila.groupby_diff(pagenumbers, sort=True, enlarge=True)
+    valid_pages = utila.longest(pagenumbers, number=1)
     # remove non included items
     include = [item for item in items if item.raw_location in valid_pages]
     return include
