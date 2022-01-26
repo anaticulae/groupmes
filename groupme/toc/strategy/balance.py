@@ -29,9 +29,14 @@ def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
     lines = borders_best(raw)
     result = []
     for item in lines:
+        if not item.strip():
+            continue
         parsed = groupme.toc.basic.lineregex.parse(item)
         if not parsed:
-            # TODO: ADD BACKUP
+            # backup strategy with page number
+            parsed = groupme.toc.basic.lineregex.parse_linestart(item)
+        if not parsed:
+            utila.error(f'could not backup parse: {item}')
             continue
         result.append(parsed)
     groupme.toc.basic.group.set_pagelocation(

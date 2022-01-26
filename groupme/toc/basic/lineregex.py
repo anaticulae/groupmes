@@ -40,6 +40,20 @@ def parse(line: str) -> groupme.toc.TocLine:
     return None
 
 
+def parse_linestart(line: str) -> groupme.toc.TocLine:
+    """\
+    >>> parse_linestart('5. Initiative: ´Demenzfreundliche Kommune`................. ')
+    TocLine(...title='Initiative:...)
+    """
+    matched = LINESTART.match(line)
+    if not matched:
+        return None
+    result = extract_match(matched)
+    result.raw = line
+    result.title = line[line.index(result.title):]
+    return result
+
+
 LEVEL_DOTTED_OPTIONAL = r'(?P<level>(\d{1,2}\.?){1,3}\d{0,2})'
 
 LEVEL_LETTER = r"""
@@ -166,6 +180,8 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
     with contextlib.suppress(IndexError):
         level = match['level']
     with contextlib.suppress(IndexError):
+        level = level or match['backuplevel']
+    with contextlib.suppress(IndexError):
         raw_location = match['raw_page']
     # prepare title
     title = title.replace('\n', ' ')
@@ -185,8 +201,8 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
 LINESTART = re.compile(
     rf"""
 (
-    ^{LEVEL_DOTTED_OPTIONAL.replace('level', 'alevel')}|
-    ^{LEVEL_LETTER.replace('level', 'blevel')}|
+    ^{LEVEL_DOTTED_OPTIONAL.replace('level', 'backuplevel')}|
+    ^{LEVEL_LETTER}|
     ^({dictpattern()})
 )
      {WHITESPACES}
