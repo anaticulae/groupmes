@@ -223,7 +223,7 @@ Zufriedenheit Standort Innenstadt nach Alter und Geschlecht
 Zufriedenheit Standort Panoramapark nach Alter und Geschlecht
 Zufriedenheit Standort Am Spitz nach Alter und Geschlecht
 Zufriedenheit Standort Sonstige nach Alter und Geschlecht
-Tab. 1: Stichprobenkonstruktion"""
+Tabellenverzeichnis Tab. 1: Stichprobenkonstruktion"""
 
 
 def master75(toc: iamraw.Toc):

@@ -13,6 +13,7 @@
 import re
 
 import configo
+import elements
 import geostrat
 import iamraw
 import serializeraw
@@ -81,7 +82,12 @@ def oneline_figure_strategy(oneline) -> iamraw.Toc:
     )
     # select figure pages only
     oneline = utila.select_pages(oneline, pages=selected)
-
+    oneline = [
+        groupme.toc.strategy.remove_headline(
+            page,
+            headlines=elements.FIGURETABLE,
+        ) for page in oneline
+    ]
     loaded = groupme.toc.strategy.ExtractionData(content=oneline)
     extracted = groupme.toc.run.extract(loaded)
 
