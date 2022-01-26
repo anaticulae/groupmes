@@ -26,6 +26,12 @@ class BalanceTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
     navigator: 'PTN' = groupme.toc.strategy.remove_headline(navigator)
     raw: str = navigator.debug
+    raw = utila.normalize_text(
+        raw,
+        merge_divis=False,
+        normalize_newline=False,
+        normalize_spaces=True,
+    )
     lines = borders_best(raw)
     result = []
     for item in lines:
