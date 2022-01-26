@@ -7,7 +7,38 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import texmex
+import utila
+
+import groupme.toc.basic.group
 import groupme.toc.basic.lineregex
+
+
+class BalanceTocExtractor(groupme.toc.strategy.ExtractorStrategy):
+
+    def result(self) -> groupme.toc.strategy.ExtractionResult:
+        extracted = [analyse_page(item) for item in self.loaded.content]
+        flat = utila.flatten(extracted)
+        result = self.finalize_result(flat)
+        return result
+
+
+def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
+    navigator: 'PTN' = groupme.toc.strategy.remove_headline(navigator)
+    raw: str = navigator.debug
+    lines = borders_best(raw)
+    result = []
+    for item in lines:
+        parsed = groupme.toc.basic.lineregex.parse(item)
+        if not parsed:
+            # TODO: ADD BACKUP
+            continue
+        result.append(parsed)
+    groupme.toc.basic.group.set_pagelocation(
+        result,
+        page=navigator.page,
+    )
+    return result
 
 
 def borders_best(raw: str) -> list:
