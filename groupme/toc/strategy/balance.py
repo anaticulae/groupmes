@@ -31,6 +31,7 @@ def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
     for item in lines:
         if not item.strip():
             continue
+        item = utila.normalize_whitespaces(item)
         parsed = groupme.toc.basic.lineregex.parse(item)
         if not parsed:
             # backup strategy with page number
