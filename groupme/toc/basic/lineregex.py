@@ -180,3 +180,18 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
         raw_location=raw_location,
     )
     return result
+
+
+LINESTART = re.compile(
+    rf"""
+(
+    ^{LEVEL_DOTTED_OPTIONAL.replace('level', 'alevel')}|
+    ^{LEVEL_LETTER.replace('level', 'blevel')}|
+    ^({dictpattern()})
+)
+     {WHITESPACES}
+     {TEXT}
+""",
+    flags=re.VERBOSE | re.MULTILINE | re.IGNORECASE,
+)
+LINEEND = utila.compiles(PAGE + r'(\n|$)')
