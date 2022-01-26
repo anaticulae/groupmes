@@ -183,6 +183,7 @@ def extract_match(match: re.Match) -> groupme.toc.TocLine:
         level = level or match['backuplevel']
     with contextlib.suppress(IndexError):
         raw_location = match['raw_page']
+    # TODO: REMOVE THIS?
     # prepare title
     title = title.replace('\n', ' ')
     title = utila.normalize_whitespaces(title)
