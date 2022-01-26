@@ -74,17 +74,18 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
     return result
 
 
-def remove_headline(content: texmex.PageTextNavigator) -> texmex.PageTextNavigator:  # yapf:disable
+def remove_headline(
+    content: texmex.PageTextNavigator,
+    headlines=None,
+    count: int = 1,
+) -> texmex.PageTextNavigator:
     """Remove table of content headline to improve extraction result."""
-    result = texmex.PageTextNavigator(
-        pagesize=(content.width, content.height),
-        page=content.page,
-    )
+    if not headlines:
+        headlines = elements.headline.lookup.TOC
+    result = content.hull_empty()
     for item in content:
-        if utila.verysimilar(
-                current=item.text,
-                expected=elements.headline.lookup.TOC,
-        ):
+        if count > 0 and utila.verysimilar(current=item.text, expected=headlines): # yapf:disable
+            count -= 1
             continue
         result.insert(item.text, item.style, item.bounding)
     return result
