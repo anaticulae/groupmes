@@ -11,6 +11,7 @@ import utila
 
 import groupme.toc.decider
 import groupme.toc.strategy
+import groupme.toc.strategy.balance
 import groupme.toc.strategy.geometry
 import groupme.toc.strategy.georegex
 import groupme.toc.strategy.regex
@@ -36,6 +37,7 @@ def extract(
         groupme.toc.strategy.geometry.GeometryTocExtractor,
         groupme.toc.strategy.georegex.GeometryRegexTocExtractor,
         groupme.toc.strategy.regex.RegexTocExtractor,
+        groupme.toc.strategy.balance.BalanceTocExtractor,
     ]
     results = [
         strategy(data).result()
