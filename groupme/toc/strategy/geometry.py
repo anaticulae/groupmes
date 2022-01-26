@@ -29,28 +29,14 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         for page in self.loaded.content:
             analyzed = analyse_page(page, level_feeds=self.textfeed)
             extracted.extend(analyzed)
-
         grouped = group_areas(extracted)
         content = [
             groupme.toc.basic.group.parse_group(group, page)
             for page, group in grouped
         ]
-        # remove empty
-        content = [item for item in content if item]
+        content = utila.notempty(content)
         content = utila.flatten(content)
-
-        valid_content = groupme.toc.strategy.remove_nonconnected_tocs(content)
-        invalid_content = [
-            item for item in content if item not in valid_content
-        ]
-
-        valid_content = groupme.toc.strategy.group(valid_content)  # pylint:disable=R0204
-
-        result = groupme.toc.strategy.ExtractionResult(
-            content=valid_content.content,
-            invalid=invalid_content,
-        )
-        assert isinstance(result.content, list), type(result.content)
+        result = self.finalize_result(content)
         return result
 
     @functools.cached_property

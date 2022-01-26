@@ -48,6 +48,17 @@ class ExtractorStrategy(abc.ABC):
     def result(self) -> ExtractionResult:
         pass
 
+    def finalize_result(self, content):  # pylint:disable=R0201
+        valid = remove_nonconnected_tocs(content)
+        invalid_content = [item for item in content if item not in valid]
+        valid = groupme.toc.strategy.group(valid)  # pylint:disable=R0204
+        result = groupme.toc.strategy.ExtractionResult(
+            content=valid.content,
+            invalid=invalid_content,
+        )
+        assert isinstance(result.content, list), type(result.content)
+        return result
+
 
 def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
     right, invalid = utila.partition(
