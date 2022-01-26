@@ -54,6 +54,7 @@ def analyse_page(
     level_feeds: list,
 ) -> list:
     contentborder = navigator.content
+    # TODO: SHRINK TO FIRST OCCURRENCE? OR IS THIS NOT NECESSARY
     navigator: 'PTN' = groupme.toc.strategy.remove_headline(navigator)
     textbounds = texmex.textbounds(navigator, contentborder)
     result = []
