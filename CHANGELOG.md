@@ -2,6 +2,30 @@
 
 Every noteable change is logged here.
 
+## v0.20.0
+
+### Feature
+
+* add option to change remove headlines (17e0121bcfec)
+* add balance backup parser (f0399976c54c)
+* connect balance strategy (b5202d4b760f)
+* add balanced toc parser strategy (c7f43bcf04c0)
+* add strategy to group toc lines with errors (621d6bf46a73)
+* add regex to determine toc line start and toc line ending (5130cdd20780)
+* improve headline skipper (5ac6110df47e)
+* use improve style selector (88d3eec4bf2e)
+* add special character (78d8e490d14a)
+* align white spaces (331f0a8a0fdd)
+
+### Fix
+
+* normalize text to improve extraction behavior (6b1e649be2ba)
+* improve extraction result (b72983c79c70)
+* adjust figure table parser after enabling balance strategy (bfa92525208e)
+* ignore character case (fd8fb7ed0b53)
+* do not group empty toc (b09f40c776e8)
+* do not fail on empty page (7e70ee7075cf)
+
 ## v0.19.0
 
 ### Feature
