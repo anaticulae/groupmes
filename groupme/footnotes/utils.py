@@ -152,7 +152,14 @@ def merge_online(items) -> list:
     return result
 
 
-LEFTRIGHT_DIFF_MAX = configo.HV_FLOAT_PLUS(default=20.0)
+LEFTRIGHT_DIFF_MAX = configo.HolyTable(items=(
+    (0, 20),
+    (100, 20),
+    (200, 20),
+    (300, 20),
+    (400, 20),
+    (500, 20),
+))
 
 SAMEORIGIN_DIFF_MAX = configo.HV_FLOAT_PLUS(default=35.0)
 
@@ -162,10 +169,12 @@ UNDERFIRST_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 
 
 def connected(first, second):
+    leftright_diff_max = LEFTRIGHT_DIFF_MAX(first.bounding.x0)
+    # words are neighbors
     leftright = utila.near(
         first.bounding.x1,
         second.bounding.x0,
-        diff=LEFTRIGHT_DIFF_MAX,
+        diff=leftright_diff_max,
     )
     # plus indention
     sameorigin = utila.near(
