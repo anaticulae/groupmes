@@ -37,20 +37,27 @@ import utila
 def parse(content: str, pagenumber: int = None):
     assert isinstance(content, str), type(content)
     result = []
-    for item in footnote_split(content):
-        number, text = item.split(maxsplit=1)
-        if not text.strip():
-            utila.error(f'could not parse footnote: {number}, no text content')
+    for raw in footnote_split(content):
+        parsed = parse_group(raw, pagenumber)
+        if not parsed:
             continue
-        text = utila.normalize_text(text)
-        footnote = iamraw.FootRawNote(
-            number=int(number),
-            text=text,
-            raw=item,
-            page=pagenumber if pagenumber is not None else -1,
-        )
-        result.append(footnote)
+        result.append(parsed)
     return result
+
+
+def parse_group(raw: str, pagenumber: int) -> iamraw.FootRawNote:
+    number, text = raw.split(maxsplit=1)
+    if not text.strip():
+        utila.error(f'could not parse footnote: {number}, no text content')
+        return None
+    text = utila.normalize_text(text)
+    footnote = iamraw.FootRawNote(
+        number=int(number),
+        text=text,
+        raw=raw,
+        page=pagenumber if pagenumber is not None else -1,
+    )
+    return footnote
 
 
 def footnote_split(raw: str) -> list:
