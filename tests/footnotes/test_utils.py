@@ -9,13 +9,13 @@
 
 import utilatest
 
-import groupme.footnotes.utils
+import groupme.footnotes.layout
 
 
 @utilatest.longrun
 def test_footnote_highnotes_split(master72page14):
     footer = master72page14
-    splitted = list(groupme.footnotes.utils.split_textinfo(footer))
+    splitted = list(groupme.footnotes.layout.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 7, splitted
 
@@ -25,10 +25,10 @@ def test_footnote_highnotes_split_mixed_in_text(master89page7):
     """Test to extract only starting highnotes. In this example, there
     is a highnote inside the text flow."""
     footer = master89page7
-    splitted = list(groupme.footnotes.utils.split_textinfo(footer))
+    splitted = list(groupme.footnotes.layout.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 2, splitted
-    merged = groupme.footnotes.utils.merge_online(splitted)
+    merged = groupme.footnotes.layout.merge_online(splitted)
     assert len(merged) == 1, merged
 
 
@@ -38,10 +38,10 @@ def test_footnote_highnotes_split_mixed_in_text_tripple(master89page19):
     is a highnote inside the text flow and after this there are two more
     footnotes."""
     footer = master89page19
-    splitted = list(groupme.footnotes.utils.split_textinfo(footer))
+    splitted = list(groupme.footnotes.layout.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 4, splitted
-    merged = groupme.footnotes.utils.merge_online(splitted)
+    merged = groupme.footnotes.layout.merge_online(splitted)
     assert len(merged) == 3, merged
 
     thirdnote_text = merged[2][1].text

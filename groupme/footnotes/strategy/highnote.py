@@ -11,7 +11,7 @@ import configo
 import iamraw
 import utila
 
-import groupme.footnotes.utils
+import groupme.footnotes.layout
 
 FOOTNOTE_TEXT_LENGTH_MIN = configo.HV_INT_PLUS(default=len('ebd.'))
 
@@ -29,14 +29,14 @@ def parse(
     Returns:
         List of parsed footnotes
     """
-    grouped = groupme.footnotes.utils.group_footnote_area(content)
+    grouped = groupme.footnotes.layout.group_footnote_area(content)
     result = []
     for number, note in grouped:
         has_highnote = number is not None
         if has_highnote:
             x0 = number.bounding[0]
             # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
-            if x0 >= groupme.footnotes.utils.FOOTNOTE_X0_MAX(width):
+            if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
                 # potential highnote is located too right
                 continue
         if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
@@ -44,7 +44,7 @@ def parse(
             continue
         notenumber = None
         if has_highnote:
-            notenumber = groupme.footnotes.utils.parse_footnote_number(
+            notenumber = groupme.footnotes.layout.parse_footnote_number(
                 number.text)
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')
