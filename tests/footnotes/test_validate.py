@@ -33,6 +33,7 @@ utila.exists_assert(ARCHIVE)
     pytest.param(power.DISS178_PDF, '0:30', 'diss178', id='diss178'),
     pytest.param(power.DISS273_PDF, '30:60', 'diss273', id='diss273'),
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
+    pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
     pytest.param(power.MASTER127_PDF, ':', 'master127', id='master127'),
 ])
