@@ -37,7 +37,19 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
     pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
+    step(power.BACHELOR056_PDF),
+    step(power.BACHELOR111_PDF),
+    step(power.DOCU014_PDF),
+    step(power.DOCU027_PDF),
+    step(power.MASTER072_PDF),
+    step(power.MASTER075_PDF),
+    step(power.MASTER089_PDF),
+    step(power.MASTER091A_PDF),
+    step(power.MASTER110_PDF),
     step(power.MASTER127_PDF),
+    step(power.MASTER155_PDF),
+    step(power.PAPER18_PDF),
+    step(power.TECH024_PDF),
 ])
 # yapf:enable
 @utilatest.nightly
