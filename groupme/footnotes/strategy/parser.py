@@ -89,5 +89,8 @@ def footnote_split(raw: str) -> list:
         elif result and result[-1]:
             # ensure to have valid predecessor
             result[-1].append(item)
+        else:
+            # TODO: INVESTIGATE HERE
+            pass
     joined = [' '.join(item) for item in result if item]
     return joined
