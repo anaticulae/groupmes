@@ -1,5 +1,5 @@
 Welcome to groupme
-===============
+==================
 
 .. toctree::
   :maxdepth: 1
@@ -21,7 +21,7 @@ Modules
 .. toctree::
    :maxdepth: 4
 
-   .tmp/modules
+   modules
 
 Indices and tables
 ==================
