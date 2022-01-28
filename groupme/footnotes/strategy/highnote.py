@@ -12,6 +12,7 @@ import iamraw
 import utila
 
 import groupme.footnotes.layout
+import groupme.footnotes.utils
 
 FOOTNOTE_TEXT_LENGTH_MIN = configo.HV_INT_PLUS(default=len('ebd.'))
 
@@ -44,7 +45,7 @@ def parse(
             continue
         notenumber = None
         if has_highnote:
-            notenumber = groupme.footnotes.layout.parse_footnote_number(
+            notenumber = groupme.footnotes.utils.parse_footnote_number(
                 number.text)
         if not note.text.strip():
             utila.error(f'could not parse footnote: {number}, no text content')

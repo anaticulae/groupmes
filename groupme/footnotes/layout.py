@@ -16,8 +16,9 @@ import iamraw
 import texmex
 import utila
 
+import groupme.footnotes.utils
+
 VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0)
-HIGHNOTE_RISE_MIN = configo.HV_FLOAT_PLUS(default=3.0)
 
 FOOTNOTE_X0_MAX = configo.HolyTable(
     items=(
@@ -76,7 +77,7 @@ def split_textinfo(content) -> list:
     collected = []
     for item in content:
         for style in item.style.content:
-            if ishighnote(style, item.text):
+            if groupme.footnotes.utils.ishighnote(style, item.text):
                 if collected:
                     result.append((highnote, union(collected)))
                     collected = []
@@ -99,16 +100,6 @@ def split_textinfo(content) -> list:
         # there is always content left at the end
         result.append((highnote, union(collected)))
     return result
-
-
-def ishighnote(style, text: str) -> bool:
-    highnote_occurs = style.rise >= HIGHNOTE_RISE_MIN
-    if not highnote_occurs:
-        return False
-    text = text[style.start:style.end].strip()
-    if NUMBER.match(text):
-        return True
-    return False
 
 
 def merge_online(items) -> list:
@@ -244,20 +235,4 @@ def char_bounding(
     x0 = bounding.x0 + char_width * style.start
     x1 = bounding.x0 + char_width * style.end
     result = iamraw.BoundingBox(x0, bounding.y0, x1, bounding.y1)
-    return result
-
-
-NUMBER = utila.compiles(r'\[?(\d{1,4})\]?')
-
-
-def parse_footnote_number(text: str) -> int:
-    """\
-    >>> parse_footnote_number('[133]')
-    133
-    """
-    matched = NUMBER.match(text)
-    if not matched:
-        utila.error(f'could not convert to int: {text}')
-        return text
-    result = int(matched[1])
     return result
