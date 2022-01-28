@@ -152,9 +152,13 @@ def merge_online(items) -> list:
     return result
 
 
+# increase word diff at the start of the line to merge huge gap between
+# footnote number and footnote text.
 LEFTRIGHT_DIFF_MAX = configo.HolyTable(items=(
-    (0, 20),
-    (100, 20),
+    (0, 40),
+    (100, 40),
+    (120, 40),
+    (150, 30),
     (200, 20),
     (300, 20),
     (400, 20),
