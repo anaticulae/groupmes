@@ -16,8 +16,8 @@ import utila
 
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.moving as gfsm
-import groupme.footnotes.strategy.parser
 import groupme.footnotes.strategy.plain
+import groupme.footnotes.strategy.textraw
 
 
 class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):

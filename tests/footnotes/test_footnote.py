@@ -11,7 +11,7 @@ import power
 import pytest
 import utila
 
-import groupme.footnotes.strategy.parser
+import groupme.footnotes.strategy.textraw
 import tests.fixtures.footnotes
 import tests.footerheader.extractor
 
@@ -22,13 +22,13 @@ import tests.footerheader.extractor
 ])
 def test_footer_footenote_parse_notes(example):
     raw, expected_footnotes = example[0], example[1]
-    parsed = groupme.footnotes.strategy.parser.parse(raw)
+    parsed = groupme.footnotes.strategy.textraw.parse(raw)
     assert len(parsed) == expected_footnotes
 
 
 def test_footer_footenote_parse_notes_multiline():
     raw = tests.fixtures.footnotes.FOOTNOTES_SECOND[0]
-    parsed = groupme.footnotes.strategy.parser.parse(raw)
+    parsed = groupme.footnotes.strategy.textraw.parse(raw)
     assert len(parsed) == 23, len(parsed)
 
     assert parsed[0].number == 1

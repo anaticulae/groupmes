@@ -13,7 +13,7 @@ import texmex
 import utilatest
 
 import groupme.footnotes.strategy.highnote
-import groupme.footnotes.strategy.parser
+import groupme.footnotes.strategy.textraw
 
 
 @utilatest.longrun
