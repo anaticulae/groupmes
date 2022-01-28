@@ -11,7 +11,7 @@ import power
 import pytest
 import utilatest
 
-import tests.groupme_
+import tests
 
 
 @pytest.mark.parametrize('cmd', [
@@ -27,7 +27,7 @@ import tests.groupme_
 @utilatest.nightly
 def test_run_external(cmd, monkeypatch):
     """Run help and version and format command to reach basic test coverage"""
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
 
 @utilatest.nightly
@@ -35,7 +35,7 @@ def test_regression_groupme_problem(testdir, monkeypatch):
     """There was a problem with not sorted page numbers which leads
     to duplicated header/footer. This was solved by sorting page number
     of left/right page numbers."""
-    tests.groupme_.run(
+    tests.run(
         f'-i {power.link(power.BACHELOR056_PDF)} -j=8',
         monkeypatch=monkeypatch,
     )

@@ -13,7 +13,7 @@ import utila
 
 import groupme.footnotes.parser
 import tests.fixtures.footnotes
-import tests.groupme_.footerheader.extractor
+import tests.footerheader.extractor
 
 
 @pytest.mark.parametrize('example', [
@@ -40,7 +40,7 @@ def test_footer_footenote_parse_notes_multiline():
 
 
 def test_footer_master98_page10(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER098_PDF,
         testdir,
         monkeypatch,

@@ -15,7 +15,7 @@ import utila
 import utilatest
 
 import groupme.path
-import tests.groupme_
+import tests
 
 
 def merge_required(toc: iamraw.Toc) -> str:
@@ -69,7 +69,7 @@ def test_tabletable(source, validate, pages, monkeypatch, testdir):
     pages = ','.join((str(item) for item in pages)) if pages else ''
     pages = f'--pages={pages}' if pages else ''
     cmd = f'-i {source} --tabletable {pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
     path = groupme.path.tabletable(testdir.tmpdir)
     tabletable = serializeraw.load_toc(path)

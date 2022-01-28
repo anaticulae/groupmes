@@ -13,7 +13,7 @@ import serializeraw
 import utila
 import utilatest
 
-import tests.groupme_
+import tests
 
 
 def master72(footnotes):
@@ -32,7 +32,7 @@ def master72(footnotes):
 def test_footer_validate(source, pages, expected, testdir, monkeypatch):
     pages = '' if pages is None else f'--pages={pages}'
     cmd = f'-i {power.link(source)}  --footer {pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
     footnotes = serializeraw.load_footnotes(testdir.tmpdir)
     footnotes = utila.flatten_content(footnotes)

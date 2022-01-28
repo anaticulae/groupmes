@@ -15,7 +15,7 @@ import utilatest
 
 import groupme.feature.footer
 import groupme.path
-import tests.groupme_
+import tests
 
 
 @pytest.mark.parametrize('root, expected', [
@@ -56,7 +56,7 @@ def test_footer_extract_footerheader_technical(root, expected):
 
 def extract_header(source, testdir, monkeypatch, pages=':'):
     cmd = f'-i {power.link(source)}  --footer --pages={pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
     headerpath = iamraw.path.headerfooters(testdir.tmpdir)
 
     loaded = serializeraw.load_headerfooter(headerpath)

@@ -7,9 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-# pylint:disable=W0611
-from tests.groupme_.footnotes.fixtures import bachelor111page10
-from tests.groupme_.footnotes.fixtures import master72page14
-from tests.groupme_.footnotes.fixtures import master89page7
-from tests.groupme_.footnotes.fixtures import master89page19
-from tests.groupme_.footnotes.fixtures import navigator
+import power
+import serializeraw
+import utila
+
+import tests
+
+
+def test_footer_rotated_master116page102_108(testdir, monkeypatch):
+    source = power.link(power.MASTER116_PDF)
+    pages = utila.from_tuple((102, 103, 104, 105, 106, 107, 108), separator=',')
+    tests.run(
+        f'-i {source} -o {testdir.tmpdir} --pages {pages} --footer',
+        monkeypatch=monkeypatch,
+    )
+    footerheader = serializeraw.load_headerfooter(testdir.tmpdir)
+    header = [item.header for item in footerheader]
+    assert len(header) == 7

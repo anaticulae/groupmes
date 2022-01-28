@@ -19,8 +19,8 @@ import utilatest
 import groupme.feature.footer
 import groupme.footer.strategy as gfs
 import groupme.path
-import tests.groupme_
-import tests.groupme_.footerheader.extractor
+import tests
+import tests.footerheader.extractor
 
 
 def test_footer_work(testdir):  #pylint:disable=W0621
@@ -76,7 +76,7 @@ def test_footer_footerheader_detectionstategy(
 def test_footer_master72_extract(testdir, monkeypatch):
     outdir = testdir.tmpdir
     cmd = f'-i {power.link(power.MASTER072_PDF)}  -o {outdir} --footer --pages=3'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
     headfoot = serializeraw.load_headerfooter(iamraw.path.headerfooters(outdir))
     footnotes = headfoot[0].footer.notes
@@ -87,7 +87,7 @@ def test_footer_master72_extract(testdir, monkeypatch):
 
 
 def test_footer_homework18(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.HOME018_PDF,
         testdir,
         monkeypatch,
@@ -101,7 +101,7 @@ def test_footer_homework18(testdir, monkeypatch):
 def test_footer_bachelor51(testdir, monkeypatch):
     """There are no footnotes. We have to verify pages-pattern.
     `current/maxpage`"""
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.BACHELOR051_PDF,
         testdir,
         monkeypatch,
@@ -112,7 +112,7 @@ def test_footer_bachelor51(testdir, monkeypatch):
 
 @utilatest.longrun
 def test_footer_master110(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER110_PDF,
         testdir,
         monkeypatch,
@@ -124,7 +124,7 @@ def test_footer_master110(testdir, monkeypatch):
 
 
 def test_footer_master99_page8(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER099_PDF,
         testdir,
         monkeypatch,
@@ -138,7 +138,7 @@ def test_footer_master99_page8(testdir, monkeypatch):
 
 @utilatest.nightly
 def test_footer_master155_page107(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER155_PDF,
         testdir,
         monkeypatch,
@@ -150,7 +150,7 @@ def test_footer_master155_page107(testdir, monkeypatch):
 
 @utilatest.nightly
 def test_footer_master127(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER127_PDF,
         testdir,
         monkeypatch,
@@ -170,7 +170,7 @@ def test_footer_master127(testdir, monkeypatch):
 
 @utilatest.longrun
 def test_footer_master075(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.MASTER075_PDF,
         testdir,
         monkeypatch,

@@ -7,20 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import serializeraw
-
-import tests.groupme_
-
-
-def test_appendix_level(testdir, monkeypatch):
-    """Before this test, all appendix level where set to level 4."""
-    tests.groupme_.run(
-        f'--toc -i {power.link(power.DISS157_PDF)} -o {testdir.tmpdir}',
-        monkeypatch=monkeypatch,
-    )
-    loaded = serializeraw.load_toc(testdir.tmpdir)
-    appendix = loaded.children[-2].children
-    assert len(appendix) == 3
-    levels = [item.level for item in appendix]
-    assert levels == [2, 2, 2]
+# pylint:disable=W0611
+from tests.footnotes.fixtures import bachelor111page10
+from tests.footnotes.fixtures import master72page14
+from tests.footnotes.fixtures import master89page7
+from tests.footnotes.fixtures import master89page19
+from tests.footnotes.fixtures import navigator

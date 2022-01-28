@@ -17,9 +17,10 @@ import utila
 import utilatest
 
 import groupme
-import tests.groupme_
+import tests
 
-ARCHIVE = os.path.join(groupme.ROOT, 'tests/groupme_/footnotes/expected')
+ARCHIVE = os.path.join(groupme.ROOT, 'tests/footnotes/expected')
+utila.exists_assert(ARCHIVE)
 
 
 # yapf:disable
@@ -52,7 +53,7 @@ class Evaluate(utilatest.BaseLiner):
     def __init__(self, source, pages, expected, workdir, monkeypatch):
         super().__init__(
             program=functools.partial(
-                tests.groupme_.run,
+                tests.run,
                 monkeypatch=monkeypatch,
             ),
             step='footer',

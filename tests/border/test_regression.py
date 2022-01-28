@@ -7,18 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import serializeraw
 
-import groupme.path
-import tests.groupme_
+import tests
 
 
-def extract_figuretable(source, pages, monkeypatch, testdir):
-    pages = ','.join((str(item) for item in pages)) if pages else ''
-    pages = f'--pages={pages}' if pages else ''
-    cmd = f'-i {source} --figuretable {pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+def extract_border(source: str, testdir, monkeypatch) -> set:
+    source = power.link(source)
+    tests.run(f'-i {source} --border', monkeypatch=monkeypatch)
+    leftright = serializeraw.load_leftright_border(testdir.tmpdir)
+    unique = set(leftright.values())
+    return unique
 
-    path = groupme.path.figuretable(testdir.tmpdir)
-    figuretable = serializeraw.load_toc(path)
-    return figuretable
+
+def test_border_diss264(testdir, monkeypatch):
+    unique = extract_border(power.DISS264_PDF, testdir, monkeypatch)
+    assert len(unique) == 2, str(unique)

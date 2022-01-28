@@ -7,16 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import iamraw
-import power
 import serializeraw
 
-import tests.groupme_
+import groupme.path
+import tests
 
 
-def footer(source: str, testdir, monkeypatch, pages: str = ':'):
-    cmd = f'-i {power.link(source)}  --footer --pages={pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
-    loaded = serializeraw.load_headerfooter(headerpath)
-    return loaded
+def extract_figuretable(source, pages, monkeypatch, testdir):
+    pages = ','.join((str(item) for item in pages)) if pages else ''
+    pages = f'--pages={pages}' if pages else ''
+    cmd = f'-i {source} --figuretable {pages}'
+    tests.run(cmd, monkeypatch=monkeypatch)
+
+    path = groupme.path.figuretable(testdir.tmpdir)
+    figuretable = serializeraw.load_toc(path)
+    return figuretable

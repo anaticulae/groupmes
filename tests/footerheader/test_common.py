@@ -12,7 +12,7 @@ import power
 import serializeraw
 import utilatest
 
-import tests.groupme_
+import tests
 
 
 @utilatest.longrun
@@ -25,7 +25,7 @@ def test_footer_regression_common_strategy(testdir, monkeypatch):
     source = power.link(power.BACHELOR037_PDF)
     page = 1
     cmd = f'-i {source} -o {root} --footer --pages={page}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
     path = iamraw.path.headerfooters(root)
     headerfooter = serializeraw.load_headerfooter(path)

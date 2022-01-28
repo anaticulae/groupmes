@@ -11,13 +11,13 @@ import power
 import utila
 import utilatest
 
-import tests.groupme_.footerheader.extractor
+import tests.footerheader.extractor
 
 
 @utilatest.longrun
 def test_footer_paper18_page3(testdir, monkeypatch):
     """Regression test to avoid parsing formula as footnote."""
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.PAPER18_PDF,
         testdir,
         monkeypatch,
@@ -28,7 +28,7 @@ def test_footer_paper18_page3(testdir, monkeypatch):
 
 
 def test_do_not_merge_pagenumber_footer_bachelor76_page21(testdir, monkeypatch):
-    extracted = tests.groupme_.footerheader.extractor.footer(
+    extracted = tests.footerheader.extractor.footer(
         power.BACHELOR076_PDF,
         testdir,
         monkeypatch,

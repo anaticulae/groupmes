@@ -65,7 +65,7 @@ class Evaluate(utilatest.BaseLiner):
     def __init__(self, source, pages, workdir, monkeypatch):
         super().__init__(
             program=functools.partial(
-                tests.groupme_.run,
+                tests.run,
                 monkeypatch=monkeypatch,
             ),
             step='toc',

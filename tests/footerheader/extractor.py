@@ -7,26 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 import power
-import pytest
-import utilatest
+import serializeraw
 
-import tests.groupme_.figuretable
+import tests
 
 
-@pytest.mark.parametrize('source,  pages', [
-    pytest.param(
-        power.link(power.MASTER089_PDF),
-        (85, 86, 87, 88),
-        id='master89_page85_86_87_88',
-    ),
-])
-@utilatest.nightly
-def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
-    extracted = tests.groupme_.figuretable.extract_figuretable(
-        source,
-        pages,
-        monkeypatch,
-        testdir,
-    )
-    assert not extracted
+def footer(source: str, testdir, monkeypatch, pages: str = ':'):
+    cmd = f'-i {power.link(source)}  --footer --pages={pages}'
+    tests.run(cmd, monkeypatch=monkeypatch)
+    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+    loaded = serializeraw.load_headerfooter(headerpath)
+    return loaded

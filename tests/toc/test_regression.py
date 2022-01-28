@@ -9,18 +9,18 @@
 
 import power
 import serializeraw
-import utila
 
-import tests.groupme_
+import tests
 
 
-def test_footer_rotated_master116page102_108(testdir, monkeypatch):
-    source = power.link(power.MASTER116_PDF)
-    pages = utila.from_tuple((102, 103, 104, 105, 106, 107, 108), separator=',')
-    tests.groupme_.run(
-        f'-i {source} -o {testdir.tmpdir} --pages {pages} --footer',
+def test_appendix_level(testdir, monkeypatch):
+    """Before this test, all appendix level where set to level 4."""
+    tests.run(
+        f'--toc -i {power.link(power.DISS157_PDF)} -o {testdir.tmpdir}',
         monkeypatch=monkeypatch,
     )
-    footerheader = serializeraw.load_headerfooter(testdir.tmpdir)
-    header = [item.header for item in footerheader]
-    assert len(header) == 7
+    loaded = serializeraw.load_toc(testdir.tmpdir)
+    appendix = loaded.children[-2].children
+    assert len(appendix) == 3
+    levels = [item.level for item in appendix]
+    assert levels == [2, 2, 2]

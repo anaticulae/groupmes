@@ -11,7 +11,7 @@ import power
 import serializeraw
 
 import groupme.border.leftright
-import tests.groupme_
+import tests
 
 
 def load_example(path: str):
@@ -90,7 +90,7 @@ def test_leftright_bachelor241(testdir, monkeypatch):
     """Regression test to ensure that bachelor241 border is detected
     correctly."""
     source = power.link(power.BACHELOR241_PDF)
-    tests.groupme_.run(f'-i {source} --border', monkeypatch=monkeypatch)
+    tests.run(f'-i {source} --border', monkeypatch=monkeypatch)
 
     leftright = serializeraw.load_leftright_border(testdir.tmpdir)
     assert leftright[0] != leftright[1]

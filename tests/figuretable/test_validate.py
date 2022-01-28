@@ -13,7 +13,7 @@ import pytest
 import utila
 import utilatest
 
-import tests.groupme_.figuretable
+import tests.figuretable
 
 
 def merge_required(toc: iamraw.Toc) -> str:
@@ -263,7 +263,7 @@ TEN = tuple(range(10))
 ])
 @utilatest.longrun
 def test_figuretable(source, validate, pages, monkeypatch, testdir):
-    figuretable = tests.groupme_.figuretable.extract_figuretable(
+    figuretable = tests.figuretable.extract_figuretable(
         source,
         pages,
         monkeypatch,

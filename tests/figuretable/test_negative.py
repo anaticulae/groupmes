@@ -8,19 +8,25 @@
 # =============================================================================
 
 import power
-import serializeraw
+import pytest
+import utilatest
 
-import tests.groupme_
-
-
-def extract_border(source: str, testdir, monkeypatch) -> set:
-    source = power.link(source)
-    tests.groupme_.run(f'-i {source} --border', monkeypatch=monkeypatch)
-    leftright = serializeraw.load_leftright_border(testdir.tmpdir)
-    unique = set(leftright.values())
-    return unique
+import tests.figuretable
 
 
-def test_border_diss264(testdir, monkeypatch):
-    unique = extract_border(power.DISS264_PDF, testdir, monkeypatch)
-    assert len(unique) == 2, str(unique)
+@pytest.mark.parametrize('source,  pages', [
+    pytest.param(
+        power.link(power.MASTER089_PDF),
+        (85, 86, 87, 88),
+        id='master89_page85_86_87_88',
+    ),
+])
+@utilatest.nightly
+def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
+    extracted = tests.figuretable.extract_figuretable(
+        source,
+        pages,
+        monkeypatch,
+        testdir,
+    )
+    assert not extracted

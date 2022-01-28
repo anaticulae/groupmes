@@ -21,7 +21,7 @@ Should we support following whitespaces?
     better approach is to improve the pdf-parser to avoid following
     whitespaces.
 
-    See: :class:`tests.groupme_.toc.test_regex.test_extract_toc_line_whitespace_decission`.
+    See: :class:`tests.toc.test_regex.test_extract_toc_line_whitespace_decission`.
 """
 
 import re

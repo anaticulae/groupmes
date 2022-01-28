@@ -24,7 +24,7 @@ def test_abbreviation_validate(source, expected, pages, monkeypatch, testdir):
     pages = (pages,) if isinstance(pages, int) else pages
     pages: str = utila.from_tuple(pages, separator=',') if pages else ':'
     cmd = f'-i {source} --abbreviation --pages={pages}'
-    tests.groupme_.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, monkeypatch=monkeypatch)
 
     toc = groupme.path.abbreviation(testdir.tmpdir)
     toc = serializeraw.load_abbreviation_table(toc)
