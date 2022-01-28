@@ -12,3 +12,4 @@ from tests.groupme_.footnotes.fixtures import bachelor111page10
 from tests.groupme_.footnotes.fixtures import master72page14
 from tests.groupme_.footnotes.fixtures import master89page7
 from tests.groupme_.footnotes.fixtures import master89page19
+from tests.groupme_.footnotes.fixtures import navigator

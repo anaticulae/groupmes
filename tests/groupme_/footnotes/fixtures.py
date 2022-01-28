@@ -7,9 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 import power
 import pytest
 import serializeraw
+import texmex
 import utila
 
 
@@ -19,8 +21,8 @@ def master72page14():
         power.link(power.MASTER072_PDF),
         pages=(14),
     )
-    navigator = utila.select_page(navigators, 14)
-    footer = navigator.between(0.8, 0.93)
+    nav = utila.select_page(navigators, 14)
+    footer = nav.between(0.8, 0.93)
     assert len(footer) == 7, str(footer)
     return footer
 
@@ -32,8 +34,8 @@ def master89page7():
         power.link(power.MASTER089_PDF),
         pages=(page),
     )
-    navigator = utila.select_page(navigators, page)
-    footer = navigator.between(0.83, 0.95)
+    nav = utila.select_page(navigators, page)
+    footer = nav.between(0.83, 0.95)
     assert len(footer) == 6, str(footer)
     return footer
 
@@ -45,9 +47,9 @@ def master89page19():
         power.link(power.MASTER089_PDF),
         pages=(page),
     )
-    navigator = utila.select_page(navigators, page)
+    nav = utila.select_page(navigators, page)
     # TODO: REMOVE WITH EXTRACT MOVING FOOTER
-    footer = navigator.between(0.68, 0.95)
+    footer = nav.between(0.68, 0.95)
     assert len(footer) == 16, len(footer)
     return footer
 
@@ -59,8 +61,36 @@ def bachelor111page10():
         power.link(power.BACHELOR111_PDF),
         pages=(page),
     )
-    navigator = utila.select_page(navigators, page)
+    nav = utila.select_page(navigators, page)
     # TODO: REMOVE WITH EXTRACT MOVING FOOTER
-    footer = navigator.between(0.77, 0.95)
+    footer = nav.between(0.77, 0.95)
     assert len(footer) == 5, str(footer)
     return footer
+
+
+SAMPLE = [
+    (8, iamraw.BoundingBox.from_str("130.91 668.55 540.00 704.02")),
+    (6, iamraw.BoundingBox.from_str("358.45 605.24 480.47 625.77")),
+    (7, iamraw.BoundingBox.from_str("467.46 650.40 540.00 667.51")),
+    (3, iamraw.BoundingBox.from_str("409.67 513.88 540.01 558.02")),
+    (4, iamraw.BoundingBox.from_str("550.0 513.88 600.0 558.02")),
+    (5, iamraw.BoundingBox.from_str("304.91 587.31 534.01 607.84")),
+    (2, iamraw.BoundingBox.from_str("77.38 216.25 121.22 230.47")),
+    (0, iamraw.BoundingBox.from_str("303.26 40.18 308.74 54.44")),
+    (1, iamraw.BoundingBox.from_str("77.38 102.67 534.62 206.45")),
+]
+
+
+@pytest.fixture
+def navigator() -> texmex.PageTextNavigator:
+    dimension = document_size([item for _, item in SAMPLE])
+    result = texmex.PageTextNavigator(dimension)
+    for item, position in SAMPLE:
+        result.insert(bounding=position, text=item, style=None)
+    assert len(result) == len(SAMPLE)
+    return result
+
+
+def document_size(items):
+    dimension = utila.rectangle_max(items)
+    return (dimension[2], dimension[3])
