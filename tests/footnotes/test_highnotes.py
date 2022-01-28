@@ -12,19 +12,19 @@ import pytest
 import texmex
 import utilatest
 
-import groupme.footnotes.highnote
-import groupme.footnotes.parser
+import groupme.footnotes.strategy.highnote
+import groupme.footnotes.strategy.parser
 
 
 @utilatest.longrun
 def test_footnote_parse_footer_with_highnotes(master89page7):
-    parsed = groupme.footnotes.highnote.parse(master89page7)
+    parsed = groupme.footnotes.strategy.highnote.parse(master89page7)
     assert len(parsed) == 1, parsed
 
 
 @utilatest.longrun
 def test_footnote_highnotes_oneline_with_intention(bachelor111page10):
-    parsed = groupme.footnotes.highnote.parse(bachelor111page10)
+    parsed = groupme.footnotes.strategy.highnote.parse(bachelor111page10)
     assert len(parsed) == 3, str(parsed)
     notes = [item.number for item in parsed]
     assert notes == [3, 4, 5], str(notes)
@@ -74,6 +74,6 @@ def test_highnotes_prepare():
     # TODO: WE HAVE TO FIX THIS LATER. IT IS A LITTLE BIT COMPLICATED,
     # CAUSE HIGHNOTE/TEXT IS NOT PRINTED CORRECTLY, THEREFORE WE MAY
     # REQUIRE A NEW PARSING STRATEGY.
-    parsed = groupme.footnotes.highnote.parse(ITEMS)
+    parsed = groupme.footnotes.strategy.highnote.parse(ITEMS)
     lines = [item.text for item in parsed]
     assert lines == EXPECTED

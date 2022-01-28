@@ -30,7 +30,7 @@ import utila
 
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.pages as gfsp
-import groupme.footnotes.highnote
+import groupme.footnotes.strategy.highnote
 
 FOOTNOTE_NUMBER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=0.4)
 
@@ -170,7 +170,7 @@ def extract_footer(
     invalid_footer: callable = None,
 ) -> iamraw.MovingFooterInformation:
     if footnote_strategy is None:
-        footnote_strategy = groupme.footnotes.highnote.parse
+        footnote_strategy = groupme.footnotes.strategy.highnote.parse
     begin = utila.roundme(footerstart / pageheight)
     # in the current parser state, the location of tiny distances between
     # objects is not interpreted correctly. The distance is often to small.

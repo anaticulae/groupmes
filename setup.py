@@ -52,6 +52,7 @@ if __name__ == "__main__":
             'groupme.footer',
             'groupme.footer.strategy',
             'groupme.footnotes',
+            'groupme.footnotes.strategy',
             'groupme.toc',
             'groupme.toc.basic',
             'groupme.toc.strategy',

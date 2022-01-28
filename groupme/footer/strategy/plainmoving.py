@@ -16,8 +16,8 @@ import utila
 
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.moving as gfsm
-import groupme.footnotes.parser
-import groupme.footnotes.plain
+import groupme.footnotes.strategy.parser
+import groupme.footnotes.strategy.plain
 
 
 class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
@@ -34,7 +34,7 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
             sizeandborders,
             pagenumbers,
             pagetextnavigators,
-            footnote_strategy=groupme.footnotes.plain.parse,
+            footnote_strategy=groupme.footnotes.strategy.plain.parse,
             invalid_footer=invalid_footer,
         )
 
