@@ -22,6 +22,8 @@ import tests
 ARCHIVE = os.path.join(groupme.ROOT, 'tests/footnotes/expected')
 utila.exists_assert(ARCHIVE)
 
+step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
+
 
 # yapf:disable
 @pytest.mark.parametrize('source, pages, expected', [
@@ -35,7 +37,7 @@ utila.exists_assert(ARCHIVE)
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
     pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
     pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
-    pytest.param(power.MASTER127_PDF, ':', 'master127', id='master127'),
+    step(power.MASTER127_PDF),
 ])
 # yapf:enable
 @utilatest.nightly
