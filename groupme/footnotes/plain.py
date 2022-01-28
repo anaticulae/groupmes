@@ -49,6 +49,7 @@ def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
             page=pagenumber if pagenumber is not None else -1,
             text=text,
             raw=content,
+            raw_number='' if number == -1 else str(number),
         )
         result.append(footnote)
     return result
