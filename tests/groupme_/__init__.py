@@ -7,13 +7,22 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-from functools import partial
+import functools
 
-from utilatest import run_command
+import utilatest
 
-from groupme.cli import PROCESS
-from groupme.cli import main
+import groupme.cli
 
 #pylint: disable=invalid-name
-run = partial(run_command, main=main, process=PROCESS, success=True)
-fail = partial(run_command, main=main, process=PROCESS, success=False)
+run = functools.partial(
+    utilatest.run_command,
+    main=groupme.cli.main,
+    process=groupme.cli.PROCESS,
+    success=True,
+)
+fail = functools.partial(
+    utilatest.run_command,
+    main=groupme.cli.main,
+    process=groupme.cli.PROCESS,
+    success=False,
+)
