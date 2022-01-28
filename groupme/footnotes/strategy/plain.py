@@ -16,30 +16,46 @@ import groupme.footnotes.utils
 
 
 def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
-    neighbors = groupme.footnotes.layout.neighbors(content)
-    collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
+    collected = prepare(content)
     result = []
     # parse footnote
     for multiline in collected:
-        x0 = multiline[0].bounding[0]  # first line x0
-        if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
-            # potential highnote is located too right
+        parsed = parse_group(multiline, width=width, pagenumber=pagenumber)
+        if not parsed:
             continue
-        text = ''.join([item.text for item in multiline])
-        number, content = groupme.footnotes.utils.search_footnote(text)
-        bounding = tuple(multiline[0].bounding)
-        text = utila.normalize_text(content, normalize_spaces=True, strips=True)
-        footnote = iamraw.FootRawNote(
-            bounding=bounding,
-            number=number,
-            style=None,
-            page=pagenumber if pagenumber is not None else -1,
-            text=text,
-            raw=content,
-            raw_number='' if number == -1 else str(number),
-        )
-        result.append(footnote)
+        result.append(parsed)
     return result
+
+
+def parse_group(
+    multiline: list,
+    width: float,
+    pagenumber: int,
+) -> iamraw.FootRawNote:
+    x0 = multiline[0].bounding[0]  # first line x0
+    if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
+        # potential highnote is located too right
+        return None
+    text = ''.join([item.text for item in multiline])
+    number, content = groupme.footnotes.utils.search_footnote(text)
+    bounding = tuple(multiline[0].bounding)
+    text = utila.normalize_text(content, normalize_spaces=True, strips=True)
+    footnote = iamraw.FootRawNote(
+        bounding=bounding,
+        number=number,
+        style=None,
+        page=pagenumber if pagenumber is not None else -1,
+        text=text,
+        raw=content,
+        raw_number='' if number == -1 else str(number),
+    )
+    return footnote
+
+
+def prepare(content: list) -> list:
+    neighbors = groupme.footnotes.layout.neighbors(content)
+    collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
+    return collected
 
 
 MERGE_LINE_MIN = configo.HV_INT_PLUS(default=len('1. Ebd.'))
