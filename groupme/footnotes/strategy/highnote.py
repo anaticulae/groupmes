@@ -32,35 +32,42 @@ def parse(
     """
     grouped = groupme.footnotes.layout.group_footnote_area(content)
     result = []
-    for number, note in grouped:
-        has_highnote = number is not None
-        if has_highnote:
-            x0 = number.bounding[0]
-            # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
-            if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
-                # potential highnote is located too right
-                continue
-        if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
-            utila.debug(f'footnote too short: {note.text}')
+    for group in grouped:
+        parsed = parse_group(group, width=width, pagenumber=pagenumber)
+        if not parsed:
             continue
-        notenumber = None
-        if has_highnote:
-            notenumber = groupme.footnotes.utils.parse_footnote_number(
-                number.text)
-        if not note.text.strip():
-            utila.error(f'could not parse footnote: {number}, no text content')
-            continue
-        bounding = tuple(number.bounding) if has_highnote else None
-        # TODO: USE STRIP=True AFTER UPGRADING UTILA
-        text = utila.normalize_text(note.text).strip()
-        footnote = iamraw.FootRawNote(
-            bounding=bounding,
-            number=notenumber,
-            raw='',  # TODO: REMOVE THIS?
-            raw_number=number.text.strip() if has_highnote else None,
-            style=(number.style if has_highnote else None, note.style),
-            text=text,
-            page=pagenumber if pagenumber is not None else -1,
-        )
-        result.append(footnote)
+        result.append(parsed)
     return result
+
+
+def parse_group(group, width: int, pagenumber: int) -> iamraw.FootRawNote:
+    number, note = group
+    has_highnote = number is not None
+    if has_highnote:
+        x0 = number.bounding[0]
+        # TODO: REPLACE WITH DUE PAGE SIZE FORMATS
+        if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
+            # potential highnote is located too right
+            return None
+    if len(note.text) < FOOTNOTE_TEXT_LENGTH_MIN:
+        utila.debug(f'footnote too short: {note.text}')
+        return None
+    notenumber = None
+    if has_highnote:
+        notenumber = groupme.footnotes.utils.parse_footnote_number(number.text)
+    if not note.text.strip():
+        utila.error(f'could not parse footnote: {number}, no text content')
+        return None
+    bounding = tuple(number.bounding) if has_highnote else None
+    # TODO: USE STRIP=True AFTER UPGRADING UTILA
+    text = utila.normalize_text(note.text).strip()
+    footnote = iamraw.FootRawNote(
+        bounding=bounding,
+        number=notenumber,
+        raw='',  # TODO: REMOVE THIS?
+        raw_number=number.text.strip() if has_highnote else None,
+        style=(number.style if has_highnote else None, note.style),
+        text=text,
+        page=pagenumber if pagenumber is not None else -1,
+    )
+    return footnote
