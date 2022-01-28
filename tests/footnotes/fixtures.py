@@ -19,7 +19,7 @@ import utila
 def master72page14():
     navigators = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.MASTER072_PDF),
-        pages=(14),
+        pages=14,
     )
     nav = utila.select_page(navigators, 14)
     footer = nav.between(0.8, 0.93)
@@ -32,7 +32,7 @@ def master89page7():
     page = 7
     navigators = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.MASTER089_PDF),
-        pages=(page),
+        pages=page,
     )
     nav = utila.select_page(navigators, page)
     footer = nav.between(0.83, 0.95)
@@ -45,7 +45,7 @@ def master89page19():
     page = 19
     navigators = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.MASTER089_PDF),
-        pages=(page),
+        pages=page,
     )
     nav = utila.select_page(navigators, page)
     # TODO: REMOVE WITH EXTRACT MOVING FOOTER
@@ -59,7 +59,7 @@ def bachelor111page10():
     page = 10
     navigators = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.BACHELOR111_PDF),
-        pages=(page),
+        pages=page,
     )
     nav = utila.select_page(navigators, page)
     # TODO: REMOVE WITH EXTRACT MOVING FOOTER
