@@ -73,8 +73,15 @@ class Evaluate(utilatest.BaseLiner):
 
     def raw(self, value) -> str:
         footnotes = utila.flatten_content(value)
-        footnotes = [
-            utila.normalize_text(item.text.strip()) for item in footnotes
-        ]
+        footnotes = [rawline(item) for item in footnotes]
         result = utila.NEWLINE.join(footnotes)
         return result
+
+
+def rawline(footnote) -> str:
+    if footnote.raw_number is not None:
+        result = str(footnote.number).zfill(4) + ' '
+    else:
+        result = '     '
+    result += utila.normalize_text(footnote.text.strip())
+    return result
