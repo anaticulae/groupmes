@@ -31,7 +31,7 @@ def parse_group(
     multiline: list,
     width: float,
     pagenumber: int,
-) -> iamraw.FootRawNote:
+) -> iamraw.FootNoteRaw:
     x0 = multiline[0].bounding[0]  # first line x0
     if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
         # potential highnote is located too right
@@ -40,7 +40,7 @@ def parse_group(
     number, content = groupme.footnotes.utils.search_footnote(text)
     bounding = tuple(multiline[0].bounding)
     text = utila.normalize_text(content, normalize_spaces=True, strips=True)
-    footnote = iamraw.FootRawNote(
+    footnote = iamraw.FootNoteRaw(
         bounding=bounding,
         number=number,
         style=None,

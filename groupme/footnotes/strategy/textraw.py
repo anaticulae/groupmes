@@ -45,13 +45,13 @@ def parse(content: str, pagenumber: int = None):
     return result
 
 
-def parse_group(raw: str, pagenumber: int) -> iamraw.FootRawNote:
+def parse_group(raw: str, pagenumber: int) -> iamraw.FootNoteRaw:
     number, text = raw.split(maxsplit=1)
     if not text.strip():
         utila.error(f'could not parse footnote: {number}, no text content')
         return None
     text = utila.normalize_text(text)
-    footnote = iamraw.FootRawNote(
+    footnote = iamraw.FootNoteRaw(
         number=int(number),
         text=text,
         raw=raw,
