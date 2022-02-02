@@ -255,13 +255,18 @@ def potential_header_data(ptns):
             item,
             page.height,
             page.page,
-        ) for item in page.before(TOP_AREA) if not noheader_content(item.text)]
+        ) for item in page.before(TOP_AREA) if not noheader_content(item)]
         collected.append(content)
     return collected
 
 
-def noheader_content(text: str):
-    text = text.strip()
+HEADER_TEXT_SIZE_MAX = configo.HV_FLOAT_PLUS(default=13.9)
+
+
+def noheader_content(item):
+    if item.bounding_mean > HEADER_TEXT_SIZE_MAX:
+        return True
+    text = item.text.strip()
     if text.count('.') > 5:
         return True
     if text[0] in '•':
