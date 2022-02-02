@@ -120,10 +120,8 @@ def extract_common_footer(
         todo=bounding,
         max_diff=COMMON_HORIZONTAL_CLASSIFIER_ERROR_MAX,
     )
-
     if not clusters:
         return NO_CLUSTER
-
     top = extract_inarea(
         clusters,
         pageheight=pageheight,
@@ -138,14 +136,12 @@ def extract_common_footer(
         lower_bound=texmex.END,
         max_group_count=max_group_count,
     )
-
     if top is None:
         # could not detect any header
         top = [texmex.START]
     if bottom is None:
         # could not detect any footer
         bottom = [pageheight]
-
     # the header is on the top(0.0) and the footer is on the bottom(1.0)
     assert max(top) < min(bottom), f'{top} < {bottom}'
     return top, bottom
@@ -174,7 +170,6 @@ def extract_page_footerheader(
     for page in horizontals:
         content = page.content
         textnavigator = utila.select_page(pagetextnavigators, page.page)
-
         header = None
         if top is not None and groupme.horizontals.match(content, top):
             header = create_header(top, pageheight, textnavigator)
