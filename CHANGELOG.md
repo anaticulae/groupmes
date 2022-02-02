@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.21.0
+
+### Feature
+
+* skip huge text size in potential header (9a320ada3805)
+* increase possible word gap at line start (7f1f8d59ef0e)
+* make max word dist inline dependent (278087546ac2)
+
+### Fix
+
+* add raw_number to result (fdf10981b7df)
+
+### Documentation
+
+* adjust modules path (2798f58c052a)
+
 ## v0.20.0
 
 ### Feature
