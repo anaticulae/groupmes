@@ -63,6 +63,12 @@ def test_toc_groupby_level():
         14,
         id='master099b',
     ),
+    pytest.param(
+        power.BACHELOR037_PDF,
+        (3, 4),
+        47,
+        id='bachelor037',
+    ),
 ])
 def test_extract_toc_from_path(resources, pages, expected):
     resources = power.link(resources)
