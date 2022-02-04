@@ -15,6 +15,8 @@ import utilatest
 
 import tests.figuretable
 
+# TODO: CONVERT TO NEW VALIDATOR STYLE
+
 
 def merge_required(toc: iamraw.Toc) -> str:
     result = []
