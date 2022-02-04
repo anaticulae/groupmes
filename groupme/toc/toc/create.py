@@ -201,7 +201,10 @@ def level_zero(items):
         update every level to ensure
     """
     # TODO: REMOVE THIS?
-    level_min = min([item.level for item in items], default=utila.INF)
+    level_min = min(
+        [item.level for item in items if item.level is not None],
+        default=utila.INF,
+    )
     if not level_min:
         for item in items:
             item.level = item.level + 1
