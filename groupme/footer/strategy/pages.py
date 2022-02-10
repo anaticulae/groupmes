@@ -106,6 +106,7 @@ def create_headerinformation(
     begin = texmex.START
     end = bounding.y1 / pageheight
     end = utila.roundme(HEADER_TOL + end)
+    assert 0.0 <= begin < end <= 1.0, f'0.0<={begin}<{end}<=1.0 p{navigator.page}'
     raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,
@@ -126,6 +127,7 @@ def create_footerinformation(
     bounding = location
     begin = utila.roundme(bounding.y0 / pageheight)
     end = texmex.END
+    assert 0.0 <= begin < end <= 1.0, f'0.0<={begin}<{end}<=1.0 p{navigator.page}'
     raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,
