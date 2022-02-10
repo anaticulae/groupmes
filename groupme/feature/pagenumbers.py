@@ -210,8 +210,10 @@ Cluster = typing.List[typing.Tuple[iamraw.BoundingBox, str]]
 def pagenumbers(clusters: typing.List[Cluster]) -> list:
     """Determine pagenumbers out of list of cluster
 
-    2. Scenarios are possible, we have alternating left and right page numbers
-    or the page numbers are only on one possition.
+    Two scenarios are possible:
+
+    * alternating left and right page numbers
+    * page numbers are only on one possition
 
     Args:
         clusters: List of cluster -> List[List[(boundingbox, content)]]
