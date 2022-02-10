@@ -53,7 +53,6 @@ PAGE_ELEMENTS_MIN = configo.HV_INT_PLUS(default=4)
 def work(
     text: str,
     textpositions: str,
-    sizeandborder: str = None,
     pages: tuple = None,
 ) -> str:
     utila.call('numbers')
@@ -62,7 +61,6 @@ def work(
         textpositions=textpositions,
         pages=pages,
     )
-    navigators = rotate_ifrequired(navigators, sizeandborders=sizeandborder)
     detected = determine_pagenumbers(navigators)
     dumped = serializeraw.dump_pagenumbers(detected)
     return dumped
@@ -70,15 +68,21 @@ def work(
 
 def determine_pagenumbers(navigators) -> list:
     numbers = []
-    rotated, normal = utila.partition(isrotated, navigators)
+    rotated, normal = utila.partition(iswidepage, navigators)
     detected = header(normal) + footer(normal)
     if detected:
         numbers.extend(detected)
-    # TODO: REMOVE ROATED CAUSE WE ROTATE PTN BACK IF REQUIRED
-    rotated = [texmex.rotate_left(page) for page in rotated]
-    detected_rotated = header(rotated) + footer(rotated)
-    if detected_rotated:
-        numbers.extend(detected_rotated)
+    if rotated:
+        # do not rotate page cause some pages are wide page but not rotated
+        detected_rotated = header(rotated) + footer(rotated)
+        # rotate left ro determine rotated page numbers
+        rotated = [texmex.rotate_left(page) for page in rotated]
+        detected_rotated_roated = header(rotated) + footer(rotated)
+        # TODO: USE BETTER DECIDER?!
+        if len(detected_rotated) > len(detected_rotated_roated):
+            numbers.extend(detected_rotated)
+        else:
+            numbers.extend(detected_rotated_roated)
     return pagenumbers(numbers)
 
 
@@ -101,7 +105,7 @@ def rotate_ifrequired(navigators, sizeandborders=None):
             # empty navigator or only a part of ptn is extracted
             continue
         pagesize = pagesize.size
-        if isrotated(pagesize):
+        if iswidepage(pagesize):
             ptn = texmex.rotate_left(ptn)
         result.append(ptn)
     return result
@@ -189,7 +193,7 @@ def valid_content(
     return common
 
 
-def isrotated(navigator) -> bool:
+def iswidepage(navigator) -> bool:
     return navigator.width > navigator.height
 
 
