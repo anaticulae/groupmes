@@ -222,7 +222,7 @@ def create_fixedheader(
     if parsed:
         current.page = parsed
         return current
-    current.undefined.append(iamraw.RawText(text=text))
+    current.undefined.append(iamraw.RawText(text=text.strip()))
     return current
 
 

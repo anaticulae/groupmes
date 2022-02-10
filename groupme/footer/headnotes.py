@@ -32,7 +32,7 @@ def parse(content: str):
             if parsed:
                 break
         if not parsed:
-            parsed: iamraw.RawText = iamraw.RawText(text=item.text)
+            parsed: iamraw.RawText = iamraw.RawText(text=item.text.strip())
         result.append(parsed)
     return result
 
@@ -40,7 +40,7 @@ def parse(content: str):
 def parse_rawtext(text: str, _=None):  # pylint:disable=W0613
     if text.count(utila.NEWLINE) <= 2:
         return None
-    return iamraw.RawText(text=text)
+    return iamraw.RawText(text=text.strip())
 
 
 def parse_pagenumber(text: str, _=None):  # pylint:disable=W0613
