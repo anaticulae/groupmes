@@ -51,7 +51,6 @@ def work(
     horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
     sizeandborders = serializeraw.load_pageborders(sizeandborders, pages=pages)
     pagenumber = serializeraw.load_pagenumbers(pagenumber, pages=pages)
-
     ptns = serializeraw.create_pagetextnavigators_fromfile(
         text,
         text_positions,
@@ -67,7 +66,6 @@ def work(
         pagenumbers=pagenumber,
         pagetextnavigators=ptns,
     )
-
     validate(result)
     # dump
     dumped = serializeraw.dump_headerfooter(result)
