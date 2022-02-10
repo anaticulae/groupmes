@@ -31,7 +31,7 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     step(power.BOOK173_PDF),
     step(power.DISS148_PDF),
 ])
-@utilatest.longrun
+@utilatest.nightly
 def test_header_validate(source, pages, expected, testdir, monkeypatch):
     Evaluate(
         source=source,
