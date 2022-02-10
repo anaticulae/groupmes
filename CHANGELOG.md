@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v0.22.0
+
+### Feature
+
+* run page number extraction twice for wide pages (87e517e9ba90)
+* remove small text token trash (a8ceb3527fc4)
+* add debugging information (40e55bf1a770)
+
+### Fix
+
+* strip text to improve extraction result (c58e17ff43b7)
+* skip None to avoid computation error (e3f663310d41)
+
+### Documentation
+
+* adjust method documentation (0220fef345b0)
+
 ## v0.21.0
 
 ### Feature
