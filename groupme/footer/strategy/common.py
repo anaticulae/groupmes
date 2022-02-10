@@ -239,12 +239,24 @@ def prepare_clustering(
     valid = header_content(collected, occurrence_min=occurrence_min)
     result = []
     for page in collected:
-        content = [
-            item for item in page if item[1].text.strip() in valid or
-            elements.ispagenumber(item[1].text)
-        ]
+        content = [item for item in page if valid_line(item[1].text, valid)]
         result.append(content)
     return result
+
+
+def valid_line(text: str, valid: set) -> bool:
+    """Remove small text token tash.
+
+    >>> assert not valid_line('-', valid={'-'})
+    """
+    text = text.strip()
+    if elements.ispagenumber(text):
+        return True
+    if len(text) <= 3:
+        return False
+    if text in valid:
+        return True
+    return False
 
 
 def potential_header_data(ptns):
