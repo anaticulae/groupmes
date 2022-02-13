@@ -23,7 +23,7 @@ import groupme.toc.run
 import groupme.toc.strategy
 import tests
 
-ARCHIVE = os.path.join(groupme.ROOT, 'tests/groupme_/toc/expected')
+ARCHIVE = os.path.join(groupme.ROOT, 'tests/toc/expected')
 TEN = utila.make_tuple(10)
 
 
