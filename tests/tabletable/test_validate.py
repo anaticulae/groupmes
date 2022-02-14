@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import functools
+
 import iamraw
 import power
 import pytest
@@ -14,11 +16,61 @@ import serializeraw
 import utila
 import utilatest
 
-import groupme.path
+import groupme
 import tests
 
+ARCHIVE = utila.join(
+    groupme.ROOT,
+    'tests/tabletable/expected',
+    assert_exists=True,
+)
 
-def merge_required(toc: iamraw.Toc) -> str:
+
+#  TODO: IMPROVE PARSER A.10 and A.11 is not fully correct
+@pytest.mark.parametrize('source, pages', [
+    pytest.param(
+        power.BACHELOR090_PDF,
+        (9, 11),
+        id='bachelor090',
+    ),
+])
+@utilatest.nightly
+def test_tabletable_validate(source, pages, testdir, monkeypatch):
+    Evaluate(
+        source=source,
+        pages=utila.from_tuple(pages, separator=','),
+        expected=utila.file_name(source),
+        workdir=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    ).evaluate()
+
+
+class Evaluate(utilatest.BaseLiner):
+
+    def __init__(self, source, pages, expected, workdir, monkeypatch):
+        super().__init__(
+            program=functools.partial(tests.run, monkeypatch=monkeypatch),
+            step='tabletable',
+            pages=pages,
+            source=power.link(source),
+            workdir=workdir,
+            archive=ARCHIVE,
+            loader=self.load_tabletable,
+            convert_source=False,
+            index=expected,
+        )
+
+    def load_tabletable(self, _):  # pylint:disable=W0613
+        path = iamraw.path.groupme_tabletable(self.workdir)
+        loaded = serializeraw.load_toc(path)
+        return loaded
+
+    def raw(self, value) -> str:
+        result = tables_raw(value)
+        return result
+
+
+def tables_raw(toc: iamraw.Toc) -> str:
     result = []
 
     def recursive(item, level):
@@ -34,43 +86,3 @@ def merge_required(toc: iamraw.Toc) -> str:
         result.extend(recursive(item, level=0))
     titles = utila.NEWLINE.join(result)
     return titles
-
-
-# TODO: IMPROVE PARSER A.10 and A.11 is not fully correct
-TABLETABLE_BACHELOR90 = """\
-Konfiguration Simulink Modell
-Konfiguration Putty
-Konfiguration WinSCP-Login
-Anschlussbelegung OBU
-PTX-Befehlsreferenz
-Verzeichnisübersicht - Ubuntu
-Verzeichnisübersicht - OBU
-Vorgehen Konfiguration SIMULINK-Modell
-Vorgehen zur Erzeugung einer S-Funktion
-A.10.Vorgehen zum Einbinden von S-Funktionen
-A.11.Datentypen Ports Mex nach [mat12b]"""
-
-
-def bachelor90(toc: iamraw.Toc):
-    tables = merge_required(toc)
-    assert tables == TABLETABLE_BACHELOR90, tables
-
-
-@pytest.mark.parametrize('source, validate, pages', [
-    pytest.param(
-        power.link(power.BACHELOR090_PDF),
-        bachelor90,
-        (9, 10),
-        id='bachelor90',
-    ),
-])
-@utilatest.longrun
-def test_tabletable(source, validate, pages, monkeypatch, testdir):
-    pages = ','.join((str(item) for item in pages)) if pages else ''
-    pages = f'--pages={pages}' if pages else ''
-    cmd = f'-i {source} --tabletable {pages}'
-    tests.run(cmd, monkeypatch=monkeypatch)
-
-    path = groupme.path.tabletable(testdir.tmpdir)
-    tabletable = serializeraw.load_toc(path)
-    validate(tabletable)
