@@ -14,7 +14,7 @@ import utila
 import groupme.toc.strategy.regex
 import groupme.toc.toc.create
 
-HEADLINE_SIZE_MIN = configo.HV_FLOAT_PLUS(15.0)
+HEADLINE_SIZE_MIN = configo.HV_FLOAT_PLUS(default=15.0)
 
 
 def select_contentpages(
