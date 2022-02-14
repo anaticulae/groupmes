@@ -33,6 +33,11 @@ ARCHIVE = utila.join(
         (9, 11),
         id='bachelor090',
     ),
+    pytest.param(
+        power.BACHELOR111_PDF,
+        (98, 99),
+        id='bachelor111',
+    ),
 ])
 @utilatest.nightly
 def test_tabletable_validate(source, pages, testdir, monkeypatch):
