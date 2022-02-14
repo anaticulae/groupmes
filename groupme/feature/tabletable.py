@@ -11,6 +11,7 @@
 """
 
 import configo
+import elements
 import serializeraw
 import utila
 
@@ -68,9 +69,5 @@ def work(
     return dumped
 
 
-NO_TABLES = {
-    'Abbildungsverzeichnis',
-    'Abkürzungsverzeichnis',
-    'Inhalt',
-    'Inhaltsverzeichnis',
-}
+NO_TABLES = (elements.ABBREVIATION | elements.TOC | elements.FIGURETABLE |
+             elements.SYMBOLTABLE)
