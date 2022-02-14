@@ -22,31 +22,6 @@ def run(ptcns) -> iamraw.Toc:
     Abb. 2      Mittelwerte der N ormierungen v on Lang et a l. ( 2005) und
                 Libkuman et al. (2007)
     """
-
-    def check_level(item: str):
-        if 'Abb.' in item:
-            return True
-        if 'Abbildung' in item:
-            return True
-        return False
-
-    def parse(ptcn) -> groupme.toc.TocLines:
-        parsed = geostrat.dc_parse_page(ptcn)
-        if not parsed:
-            return []
-        result = []
-        for level, title in parsed:
-            if not check_level(level):
-                utila.debug(f'invalid figure level: {level}')
-                continue
-            item = groupme.toc.TocLine(
-                level=level,
-                title=title,
-                raw_location=ptcn.page,
-            )
-            result.append(item)
-        return result
-
     pages = groupme.pageselector.select_contentpages(
         ptcns,
         strategy=parse,
@@ -55,9 +30,33 @@ def run(ptcns) -> iamraw.Toc:
     )
     if not pages:
         return []
-
     ptcns = utila.select_pages(ptcns, pages)
     extracted = [parse(item) for item in ptcns]
-
     result = utila.flatten(extracted)
     return result
+
+
+def parse(ptcn) -> groupme.toc.TocLines:
+    parsed = geostrat.dc_parse_page(ptcn)
+    if not parsed:
+        return []
+    result = []
+    for level, title in parsed:
+        if not check_level(level):
+            utila.debug(f'invalid figure level: {level}')
+            continue
+        item = groupme.toc.TocLine(
+            level=level,
+            title=title,
+            raw_location=ptcn.page,
+        )
+        result.append(item)
+    return result
+
+
+def check_level(item: str):
+    if 'Abb.' in item:
+        return True
+    if 'Abbildung' in item:
+        return True
+    return False
