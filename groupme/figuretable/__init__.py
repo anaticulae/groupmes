@@ -8,15 +8,10 @@
 # =============================================================================
 
 import configo
+import elements
 
 # minimal percentage of figure lines per page
 TOFS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=20, limit=100.0)
 
-NO_FIGURES = {
-    'Abkürzungsverzeichnis',
-    'Glossar',
-    'Inhalt',
-    'Inhaltsverzeichnis',
-    'Literaturverzeichnis',
-    'Tabellenverzeichnis',
-}
+NO_FIGURES = (elements.ABBREVIATION | elements.BIBLIOGRAPHY | elements.GLOSSAR |
+              elements.SYMBOLTABLE | elements.TABLETABLE | elements.TOC)
