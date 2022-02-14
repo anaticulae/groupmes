@@ -12,6 +12,7 @@
 
 import configo
 import elements
+import iamraw
 import serializeraw
 import utila
 
@@ -56,18 +57,36 @@ def work(
         wrong_table=NO_TABLES,
         valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
     )
+    if not selected:
+        return EMPTY
     # select toc pages only
     navigators = utila.select_pages(navigators, pages=selected)
-
+    if not headline_start(navigators[0]):
+        utila.error(f'no valid table headline start: {selected}')
+        return EMPTY
     loaded = groupme.toc.strategy.ExtractionData(content=navigators)
+    # run
     extracted = groupme.toc.run.extract(loaded)
-
+    # prepare
     flat = utila.flatten(extracted.content)
     leveled = groupme.toc.toc.create.groupby_level(flat)
-
+    # dump
     dumped = serializeraw.dump_toc(leveled)
     return dumped
 
 
+EMPTY = serializeraw.dump_toc(iamraw.Toc())
 NO_TABLES = (elements.ABBREVIATION | elements.TOC | elements.FIGURETABLE |
              elements.SYMBOLTABLE)
+
+
+def headline_start(ptn) -> bool:
+    """Verify that the first ptn starts with a valid figure table headline."""
+    # TODO: INTEGRATE INTO SELECT_CONTENTPAGES
+    for line in ptn[0:8]:
+        parsed = elements.headline.parser.parse_headline(line.text)
+        if not parsed:
+            continue
+        if utila.verysimilar(parsed[0], expected=elements.TABLETABLE):
+            return True
+    return False
