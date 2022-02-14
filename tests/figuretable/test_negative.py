@@ -14,7 +14,7 @@ import utilatest
 import tests.figuretable
 
 
-@pytest.mark.parametrize('source,  pages', [
+@pytest.mark.parametrize('source, pages', [
     pytest.param(
         power.link(power.MASTER089_PDF),
         (85, 86, 87, 88),
