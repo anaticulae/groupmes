@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import re
-
 import elements
 import iamraw
 import utila
@@ -42,10 +40,24 @@ def run(oneline) -> iamraw.Toc:
     return flat
 
 
+FIGURE_REMOVE = utila.compiles(r"""
+    ^
+    (
+        ABBILDUNG|
+        ABB\.?|
+        FIGURE|
+        FIG.?
+    )
+    [ ]{0,2}
+    \d{1,3}
+    \:
+    [ ]{0,2}
+""")
+
+
 def remove_figure_sequence(items) -> list:
     """Remove starting sequence which is a result of using toc-table
     parser."""
-    pattern = r'^(Abb\.|Abbildung)[ ]{0,2}\d{1,3}\:[ ]{0,2}'
     for item in items:
-        item.title = re.sub(pattern, '', item.title)
+        item.title = FIGURE_REMOVE.sub('', item.title)
     return items

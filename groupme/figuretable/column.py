@@ -54,9 +54,23 @@ def parse(ptcn) -> groupme.toc.TocLines:
     return result
 
 
+LEVEL_START = utila.compiles(r"""
+    ^
+    (
+        ABBILDUNG|
+        ABB\.?|
+        FIGURE|
+        FIG\.?
+    )
+""")
+
+
 def check_level(item: str):
-    if 'Abb.' in item:
-        return True
-    if 'Abbildung' in item:
+    """\
+    >>> check_level('Abb. 1      SAM Skala')
+    True
+    """
+    item = item.strip()
+    if LEVEL_START.match(item):
         return True
     return False
