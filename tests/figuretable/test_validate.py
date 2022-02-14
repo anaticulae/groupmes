@@ -47,6 +47,11 @@ ARCHIVE = utila.join(
         (71, 72),
         id='master075',
     ),
+    pytest.param(
+        power.BACHELOR111_PDF,
+        (94, 95, 96),
+        id='bachelor111',
+    ),
 ])
 @utilatest.nightly
 def test_figuretable_validate(source, pages, testdir, monkeypatch):
