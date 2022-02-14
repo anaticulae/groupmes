@@ -20,6 +20,11 @@ import tests.figuretable
         (85, 86, 87, 88),
         id='master89_page85_86_87_88',
     ),
+    pytest.param(
+        power.BACHELOR111_PDF,
+        (0, 1, 2, 3, 4, 5, 6),
+        id='bachelor111document_start',
+    ),
 ])
 @utilatest.nightly
 def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
