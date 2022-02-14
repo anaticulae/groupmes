@@ -16,13 +16,14 @@ import tests.figuretable
 
 @pytest.mark.parametrize('source, pages', [
     pytest.param(
-        power.link(power.MASTER089_PDF),
+        power.MASTER089_PDF,
         (85, 86, 87, 88),
         id='master89_page85_86_87_88',
     ),
 ])
 @utilatest.nightly
 def test_regression_non_valid_examples(source, pages, monkeypatch, testdir):
+    source = power.link(source)
     extracted = tests.figuretable.extract_figuretable(
         source,
         pages,
