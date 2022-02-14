@@ -22,8 +22,13 @@ def run(oneline) -> list:
         wrong_table=groupme.figuretable.NO_FIGURES,
         valid_lines_perpage_min=groupme.figuretable.TOFS_PER_PAGE_MIN,
     )
+    if not selected:
+        return []
     # select figure pages only
     oneline = utila.select_pages(oneline, pages=selected)
+    if not headline_start(oneline[0]):
+        utila.error(f'no valid figure headline start: {selected}')
+        return []
     oneline = [
         groupme.toc.strategy.remove_headline(
             page,
@@ -37,6 +42,17 @@ def run(oneline) -> list:
 
     flat = remove_figure_sequence(flat)
     return flat
+
+
+def headline_start(ptn) -> bool:
+    """Verify that the first ptn starts with a valid figure table headline."""
+    for line in ptn[0:8]:
+        parsed = elements.headline.parser.parse_headline(line.text)
+        if not parsed:
+            continue
+        if utila.verysimilar(parsed[0], expected=elements.FIGURETABLE):
+            return True
+    return False
 
 
 FIGURE_REMOVE = utila.compiles(r"""
