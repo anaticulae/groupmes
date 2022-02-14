@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.23.0
+
+### Feature
+
+* ensure that first page contain figure table headline (8881ec13e64e)
+* use elements headlines list (2a9af7189ccd)
+* add English support (b5e5906e3e73)
+
+### Documentation
+
+* adjust interface documentation (c1ae55266c63)
+
 ## v0.22.0
 
 ### Feature
