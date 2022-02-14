@@ -8,7 +8,6 @@
 # =============================================================================
 
 import geostrat
-import iamraw
 import utila
 
 import groupme.figuretable
@@ -16,7 +15,7 @@ import groupme.pageselector
 import groupme.toc
 
 
-def run(ptcns) -> iamraw.Toc:
+def run(ptcns) -> list:
     """\
     Abb. 1      SAM Skala in der 9-Punkte-Likert-Form
     Abb. 2      Mittelwerte der N ormierungen v on Lang et a l. ( 2005) und

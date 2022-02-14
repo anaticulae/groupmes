@@ -8,7 +8,6 @@
 # =============================================================================
 
 import elements
-import iamraw
 import utila
 
 import groupme.figuretable
@@ -17,7 +16,7 @@ import groupme.toc.run
 import groupme.toc.strategy
 
 
-def run(oneline) -> iamraw.Toc:
+def run(oneline) -> list:
     selected = groupme.pageselector.select_contentpages(
         oneline,
         wrong_table=groupme.figuretable.NO_FIGURES,
