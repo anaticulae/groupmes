@@ -49,6 +49,7 @@ if __name__ == "__main__":
             'groupme.abbrev',
             'groupme.border',
             'groupme.feature',
+            'groupme.figuretable',
             'groupme.footer',
             'groupme.footer.strategy',
             'groupme.footnotes',

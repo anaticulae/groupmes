@@ -10,23 +10,9 @@
 ==========================
 """
 
-import re
-
-import configo
-import elements
-import geostrat
-import iamraw
 import serializeraw
-import utila
 
-import groupme.pageselector
-import groupme.toc
-import groupme.toc.run
-import groupme.toc.strategy
-import groupme.toc.toc.create
-
-# minimal percentage of figure lines per page
-TOFS_PER_PAGE_MIN = configo.HV_PERCENT_PLUS(default=20, limit=100.0)
+import groupme.figuretable.strategy
 
 
 def work(
@@ -52,112 +38,14 @@ def work(
     Returns:
         dump of extracted table of content
     """
-    oneline = serializeraw.create_pagetextcontentnavigators_fromfile(
-        oneline_text,
-        oneline_textpositions,
-        sizeandborderpath=sizeandborder,
-        headerfooterpath=headerfooter,
+    result = groupme.figuretable.strategy.run(
+        text=text,
+        textpositions=textpositions,
+        oneline_text=oneline_text,
+        oneline_textpositions=oneline_textpositions,
+        headerfooter=headerfooter,
+        sizeandborder=sizeandborder,
         pages=pages,
     )
-    result = oneline_figure_strategy(oneline)
-    if not result:
-        ptcns = serializeraw.create_pagetextcontentnavigators_fromfile(
-            text,
-            textpositions,
-            sizeandborderpath=sizeandborder,
-            headerfooterpath=headerfooter,
-            pages=pages,
-        )
-        result = doublecolumn_figure_strategy(ptcns)
-    result = groupme.toc.toc.create.groupby_level(result)  # pylint:disable=R0204
     dumped = serializeraw.dump_toc(result)
     return dumped
-
-
-def oneline_figure_strategy(oneline) -> iamraw.Toc:
-    selected = groupme.pageselector.select_contentpages(
-        oneline,
-        wrong_table=NO_FIGURES,
-        valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
-    )
-    # select figure pages only
-    oneline = utila.select_pages(oneline, pages=selected)
-    oneline = [
-        groupme.toc.strategy.remove_headline(
-            page,
-            headlines=elements.FIGURETABLE,
-        ) for page in oneline
-    ]
-    loaded = groupme.toc.strategy.ExtractionData(content=oneline)
-    extracted = groupme.toc.run.extract(loaded)
-
-    flat = utila.flatten(extracted.content)
-
-    flat = remove_figure_sequence(flat)
-    return flat
-
-
-def remove_figure_sequence(items) -> list:
-    """Remove starting sequence which is a result of using toc-table
-    parser."""
-    pattern = r'^(Abb\.|Abbildung)[ ]{0,2}\d{1,3}\:[ ]{0,2}'
-    for item in items:
-        item.title = re.sub(pattern, '', item.title)
-    return items
-
-
-def doublecolumn_figure_strategy(ptcns) -> iamraw.Toc:
-    """\
-    Abb. 1      SAM Skala in der 9-Punkte-Likert-Form
-    Abb. 2      Mittelwerte der N ormierungen v on Lang et a l. ( 2005) und
-                Libkuman et al. (2007)
-    """
-
-    def check_level(item: str):
-        if 'Abb.' in item:
-            return True
-        if 'Abbildung' in item:
-            return True
-        return False
-
-    def parse(ptcn) -> groupme.toc.TocLines:
-        parsed = geostrat.dc_parse_page(ptcn)
-        if not parsed:
-            return []
-        result = []
-        for level, title in parsed:
-            if not check_level(level):
-                utila.debug(f'invalid figure level: {level}')
-                continue
-            item = groupme.toc.TocLine(
-                level=level,
-                title=title,
-                raw_location=ptcn.page,
-            )
-            result.append(item)
-        return result
-
-    pages = groupme.pageselector.select_contentpages(
-        ptcns,
-        strategy=parse,
-        wrong_table=NO_FIGURES,
-        valid_lines_perpage_min=TOFS_PER_PAGE_MIN,
-    )
-    if not pages:
-        return []
-
-    ptcns = utila.select_pages(ptcns, pages)
-    extracted = [parse(item) for item in ptcns]
-
-    result = utila.flatten(extracted)
-    return result
-
-
-NO_FIGURES = {
-    'Abkürzungsverzeichnis',
-    'Glossar',
-    'Inhalt',
-    'Inhaltsverzeichnis',
-    'Literaturverzeichnis',
-    'Tabellenverzeichnis',
-}
