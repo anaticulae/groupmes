@@ -125,20 +125,29 @@ def groupby_level(toc: groupme.toc.TocLines) -> iamraw.Toc:
     if not toc:
         # empty toc or no toc
         return iamraw.Toc()
-    current = elements.toc_style(toc)
-    if current == iamraw.TocStyle.NUMBERED:
+    style = elements.toc_style(toc)
+    if style == iamraw.TocStyle.NUMBERED:
         return groupby_level_numbered(toc)
-    if current == iamraw.TocStyle.SECTIONED:
-        return grouper_level(toc, levelme=level_sections)
-    if current == iamraw.TocStyle.FIRSTLEVEL_ONLY:
+    if style == iamraw.TocStyle.SECTIONED:
+        return grouper_level(toc, levelme=level_sections, style=style)
+    if style == iamraw.TocStyle.FIRSTLEVEL_ONLY:
         # TODO: VERIFY THIS
-        return grouper_level(toc, levelme=lambda x: 1 if x is not None else 2)
-    assert current == iamraw.TocStyle.STEPPED, str(current)
-    return groupby_level_steps(toc)
+        return grouper_level(
+            toc,
+            levelme=lambda x: 1 if x is not None else 2,
+            style=style,
+        )
+    assert style == iamraw.TocStyle.STEPPED, str(style)
+    result = groupby_level_steps(toc)
+    return result
 
 
 def groupby_level_numbered(toc: groupme.toc.TocLines) -> iamraw.Toc:
-    return grouper_level(toc, levelme=determine_level)
+    return grouper_level(
+        toc,
+        levelme=determine_level,
+        style=iamraw.TocStyle.NUMBERED,
+    )
 
 
 def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
@@ -149,12 +158,17 @@ def groupby_level_steps(toc: groupme.toc.TocLines) -> iamraw.Toc:
                 1. Arabische Zahlen
                     a. Lateinische Kleinbuchstaben
     """
-    return grouper_level(toc, levelme=elements.level_steps)
+    return grouper_level(
+        toc,
+        levelme=elements.level_steps,
+        style=iamraw.TocStyle.STEPPED,
+    )
 
 
 def grouper_level(
     toc: groupme.toc.TocLines,
     levelme=None,
+    style: iamraw.TocStyle = None,
 ) -> iamraw.Toc:
     """Create `iamraw.Toc` out of list of `groupme.toc.TocLine
 
@@ -163,6 +177,7 @@ def grouper_level(
     Args:
         toc: extracted table of content.
         levelme(callable): convert raw to int level
+        style(TocStyle): toc style
     Returns:
         Table of content with replaced levels.
     """
@@ -187,8 +202,7 @@ def grouper_level(
         )
         outlines.append(section)
     outlines = level_zero(outlines)
-    numbered = levelme == determine_level  # pylint:disable=W0143
-    result = iamraw.create_toc(outlines, numbered=numbered)
+    result = iamraw.create_toc(outlines, style=style)
     return result
 
 
