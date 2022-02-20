@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.24.0
+
+### Feature
+
+* add toc style (ef4fa7b4de24)
+
+### Fix
+
+* ensure that table table starts with headline (733cef8c673a)
+
 ## v0.23.0
 
 ### Feature
