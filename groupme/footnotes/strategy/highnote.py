@@ -61,15 +61,17 @@ def parse_group(group, width: int, pagenumber: int) -> iamraw.FootNoteRaw:
     bounding = tuple(number.bounding) if has_highnote else None
     # TODO: USE STRIP=True AFTER UPGRADING UTILA
     text = utila.normalize_text(note.text).strip()
+    # TODO: GO MORE BACK TO ORIGIN
+    raw = number.text + note.text if has_highnote else note.text
     footnote = iamraw.FootNoteRaw(
         bounding=bounding,
         number=notenumber,
-        raw='',  # TODO: REMOVE THIS?
+        page=pagenumber if pagenumber is not None else -1,
+        raw=raw,
         raw_number=number.text.strip() if has_highnote else None,
         style=(number.style if has_highnote else None, note.style),
         style_number=number.style if has_highnote else None,
         style_text=note.style,
         text=text,
-        page=pagenumber if pagenumber is not None else -1,
     )
     return footnote
