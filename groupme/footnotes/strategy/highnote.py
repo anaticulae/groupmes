@@ -67,6 +67,8 @@ def parse_group(group, width: int, pagenumber: int) -> iamraw.FootNoteRaw:
         raw='',  # TODO: REMOVE THIS?
         raw_number=number.text.strip() if has_highnote else None,
         style=(number.style if has_highnote else None, note.style),
+        style_number=number.style if has_highnote else None,
+        style_text=note.style,
         text=text,
         page=pagenumber if pagenumber is not None else -1,
     )
