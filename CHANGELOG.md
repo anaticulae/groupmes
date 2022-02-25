@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v0.25.0
+
+### Feature
+
+* use raw field to enable more analyzing later (1494a9b127be)
+* add new style concept (1e945074b27c)
+* add plus sign as possible user character (a63c7f61556b)
+* make footnote parser more strict (59be89cbb9ee)
+
 ## v0.24.0
 
 ### Feature
