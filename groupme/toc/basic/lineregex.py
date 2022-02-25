@@ -21,6 +21,8 @@ def parse(line: str) -> groupme.toc.TocLine:
     """\
     >>> parse('5. Initiative: ´Demenzfreundliche Kommune`................. 45')
     TocLine(level='5.', title='Initiative: ´Demenzfreundliche Kommune`', page='45'...')
+    >>> parse('3.1.4 MOBILITÄTSKONZEPT NÖ 2030+  63')
+    TocLine(level='3.1.4', title='MOBILITÄTSKONZEPT NÖ 2030+'...)
     """
     assert isinstance(line, str), type(line)
     # see bachelor128
@@ -71,7 +73,7 @@ LEVEL_LETTER = r"""
 """
 
 USER_CHARACTER = [
-    r'\w\d\(\)\-\.\[\]',
+    r'\w\d\(\)\-\.\[\]\+',
     "'!\"&,/:;?ß",
     '’‚“”„…',
     '´`',
