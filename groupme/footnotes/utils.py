@@ -35,7 +35,10 @@ NUMBER_TEXT = utila.compiles(
     \[?
     (?P<number>\d+)
     \]?
-    (?!\d{0,4}(f{1,2}\.|p{1,2}\.)) # do not detect 229ff. as footnote
+    (?!
+        (\d{0,4}(f{1,2}\.|p{1,2}\.))|       # do not detect 229ff. as footnote
+        (\.\d{1,2}\.)                       # do not detect 2.1.3 as footnote
+    )
     [ ]{0,4}
     (?P<text>.{3,})
 """,
