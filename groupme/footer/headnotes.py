@@ -14,7 +14,6 @@ import elements
 import iamraw
 import utila
 
-import groupme.feature.pagenumbers
 import groupme.toc.strategy.regex
 
 
