@@ -163,6 +163,7 @@ def valid_content(
     """Detect similar elements which are duplicated on different pages."""
     filtered = []
     for pagenumber, footercontent in navigators:
+        footercontent = split_ifrequired(footercontent)
         pagecontent = []
         for item in footercontent:
             text = item.text.strip()
@@ -191,6 +192,32 @@ def valid_content(
         min_elements=min_elements,
     )
     return common
+
+
+# ( ) is required to avoid losing white space, because there are required
+# to splitby_count correctly.
+LONGWHITESPACE = utila.compiles(r'([ ]{4,10})')
+
+
+def split_ifrequired(content) -> list:
+    """Improve bad printed pdf.
+
+    Zugverkehrsleitende und ihre Aufgaben       3
+    """
+    if not content:
+        return content
+    result = []
+    for item in content:
+        splitted = LONGWHITESPACE.split(item.text)
+        if len(splitted) == 1:
+            result.append(item)
+            continue
+        splitted = [len(item) for item in splitted]
+        new = texmex.splitby_count(item, counts=splitted)
+        # remove empty string
+        new = [item for item in new if item.text.strip()]
+        result.extend(new)
+    return result
 
 
 def iswidepage(navigator) -> bool:
