@@ -18,6 +18,15 @@ import groupme
 import groupme.feature.pagenumbers
 
 
+def bachelor085(result):  # pylint:disable=W0613
+    """Enable after fixing rawmaker text extractor."""
+    return
+    # current = [item.detected for item in result]
+    # expected = []
+    # assert current == expected
+    # assert len(current) == 78
+
+
 def bachelor111(result):
     assert len(result) == 110
     expected = 'i ii iii iv'.split() + utila.ranged_list(start=1, end=107)
@@ -91,6 +100,7 @@ HUNDRED = utila.ranged_list(100)
     pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
     pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
     pytest.param(power.DISS287_PDF, None, diss287, id='diss287'),
+    pytest.param(power.BACHELOR085_PDF, None, bachelor085, id='bachelor085'),
 ])
 @utilatest.nightly
 def test_validate_pagenumbers(source, pages, expected):
