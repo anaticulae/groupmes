@@ -29,7 +29,7 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 @pytest.mark.parametrize('source, pages, expected', [
     step(power.BOOK173_PDF),
-    step(power.DISS148_PDF),
+    pytest.param(power.DISS148_PDF, '40:120', 'diss148', id='diss148'),
 ])
 @utilatest.nightly
 def test_header_validate(source, pages, expected, testdir, monkeypatch):
