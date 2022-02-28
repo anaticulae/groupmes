@@ -89,18 +89,18 @@ HUNDRED = utila.ranged_list(100)
 
 
 @pytest.mark.parametrize('source,pages,expected', [
+    pytest.param(power.BACHELOR085_PDF, None, bachelor085, id='bachelor085'),
     pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
+    pytest.param(power.DISS218_PDF, HUNDRED, diss218, id='diss218'),
+    pytest.param(power.DISS287_PDF, None, diss287, id='diss287'),
+    pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
+    pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
+    pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
     pytest.param(power.MASTER072_PDF, None, 69, id='master72pages'),
-    pytest.param(power.TECH024_PDF, None, 23, id='technical24pages'),
     pytest.param(power.MASTER091A_PDF, None, 88, id='master91a'),
     pytest.param(power.MASTER110_PDF, None, master110, id='master110'),
     pytest.param(power.MASTER127_PDF, None, 127 - 1, id='master127'),
-    pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
-    pytest.param(power.DISS218_PDF, HUNDRED, diss218, id='diss218'),
-    pytest.param(power.MASTER049_PDF, None, master049, id='master049'),
-    pytest.param(power.DISS480_PDF, None, diss480, id='diss480'),
-    pytest.param(power.DISS287_PDF, None, diss287, id='diss287'),
-    pytest.param(power.BACHELOR085_PDF, None, bachelor085, id='bachelor085'),
+    pytest.param(power.TECH024_PDF, None, 23, id='technical24pages'),
 ])
 @utilatest.nightly
 def test_validate_pagenumbers(source, pages, expected):
