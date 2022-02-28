@@ -35,6 +35,7 @@ RESOURCES = [
     power.MASTER075_PDF,
     power.MASTER072_PDF,
     power.BACHELOR056_PDF,
+    power.BACHELOR085_PDF,
     (power.MASTER116_PDF, '50:117'),
     (power.DISS264_PDF, '0:50'),
     (power.DISS406_PDF, '0:75,100:150'),
