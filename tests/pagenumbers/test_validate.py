@@ -61,6 +61,20 @@ def master049(result):
     assert current == expected
 
 
+def diss148(result):
+    """This document contains a lot of paper as a part accumulative diss."""
+    current = [item.detected for item in result]
+    expected = [
+        'i', 'ii', 'iii', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
+        35, 43, 2, 3, 4, 5, 49, 15839, 15840, 15841, 15842, 15843, 15844, 15845,
+        15846, 62, 78, 79, 80, 81, 82, 83, 84, 85, 79, 106, 107, 108, 109, 110,
+        111, 112, 113, 114, 115, 117, 118, 119, 120, 121, 122, 123, 124, 125,
+        126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137
+    ]
+    assert current == expected
+
+
 def diss480(result):
     current = [item.detected for item in result]
     assert utila.isascending(current)
@@ -91,6 +105,7 @@ HUNDRED = utila.ranged_list(100)
 @pytest.mark.parametrize('source,pages,expected', [
     pytest.param(power.BACHELOR085_PDF, None, bachelor085, id='bachelor085'),
     pytest.param(power.BACHELOR111_PDF, None, bachelor111, id='bachelor111'),
+    pytest.param(power.DISS148_PDF, None, diss148, id='diss148'),
     pytest.param(power.DISS218_PDF, HUNDRED, diss218, id='diss218'),
     pytest.param(power.DISS287_PDF, None, diss287, id='diss287'),
     pytest.param(power.DISS406_PDF, None, 119, id='diss406'),
