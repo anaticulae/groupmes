@@ -185,6 +185,11 @@ def valid_content(
             # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
             item = (item.bounding, clean_number, pagenumber)
             pagecontent.append(item)
+        if len(pagecontent) > POTENTIAL_PAGE_NUMBERS_PER_PER:
+            # page with a lot of numbers
+            utila.error('too many potential page numbers on page '
+                        f'on: {pagenumber} len: {len(pagecontent)}')
+            continue
         filtered.append(pagecontent)
     common = utila.common_items(
         filtered,
@@ -194,6 +199,7 @@ def valid_content(
     return common
 
 
+POTENTIAL_PAGE_NUMBERS_PER_PER = configo.HV_INT_PLUS(default=7)
 # ( ) is required to avoid losing white space, because there are required
 # to splitby_count correctly.
 LONGWHITESPACE = utila.compiles(r'([ ]{4,10})')
