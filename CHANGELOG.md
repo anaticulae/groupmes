@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.26.0
+
+### Feature
+
+* skip pages with too many numbers (26069a2fe3f2)
+* split text if required to gather better numbers (95face05bdf7)
+
+### Fix
+
+* adjust raw entry (5d5c8fdab043)
+
 ## v0.25.0
 
 ### Feature
