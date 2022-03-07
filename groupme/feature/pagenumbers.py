@@ -187,8 +187,8 @@ def valid_content(
             pagecontent.append(item)
         if len(pagecontent) > POTENTIAL_PAGE_NUMBERS_PER_PER:
             # page with a lot of numbers
-            utila.error('too many potential page numbers on page '
-                        f'on: {pagenumber} len: {len(pagecontent)}')
+            utila.error('too many potential page numbers on page: '
+                        f'{pagenumber} len: {len(pagecontent)}')
             continue
         filtered.append(pagecontent)
     common = utila.common_items(
