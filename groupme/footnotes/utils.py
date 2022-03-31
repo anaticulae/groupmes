@@ -33,7 +33,7 @@ def parse_footnote_number(text: str) -> int:
 NUMBER_TEXT = utila.compiles(
     r"""
     \[?
-    (?P<number>\d+)
+    (?P<number>\d{1,4})
     \]?
     (?!
         (\d{0,4}(f{1,2}\.|p{1,2}\.))|       # do not detect 229ff. as footnote
