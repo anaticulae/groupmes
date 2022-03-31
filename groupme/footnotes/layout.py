@@ -29,6 +29,8 @@ FOOTNOTE_X0_MAX = configo.HolyTable(
     right_outranges_none=False,
 )
 
+FOOTNOTE_RATE_MIN = configo.HV_PERCENT_PLUS(default=50)
+
 
 def group_footnote_area(content):
     neighbors_ = neighbors(content)
@@ -43,7 +45,7 @@ def group_footnote_area(content):
         merged = merge_online(splitted)
         result.extend(merged)
     rate = utila.rate_rel(has_highnote, len(neighbors_))
-    if rate < 0.5:  # TODO: HOLY VALUE
+    if rate < FOOTNOTE_RATE_MIN:
         utila.debug(f'no highnotes: {rate} detected, skip footnote result')
         return []
     return result
