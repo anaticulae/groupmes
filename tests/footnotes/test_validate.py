@@ -8,7 +8,6 @@
 # =============================================================================
 
 import functools
-import os
 
 import power
 import pytest
@@ -19,42 +18,39 @@ import utilatest
 import groupme
 import tests
 
-ARCHIVE = os.path.join(groupme.ROOT, 'tests/footnotes/expected')
-utila.exists_assert(ARCHIVE)
+ARCHIVE = utila.join(groupme.ROOT, 'tests/footnotes/expected', exist=True)
 
 step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 
-# yapf:disable
 @pytest.mark.parametrize('source, pages, expected', [
-    pytest.param(power.BACHELOR037_PDF, None, 'bachelor037', id='bachelor037'),
-    pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelor128'),
-    pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143page20'),
-    pytest.param(power.DISS143_PDF, None, 'diss143', id='diss143all'),
-    pytest.param(power.DISS172_PDF, None, 'diss172', id='diss172'),
+    pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelo128'),
+    pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143p20'),
     pytest.param(power.DISS178_PDF, '0:30', 'diss178', id='diss178'),
     pytest.param(power.DISS273_PDF, '30:60', 'diss273', id='diss273'),
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
     pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
-    pytest.param(power.HOME018_PDF, None, 'home018', id='home018'),
+    step(power.BACHELOR037_PDF),
     step(power.BACHELOR056_PDF),
     step(power.BACHELOR063_PDF),
     step(power.BACHELOR111_PDF),
+    step(power.DISS143_PDF),
+    step(power.DISS172_PDF),
     step(power.DOCU014_PDF),
     step(power.DOCU027_PDF),
+    step(power.HOME018_PDF),
     step(power.MASTER072_PDF),
     step(power.MASTER075_PDF),
     step(power.MASTER089_PDF),
     step(power.MASTER091A_PDF),
     step(power.MASTER110_PDF),
+    step(power.MASTER112_PDF),
     step(power.MASTER116_PDF),
     step(power.MASTER127_PDF),
     step(power.MASTER155_PDF),
     step(power.PAPER18_PDF),
     step(power.TECH024_PDF),
-    step(power.MASTER112_PDF),
 ])
-# yapf:enable
 @utilatest.nightly
 def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
     Evaluate(
