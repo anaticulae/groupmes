@@ -58,7 +58,15 @@ def parse_group(raw: str, pagenumber: int) -> iamraw.FootNoteRaw:
     return footnote
 
 
-FOOTNOTE_NUMBER = utila.compiles(r'^\d{1,4}[ ]{1,5}')
+FOOTNOTE_NUMBER = utila.compiles(r"""
+    ^
+    (
+        \d{1,4}|
+        \[\d{1,4}\]|
+        \(\d{1,4}\)
+    )
+    [ ]{1,5}
+""")
 
 
 def footnote_split(raw: str) -> list:
