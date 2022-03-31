@@ -17,25 +17,22 @@ import serializeraw
 import utila
 
 import groupme.feature.pagenumbers
-# pylint:disable=W0611
-from tests.fixtures.simple import simple
-from tests.fixtures.simple import simple_navigator
 
 
-def test_simple_example(simple):  #pylint:disable=W0621
+def test_simple_example(simple):
     navigator, horizontals = simple
     assert len(horizontals) == 1  # first page contains horizontals
     assert len(navigator) == 7
 
 
-def test_footer_simple(simple):  #pylint:disable=W0621
+def test_footer_simple(simple):
     navigator, _ = simple
     result = groupme.feature.pagenumbers.footer(navigator)
     # cluster with page numbers
     assert len(result) == 1
 
 
-def test_header_simple(simple):  #pylint:disable=W0621
+def test_header_simple(simple):
     navigator, _ = simple
     result = groupme.feature.pagenumbers.header(navigator)
     assert not result
@@ -81,7 +78,7 @@ def test_pagenumbers_docu027():
     assert detected == expected
 
 
-def test_pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
+def test_pagenumbers_simple(simple_navigator):
     result = groupme.feature.pagenumbers.footer(simple_navigator)
     # single page
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
@@ -90,7 +87,7 @@ def test_pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
 
 
 @pytest.fixture
-def pagenumbers_simple(simple_navigator):  #pylint:disable=W0621
+def pagenumbers_simple(simple_navigator):
     result = groupme.feature.pagenumbers.footer(simple_navigator)
     # single page
     numbers = groupme.feature.pagenumbers.pagenumbers(result)
