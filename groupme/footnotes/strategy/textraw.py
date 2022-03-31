@@ -28,8 +28,6 @@ There are 2 supported types of footnotes:
   ? we have to use a combination of font rise and maybe textual grammar ?
 """
 
-import re
-
 import iamraw
 import utila
 
@@ -60,6 +58,9 @@ def parse_group(raw: str, pagenumber: int) -> iamraw.FootNoteRaw:
     return footnote
 
 
+FOOTNOTE_NUMBER = utila.compiles(r'^\d{1,4}[ ]{1,5}')
+
+
 def footnote_split(raw: str) -> list:
     """Split footnotes into chunks.
 
@@ -83,14 +84,13 @@ def footnote_split(raw: str) -> list:
 
         Start of some text..
     """
-    pattern = r'^\d{1,4}[ ]{1,5}'
     result = []
     for item in raw.splitlines():
         item = item.strip()
         if not item:
             # empty newline separates list elements from text
             result.append(None)
-        elif re.match(pattern, item):
+        elif FOOTNOTE_NUMBER.match(item):
             # match line start pattern
             result.append([item])
         elif result and result[-1]:
