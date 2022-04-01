@@ -59,8 +59,7 @@ def parse_group(group, width: int, pagenumber: int) -> iamraw.FootNoteRaw:
         utila.error(f'could not parse footnote: {number}, no text content')
         return None
     bounding = tuple(number.bounding) if has_highnote else None
-    # TODO: USE STRIP=True AFTER UPGRADING UTILA
-    text = utila.normalize_text(note.text).strip()
+    text = utila.normalize_text(note.text, strips=True)
     # TODO: GO MORE BACK TO ORIGIN
     raw = number.text + note.text if has_highnote else note.text
     footnote = iamraw.FootNoteRaw(
