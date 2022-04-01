@@ -30,6 +30,8 @@ def parse(
     Returns:
         List of parsed footnotes
     """
+    # append newline to improve merge result
+    content = append_newline(content)
     grouped = groupme.footnotes.layout.group_footnote_area(content)
     result = []
     for group in grouped:
@@ -74,3 +76,10 @@ def parse_group(group, width: int, pagenumber: int) -> iamraw.FootNoteRaw:
         text=text,
     )
     return footnote
+
+
+def append_newline(lines):
+    for line in lines:
+        line.text += utila.NEWLINE
+        line.style.content[-1].end += 1
+    return lines

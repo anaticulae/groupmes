@@ -10,6 +10,7 @@
 import utilatest
 
 import groupme.footnotes.layout
+import groupme.footnotes.strategy.highnote
 
 
 @utilatest.longrun
@@ -38,6 +39,7 @@ def test_footnote_highnotes_split_mixed_in_text_tripple(master89page19):
     is a highnote inside the text flow and after this there are two more
     footnotes."""
     footer = master89page19
+    footer = groupme.footnotes.strategy.highnote.append_newline(footer)
     splitted = list(groupme.footnotes.layout.split_textinfo(footer))
     assert splitted, splitted
     assert len(splitted) == 4, splitted
