@@ -23,8 +23,10 @@ def test_footnote_highnotes_split(master72page14):
 
 @utilatest.longrun
 def test_footnote_highnotes_split_mixed_in_text(master89page7):
-    """Test to extract only starting highnotes. In this example, there
-    is a highnote inside the text flow."""
+    """Test to extract only starting highnotes.
+
+    In this example, there is a highnote inside the text flow.
+    """
     footer = master89page7
     splitted = list(groupme.footnotes.layout.split_textinfo(footer))
     assert splitted, splitted
@@ -35,9 +37,11 @@ def test_footnote_highnotes_split_mixed_in_text(master89page7):
 
 @utilatest.longrun
 def test_footnote_highnotes_split_mixed_in_text_tripple(master89page19):
-    """Test to extract only starting highnotes. In this example, there
-    is a highnote inside the text flow and after this there are two more
-    footnotes."""
+    """Test to extract only starting highnotes.
+
+    In this example, there is a highnote inside the text flow and after
+    this there are two more footnotes.
+    """
     footer = master89page19
     footer = groupme.footnotes.strategy.highnote.append_newline(footer)
     splitted = list(groupme.footnotes.layout.split_textinfo(footer))
