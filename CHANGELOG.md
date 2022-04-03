@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.26.1
+
+### Feature
+
+* add brackets as valid split (550b86c46e3e)
+
+### Fix
+
+* append newline after removing newline in rawmaker (d3c569c06208)
+* shrink regex computation time (5e9843a92814)
+
 ## v0.26.0
 
 ### Feature
