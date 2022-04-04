@@ -245,7 +245,7 @@ def prepare_clustering(
 
 
 def valid_line(text: str, valid: set) -> bool:
-    """Remove small text token tash.
+    """Remove small text token trash.
 
     >>> assert not valid_line('-', valid={'-'})
     """
