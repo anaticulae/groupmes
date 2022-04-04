@@ -171,13 +171,13 @@ def cluster_pages(
             occurrence_min=occurrence_min,
         ))
     page_count = len(pagenavigators)
-    min_cluster_count = OCCURRENCE_MIN(page_count)
+    cluster_length_min = OCCURRENCE_MIN(page_count)
     # TODO: REMOVE LATER, SWITCH TABLE BASED ENTROPY OF POTENTIAL HEADER AREA?
-    min_cluster_count = 5
+    cluster_length_min = 5
     clusters = utila.three_side_equal_cluster(  # pylint:disable=E1123
         todo=with_box,
         max_diff=COMMON_HEADER_ERROR_MAX,
-        min_elements=min_cluster_count,
+        min_elements=cluster_length_min,
     )
     if not clusters:
         return None
