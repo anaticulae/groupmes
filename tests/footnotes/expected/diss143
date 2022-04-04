@@ -28,7 +28,7 @@
 0005 Wird die Defektbreite a sehr klein, so sinkt auch das Verhältnis der Temperaturdifferenzen stark ab. Für a=1 µm liegt dieses Verhältnis im Bereich von 10−5 (∆Tdef /∆Tok = 1 c2 · 2, 1 ·
 0010 −13). In diesem Fall ist der Einfluss der intakten Leiterbahn im Messsignal vorhanden. Der Grund hierfür ist die gute thermische Anbindung der Defektregion an die restliche Leiterbahn, die wiederum einen vergleichsweise hohen thermischen Widerstand in Richtung Substrat besitzt.
 0001 Diese Stromdichte liegt etwa eine Größenordung unter der Migrationsschwelle in Leitermaterialien. Zudem werden in der Praxis durch nur kurzzeitiges Messen Migrationseffekte unterdrückt [40].
-0002 Die thermische Zeitkonstante ist in dieser Simulation nicht berücksichtigt. Sie liegt bei etwa τth,def =167 ns. Dies erklärt den nicht vorhandenen Abfall der Amplitude der Welligkeit mit
+0002 Die thermische Zeitkonstante ist in dieser Simulation nicht berücksichtigt. Sie liegt bei etwa τth,def =167 ns. Dies erklärt den nicht vorhandenen Abfall der Amplitude der Welligkeit mitfortschreitendem thermischen Einschwingen.
 0003 Bei stochastischen Signalen genügt eine Messung mit geringerer Abtastfrequenz und entsprechend viel längerer Messzeit (Unterabtastung).
 0004 Der reale Wert für freie Konvektion liegt im Bereich von 1 bis 50 W/(m2 K) und hängt unter anderem von der Oberflächenbeschaffenheit und dem Winkel zwischen warmer Oberfläche und aufsteigendem Fluid ab.
 0005 flame retardant (flammenhemmend) (FR4), Die angehängte Nummer steht für eine bestimmte Materialzusammensetzung (Matrix, Verstärkung) und den damit verbundenen elektrischen, thermischen und mechanischen Eigenschaften, siehe [16].
@@ -40,7 +40,8 @@
 0005 Interconnect Distortion (Signalverzerrung an elektrischen Verbindungen) (ID)
 0006 IDe steht dabei als Abkürzung für Interconnect Distortion, wobei der angehängte Buchstabe die Anregungsart ausdrückt. In diesem Fall werden die Frequenzen durch ein elektrisches Signal angeregt. In Kapitel 5.3 wird eine Variante mit mechanischer Anregung vorgestellt. Diese trägt dann den Namen IDm.
 0007 Messobjekt (Device Under Test) (DUT)
--001 Kurve in einem bestimmten Arbeitspunkt beschrieben. Je steiler die Kurve ist, desto höher ist auch die Empfindlichkeit. Kleinere Änderungen im zu messenden Signal können so leichter festgestellt werden.
+0008 z. B. Einschalten von benachbarten Verbrauchern
+0009 Die Empfindlichkeit wird durch die Steigung, also dem ersten Moment der betrachtetenKurve in einem bestimmten Arbeitspunkt beschrieben. Je steiler die Kurve ist, desto höher ist auch die Empfindlichkeit. Kleinere Änderungen im zu messenden Signal können so leichter festgestellt werden.
 0010 Die Weibullverteilung ist eine stetige Wahrscheinlichkeitsverteilung über die Menge der positiven reellen Zahlen, die zur Beschreibung von Lebensdauern von elektronischen Bauteilen herangezogen wird. Die darstellende Verteilungsfunktion der Weibullverteilung lautet Fw(t) = 100% · (1 − e−( t )b ). Darin sind Tc die charakteristische Lebensdauer, bei der
 0063 ,2% der Einheiten ausgefallen sind (für t = Tc gilt G = 100 % · (1 − 1/e) = 63,2 %), t die Lebensdauervariable, b die Steigung der Ausgleichsgeraden (Formparameter) und Fw die Ausfallwahrscheinlichkeit bzw. -häufigkeit (normiert auf 1, in % multipliziert mit 100) [77].
 0011 Die begrenzte Bildrate der Kamera verhindert Messungen bei höheren Frequenzen. Es ist davon auszugehen, dass die Frequenz zu niedrig ist, um ein optimales IDe-Signal bzw. nutzbare Amplituden der Harmonischen zu erzeugen.
@@ -53,3 +54,4 @@
 0003 Auch hier wird Gdc(ω) wegen der geringen Bandbreite als konstanter Verstärkungsfaktor angenommen.
 0004 Die Messzeit muss mindestens über eine Periodendauer der Frequenz fr −fs erfolgen, damit der Einfluss der Modulation entfernt werden kann.
 0005 Additionstheorem: sin(α)cos(β) = 1 sin(α + β) + 1 sin(α − β)
+0006 Trigonometrischer Pythagoras: sin2(α) + cos2(α) = 1
