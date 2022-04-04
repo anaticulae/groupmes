@@ -88,7 +88,8 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
                 continue
             result.append(processed)
         result = merge_footer_pages(result)
-        if footnote_number_error(result):
+        footnote_numbers = footnote_numbers_flat(result)
+        if footnote_number_error(footnote_numbers):
             result = []
         return result
 
@@ -204,16 +205,7 @@ def extract_footer(
     return footer
 
 
-def footnote_number_error(footers: list) -> bool:
-    numbers = []
-    for footer in footers:
-        for note in footer.footer.notes:
-            if note.number is None:
-                continue
-            if not isinstance(note.number, int):
-                utila.log(f'invalid footenumber: {note.number}')
-                continue
-            numbers.append(note.number)
+def footnote_number_error(numbers: list) -> bool:
     if len(numbers) < 2:
         return False
     diffed = utila.diffs(numbers)
@@ -232,6 +224,19 @@ def footnote_number_error(footers: list) -> bool:
     if error_rate > FOOTNOTE_NUMBER_ERROR_MAX:
         return True
     return False
+
+
+def footnote_numbers_flat(footers: list) -> list:
+    numbers = []
+    for footer in footers:
+        for note in footer.footer.notes:
+            if note.number is None:
+                continue
+            if not isinstance(note.number, int):
+                utila.log(f'invalid footenumber: {note.number}')
+                continue
+            numbers.append(note.number)
+    return numbers
 
 
 def merge_footer_pages(footers):
