@@ -205,7 +205,15 @@ def extract_footer(
     return footer
 
 
-def footnote_number_error(numbers: list) -> bool:
+def footnote_number_error(numbers: list) -> bool:  # pylint:disable=R0911
+    """\
+    >>> footnote_number_error([])
+    False
+    >>> footnote_number_error([1, 1, 1, 2])
+    False
+    >>> footnote_number_error([13, -1])
+    True
+    """
     if len(numbers) < 2:
         return False
     diffed = utila.diffs(numbers)
@@ -222,6 +230,23 @@ def footnote_number_error(numbers: list) -> bool:
         return False
     error_rate = utila.rate_sum(error, fit)
     if error_rate > FOOTNOTE_NUMBER_ERROR_MAX:
+        if isendnote(numbers):
+            return False
+        return True
+    return False
+
+
+def isendnote(numbers: list) -> False:
+    """\
+    >>> isendnote([1, 1, 1, 2])
+    True
+    """
+    # TODO: VERY SIMPLE APPROACH
+    small, high = utila.partition(
+        key=lambda x: x <= 2,
+        items=numbers,
+    )
+    if len(small) > len(high):
         return True
     return False
 
