@@ -88,8 +88,8 @@ BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
 FOOTER_COUNT_MIN = configo.HolyTable(
     items=(
         (BOTTOM_BORDER, 10),
-        (0.8, 3),
-        (0.9, 2),
+        (0.8, 2),
+        (0.9, 1),
         (1.0, 0),
     ),
     strategy=utila.Strategy.LINEARISE,
