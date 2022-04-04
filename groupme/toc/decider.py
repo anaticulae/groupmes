@@ -27,6 +27,7 @@ class ExtractionStatistic:
     oneline_factor: float
     invalid_count: int = 0
     parsed_level: int = 0
+    strategy: str = None
 
     def __lt__(self, item):
         # TODO: IMRPOVE THIS SIMPLE STRATEGY
@@ -59,12 +60,12 @@ def analyze_result(result: gts.ExtractionResult) -> ExtractionStatistic:
     oneline_factor = 0.0
     if len(result) >= 1:
         oneline_factor = utila.roundme(oneliner / len(result))  # pylint:disable=R0204
-
     result = ExtractionStatistic(
         validitem_count=len(flat),
         invalid_count=len(result.invalid),
         group_count=len(result),
         oneline_factor=oneline_factor,
         parsed_level=len(parsed_level),
+        strategy=result.strategy,
     )
     return result

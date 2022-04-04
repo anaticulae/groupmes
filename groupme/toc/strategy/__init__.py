@@ -23,6 +23,7 @@ import groupme.toc.toc.create
 class ExtractionResult:
     content: typing.List['TocLines'] = dataclasses.field(default_factory=list)
     invalid: typing.List[typing.Any] = dataclasses.field(default_factory=list)
+    strategy: str = None
 
     def __len__(self):
         return len(self.content)
@@ -51,16 +52,20 @@ class ExtractorStrategy(abc.ABC):
     def finalize_result(self, content):  # pylint:disable=R0201
         valid = remove_nonconnected_tocs(content)
         invalid_content = [item for item in content if item not in valid]
-        valid = groupme.toc.strategy.group(valid)  # pylint:disable=R0204
+        valid = groupme.toc.strategy.group(
+            valid,
+            strategy=self.__class__.__name__,
+        )
         result = groupme.toc.strategy.ExtractionResult(
             content=valid.content,
             invalid=invalid_content,
+            strategy=self.__class__.__name__,
         )
         assert isinstance(result.content, list), type(result.content)
         return result
 
 
-def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
+def group(extracted: groupme.toc.TocLines, strategy: str) -> ExtractionResult:
     right, invalid = utila.partition(
         key=lambda x: isinstance(x, groupme.toc.TocLine),
         items=extracted,
@@ -70,7 +75,11 @@ def group(extracted: groupme.toc.TocLines) -> ExtractionResult:
         if item not in valid:
             invalid.append(item)
     content = groupme.toc.toc.create.groupby_chapter(valid)
-    result = ExtractionResult(content=content, invalid=invalid)
+    result = ExtractionResult(
+        content=content,
+        invalid=invalid,
+        strategy=strategy,
+    )
     return result
 
 

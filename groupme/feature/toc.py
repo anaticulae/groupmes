@@ -79,7 +79,7 @@ def work(
 
     flat = utila.flatten(extracted.content)
     leveled = groupme.toc.toc.create.groupby_level(flat)
-
+    leveled.__strategy__ = extracted.strategy
     dumped = serializeraw.dump_toc(leveled)
     return dumped
 

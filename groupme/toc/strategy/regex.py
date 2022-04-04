@@ -43,7 +43,10 @@ class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
     def result(self) -> groupme.toc.strategy.ExtractionResult:
         parsed = [parse_page(page) for page in self.loaded.content]
         flat = utila.flatten(parsed)
-        grouped = groupme.toc.strategy.group(flat)
+        grouped = groupme.toc.strategy.group(
+            flat,
+            strategy=self.__class__.__name__,
+        )
         return grouped
 
 
