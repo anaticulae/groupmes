@@ -83,7 +83,7 @@ def params():
                 '--char_margin 100.0 --boxes_flow 1.0',
                 '--char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3',
             ),
-            id=tests.relative_path(item).replace('/', '_'),
+            id=utila.file_name(item),
             marks=determine_mark(item),
         )
         result.append(double)
@@ -113,13 +113,10 @@ def rawresult(request, testdir):
 
 
 @utilatest.nightly
-@pytest.mark.usefixtures('testdir')
-def test_huge_running_application(rawresult):  # pylint:disable=W0621
+def test_huge_running(rawresult, monkeypatch):  # pylint:disable=W0621
     tmpdir, tocpath, generalpath = rawresult
-
-    current = os.path.join(tmpdir, 'current')
+    current = tmpdir.join(tmpdir, 'current')
     os.makedirs(current)
-
-    runme = f'groupme -i {generalpath} -i {tocpath} -o {current} -j=auto'
-    done = utila.run(runme)
-    assert done.returncode == utila.SUCCESS, utila.format_completed(done)
+    # run groupme
+    cmd = f'-i {generalpath} -i {tocpath} -o {current} -j=auto'
+    tests.run(cmd, monkeypatch=monkeypatch)
