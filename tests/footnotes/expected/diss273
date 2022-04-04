@@ -15,9 +15,13 @@
 0071 H. Hazrati, M. Oestreich, Org. Lett. 2018, 20, 5367–5369.
 0072 Die so erhaltenen Reagenzien waren über mehrere Wochen im Gefrierschrank lagerbar.
 0073 Für den Einsatz der GRIGNARD-Verbindungen 14 in allylischen Substitutionsreaktionen siehe: a) W. Xue,  M. Oestreich,  Synthesis 2019, 51, 233–239; während der Niederschrift dieser Arbeit wurde eine  Eisen(II)-katalysierte  radikalische  Silylierung  von  Alkylchloriden  unter  Verwendung  von  17e vorgestellt: b) S. Wang, M. Sun, H. Zhang, J. Zhang, Y. He, Z. Feng, CCS Chem. 2020, 2164–2173.
-0074 W. Xue, W. Mao, L. Zhang, M. Oestreich, Angew. Chem. Int. Ed. 2019, 58, 6440–6443. [75]  Für Übersichtsartikel zur kupferkatalysierten C(sp3)–Si-Bindungsknüpfung inklusive 1,2- und 1,4-Additionen siehe: a) Lit. [13b]; b) B. S. Takale, R. R. Thakore, E. Etemadi-Davan, B. H. Lipshutz, Beilstein J. Org. Chem. 2020, 16, 691–737.
-0076 L. B. Delvos, D. J. Vyas, M. Oestreich, Angew. Chem. Int. Ed. 2013, 52, 4650–4653. [77] Dieser Ligand war zuvor in der allylischen Borylierung verwendet worden: J. K. Park, H. H. Lackey, B. A. Ondrusek, D. T. McQuade, J. Am. Chem. Soc. 2011, 133, 2410–2413.[78] Diese Stereokonvergenz war bereits von MCQUADE und Mitarbeiter/-innen bei der enantioselektiven allylischen Borylierung von Allylarylethern beobachtet worden: Lit. [77].
-0079 L. Delvos, A. Hensel, M. Oestreich, Synthesis 2014, 46, 2957–2964 [80]  a) Lit. [45c]; die racemische Variante war bereits bekannt gewesen: b) D. J. Vyas, M. Oestreich, Chem. Commun. 2010, 46, 568–570.
+0074 W. Xue, W. Mao, L. Zhang, M. Oestreich, Angew. Chem. Int. Ed. 2019, 58, 6440–6443.
+0075 Für Übersichtsartikel zur kupferkatalysierten C(sp3)–Si-Bindungsknüpfung inklusive 1,2- und 1,4-Additionen siehe: a) Lit. [13b]; b) B. S. Takale, R. R. Thakore, E. Etemadi-Davan, B. H. Lipshutz, Beilstein J. Org. Chem. 2020, 16, 691–737.
+0076 L. B. Delvos, D. J. Vyas, M. Oestreich, Angew. Chem. Int. Ed. 2013, 52, 4650–4653.
+0077 Dieser Ligand war zuvor in der allylischen Borylierung verwendet worden: J. K. Park, H. H. Lackey, B. A. Ondrusek, D. T. McQuade, J. Am. Chem. Soc. 2011, 133, 2410–2413.
+0078 Diese Stereokonvergenz war bereits von MCQUADE und Mitarbeiter/-innen bei der enantioselektiven allylischen Borylierung von Allylarylethern beobachtet worden: Lit. [77].
+0079 L. Delvos, A. Hensel, M. Oestreich, Synthesis 2014, 46, 2957–2964
+0080 a) Lit. [45c]; die racemische Variante war bereits bekannt gewesen: b) D. J. Vyas, M. Oestreich, Chem. Commun. 2010, 46, 568–570.
 0081 M. Takeda, R. Shintani, T. Hayashi, J. Org. Chem. 2013, 78, 5007–5017.
 0082 Derselbe Ligand wurde bereits zur allylischen Substitution mit Kohlenstoffnukleophilen verwendet: R. Shintani, K. Takatsu, M. Takeda, T. Hayashi, Angew. Chem. Int. Ed. 2011, 50, 8656–8659.
 0083 J. L. Hofstra, A. H. Cherney, C. M. Ordner, S. E. Reisman, J. Am. Chem. Soc. 2018, 140, 139–142.
@@ -40,28 +44,30 @@
 0100 M. Tobisu, Y. Kita, Y. Ano, N. Chatani, J. Am. Chem. Soc. 2008, 130, 15982–15989.
 0101 C. Zarate, R. Martin, J. Am. Chem. Soc. 2014, 136, 2236–2239.
 0102 a) Die oxidative Addition von Arylpivaloylestern an Nickel(0)-Komplexe wurde bereits untersucht: K. Muto, J. Yamaguchi, A. Lei, K. Itami, J. Am. Chem. Soc. 2013, 135, 16384–16387; eine Aktivierung von Silylboronsäureestern mit Fluoridionen ist ebenfalls bekannt: b) V. Cirriez, C. Rasson, O. Riant, Adv. Synth. Catal. 2013, 355, 3137–3140.
-0103 C. Zarate, M. Nakajima, R. Martin, J. Am. Chem. Soc. 2017, 139, 1191–1197. [104]  Z.-D. Huang, R. Ding, P. Wang, Y.-H. Xu, T.-P. Loh, Chem. Commun. 2016, 52, 5609–5612. [105]  Der Einsatz von Ag2O für anspruchsvolle Transmetallierungen an Palladiumkomplexen ist bekannt: a) J. Uenishi, J. M. Beau, R. W. Armstrong, Y. Kishi, J. Am. Chem. Soc. 1987, 109, 4756–4758; b)
+0103 C. Zarate, M. Nakajima, R. Martin, J. Am. Chem. Soc. 2017, 139, 1191–1197.
+0104 Z.-D. Huang, R. Ding, P. Wang, Y.-H. Xu, T.-P. Loh, Chem. Commun. 2016, 52, 5609–5612.
+0105 Der Einsatz von Ag2O für anspruchsvolle Transmetallierungen an Palladiumkomplexen ist bekannt: a) J. Uenishi, J. M. Beau, R. W. Armstrong, Y. Kishi, J. Am. Chem. Soc. 1987, 109, 4756–4758; b)D. Imao, B. W. Glasspoole, V. S. Laberge, C. M. Crudden, J. Am. Chem. Soc. 2009, 131, 5024– 5025.
 0106 B. Cui, S. Jia, E. Tokunaga, N. Shibata, Nat. Commun. 2018, 9, 4393.
-0107 Eine basenvermittelte Borylierung von halogenierten Arenen sowie Bromalkanen ist bekannt: E. Yamamoto, K. Izumi, Y. Horita, H. Ito, J. Am. Chem. Soc. 2012, 134, 19997–20000.
+0107 Eine  basenvermittelte  Borylierung von  halogenierten  Arenen  sowie  Bromalkanen  ist  bekannt:  E. Yamamoto, K. Izumi, Y. Horita, H. Ito, J. Am. Chem. Soc. 2012, 134, 19997–20000.
 0108 Die Aktivierung des Silylboronsäureesters mit KOtBu ist bereits dokumentiert: Lit. [56b].
 0109 Beide Spezies wurden mittels 19F- und 11B-NMR-Experimenten nachgewiesen (in den Hintergrundinformationen dieser Veröffentlichung).
 0110 Für die Erstpublikation der racemischen Variante siehe: V. Bagheri, M. P. Doyle, J. Taunton, E. E. Claxton, J. Org. Chem. 1988, 53, 6158–6160.
-0111 Für einen Übersichtsartikel siehe: a) H. Keipour, V. Carreras, T. Ollevier, Org. Biomol. Chem. 2017,
-0015 , 5441–5456; für ein aktuelles Beispiel: b) J. R. Jagannathan, J. C. Fettinger, J. T. Shaw, A. K. Franz, J. Am. Chem. Soc. 2020, 142, 11674–11679.
-0112 R. T. Buck, M. P. Doyle, M. J. Drysdale, L. Ferris, D. C. Forbes, D. Haigh, C. J. Moody, N. D. Pearson, Q.-L. Zhou, Tetrahedron Lett. 1996, 37, 7631–7634.
+0111 Für einen Übersichtsartikel siehe: a) H. Keipour, V. Carreras, T. Ollevier, Org. Biomol. Chem. 2017, 15, 5441–5456; für ein aktuelles Beispiel: b) J. R. Jagannathan, J. C. Fettinger, J. T. Shaw, A. K. Franz, J. Am. Chem. Soc. 2020, 142, 11674–11679.
+0112 R.  T.  Buck,  M.  P.  Doyle,  M.  J.  Drysdale,  L.  Ferris,  D.  C.  Forbes,  D.  Haigh,  C.  J.  Moody,  N.  D. Pearson, Q.-L. Zhou, Tetrahedron Lett. 1996, 37, 7631–7634.
 0113 H. M.L. Davies, T. Hansen, J. Rutberg, P. R. Bruzinski, Tetrahedron Lett. 1997, 38, 1741–1744.
 0114 Y.-Z. Zhang, S.-F. Zhu, L.-X. Wang, Q.-L. Zhou, Angew. Chem. Int. Ed. 2008, 47, 8496–8498.
 0115 Y. Yasutomi, H. Suematsu, T. Katsuki, J. Am. Chem. Soc. 2010, 132, 4510–4511.
 0116 R. Sambasivan, Z. T. Ball, J. Am. Chem. Soc. 2010, 132, 9289–9291.
 0117 D. Chen, D.-X. Zhu, M.-H. Xu, J. Am. Chem. Soc. 2016, 138, 1498–1501.
 0118 H. Gu, Z. Han, H. Xie, X. Lin, Org. Lett. 2018, 20, 6544–6549.
-     [119]  Die Stabilisierung kann auch über andere elektronenziehende Gruppen erfolgen: S. Hyde, J. Veliks, B. Liegault, D. Grassi, M. Taillefer, V. Gouverneur, Angew. Chem. Int. Ed. 2016, 55, 3785–3789. [120]  Für die Silylierung allylischer Ester siehe: a) J. Wu, Y. Chen, J. S. Panek, Org. Lett. 2010, 12, 2112– 2115; für ein eindrucksvolles biokatalytisches Verfahren siehe: b) S. B. J. Kan, R. D. Lewis, K. Chen, F.  H.  Arnold,  Science  2016,  354,  1048–1051;  c)  Y.  Nakagawa,  S.  Chanthamath,  I.  Fujisawa,  K. Shibatomi, S. Iwasa, Chem. Commun. 2017, 53, 3753–3756.
+0119 Die Stabilisierung kann auch über andere elektronenziehende Gruppen erfolgen: S. Hyde, J. Veliks, B. Liegault, D. Grassi, M. Taillefer, V. Gouverneur, Angew. Chem. Int. Ed. 2016, 55, 3785–3789.
+0120 Für die Silylierung allylischer Ester siehe: a) J. Wu, Y. Chen, J. S. Panek, Org. Lett. 2010, 12, 2112– 2115; für ein eindrucksvolles biokatalytisches Verfahren siehe: b) S. B. J. Kan, R. D. Lewis, K. Chen, F.  H.  Arnold,  Science  2016,  354,  1048–1051;  c)  Y.  Nakagawa,  S.  Chanthamath,  I.  Fujisawa,  K. Shibatomi, S. Iwasa, Chem. Commun. 2017, 53, 3753–3756.
 0121 M. W. Gribble, M. T. Pirnot, J. S. Bandar, R. Y. Liu, S. L. Buchwald, J. Am. Chem. Soc. 2017, 139, 2192–2195.
 0122 B. Cheng, P. Lu, H. Zhang, X. Cheng, Z. Lu, J. Am. Chem. Soc. 2017, 139, 9439–9442.
 0123 Frühes Beispiel mit Silyllithium als Siliciumnukleophil: I. Fleming, J. Frackenpohl, H. Ila, J. Chem. Soc., Perkin Trans. 1 1998, 1229–1236.
 0124 H. Yi, M. Oestreich, Chem. Eur. J. 2019, 25, 6505–6507.
 0125 Y. Takeda, K. Shibuta, S. Aoki, N. Tohnai, S. Minakata, Chem. Sci. 2019, 10, 8642–8647.
-0126 Es sind zwar stereoselektive MARKOVNIKOV-Hydrosilylierungsreaktionen bekannt, jedoch bleiben diese bisher auf terminale Alkene beschränkt. Für das erste Beispiel mit HSiCl3 siehe: Lit. [19]; Eisen(II)-katalysierte enantioselektive Hydrosilylierung mit H2SiPh2: Lit. [18a]; die asymmetrische Hydrierung von Vinylsilanen wurde ebenfalls entwickelt, jedoch waren die Enantiomerenüberschüsse moderat: Lit. [18b].
+0126 Es  sind  zwar  stereoselektive  MARKOVNIKOV-Hydrosilylierungsreaktionen  bekannt,  jedoch  bleiben diese  bisher  auf  terminale  Alkene  beschränkt.  Für  das  erste  Beispiel mit  HSiCl3  siehe:  Lit.  [19]; Eisen(II)-katalysierte  enantioselektive  Hydrosilylierung  mit  H2SiPh2:  Lit.  [18a];  die  asymmetrische Hydrierung  von  Vinylsilanen  wurde  ebenfalls  entwickelt,  jedoch  waren  die  Enantiomerenüberschüsse moderat: Lit. [18b].
 0127 A. He, J. R. Falck, J. Am. Chem. Soc. 2010, 132, 2524–2525.
 0128 J. Scharfbier, Masterarbeit, Technische Universität Berlin, 2015.
 0129 In radikalischen Reaktionen sind C(sp3)–OTf-Bindungen weniger reaktiv als in ionischen; die Triflatabgangsgruppe bevorzugt also ionische Reaktionsmechanismen: G. Espino, A. Kurbangalieva, J. M. Brown, Chem. Commun. 2007, 1742–1744.
