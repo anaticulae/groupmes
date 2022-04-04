@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import functools
+
 import iamraw
 import power
 import pytest
@@ -16,6 +18,9 @@ import utilatest
 
 import groupme
 import groupme.feature.pagenumbers
+import tests
+
+ARCHIVE = utila.join(groupme.ROOT, 'tests/pagenumbers/expected')
 
 
 def bachelor085(result):  # pylint:disable=W0613
@@ -135,7 +140,6 @@ HUNDRED = utila.ranged_list(100)
     pytest.param(power.MASTER091A_PDF, None, 88, id='master91a'),
     pytest.param(power.MASTER110_PDF, None, master110, id='master110'),
     pytest.param(power.MASTER127_PDF, None, 127 - 1, id='master127'),
-    pytest.param(power.TECH024_PDF, None, 23, id='technical24pages'),
 ])
 @utilatest.nightly
 def test_validate_pagenumbers(source, pages, expected):
@@ -156,3 +160,45 @@ def test_validate_pagenumbers(source, pages, expected):
         result = result[0] + result[1]
     assert isinstance(result, list), f' page detection type {type(result)}'
     assert len(result) == expected
+
+
+@pytest.mark.parametrize('source', [
+    pytest.param(power.TECH024_PDF, id='tech024'),
+])
+def test_pagenumber_validate(source, monkeypatch, testdir):
+    Evaluate(
+        source=source,
+        workdir=testdir.tmpdir,
+        monkeypatch=monkeypatch,
+    ).evaluate()
+
+
+class Evaluate(utilatest.BaseLiner):
+
+    def __init__(self, source, workdir, monkeypatch):
+        super().__init__(
+            program=functools.partial(
+                tests.run,
+                monkeypatch=monkeypatch,
+            ),
+            step='pagenumbers',
+            source=source,
+            pages=':',
+            workdir=workdir,
+            archive=ARCHIVE,
+            loader=serializeraw.load_pagenumbers,
+        )
+
+    def raw(self, value) -> str:
+        if not value:
+            return ''
+        if isinstance(value, tuple):
+            # left right, or multiple pages positions
+            value = value[0] + value[1]
+        assert isinstance(value, list), f' page detection type {type(value)}'
+        maxpage = value[-1].pdfpage
+        collected = {pdfpage: '' for pdfpage in range(maxpage)}
+        for item in value:
+            collected[item.pdfpage] = str(item.detected)
+        result: str = utila.NEWLINE.join(collected.values())
+        return result
