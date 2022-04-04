@@ -162,9 +162,20 @@ def test_validate_pagenumbers(source, pages, expected):
     assert len(result) == expected
 
 
-@pytest.mark.parametrize('source', [
-    pytest.param(power.TECH024_PDF, id='tech024'),
-])
+PAGENUMBERS = [
+    pytest.param(pdf, id=utila.file_name(pdf)) for pdf in [
+        power.HC_DISS128,
+        power.HC_DISS148,
+        power.HC_DISS166,
+        power.HC_DISS171,
+        power.HC_DISS193,
+        power.TECH024_PDF,
+    ]
+]
+
+
+@utilatest.longrun
+@pytest.mark.parametrize('source', PAGENUMBERS)
 def test_pagenumber_validate(source, monkeypatch, testdir):
     Evaluate(
         source=source,
