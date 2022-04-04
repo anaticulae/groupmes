@@ -17,7 +17,8 @@ Progress
 
 
 Modules
---------------------
+-------
+
 .. toctree::
    :maxdepth: 4
 
