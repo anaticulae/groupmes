@@ -50,14 +50,14 @@ class ExtractorStrategy(abc.ABC):
         pass
 
     def finalize_result(self, content):  # pylint:disable=R0201
-        valid = remove_nonconnected_tocs(content)
-        invalid_content = [item for item in content if item not in valid]
-        valid = groupme.toc.strategy.group(
-            valid,
+        valids = remove_nonconnected_tocs(content)
+        invalid_content = [item for item in content if item not in valids]
+        extracted = groupme.toc.strategy.group(
+            valids,
             strategy=self.__class__.__name__,
         )
         result = groupme.toc.strategy.ExtractionResult(
-            content=valid.content,
+            content=extracted.content,
             invalid=invalid_content,
             strategy=self.__class__.__name__,
         )
@@ -100,9 +100,11 @@ def remove_headline(
     return result
 
 
-def remove_nonconnected_tocs(items):
+def remove_nonconnected_tocs(items) -> list:
     """Ensure that toc is connected and not separated by whitepages.
-    Select hugest group as single valid table of content."""
+
+    Select hugest group as single valid table of content.
+    """
     if not items:
         return []
     pagenumbers = [item.raw_location for item in items]
