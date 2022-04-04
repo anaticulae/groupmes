@@ -106,5 +106,6 @@ def invalid_footer(begin, content) -> bool:
     mincount = FOOTER_COUNT_MIN(begin)
     mincount = math.floor(mincount)
     if len(content) < mincount:
+        utila.debug(f'invalid footer: {content}')
         return True
     return False
