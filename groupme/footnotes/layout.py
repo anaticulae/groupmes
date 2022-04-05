@@ -20,14 +20,10 @@ import groupme.footnotes.utils
 
 VERTICAL_LINE_DIFF_OF_HIGHNOTES = configo.HV_FLOAT_PLUS(default=15.0)
 
-FOOTNOTE_X0_MAX = configo.HolyTable(
-    items=(
-        (440, 100),  # TODO: US Letter?
-        (550, 150),  # DINA4
-    ),
-    left_outranges_none=False,
-    right_outranges_none=False,
-)
+FOOTNOTE_X0_MAX = configo.HolyTable(items=(
+    (440, 100),  # TODO: US Letter?
+    (550, 150),  # DINA4
+))
 
 FOOTNOTE_RATE_MIN = configo.HV_PERCENT_PLUS(default=50)
 
