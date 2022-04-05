@@ -187,6 +187,7 @@ def extract_footer(
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
     if invalid_footer and invalid_footer(begin, content):
+        utila.debug(f'invalid footer, page {pagetextnavigator.page}: {content}')
         return None
     # splitted by highnotes
     footnotes = footnote_strategy(
