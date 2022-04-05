@@ -24,6 +24,10 @@ FOOTNOTE_X0_MAX = configo.HolyTable(items=(
     (440, 100),  # TODO: US Letter?
     (550, 150),  # DINA4
 ))
+FOOTNOTE_X1_MAX = configo.HolyTable(items=(
+    (440, 100 + 200),  # TODO: US Letter?
+    (550, 150 + 200),  # DINA4
+))
 
 FOOTNOTE_RATE_MIN = configo.HV_PERCENT_PLUS(default=50)
 
