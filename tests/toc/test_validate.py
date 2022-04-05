@@ -28,6 +28,7 @@ TEN = utila.make_tuple(10)
 
 
 @pytest.mark.parametrize('source, pages', [
+    utilatest.step(power.BACHELOR028_PDF, (1,)),
     utilatest.step(power.BACHELOR063_PDF, TEN),
     utilatest.step(power.BACHELOR076_PDF, TEN),
     utilatest.step(power.BACHELOR090_PDF, TEN, reason='investigate laster'),
