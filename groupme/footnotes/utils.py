@@ -43,6 +43,12 @@ NUMBER_TEXT = utila.compiles(
         (   # do not detect 2.1.3 as footnote
             \.\d{1,2}\.
         )
+        |
+        (   # do not detect date as footnote 18.06.2019)
+            \d{1,2}\.\d{1,2}\.\d{4}|
+            \d{4}\.\d{1,2}\.\d{1,2}
+            # TODO: SUPPORT MORE TYPES OF DATES
+        )
     )
     [ ]{0,4}
     (?P<text>.{3,})
@@ -58,6 +64,8 @@ def search_footnote(text):
     (61, 'UNDP HDR 2007/2008, S.\n229ff. Die Weltfinanzkrise 2008-9\n62 In der Tat wurde der Begriff bereits')
     >>> search_footnote('229ff. Die Weltfinanzkrise 2008-9')
     (-1, '229ff. Die Weltfinanzkrise 2008-9')
+    >>> search_footnote('18.06.2019)')
+    (-1, '18.06.2019)')
     """
     matched = NUMBER_TEXT.match(text)
     if not matched:
