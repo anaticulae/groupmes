@@ -127,7 +127,11 @@ def process_page(
     pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
     # check PAGENUMBR RAW? OR INHERIT FROM PTN?
-    bottomed = select_footer_line(horizontals, pagewidth, pageheight)
+    bottomed = select_footer_line(
+        horizontals,
+        pagewidth,
+        pageheight,
+    )
     # this algo does not detect any header
     header = None
     # determine start of footer
