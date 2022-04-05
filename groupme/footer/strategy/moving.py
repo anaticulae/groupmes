@@ -149,7 +149,11 @@ def process_page(
     return result
 
 
-def select_footer_line(horizontals, pagewidth, pageheight) -> float:
+def select_footer_line(
+    horizontals,
+    pagewidth,
+    pageheight,
+) -> float:
     # TODO: USE MOST COMMON FOOTER DECIDER
     footer_start = pageheight * BOTTOM_BORDER
     # skip horizontals which are located too top
@@ -158,7 +162,10 @@ def select_footer_line(horizontals, pagewidth, pageheight) -> float:
     x0_max = groupme.footnotes.layout.FOOTNOTE_X0_MAX(pagewidth)
     filtered = [item for item in filtered if item.box.x0 <= x0_max]
     # determine y-level
-    bottomed = max([item.box.y0 for item in filtered], default=None)
+    bottomed = max(
+        [item.box.y0 for item in filtered],
+        default=None,
+    )
     return bottomed
 
 
