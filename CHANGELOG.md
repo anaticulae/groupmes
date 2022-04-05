@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.27.0
+
+### Feature
+
+* add strategy name to extraction result (220ce74a5664)
+* debug invalid footer strategy (431e75f376e3)
+* do not handle few endnotes as invalid footnotes (7210fee43679)
+
+### Fix
+
+* add missing character (45d80ed949d6)
+* adjust min valid footer (e05cbe92142d)
+
 ## v0.26.1
 
 ### Feature
