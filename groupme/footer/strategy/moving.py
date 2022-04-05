@@ -62,13 +62,14 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             self.pagenumbers,
             self.pagetextnavigators,
         )
+        horizontals = footer_separator(self.horizontals)
         pages = utila.SelectPage(
             sizeandborders=self.sizeandborders,
             ptns=self.pagetextnavigators,
             pagenumber_locations=pagenumber_locations,
         )
         result = []
-        for page in self.horizontals:
+        for page in horizontals:
             sizeborder, ptn, pagenumber_location = pages.getpage(page.page)
             processed = process_page(
                 pagenumber_location=pagenumber_location,
@@ -93,6 +94,10 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         detected = judge_detection(detected)
         report = analyze(detected)
         return report
+
+
+def footer_separator(horizontals) -> list:
+    return horizontals
 
 
 @dataclasses.dataclass
