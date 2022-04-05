@@ -52,3 +52,19 @@ def test_footer_master98_page10(testdir, monkeypatch):
     firstnote_text = notes[0].text.strip()
     # ensure that page number is not merged to note text
     assert firstnote_text.endswith('16)'), firstnote_text
+
+
+def test_footer_bachelor028p2(testdir, monkeypatch):
+    """The hyperlinks produces blue horizontal lines.
+
+    After fixing rawmaker, these horizontal lines does not occur anymore
+    and footnote detection works fine.
+    """
+    extracted = tests.footerheader.extractor.footer(
+        power.BACHELOR028_PDF,
+        testdir,
+        monkeypatch,
+        pages='2',
+    )
+    footnotes = extracted[0].footer
+    assert len(footnotes) == 6
