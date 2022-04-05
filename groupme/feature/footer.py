@@ -40,7 +40,7 @@ def work(
     pagenumber: str,
     pages=None,
 ) -> str:
-    """Extract footer and header area out of horizontal lines
+    """Extract footer and header area out of horizontal lines.
 
     Returns:
         Dumped list with top and bottom border, which separates the
@@ -78,7 +78,7 @@ def extract_footerheader(
     pagenumbers,
     pagetextnavigators: texmex.PageTextNavigators,
 ) -> iamraw.PageContentFooterHeaders:
-    """Extract most common header/footer of the document
+    """Extract most common header/footer of the document.
 
     Returns:
         The most common header/foooter combination for the document
@@ -180,8 +180,9 @@ def quality(results: list) -> tuple:
 
 
 def validate(items: list):
-    """Validate list of pageable items. If some `page` attribute is
-    duplicated, raise ValueError.
+    """Validate list of pageable items.
+
+    If some `page` attribute is duplicated, raise ValueError.
 
     Args:
         items(list): list of objects with <page,content>
