@@ -62,25 +62,19 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             self.pagenumbers,
             self.pagetextnavigators,
         )
+        pages = utila.SelectPage(
+            sizeandborders=self.sizeandborders,
+            ptns=self.pagetextnavigators,
+            pagenumber_locations=pagenumber_locations,
+        )
         result = []
         for page in self.horizontals:
-            sizeandborder = utila.select_page(
-                self.sizeandborders,
-                page.page,
-            )
-            pagetextnavigator = utila.select_page(
-                self.pagetextnavigators,
-                page.page,
-            )
-            pagenumber_location = utila.select_page(
-                pagenumber_locations,
-                page.page,
-            )
+            sizeborder, ptn, pagenumber_location = pages.getpage(page.page)
             processed = process_page(
                 pagenumber_location=pagenumber_location,
                 horizontals=page.content,
-                sizeandborder=sizeandborder,
-                pagetextnavigator=pagetextnavigator,
+                sizeandborder=sizeborder,
+                pagetextnavigator=ptn,
                 footnote_strategy=self.footnote_strategy,
                 invalid_footer=self.invalid_footer,
             )
