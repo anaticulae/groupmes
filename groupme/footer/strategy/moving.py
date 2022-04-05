@@ -96,8 +96,41 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         return report
 
 
+FOOTER_SEPARATOR_COUNT_MIN = configo.HV_INT_PLUS(default=10)
+
+
 def footer_separator(horizontals) -> list:
+    """Remove invalid horizontals as a product of hyperlink printer in
+    footnotes which creates an invalid footnote line.
+
+    Use nereast line to document common footnote line.
+    """
+    flat = utila.flatten_content(horizontals)
+    if len(flat) < FOOTER_SEPARATOR_COUNT_MIN:
+        # dissable mode selector for to few horizontals
+        return horizontals
+    x0 = utila.mode(utila.roundme([item.box[0] for item in flat], digits=0))
+    x1 = utila.mode(utila.roundme([item.box[2] for item in flat], digits=0))
+    horizontals = [
+        iamraw.PageContentHorizontals(
+            content=nearest_line(page.content, x0, x1),
+            page=page.page,
+        ) for page in horizontals
+    ]
     return horizontals
+
+
+def nearest_line(horizontals, x0, x1):
+    if not horizontals:
+        return []
+    best = horizontals[0]
+    for horizontal in horizontals[1:]:
+        current = utila.norm(best.box[0], best.box[2], x0, x1)
+        new = utila.norm(horizontal.box[0], horizontal.box[2], x0, x1)
+        if new > current:
+            continue
+        best = horizontal
+    return [best]
 
 
 @dataclasses.dataclass
@@ -157,7 +190,6 @@ def select_footer_line(
     pagewidth,
     pageheight,
 ) -> float:
-    # TODO: USE MOST COMMON FOOTER DECIDER
     footer_start = pageheight * BOTTOM_BORDER
     # skip horizontals which are located too top
     filtered = [item for item in horizontals if item.box.y0 >= footer_start]
