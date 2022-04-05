@@ -24,11 +24,6 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 
 @pytest.mark.parametrize('source, pages, expected', [
-    step(power.HC_DISS193),
-    step(power.HC_DISS171),
-    step(power.HC_DISS166),
-    step(power.HC_DISS148),
-    step(power.HC_DISS128),
     pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelo128'),
     pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143p20'),
     pytest.param(power.DISS178_PDF, '0:30', 'diss178', id='diss178'),
@@ -43,6 +38,11 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     step(power.DISS172_PDF),
     step(power.DOCU014_PDF),
     step(power.DOCU027_PDF),
+    step(power.HC_DISS128),
+    step(power.HC_DISS148),
+    step(power.HC_DISS166),
+    step(power.HC_DISS171),
+    step(power.HC_DISS193),
     step(power.HOME018_PDF),
     step(power.MASTER072_PDF),
     step(power.MASTER075_PDF),
@@ -55,7 +55,6 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     step(power.MASTER155_PDF),
     step(power.PAPER18_PDF),
     step(power.TECH024_PDF),
-    step(power.BACHELOR028_PDF),
 ])
 @utilatest.nightly
 def test_footnotes_validate(source, pages, expected, testdir, monkeypatch):
