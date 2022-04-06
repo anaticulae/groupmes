@@ -27,6 +27,7 @@ class ExtractionStatistic:
     oneline_factor: float
     invalid_count: int = 0
     parsed_level: int = 0
+    raw_length: int = 0
     strategy: str = None
 
     def __lt__(self, item):
@@ -34,6 +35,8 @@ class ExtractionStatistic:
         if self.invalid_count == item.invalid_count:
             if self.validitem_count == item.validitem_count:
                 if self.parsed_level == item.parsed_level:
+                    if self.oneline_factor == item.oneline_factor:
+                        return self.raw_length >= item.raw_length
                     return self.oneline_factor < item.oneline_factor
                 return self.parsed_level > item.parsed_level
             return self.validitem_count > item.validitem_count
@@ -72,5 +75,6 @@ def analyze_result(result: gts.ExtractionResult) -> ExtractionStatistic:
         oneline_factor=oneline_factor,
         parsed_level=len(parsed_level),
         strategy=result.strategy,
+        raw_length=sum(len(item.raw) for item in flat),
     )
     return result
