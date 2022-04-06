@@ -14,6 +14,7 @@ import groupme.toc.strategy
 import groupme.toc.strategy.balance
 import groupme.toc.strategy.geometry
 import groupme.toc.strategy.georegex
+import groupme.toc.strategy.pagetop
 import groupme.toc.strategy.regex
 
 
@@ -38,6 +39,7 @@ def extract(
         groupme.toc.strategy.georegex.GeometryRegexTocExtractor,
         groupme.toc.strategy.regex.RegexTocExtractor,
         groupme.toc.strategy.balance.BalanceTocExtractor,
+        groupme.toc.strategy.pagetop.PageTop,
     ]
     results = [
         strategy(data).result()
