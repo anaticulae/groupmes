@@ -106,6 +106,11 @@ def footer_separator(horizontals) -> list:
     Use nereast line to document common footnote line.
     """
     flat = utila.flatten_content(horizontals)
+    flat = valid_footer_separators(
+        flat,
+        pagewidth=595.28,
+        pageheight=841.89,
+    )
     if len(flat) < FOOTER_SEPARATOR_COUNT_MIN:
         # dissable mode selector for to few horizontals
         return horizontals
