@@ -36,7 +36,7 @@ def select_footer_line(
     return bottomed
 
 
-def footer_separator(horizontals) -> list:
+def footer_separator(horizontals, pagesize: callable) -> list:
     """Remove invalid horizontals as a product of hyperlink printer in
     footnotes which creates an invalid footnote line.
 
@@ -47,8 +47,8 @@ def footer_separator(horizontals) -> list:
     # BEST ONE.
     flat = valid_footer_separators(
         flat,
-        pagewidth=595.28,
-        pageheight=841.89,
+        pagewidth=pagesize(0)[0],
+        pageheight=pagesize(0)[1],
     )
     if len(flat) < FOOTER_SEPARATOR_COUNT_MIN:
         # dissable mode selector for to few horizontals

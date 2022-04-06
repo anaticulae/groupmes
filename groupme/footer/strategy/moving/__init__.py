@@ -60,7 +60,7 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             self.pagenumbers,
             self.pagetextnavigators,
         )
-        horizontals = gfsms.footer_separator(self.horizontals)
+        horizontals = gfsms.footer_separator(self.horizontals, self.pagesize)
         pages = utila.SelectPage(
             sizeandborders=self.sizeandborders,
             ptns=self.pagetextnavigators,
@@ -81,6 +81,15 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
                 continue
             result.append(processed)
         return result
+
+    def pagesize(self, pagenumber):
+        selected = utila.select_page(
+            self.sizeandborders,
+            page=pagenumber,
+        )
+        if selected is None:
+            return (595.28, 841.89)
+        return (selected.size.width, selected.size.height)
 
     def result(self):
         detected = self.run()
