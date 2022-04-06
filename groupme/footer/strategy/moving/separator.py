@@ -89,7 +89,10 @@ def valid_footer_separators(
     return good_x0x1
 
 
-def nearest_line(horizontals, x0, x1):
+def nearest_line(horizontals, x0, x1) -> list:
+    # TODO: IMPROVE THIS, REQUIRE BETTER SELECTOR TO HANDLE VERY LONG
+    # FOOTNOTES.
+    horizontals = [item for item in horizontals if item.box[1] > 250.0]
     if not horizontals:
         return []
     best = horizontals[0]
