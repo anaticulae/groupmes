@@ -67,13 +67,13 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             pagenumber_locations=pagenumber_locations,
         )
         result = []
-        for page in horizontals:
-            sizeborder, ptn, pagenumber_location = pages.getpage(page.page)
+        for horizontal in horizontals:
+            sizeborder, ptn, pagenumber_box = pages.getpage(horizontal.page)
             processed = process_page(
-                pagenumber_location=pagenumber_location,
-                horizontals=page.content,
+                pagenumber_location=pagenumber_box,
+                horizontals=horizontal.content,
                 sizeandborder=sizeborder,
-                pagetextnavigator=ptn,
+                ptn=ptn,
                 footnote_strategy=self.footnote_strategy,
                 invalid_footer=self.invalid_footer,
             )
@@ -108,18 +108,15 @@ def process_page(
     pagenumber_location,
     horizontals,
     sizeandborder,
-    pagetextnavigator,
+    ptn,
     footnote_strategy: callable = None,
     invalid_footer: callable = None,
 ) -> iamraw.PageContentFooterHeader:
-    pagenumber = pagetextnavigator.page
-    pagewidth = sizeandborder.size.width
-    pageheight = sizeandborder.size.height
     # check PAGENUMBR RAW? OR INHERIT FROM PTN?
     bottomed = gfsms.select_footer_line(
         horizontals,
-        pagewidth,
-        pageheight,
+        pagewidth=sizeandborder.size.width,
+        pageheight=sizeandborder.size.height,
     )
     # this algo does not detect any header
     header = None
@@ -128,16 +125,16 @@ def process_page(
     if bottomed is not None:
         footer = extract_footer(
             bottomed,
-            pageheight,
-            pagenumber_location,
-            pagetextnavigator,
+            pageheight=sizeandborder.size.height,
+            pagenumber_location=pagenumber_location,
+            ptn=ptn,
             footnote_strategy=footnote_strategy,
             invalid_footer=invalid_footer,
         )
     result = iamraw.PageContentFooterHeader(
         header=header,
         footer=footer,
-        page=pagenumber,
+        page=ptn.page,
     )
     return result
 
@@ -146,7 +143,7 @@ def extract_footer(
     footerstart: float,
     pageheight: int,
     pagenumber_location,
-    pagetextnavigator,
+    ptn,
     footnote_strategy: callable = None,
     invalid_footer: callable = None,
 ) -> iamraw.MovingFooterInformation:
@@ -161,19 +158,19 @@ def extract_footer(
         end = pagenumber_location.footer.page_location.y0
     end = utila.roundme(end / pageheight)
     # TODO: USE TWO_THIRDS Strategy
-    content = pagetextnavigator.between(
+    content = ptn.between(
         begin,
         end,
         selector=texmex.navigator.SelectBounding.BOTTOM,
     )
     if invalid_footer and invalid_footer(begin, content):
-        utila.debug(f'invalid footer, page {pagetextnavigator.page}: {content}')
+        utila.debug(f'invalid footer, page {ptn.page}: {content}')
         return None
     # splitted by highnotes
     footnotes = footnote_strategy(
         content=content,
-        width=pagetextnavigator.width,
-        pagenumber=pagetextnavigator.page,
+        width=ptn.width,
+        pagenumber=ptn.page,
     )
     if not footnotes:
         # no footnotes parsed, therefore do not return MovingFooterInformation
