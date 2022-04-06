@@ -22,11 +22,13 @@ def select_footer_line(
     horizontals,
     pagewidth,
     pageheight,
+    bottom_border=BOTTOM_BORDER,
 ) -> float:
     filtered = valid_footer_separators(
         horizontals,
         pagewidth,
         pageheight,
+        bottom_border,
     )
     # determine y-level
     bottomed = max(
@@ -49,6 +51,7 @@ def footer_separator(horizontals, pagesize: callable) -> list:
         flat,
         pagewidth=pagesize(0)[0],
         pageheight=pagesize(0)[1],
+        bottom_border=BOTTOM_BORDER,
     )
     if len(flat) < FOOTER_SEPARATOR_COUNT_MIN:
         # dissable mode selector for to few horizontals
@@ -68,8 +71,9 @@ def valid_footer_separators(
     horizontals,
     pagewidth,
     pageheight,
+    bottom_border,
 ):
-    footer_start = pageheight * BOTTOM_BORDER
+    footer_start = pageheight * bottom_border
     # skip horizontals which are located too top
     filtered = [item for item in horizontals if item.box.y0 >= footer_start]
     # potential footer is located too right
