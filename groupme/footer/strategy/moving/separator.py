@@ -75,14 +75,14 @@ def valid_footer_separators(
     # potential footer is located too right
     x0_max = groupme.footnotes.layout.FOOTNOTE_X0_MAX(pagewidth)
     x1_max = groupme.footnotes.layout.FOOTNOTE_X1_MAX(pagewidth)
-    goodposition = [
+    good_x0 = [item for item in filtered if item.box.x0 <= x0_max]
+    good_x0x1 = [
         item for item in filtered
         if item.box.x0 <= x0_max and item.box.x1 <= x1_max
     ]
-    if not goodposition:
-        # do not remove wrong user footer lines
-        return filtered
-    return goodposition
+    if not good_x0x1:
+        return good_x0
+    return good_x0x1
 
 
 def nearest_line(horizontals, x0, x1):
