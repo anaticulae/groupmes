@@ -120,6 +120,27 @@ def footer_separator(horizontals) -> list:
     return horizontals
 
 
+def valid_footer_separators(
+    horizontals,
+    pagewidth,
+    pageheight,
+):
+    footer_start = pageheight * BOTTOM_BORDER
+    # skip horizontals which are located too top
+    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
+    # potential footer is located too right
+    x0_max = groupme.footnotes.layout.FOOTNOTE_X0_MAX(pagewidth)
+    x1_max = groupme.footnotes.layout.FOOTNOTE_X1_MAX(pagewidth)
+    goodposition = [
+        item for item in filtered
+        if item.box.x0 <= x0_max and item.box.x1 <= x1_max
+    ]
+    if not goodposition:
+        # do not remove wrong user footer lines
+        return filtered
+    return goodposition
+
+
 def nearest_line(horizontals, x0, x1):
     if not horizontals:
         return []
@@ -190,16 +211,11 @@ def select_footer_line(
     pagewidth,
     pageheight,
 ) -> float:
-    footer_start = pageheight * BOTTOM_BORDER
-    # skip horizontals which are located too top
-    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
-    # potential footer is located too right
-    x0_max = groupme.footnotes.layout.FOOTNOTE_X0_MAX(pagewidth)
-    x1_max = groupme.footnotes.layout.FOOTNOTE_X1_MAX(pagewidth)
-    filtered = [
-        item for item in filtered
-        if item.box.x0 <= x0_max and item.box.x1 <= x1_max
-    ]
+    filtered = valid_footer_separators(
+        horizontals,
+        pagewidth,
+        pageheight,
+    )
     # determine y-level
     bottomed = max(
         [item.box.y0 for item in filtered],
