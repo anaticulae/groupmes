@@ -32,6 +32,7 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
     step(power.BACHELOR028_PDF),
     step(power.BACHELOR032_PDF),
+    step(power.BACHELOR032A_PDF),
     step(power.BACHELOR037_PDF),
     step(power.BACHELOR056_PDF),
     step(power.BACHELOR063_PDF),
