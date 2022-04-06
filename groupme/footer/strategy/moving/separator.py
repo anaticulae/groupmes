@@ -18,26 +18,6 @@ FOOTER_SEPARATOR_COUNT_MIN = configo.HV_INT_PLUS(default=10)
 BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
 
 
-def select_footer_line(
-    horizontals,
-    pagewidth,
-    pageheight,
-    bottom_border=BOTTOM_BORDER,
-) -> float:
-    filtered = valid_footer_separators(
-        horizontals,
-        pagewidth,
-        pageheight,
-        bottom_border,
-    )
-    # determine y-level
-    bottomed = max(
-        [item.box.y0 for item in filtered],
-        default=None,
-    )
-    return bottomed
-
-
 def footer_separator(horizontals, pagesize: callable) -> list:
     """Remove invalid horizontals as a product of hyperlink printer in
     footnotes which creates an invalid footnote line.
@@ -65,6 +45,26 @@ def footer_separator(horizontals, pagesize: callable) -> list:
         ) for page in horizontals
     ]
     return horizontals
+
+
+def select_footer_line(
+    horizontals,
+    pagewidth,
+    pageheight,
+    bottom_border=BOTTOM_BORDER,
+) -> float:
+    filtered = valid_footer_separators(
+        horizontals,
+        pagewidth,
+        pageheight,
+        bottom_border,
+    )
+    # determine y-level
+    bottomed = max(
+        [item.box.y0 for item in filtered],
+        default=None,
+    )
+    return bottomed
 
 
 def valid_footer_separators(
