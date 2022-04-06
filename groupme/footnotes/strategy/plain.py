@@ -36,7 +36,7 @@ def parse_group(
     if x0 >= groupme.footnotes.layout.FOOTNOTE_X0_MAX(width):
         # potential highnote is located too right
         return None
-    raw = ''.join([item.text for item in multiline])
+    raw = utila.NEWLINE.join([item.text.strip() for item in multiline])
     number, content = groupme.footnotes.utils.search_footnote(raw)
     bounding = tuple(multiline[0].bounding)
     text = utila.normalize_text(content, normalize_spaces=True, strips=True)
