@@ -27,7 +27,7 @@ def validate_master72(result):
 def validate_bachelor90(result):
     footnotes = flat_footnotes(result)  # pylint:disable=W0612
     numbers = [item.number for item in footnotes]
-    assert numbers == list(range(12))
+    assert numbers == utila.rlist(12)
 
 
 def validate_homework18(result):
