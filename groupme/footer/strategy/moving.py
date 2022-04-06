@@ -106,6 +106,8 @@ def footer_separator(horizontals) -> list:
     Use nereast line to document common footnote line.
     """
     flat = utila.flatten_content(horizontals)
+    # TODO: EXTRACT FOOTNOTES WITH DIFFERENT FOOTER LINES AND SELECT THE
+    # BEST ONE.
     flat = valid_footer_separators(
         flat,
         pagewidth=595.28,
