@@ -15,7 +15,7 @@ import tests.footerheader.extractor
 
 
 @utilatest.longrun
-def test_footer_paper18_page3(testdir, monkeypatch):
+def test_footer_paper18p3(testdir, monkeypatch):
     """Regression test to avoid parsing formula as footnote."""
     extracted = tests.footerheader.extractor.footer(
         power.PAPER18_PDF,
@@ -23,7 +23,7 @@ def test_footer_paper18_page3(testdir, monkeypatch):
         monkeypatch,
     )
     page3 = utila.select_page(extracted, 3)
-    # do not interpret this formula is footer
+    # do not interpret this formula as footer
     assert not page3.footer
 
 
