@@ -43,7 +43,12 @@ class ExtractionStatistic:
 def decide(items: gts.ExtractionResults) -> gts.ExtractionResult:
     if not items:
         return None
+    for item in items:
+        utila.debug(item)
     analyzed = [analyze_result(item) for item in items]
+    # debug result
+    for item in analyzed:
+        utila.debug(item)
     selector = dict(zip(analyzed, items))
     order = sorted(analyzed)
     first_item = order[0]

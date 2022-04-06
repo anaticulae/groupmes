@@ -31,6 +31,18 @@ class ExtractionResult:
     def __getitem__(self, index):
         return self.content[index]  # pylint:disable=E1136
 
+    def __str__(self):
+        collected = [str(self.strategy), 'VALID:']
+        for item in utila.flatten(self.content):
+            collected.append(item.raw)
+        if self.invalid:
+            collected.append('INVALID:')
+            for item in self.invalid:
+                collected.append(item.raw)
+        collected.append('')
+        result = utila.NEWLINE.join(collected)
+        return result
+
 
 @dataclasses.dataclass
 class ExtractionData:
