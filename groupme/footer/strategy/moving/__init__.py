@@ -112,25 +112,26 @@ def process_page(
     footnote_strategy: callable = None,
     invalid_footer: callable = None,
 ) -> iamraw.PageContentFooterHeader:
+    pagesize = sizeandborder.size
+    # determine start of footer
+    footer = None
     # check PAGENUMBR RAW? OR INHERIT FROM PTN?
     bottomed = gfsms.select_footer_line(
         horizontals,
-        pagewidth=sizeandborder.size.width,
-        pageheight=sizeandborder.size.height,
+        pagewidth=pagesize.width,
+        pageheight=pagesize.height,
     )
-    # this algo does not detect any header
-    header = None
-    # determine start of footer
-    footer = None
     if bottomed is not None:
         footer = extract_footer(
             bottomed,
-            pageheight=sizeandborder.size.height,
+            pageheight=pagesize.height,
             pagenumber_location=pagenumber_location,
             ptn=ptn,
             footnote_strategy=footnote_strategy,
             invalid_footer=invalid_footer,
         )
+    # this algo does not detect any header
+    header = None
     result = iamraw.PageContentFooterHeader(
         header=header,
         footer=footer,
