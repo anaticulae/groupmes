@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v0.28.0
+
+### Feature
+
+* filter potential footer horizontals (9d7ac468eb15)
+* use common document footer line to reduce hyperlink lines (1e5d7b99db3c)
+* add footer horizontals selector (4c8e862119e6)
+* remove potential wrong footnote hline which are too right (57189fae72cb)
+* increase debugging information (20a27fbe9d4a)
+
+### Fix
+
+* improve line separator selector (999187286c27)
+* do not detect date as footnote (9be768146377)
+
 ## v0.27.0
 
 ### Feature
