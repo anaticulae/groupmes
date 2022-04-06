@@ -16,6 +16,7 @@ import utila
 
 import groupme.footer.strategy as gfs
 import groupme.footer.strategy.moving as gfsm
+import groupme.footer.strategy.moving.judge
 import groupme.footnotes.strategy.plain
 import groupme.footnotes.strategy.textraw
 
@@ -44,10 +45,10 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
             detected = []
         return detected
 
-    def report(self) -> gfs.FooterStrategyResultReport:
+    def report(self) -> gfs.FooterStrategyReport:
         # TODO: Avoid multiple computation, require  concept.
         detected = self.result()
-        report = gfsm.analyze(detected)
+        report = groupme.footer.strategy.moving.judge.analyze(detected)
         return report
 
 

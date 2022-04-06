@@ -40,7 +40,7 @@ import groupme.path
 
 
 @dataclasses.dataclass  # pylint:disable=R0903
-class FooterStrategyResultReport:
+class FooterStrategyReport:
     pass
 
 
@@ -70,7 +70,7 @@ class FooterHeaderDetectionStrategy(abc.ABC):
     def result(self) -> iamraw.PageContentFooterHeaders:
         raise NotImplementedError()
 
-    def report(self) -> FooterStrategyResultReport:
+    def report(self) -> FooterStrategyReport:
         """Return meta data to determined `result`. The main propose of
         this report is to have a better view why the algorithm produces
         this given result."""

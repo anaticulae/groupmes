@@ -21,18 +21,16 @@ Example:
 TODO: Think about header
 """
 
-import dataclasses
-
-import configo
 import iamraw
 import texmex.navigator
 import utila
 
 import groupme.footer.strategy as gfs
+import groupme.footer.strategy.moving.finish as gfsmf
+import groupme.footer.strategy.moving.judge as gfsmj
+import groupme.footer.strategy.moving.separator as gfsms
 import groupme.footer.strategy.pages as gfsp
 import groupme.footnotes.strategy.highnote
-
-FOOTNOTE_NUMBER_ERROR_MAX = configo.HV_FLOAT_PLUS(default=0.4)
 
 
 class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
@@ -55,14 +53,14 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
         self.footnote_strategy = footnote_strategy
         self.invalid_footer = invalid_footer
 
-    def result(self):
+    def run(self):
         pagenumber_locations = gfsp.pagenumber_location(
             self.horizontals,
             self.sizeandborders,
             self.pagenumbers,
             self.pagetextnavigators,
         )
-        horizontals = footer_separator(self.horizontals)
+        horizontals = gfsms.footer_separator(self.horizontals)
         pages = utila.SelectPage(
             sizeandborders=self.sizeandborders,
             ptns=self.pagetextnavigators,
@@ -82,97 +80,19 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
             if processed.footer is None and processed.header is None:
                 continue
             result.append(processed)
-        result = merge_footer_pages(result)
-        footnote_numbers = footnote_numbers_flat(result)
-        if footnote_number_error(footnote_numbers):
-            result = []
         return result
 
-    def report(self) -> gfs.FooterStrategyResultReport:
+    def result(self):
+        detected = self.run()
+        result = gfsmf.merge_footer_pages(detected)
+        result = gfsmj.last(result)
+        return result
+
+    def report(self) -> gfs.FooterStrategyReport:
         # TODO: Avoid multiple computation, require  concept.
         detected = self.result()
-        detected = judge_detection(detected)
-        report = analyze(detected)
-        return report
-
-
-FOOTER_SEPARATOR_COUNT_MIN = configo.HV_INT_PLUS(default=10)
-
-
-def footer_separator(horizontals) -> list:
-    """Remove invalid horizontals as a product of hyperlink printer in
-    footnotes which creates an invalid footnote line.
-
-    Use nereast line to document common footnote line.
-    """
-    flat = utila.flatten_content(horizontals)
-    # TODO: EXTRACT FOOTNOTES WITH DIFFERENT FOOTER LINES AND SELECT THE
-    # BEST ONE.
-    flat = valid_footer_separators(
-        flat,
-        pagewidth=595.28,
-        pageheight=841.89,
-    )
-    if len(flat) < FOOTER_SEPARATOR_COUNT_MIN:
-        # dissable mode selector for to few horizontals
-        return horizontals
-    x0 = utila.mode(utila.roundme([item.box[0] for item in flat], digits=0))
-    x1 = utila.mode(utila.roundme([item.box[2] for item in flat], digits=0))
-    horizontals = [
-        iamraw.PageContentHorizontals(
-            content=nearest_line(page.content, x0, x1),
-            page=page.page,
-        ) for page in horizontals
-    ]
-    return horizontals
-
-
-def valid_footer_separators(
-    horizontals,
-    pagewidth,
-    pageheight,
-):
-    footer_start = pageheight * BOTTOM_BORDER
-    # skip horizontals which are located too top
-    filtered = [item for item in horizontals if item.box.y0 >= footer_start]
-    # potential footer is located too right
-    x0_max = groupme.footnotes.layout.FOOTNOTE_X0_MAX(pagewidth)
-    x1_max = groupme.footnotes.layout.FOOTNOTE_X1_MAX(pagewidth)
-    goodposition = [
-        item for item in filtered
-        if item.box.x0 <= x0_max and item.box.x1 <= x1_max
-    ]
-    if not goodposition:
-        # do not remove wrong user footer lines
-        return filtered
-    return goodposition
-
-
-def nearest_line(horizontals, x0, x1):
-    if not horizontals:
-        return []
-    best = horizontals[0]
-    for horizontal in horizontals[1:]:
-        current = utila.norm(best.box[0], best.box[2], x0, x1)
-        new = utila.norm(horizontal.box[0], horizontal.box[2], x0, x1)
-        if new > current:
-            continue
-        best = horizontal
-    return [best]
-
-
-@dataclasses.dataclass
-class MovingFooterResultReport(gfs.FooterStrategyResultReport):  # pylint:disable=R0903
-    footer: int = None
-    header: int = None
-    footer_empty: int = None
-    too_many_empty_footer: bool = False
-
-
-# relation between detected and empty detected footer to reduce miss detection
-WRONG_STRATEGY_EMPTY_FOOTER_FACTOR = configo.HV_PERCENT_PLUS(default=20)
-
-BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
+        result = gfsmj.report(detected)
+        return result
 
 
 def process_page(
@@ -187,7 +107,7 @@ def process_page(
     pagewidth = sizeandborder.size.width
     pageheight = sizeandborder.size.height
     # check PAGENUMBR RAW? OR INHERIT FROM PTN?
-    bottomed = select_footer_line(
+    bottomed = gfsms.select_footer_line(
         horizontals,
         pagewidth,
         pageheight,
@@ -211,24 +131,6 @@ def process_page(
         page=pagenumber,
     )
     return result
-
-
-def select_footer_line(
-    horizontals,
-    pagewidth,
-    pageheight,
-) -> float:
-    filtered = valid_footer_separators(
-        horizontals,
-        pagewidth,
-        pageheight,
-    )
-    # determine y-level
-    bottomed = max(
-        [item.box.y0 for item in filtered],
-        default=None,
-    )
-    return bottomed
 
 
 def extract_footer(
@@ -273,139 +175,3 @@ def extract_footer(
         notes=footnotes,
     )
     return footer
-
-
-def footnote_number_error(numbers: list) -> bool:  # pylint:disable=R0911
-    """\
-    >>> footnote_number_error([])
-    False
-    >>> footnote_number_error([1, 1, 1, 2])
-    False
-    >>> footnote_number_error([13, -1])
-    True
-    """
-    if len(numbers) < 2:
-        return False
-    diffed = utila.diffs(numbers)
-    if not diffed:
-        return False
-    if len(diffed) == 1 and diffed[0] > 0:
-        # [13, -1] for example
-        return True
-    fit, error = utila.partition(
-        key=lambda x: 1 <= x <= 2,
-        items=diffed,
-    )
-    if not error:
-        return False
-    error_rate = utila.rate_sum(error, fit)
-    if error_rate > FOOTNOTE_NUMBER_ERROR_MAX:
-        if isendnote(numbers):
-            return False
-        return True
-    return False
-
-
-def isendnote(numbers: list) -> False:
-    """\
-    >>> isendnote([1, 1, 1, 2])
-    True
-    """
-    # TODO: VERY SIMPLE APPROACH
-    small, high = utila.partition(
-        key=lambda x: x <= 2,
-        items=numbers,
-    )
-    if len(small) > len(high):
-        return True
-    return False
-
-
-def footnote_numbers_flat(footers: list) -> list:
-    numbers = []
-    for footer in footers:
-        for note in footer.footer.notes:
-            if note.number is None:
-                continue
-            if not isinstance(note.number, int):
-                utila.log(f'invalid footenumber: {note.number}')
-                continue
-            numbers.append(note.number)
-    return numbers
-
-
-def merge_footer_pages(footers):
-    """Merge following uncompleted footnotes together."""
-    # TODO: IMPROVE CHECK IF MERGING IS REQUIRED
-    # TODO: MERGE MORE THAN TWO PAGES
-    for current, after in zip(footers[0:-1], footers[1:]):
-        if (after.page - current.page) != 1:
-            # no page neighbours
-            continue
-        if not after.footer.notes:
-            continue
-        if not current.footer.notes:
-            continue
-        if current.footer.notes[-1].number == -1:
-            # could not merge, I am not a valid footnote
-            continue
-        if after.footer.notes[0].number not in (-1, None):
-            # no merge required, footnote have a number
-            continue
-        # merge notes together
-        current.footer.notes[-1] = iamraw.FootNoteMerged(
-            page=current.footer.notes[-1].page,
-            number=current.footer.notes[-1].number,
-            notes=[
-                current.footer.notes[-1],
-                after.footer.notes[0],
-            ],
-        )
-        #update bounding
-        # TODO: UPDATE PAGE BOUNDING OVER TWO PAGES MAKES NO SENCE?
-        # current.footer.notes[-1].bounding = utila.rectangle_max(
-        #     [item.bounding for item in current.footer[-1].notes])
-        # remove merged notes from after
-        after.footer.notes = after.footer.notes[1:]
-    return footers
-
-
-def analyze(results) -> MovingFooterResultReport:
-    footer_count = gfs.count_footer(results)
-    emptyfooter_count = count_empty(results)
-    empty_factor = emptyfooter_count / footer_count if footer_count else 0
-    too_many_empty_footer = empty_factor >= WRONG_STRATEGY_EMPTY_FOOTER_FACTOR
-    # create report
-    result = MovingFooterResultReport(
-        footer=footer_count,
-        footer_empty=emptyfooter_count,
-        too_many_empty_footer=too_many_empty_footer,
-    )
-    return result
-
-
-def count_empty(items: iamraw.PageContentFooterHeader) -> int:
-    """Count `MovingFooterInformation` which contain a empty `notes` list"""
-    footers = [item.footer for item in items if item.footer]
-    empty_footnotes = [item for item in footers if not item.notes]
-    result = len(empty_footnotes)
-    return result
-
-
-def judge_detection(items):
-    """Second analyzing step. Prove that `items` contain a good
-    detection result.
-
-    The following things will be checked:
-
-    - (x) selection of correct strategy
-    - ( ) quality of extracted footnotes
-    """
-    report = analyze(items)
-    # This can happen when using the wrong strategy. If we parse
-    # FixedFooter with MovingFooterStrategy, there are a lot of footer
-    # which are threated as MovingFooter with Footnote, but this detection
-    # is not correct.
-    if report.too_many_empty_footer:
-        return []
-    return items

@@ -87,7 +87,7 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
             result.append(footer_header)
         return result
 
-    def report(self) -> gfs.FooterStrategyResultReport:
+    def report(self) -> gfs.FooterStrategyReport:
         pass
 
 

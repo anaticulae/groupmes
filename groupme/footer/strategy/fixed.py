@@ -89,7 +89,7 @@ class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy)
         footerheader = decide_multiple(footerheader)
         return footerheader
 
-    def report(self) -> groupme.footer.strategy.FooterStrategyResultReport:
+    def report(self) -> groupme.footer.strategy.FooterStrategyReport:
         pass
 
 
