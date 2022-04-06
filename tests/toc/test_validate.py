@@ -32,6 +32,7 @@ TEN = utila.make_tuple(10)
     utilatest.step(power.BACHELOR032_PDF, (1,)),
     utilatest.step(power.BACHELOR032A_PDF, (1,)),
     utilatest.step(power.BACHELOR039_PDF, (1,)),
+    utilatest.step(power.BACHELOR041A_PDF, (1,)),
     utilatest.step(power.BACHELOR063_PDF, TEN),
     utilatest.step(power.BACHELOR076_PDF, TEN),
     utilatest.step(power.BACHELOR090_PDF, TEN),
