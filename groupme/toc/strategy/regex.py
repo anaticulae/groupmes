@@ -116,12 +116,14 @@ def parse(content: str) -> groupme.toc.TocLines:
             result.append(item)
             # remove already matched content to do not confuse lower
             # strict pattern
+            # TODO: INVESTIGATE TO GHOST PATTERN?
             content = content.replace(item.raw, '')
     nolevels = parse_nolevel(content)
     result.extend(nolevels)
     # remove duplications, which can occur when table of content is on the
     # same page as first headline.
     result = groupme.toc.remove_duplication(result)
+    # TODO: MOVE THIS TO LINE -15???
     # remove long lines which can not be real lines
     result = [item for item in result if len(item.title) < TOC_LINE_LENGTH_MAX]
     # Ensure that toc list is ordered by position on pdf page
