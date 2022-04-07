@@ -31,6 +31,7 @@ RESOURCES = [
     power.HC_DISS128,
     power.MASTER127_PDF,
     power.BACHELOR111_PDF,
+    power.BACHELOR101_PDF,
     power.MASTER110_PDF,
     (power.BACHELOR241_PDF, '0:100'),
     power.DISS480_PDF,
