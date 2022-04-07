@@ -2,6 +2,29 @@
 
 Every noteable change is logged here.
 
+## v0.29.0
+
+### Feature
+
+* use improved decider strategy (0c136eb9c65c)
+* add strategy to disable to many invalid detections (0919f08b3607)
+* skip multiple page top lines (66d8598599ec)
+* introduce raw length to improve toc selector (8e7d3c0dd2de)
+* debug decider module (92df84565a6c)
+* add page top strategy (a7f485cc474f)
+* make separator border adjustable (ecf250b18818)
+
+### Fix
+
+* reduce debugging verbosity (4dc2cb736578)
+* adjust configo data type (fca0f4b38111)
+* do not include page number into toc content (c69f852cf533)
+* remove toc headline of the first page (10268b854176)
+* fix very lines at the top of the page (d41d7f049980)
+* make page dimension page size dependent (480ca3538e56)
+* add # as valid character (643ab7c7cc14)
+* adjust to new rawmaker behavior (edcdfd8d3534)
+
 ## v0.28.0
 
 ### Feature
