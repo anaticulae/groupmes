@@ -68,8 +68,12 @@ class ExtractorStrategy(abc.ABC):
             valids,
             strategy=self.__class__.__name__,
         )
+        content = extracted.content
+        if too_many_dots_in_title(utila.flatten(content)):
+            utila.debug(f'too many dots in title: {self.__class__.__name__}')
+            content = []
         result = groupme.toc.strategy.ExtractionResult(
-            content=extracted.content,
+            content=content,
             invalid=invalid_content,
             strategy=self.__class__.__name__,
         )
@@ -125,3 +129,11 @@ def remove_nonconnected_tocs(items) -> list:
     # remove non included items
     include = [item for item in items if item.raw_location in valid_pages]
     return include
+
+
+def too_many_dots_in_title(lines) -> bool:
+    # TODO: HOLY VALUES
+    numbers = len([line for line in lines if line.title.count('.') > 7])
+    if numbers > 2:
+        return True
+    return False
