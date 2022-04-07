@@ -92,6 +92,14 @@ def level(item: str) -> Level:
     AppendixLevel(value='A', raw='A', character='A')
     >>> level('b')
     AppendixLevel(value='B', raw='b', character='B')
+    >>> level('4.')
+    Level(value=1, raw='4.')
+    >>> level('A.')
+    Level(value=1, raw='A.')
+    >>> level('A.1.1')
+    Level(value=3, raw='A.1.1')
+    >>> level('A.1.')
+    Level(value=2, raw='A.1.')
     """
     # TODO: SUPPORT 1. Abbildung
     # TODO: SUPPORT 1. Abb.
