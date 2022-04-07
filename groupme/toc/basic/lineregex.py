@@ -169,6 +169,7 @@ def dictpattern() -> str:
     return result
 
 
+# TODO: CHECK LONG RUNTIME?
 DICTIONARY = utila.compiles(
     '^'
     f'(?P<text>({dictpattern()}))'
