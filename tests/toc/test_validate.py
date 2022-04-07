@@ -29,8 +29,8 @@ TEN = utila.make_tuple(10)
 
 @pytest.mark.parametrize('source, pages', [
     utilatest.step(power.BACHELOR028_PDF, (1,)),
-    utilatest.step(power.BACHELOR032_PDF, (1,)),
     utilatest.step(power.BACHELOR032A_PDF, (1,)),
+    utilatest.step(power.BACHELOR032_PDF, (1,)),
     utilatest.step(power.BACHELOR039_PDF, (1,)),
     utilatest.step(power.BACHELOR041A_PDF, (1,)),
     utilatest.step(power.BACHELOR063_PDF, TEN),
@@ -53,7 +53,7 @@ TEN = utila.make_tuple(10)
     utilatest.step(power.HC_DISS193, (9, 10, 11, 12)),
     utilatest.step(power.HOME050_PDF, (3, 4)),
     utilatest.step(power.MASTER049_PDF, (4,)),
-    utilatest.step(power.MASTER072_PDF, None),
+    utilatest.step(power.MASTER072_PDF, (1, 2)),
     utilatest.step(power.MASTER078_PDF, TEN),
     utilatest.step(power.MASTER083_PDF, TEN),
     utilatest.step(power.MASTER089_PDF, TEN),
