@@ -37,6 +37,8 @@ import groupme.toc.strategy
 
 TOC_LINE_LENGTH_MAX = configo.HV_INT_PLUS(default=250)
 
+TOC_LINE_LENGTH_MIN = configo.HV_INT_PLUS(default=9)
+
 
 class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 
@@ -107,7 +109,8 @@ def parse(content: str) -> groupme.toc.TocLines:
     ]:
         for line in re.finditer(pattern, content):
             item = groupme.toc.basic.lineregex.extract_match(line)
-            if len(item.raw) <= 8:
+            if len(item.raw) < TOC_LINE_LENGTH_MIN:
+                utila.debug(f'toc line too short: {item.raw}')
                 # TODO: REMOVE HACK LATER
                 continue
             result.append(item)
