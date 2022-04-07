@@ -35,7 +35,7 @@ import groupme.toc.basic.layout
 import groupme.toc.basic.lineregex
 import groupme.toc.strategy
 
-TOC_LINE_LENGTH_MAX = configo.HV_FLOAT_PLUS(default=250.0)
+TOC_LINE_LENGTH_MAX = configo.HV_INT_PLUS(default=250)
 
 
 class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
