@@ -41,6 +41,7 @@ RESOURCES = [
     power.DISS144_PDF,
     power.MASTER091A_PDF,
     power.MASTER089_PDF,
+    power.BACHELOR086_PDF,
     power.BACHELOR078_PDF,
     power.MASTER075_PDF,
     power.MASTER072_PDF,
