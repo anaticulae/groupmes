@@ -59,6 +59,11 @@ def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
         if utila.verysimilar(expected=item.raw, current=line)
     ]
                for item in parsed]
+    single_match_only = set(len(item) for item in matched) == {1}
+    if not single_match_only:
+        # a toc line can always occurs only once, may this is not the
+        # right strategy.
+        return []
     result = []
     for index, (current, after) in enumerate(zip(matched[0:-1], matched[1:])):
         todo = current[0] + 1 != after[0]
