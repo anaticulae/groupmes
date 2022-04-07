@@ -31,16 +31,37 @@ class ExtractionStatistic:
     strategy: str = None
 
     def __lt__(self, item):
-        # TODO: IMRPOVE THIS SIMPLE STRATEGY
-        if self.invalid_count == item.invalid_count:
-            if self.validitem_count == item.validitem_count:
-                if self.parsed_level == item.parsed_level:
-                    if self.oneline_factor == item.oneline_factor:
-                        return self.raw_length >= item.raw_length
-                    return self.oneline_factor < item.oneline_factor
-                return self.parsed_level > item.parsed_level
-            return self.validitem_count > item.validitem_count
-        return self.invalid_count < item.invalid_count
+        return better_than(self, item)
+
+
+def better_than(
+    current: ExtractionStatistic,
+    other: ExtractionStatistic,
+) -> bool:
+    """"\
+    1. Compare parsed levels
+    2. Compare valid item count
+    3. Compare online factor
+    4. Compare raw length
+    """
+    # TODO: IMRPOVE THIS SIMPLE STRATEGY
+    if current.invalid_count == other.invalid_count:
+        if current.validitem_count == other.validitem_count:
+            if current.parsed_level == other.parsed_level:
+                if current.oneline_factor == other.oneline_factor:
+                    return current.raw_length >= other.raw_length
+                return current.oneline_factor < other.oneline_factor
+            return current.parsed_level > other.parsed_level
+        return current.validitem_count > other.validitem_count
+    return current.invalid_count < other.invalid_count
+    # # TODO: IMRPOVE THIS SIMPLE STRATEGY???
+    # if current.parsed_level != other.parsed_level:
+    #     return current.parsed_level >= other.parsed_level
+    # if current.validitem_count != other.validitem_count:
+    #     return current.validitem_count >= other.validitem_count
+    # if current.oneline_factor != other.oneline_factor:
+    #     return current.oneline_factor < other.oneline_factor
+    # return current.raw_length >= other.raw_length
 
 
 def decide(items: gts.ExtractionResults) -> gts.ExtractionResult:
