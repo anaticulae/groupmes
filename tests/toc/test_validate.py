@@ -111,6 +111,7 @@ class Evaluate(utilatest.BaseLiner):
     utilatest.step(power.BACHELOR063_PDF, TEN),
     utilatest.step(power.BACHELOR076_PDF, TEN),
     utilatest.step(power.BACHELOR090_PDF, TEN),
+    utilatest.step(power.BACHELOR101_PDF, (1, 2)),
     utilatest.step(power.BACHELOR111_PDF, TEN),
     utilatest.step(power.BACHELOR128_PDF, (3, 4, 5)),
     utilatest.step(power.BACHELOR241_PDF, (4, 5, 6, 7)),
