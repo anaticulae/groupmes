@@ -62,7 +62,7 @@ Simulation
 Zusammenfassung und Ausblick
     Zusammenfassung
     Ausblick
-A Variablenkodierung
+Variablenkodierung
     Variablen aus ISAAC II
         In Deutschland geboren
         Atopie der Eltern
@@ -71,7 +71,7 @@ A Variablenkodierung
         Allergische Rhinitis
         Asthma
         Passivrauch
-        Soziökonomischer Status
+        Soziöokonomischer Status
         Studienzentrum
         Geschwister
     Variablen aus SOLAR I
@@ -100,8 +100,8 @@ SOLAR II
     Benötigte Variablen für die Job-Matrix
 A
 A
-B Alle Abbildungen zum Vergleich der Parameterschätzer
-C R-Code
+Alle Abbildungen zum Vergleich der Parameterschätzer
+R-Code
     Imputation der fehlenden Werte in den potentiellen Confoundervariablen
         Imputation durch Ziehen gemäß der Randverteilung der Daten
         Imputation mithilfe des R-Packages AMELIA II
@@ -112,8 +112,8 @@ C R-Code
         Schritt 3 - GAM
         Schritt 4 - Expositionsvariablen
         Schritt 5 - Bestes Modell
-        Schritt 6 - Schützer kombinieren
+        Schritt 6 - Schätzer kombinieren
     Simulation
         Schritt 1 - Werte künstlich löschen
         Schritt 2 - Imputation der fehlenden Werte in den Tätigkeitsdaten
-D CD Inhalt
+CD Inhalt
