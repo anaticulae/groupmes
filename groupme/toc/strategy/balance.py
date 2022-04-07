@@ -43,7 +43,8 @@ def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
             # backup strategy with page number
             parsed = groupme.toc.basic.lineregex.parse_linestart(item)
         if not parsed:
-            utila.error(f'could not backup parse: {item}')
+            short = utila.shrink(item, maxlength=70)
+            utila.debug(f'could not backup parse: {short}')
             continue
         result.append(parsed)
     groupme.toc.basic.group.set_pagelocation(
