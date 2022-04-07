@@ -41,6 +41,10 @@ TOC_LINE_LENGTH_MAX = configo.HV_FLOAT_PLUS(default=250.0)
 class RegexTocExtractor(groupme.toc.strategy.ExtractorStrategy):
 
     def result(self) -> groupme.toc.strategy.ExtractionResult:
+        content = self.loaded.content
+        if content:
+            # TODO: RUN THIS FOR OTHER PAGES THAN THE FIRST ONE?
+            content[0] = groupme.toc.strategy.remove_headline(content[0])
         parsed = [parse_page(page) for page in self.loaded.content]
         flat = utila.flatten(parsed)
         grouped = groupme.toc.strategy.group(
