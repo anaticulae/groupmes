@@ -28,6 +28,7 @@ class GeometryTocExtractor(groupme.toc.strategy.ExtractorStrategy):
         extracted = []
         for page in self.loaded.content:
             analyzed = analyse_page(page, level_feeds=self.textfeed)
+            analyzed = remove_pagenumber_headline(analyzed)
             extracted.extend(analyzed)
         grouped = group_areas(extracted)
         content = [
@@ -96,3 +97,40 @@ def level(xdist, levels):
         if xdist <= item:
             return index
     return None
+
+
+PAGENUMBER_HEADLINE = utila.splitlines("""
+Page
+Pages
+Seite
+""")
+
+# max distance from content border to text start
+RIGHTDIST_MAX = configo.HV_INT_PLUS(default=80)
+
+
+def remove_pagenumber_headline(content):
+    """Remove Page over number of pages.
+
+    See:
+
+    TABLE OF CONTENTS
+                                                                       Page
+    LIST OF FIGURES .....................................................vi
+    LIST OF TABLES......................................................vii
+    """
+    result = []
+    for item in content[0:5]:
+        # (4, (None, TextBoundsInfo(text='Page\n', bounds=TextBounds(...))))
+        bounding = item[1][1].bounds
+        # right text orientation
+        if bounding.rightdist < RIGHTDIST_MAX:
+            text = item[1][1].text
+            if utila.verysimilar(
+                    current=text,
+                    expected=PAGENUMBER_HEADLINE,
+            ):
+                continue
+        result.append(item)
+    result.extend(content[5:])
+    return result
