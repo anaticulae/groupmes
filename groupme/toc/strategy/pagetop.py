@@ -77,4 +77,5 @@ def analyse_page(navigator: texmex.PageTextContentNavigators) -> list:
         result.append(item)
     if len(parsed) > 1:
         result.append(parsed[-1])
+    # TODO: INVESTIGATE BACHELOR105 HEADLINES AT THE END OF THE PAGE/TOC
     return result
