@@ -45,11 +45,11 @@ Logistische Regression
     GAM (Generalized Additive Model)
     ROC-Analyse
     Logistische Regressionsmodelle für die Probanden mit vollständigen Tä- tigkeitsdaten
-        Mögliche Einflussgrößen (“Confounder”) für die logistischen Modelle
+        Mögliche Einfulssgrößen (“Confounder”) für die logistischen Modelle
         Variablenselektion und Modellwahl
         ROC-Analyse für die “besten” Modelle
         Schätzer kombinieren
-        Interpretation der Odds-Ratios der kombinierten Parameterschützer
+        Interpretation der Odds-Ratios der kombinierten Parameterschätzer
         Diskussion der logistischen Regressionsmodelle
 Simulation
     Erzeugen eines Fehlendmusters in den Tätigkeitsdaten
@@ -58,7 +58,7 @@ Simulation
         Imputation der Zeitangaben
         Imputation der Wochenstunden
     Logistische Regressionsmodelle auf imputierten Tätigkeitsdaten
-    Vergleich der Parameterschützer
+    Vergleich der Parameterschätzer
 Zusammenfassung und Ausblick
     Zusammenfassung
     Ausblick
