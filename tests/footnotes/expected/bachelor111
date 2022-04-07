@@ -37,7 +37,7 @@
 0003 Application Programming Interface
 -001 Listing 5.3: Schreiben der Zieladresse in die Struktur KnxTelegram mit Bitshift-Operatoren
 -001 Die Menge der Nutzdaten, die in einem KNX-Telegramm übertragen werden können, ist variabel und kann bis zu 16 Bytes betragen. Im KNX-Telegramm selber ist kein Hinweis auf die Art und Weise der Interpretation der Daten gegeben. Aus diesem Grund ist das Feld payload der Struktur KnxTelegram als Array ausgelegt. Als Datentyp der einzelnen Felder wird der C-Datentyp
-0001 +(NSData ∗ ) downloadDataFromUrl: (NSURL∗ ) u r l r e t u r n i n g R e s p o n s e : 2
-0003 NSURLRequest ∗ r e q u e s t = [ [ NSURLRequest a l l o c ] initWithURL: u r l ] ;
+0001 +(NSData * ) downloadDataFromUrl: (NSURL* ) u r l r e t u r n i n g R e s p o n s e : 2
+0003 NSURLRequest * r e q u e s t = [ [ NSURLRequest a l l o c ] initWithURL: u r l ] ;
 0004 Historisch nach „NextSTEP Interface Builder“ benannt.
 0005 Hinter dem Objekt „File’s Owner“ verbirgt sich ein Verweis auf den entsprechenden von UIViewController abgeleiteten ViewController.
