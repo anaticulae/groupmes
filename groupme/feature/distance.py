@@ -173,7 +173,7 @@ def load(
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     textnavigator = texmex.create_pagetextnavigators(
         text,
-        text_positions=textpositions,
+        textpositions=textpositions,
         fill_empty=False,
     )
     result = RequiredResources(

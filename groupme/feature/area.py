@@ -153,7 +153,7 @@ def load(
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     textnavigator = texmex.create_pagetextnavigators(
         text,
-        text_positions=textpositions,
+        textpositions=textpositions,
     )
     boxes = serializeraw.load_boxes(boxes, pages=pages)
     if os.path.exists(tables):

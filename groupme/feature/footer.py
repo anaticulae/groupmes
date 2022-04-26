@@ -32,7 +32,7 @@ import groupme.footer.strategy.pages
 
 def work(
     text: str,
-    text_positions: str,
+    textpositions: str,
     fontheader: str,
     fontcontent: str,
     horizontals: str,
@@ -53,7 +53,7 @@ def work(
     pagenumber = serializeraw.load_pagenumbers(pagenumber, pages=pages)
     ptns = serializeraw.create_pagetextnavigators_fromfile(
         text,
-        text_positions,
+        textpositions,
         fontheader,
         fontcontent,
         pages=pages,

@@ -33,7 +33,7 @@ def simple():
 
     navigator = texmex.create_pagetextnavigators(
         text=document,
-        text_positions=position,
+        textpositions=position,
     )
     return navigator, horizontals
 

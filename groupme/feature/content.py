@@ -34,8 +34,8 @@ def work(
     navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
         text,
         textpositions,
-        sizeandborderpath=sizeandborder,
-        headerfooterpath=headerfooter,
+        sizeandborder=sizeandborder,
+        headerfooter=headerfooter,
         pages=pages,
     )
     result = []
