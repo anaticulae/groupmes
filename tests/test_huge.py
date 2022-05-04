@@ -24,35 +24,9 @@ UNSUPPORTED_DOCUMENTS = {
 
 EXPECTED_FAILURE = {  # yapf:disable
     # 'docu/twine.pdf': 'font extracting problem',
-    'howto_argparse/howto_argparse.pdf': 'not every headlines can be detected',
+    'docu014': 'not every headlines can be detected',
     # ambigous sections, groupme works, words does not work
     # 'order/howtowrite_pages9.pdf': 'headline detection does not works correctly',
-}
-
-SKIP_DOCUMENTS = {
-    'bachelor/page_111_images_toc.pdf',
-    'bachelor/page_159_huge_appendix.pdf',
-    'bachelor/page_37_tables.pdf',
-    'bachelor/page_56_hard_to_read.pdf',
-    'bachelor/page_63_images_toc.pdf',
-    'docu/howto_argparse.pdf',
-    'docu/twine.pdf',
-    'docu/vimguide.pdf',
-    'homework/page_40_images_toc.pdf',
-    'homework/page_50_math.pdf',
-    'master/page_116_images_toc_formular.pdf',
-    'master/page_72_noimages_toc.pdf',
-    'master/page_78_images_toc.pdf',
-    'master/page_83_noimages_toc.pdf',
-    'master/page_89_noimages_toc.pdf',
-    'order/howtowrite_pages9.pdf',
-    # requires to much required test time
-    'order/page_38.pdf',
-    'technical/page_24_color_figures_images.pdf',
-}
-
-HEADLINE_COUNT = {
-    'howto_argparse/howto_argparse.pdf': 7,  # 9 with subsections
 }
 
 
