@@ -8,7 +8,6 @@
 # =============================================================================
 
 import power
-import utila
 import utilatest
 
 import groupme
@@ -18,16 +17,3 @@ power.setup(groupme.ROOT)
 utilatest.register_marker('huge')
 
 run, fail = utilatest.create_cli_runner(groupme)
-
-
-def relative_path(item):
-    item = item.replace(power.REPOSITORY, '')
-    start_with_slash = item[0] in ('/', '\\')
-    if start_with_slash:
-        item = item[1:]
-    item = utila.forward_slash(item)
-    return item
-
-
-def prepare(item):
-    return item.replace(utila.NEWLINE, '').replace(' ', '_')[0:40]

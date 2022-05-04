@@ -61,15 +61,14 @@ def params():
     ignore = []
     pdf = [
         item for item in power.PDF if all([
-            tests.relative_path(item) not in ignore,
-            # skip generated pdfs to avoid double work
+            utila.file_name(item) not in ignore,
             'notitle' not in item,
         ])
     ]
     result = []
 
     def determine_mark(pdf):
-        relative = tests.relative_path(pdf)
+        relative = utila.file_name(pdf)
         if relative in UNSUPPORTED_DOCUMENTS:
             return pytest.mark.xfail(reason='contains unsupported feature')
         with contextlib.suppress(KeyError):
