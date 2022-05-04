@@ -92,7 +92,7 @@ def params():
 
 @pytest.fixture(params=params())
 def rawresult(request, testdir):
-    tmpdir = testdir.tmpdir
+    tmpdir = str(testdir.tmpdir)
     tocpath = os.path.join(tmpdir, 'toc')
     generalpath = os.path.join(tmpdir, 'general')
     for item in [tocpath, generalpath]:
@@ -115,7 +115,7 @@ def rawresult(request, testdir):
 @utilatest.nightly
 def test_huge_running(rawresult, monkeypatch):  # pylint:disable=W0621
     tmpdir, tocpath, generalpath = rawresult
-    current = tmpdir.join(tmpdir, 'current')
+    current = os.path.join(tmpdir, 'current')
     os.makedirs(current)
     # run groupme
     cmd = f'-i {generalpath} -i {tocpath} -o {current} -j=auto'
