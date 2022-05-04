@@ -10,15 +10,6 @@
 import utila
 
 
-def abbreviation(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'abbreviation_abbreviation',
-        prefix,
-    )
-
-
 def area(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'groupme', 'area_area', prefix)
 
@@ -50,27 +41,5 @@ def headerfooters(path: str, prefix: str = '') -> str:
         path,
         'groupme',
         'footer_footerheader',
-        prefix,
-    )
-
-
-def toc(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'groupme', 'toc_toc', prefix)
-
-
-def figuretable(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'figuretable_figuretable',
-        prefix,
-    )
-
-
-def tabletable(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'tabletable_tabletable',
         prefix,
     )

@@ -14,8 +14,6 @@ import elements
 import iamraw
 import utila
 
-import groupme.toc.strategy.regex
-
 
 def parse(content: str):
     result = []
@@ -60,13 +58,14 @@ def parse_title(text: str, _=None) -> iamraw.HeaderTitle:  # pylint:disable=W061
 
 
 def parse_title_regex(text: str) -> iamraw.HeaderTitle:
-    # TODO: REPLACE WITH ELEMENTS APPROACH?
-    parsed = groupme.toc.strategy.regex.parse(text)
+    parsed = elements.parse_headline(text)
     if not parsed:
         return None
-    assert len(parsed) == 1, utila.log_raw(parsed)
-    parsed = parsed[0]
-    return iamraw.HeaderTitle(title=parsed.title, raw=parsed.raw)
+    result = iamraw.HeaderTitle(
+        title=parsed[0],
+        raw=text,
+    )
+    return result
 
 
 def parse_title_contemporary(text: str) -> iamraw.HeaderTitle:

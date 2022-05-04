@@ -14,5 +14,5 @@ def test_parse_headnotes():
     """Test parsing headnotes based on contemporary"""
     raw = "INHALTSVERZEICHNIS"
     parsed = groupme.footer.headnotes.parse_title(raw)
-    assert parsed.title == 'Inhaltsverzeichnis'
+    assert parsed.title == 'INHALTSVERZEICHNIS'
     assert parsed.raw == raw

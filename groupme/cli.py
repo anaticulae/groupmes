@@ -18,20 +18,7 @@ from groupme import __version__
 
 DESCRIPTION = 'TODO'
 
-TOC_STEP = 'toc'
-TOC_OUTPUT = 'toc'
-
 WORKPLAN = [
-    step(
-        'abbreviation',
-        inputs=[
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-            ResultFile(producer='rawmaker', name='oneline_text_text'),
-            ResultFile(producer='rawmaker', name='oneline_text_positions'),
-        ],
-        output=('abbreviation',),
-    ),
     step(
         'area',
         inputs=[
@@ -58,38 +45,6 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='text_positions'),
         ],
         output=('distance',),
-    ),
-    step(
-        TOC_STEP,
-        inputs=[
-            ResultFile(producer='rawmaker', name='oneline_text_text'),
-            ResultFile(producer='rawmaker', name='oneline_text_positions'),
-            ResultFile(producer='groupme', name='footer_footerheader'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-        ],
-        output=(TOC_OUTPUT,),
-    ),
-    step(
-        'figuretable',
-        inputs=[
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-            ResultFile(producer='rawmaker', name='oneline_text_text'),
-            ResultFile(producer='rawmaker', name='oneline_text_positions'),
-            ResultFile(producer='groupme', name='footer_footerheader'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-        ],
-        output=('figuretable',),
-    ),
-    step(
-        'tabletable',
-        inputs=[
-            ResultFile(producer='rawmaker', name='oneline_text_text'),
-            ResultFile(producer='rawmaker', name='oneline_text_positions'),
-            ResultFile(producer='groupme', name='footer_footerheader'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-        ],
-        output=('tabletable',),
     ),
     step(
         'pagenumbers',

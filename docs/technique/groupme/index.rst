@@ -11,7 +11,6 @@ TODO: what's the difference to hey, words etc.?
 .. toctree::
   :maxdepth: 2
 
-  toc
   footerheader
 
 features
@@ -25,8 +24,3 @@ footer
 
 numbers
 ~~~~~~~
-
-toc
-~~~
-
-See :ref:`toc` for more information.
