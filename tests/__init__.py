@@ -7,32 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import power
 import utila
 import utilatest
 
 import groupme
-import groupme.cli
 
 power.setup(groupme.ROOT)
 
 utilatest.register_marker('huge')
 
-#pylint: disable=invalid-name
-run = functools.partial(
-    utilatest.run_command,
-    main=groupme.cli.main,
-    process=groupme.cli.PROCESS,
-    success=True,
-)
-fail = functools.partial(
-    utilatest.run_command,
-    main=groupme.cli.main,
-    process=groupme.cli.PROCESS,
-    success=False,
-)
+run, fail = utilatest.create_cli_runner(groupme)
 
 
 def relative_path(item):
@@ -40,7 +25,6 @@ def relative_path(item):
     start_with_slash = item[0] in ('/', '\\')
     if start_with_slash:
         item = item[1:]
-
     item = utila.forward_slash(item)
     return item
 
