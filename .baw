@@ -1,6 +1,3 @@
 [project]
 short = groupme
 name = good old times
-
-[release]
-fail_on_finding = True
