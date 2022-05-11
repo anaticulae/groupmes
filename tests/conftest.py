@@ -37,6 +37,7 @@ RESOURCES = [
     (power.MASTER116_PDF, '50:117'),
     (power.ORDER009_PDF, '0:10'),
     genex.todo(power.DOCU007_PDF, tablero=True),
+    genex.todo(power.MASTER063_PDF, figureo=True, cleanup=True),
     power.BACHELOR028_PDF,
     power.BACHELOR032A_PDF,
     power.BACHELOR032_PDF,
