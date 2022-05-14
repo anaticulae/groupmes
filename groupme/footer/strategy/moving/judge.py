@@ -14,7 +14,7 @@ import iamraw
 import utila
 
 import groupme.footer.strategy
-import groupme.footer.strategy.moving.utils as gfsmu
+import groupme.footer.strategy.moving.utils
 
 # relation between detected and empty detected footer to reduce miss detection
 WRONG_STRATEGY_EMPTY_FOOTER_FACTOR = configo.HV_PERCENT_PLUS(default=20)
@@ -31,8 +31,8 @@ class MovingFooterResultReport(groupme.footer.strategy.FooterStrategyReport):
 
 
 def last(result) -> list:
-    footnote_numbers = gfsmu.footnote_numbers_flat(result)
-    if footnote_number_error(footnote_numbers):
+    numbers = groupme.footer.strategy.moving.utils.footnote_numbers_flat(result)
+    if footnote_number_error(numbers):
         result = []
     return result
 

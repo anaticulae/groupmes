@@ -15,7 +15,7 @@ import utila
 import utilatest
 
 import groupme.feature.footer
-import groupme.footer.strategy.moving
+import groupme.footer.strategy.moving.run
 import groupme.footer.strategy.plainmoving
 
 
@@ -40,7 +40,7 @@ def validate_homework18(result):
         utila.ranged_tuple(20),
         [(3, 6), (6, 3), (7, 2), (8, 4), (9, 1), (10, 4), (11, 3), (12, 2),
          (13, 6), (14, 7), (15, 8), (16, 10), (17, 8), (18, 7), (19, 8)],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         validate_master72,
         id='master72pages',
     ),
@@ -49,7 +49,7 @@ def validate_homework18(result):
         utila.ranged_tuple(20),
         [(9, 2), (10, 3), (11, 2), (12, 1), (13, 1), (15, 2), (16, 1), (17, 8),
          (18, 3), (19, 1)],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         None,
         id='bachelor111pages',
     ),
@@ -57,7 +57,7 @@ def validate_homework18(result):
         power.DOCU027_PDF,
         utila.ranged_tuple(20),
         [],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         None,
         id='docu027',
     ),
@@ -65,7 +65,7 @@ def validate_homework18(result):
         power.MASTER110_PDF,
         None,
         [],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         None,
         id='master110',
     ),
@@ -73,7 +73,7 @@ def validate_homework18(result):
         power.DISS178_PDF,
         (22,),
         [(22, 5)],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         None,
         id='diss178page22',
     ),
@@ -89,7 +89,7 @@ def validate_homework18(result):
         power.BACHELOR090_PDF,
         utila.ranged_tuple(18, 25),
         [(18, 2), (19, 1), (21, 1), (22, 3), (23, 4)],
-        groupme.footer.strategy.moving.MovingFooterStrategy,
+        groupme.footer.strategy.moving.run.MovingFooterStrategy,
         validate_bachelor90,
         id='bachelor90',
         marks=pytest.mark.xfail(reason='pdf is not printed correctly'),

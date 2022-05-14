@@ -17,7 +17,9 @@ import utila
 import utilatest
 
 import groupme.feature.footer
-import groupme.footer.strategy as gfs
+import groupme.footer.strategy.fixed
+import groupme.footer.strategy.moving.run
+import groupme.footer.strategy.pages
 import groupme.path
 import tests
 import tests.footerheader.extractor
@@ -41,13 +43,12 @@ def test_footer_work(testdir):  #pylint:disable=W0621
     utila.file_create(os.path.join(root, 'result.yaml'), dumped)
 
 
-@pytest.mark.parametrize(
-    'strategy, expected_results',
-    [
-        (gfs.moving.MovingFooterStrategy, 0),
-        (gfs.fixed.FixedFooterStrategy, 25),  # TODO: CHECK 25
-        (gfs.pages.PageNumberStrategy, 0),
-    ])
+# TODO: CHECK 25
+@pytest.mark.parametrize('strategy, expected_results', [
+    (groupme.footer.strategy.moving.run.MovingFooterStrategy, 0),
+    (groupme.footer.strategy.fixed.FixedFooterStrategy, 25),
+    (groupme.footer.strategy.pages.PageNumberStrategy, 0),
+])
 def test_footer_footerheader_detectionstategy(
     strategy,
     expected_results,

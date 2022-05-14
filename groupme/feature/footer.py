@@ -26,7 +26,6 @@ import groupme.footer
 import groupme.footer.strategy
 import groupme.footer.strategy.common
 import groupme.footer.strategy.fixed
-import groupme.footer.strategy.moving
 import groupme.footer.strategy.pages
 
 

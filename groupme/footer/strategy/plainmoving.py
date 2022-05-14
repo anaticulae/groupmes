@@ -14,14 +14,14 @@ import iamraw
 import texmex.navigator
 import utila
 
-import groupme.footer.strategy as gfs
-import groupme.footer.strategy.moving as gfsm
+import groupme.footer.strategy
 import groupme.footer.strategy.moving.judge
+import groupme.footer.strategy.moving.run
 import groupme.footnotes.strategy.plain
 import groupme.footnotes.strategy.textraw
 
 
-class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
+class PlainMovingFooterStrategy(groupme.footer.strategy.moving.run.MovingFooterStrategy): # yapf:disable
 
     def __init__(
         self,
@@ -45,7 +45,7 @@ class PlainMovingFooterStrategy(gfsm.MovingFooterStrategy):
             detected = []
         return detected
 
-    def report(self) -> gfs.FooterStrategyReport:
+    def report(self) -> groupme.footer.strategy.FooterStrategyReport:
         # TODO: Avoid multiple computation, require  concept.
         detected = self.result()
         report = groupme.footer.strategy.moving.judge.analyze(detected)
