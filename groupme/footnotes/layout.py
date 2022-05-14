@@ -32,26 +32,26 @@ FOOTNOTE_X1_MAX = configo.HolyTable(items=(
 FOOTNOTE_RATE_MIN = configo.HV_PERCENT_PLUS(default=50)
 
 
-def group_footnote_area(content):
-    neighbors_ = neighbors(content)
-    if not neighbors_:
+def group_footnote_area(content) -> list:
+    connected_neighbors = connect_neighbors(content)
+    if not connected_neighbors:
         return []
     result = []
     has_highnote = 0
-    for group in neighbors_:
+    for group in connected_neighbors:
         splitted = split_textinfo(group)
         if any(high for high, _ in splitted):
             has_highnote += 1
         merged = merge_online(splitted)
         result.extend(merged)
-    rate = utila.rate_rel(has_highnote, len(neighbors_))
+    rate = utila.rate_rel(has_highnote, len(connected_neighbors))
     if rate < FOOTNOTE_RATE_MIN:
         utila.debug(f'no highnotes: {rate} detected, skip footnote result')
         return []
     return result
 
 
-def neighbors(items):
+def connect_neighbors(items) -> list:
     if not items:
         return []
     result = [[items[0]]]

@@ -53,7 +53,7 @@ def parse_group(
 
 
 def prepare(content: list) -> list:
-    neighbors = groupme.footnotes.layout.neighbors(content)
+    neighbors = groupme.footnotes.layout.connect_neighbors(content)
     collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
     return collected
 
