@@ -44,10 +44,42 @@ def group_footnote_area(content) -> list:
             has_highnote += 1
         merged = merge_online(splitted)
         result.extend(merged)
+    result = merge_after(result)
     rate = utila.rate_rel(has_highnote, len(connected_neighbors))
     if rate < FOOTNOTE_RATE_MIN:
         utila.debug(f'no highnotes: {rate} detected, skip footnote result')
         return []
+    return result
+
+
+def merge_after(items: list) -> list:
+    """Make merger more robust against false formatted footnotes.
+
+    Merge footnote text which is under highnote on the left side.
+
+    See:
+        - bachelor041a p14
+        - master091b   p54
+    """
+    if not items:
+        return []
+    result = [items[0]]
+    for highnote, content in items[1:]:
+        if highnote is not None:
+            # normal footnote
+            result.append((highnote, content))
+            continue
+        highnote_before = result[-1][0] is not None
+        if highnote_before:
+            # merge them
+            for item in content.style.content:
+                item.start += len(result[-1][1].text)
+                item.end += len(result[-1][1].text)
+            result[-1][1].text += content.text
+            result[-1][1].style.content.extend(content.style.content)
+            continue
+        # footnote without highnote
+        result.append((None, content))
     return result
 
 
