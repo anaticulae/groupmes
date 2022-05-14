@@ -34,7 +34,7 @@ FOOTNOTE_RATE_MIN = configo.HV_PERCENT_PLUS(default=50)
 
 def group_footnote_area(content):
     neighbors_ = neighbors(content)
-    if not neighbors:
+    if not neighbors_:
         return []
     result = []
     has_highnote = 0
