@@ -141,7 +141,10 @@ def merge_online(items) -> list:
             collected = [
                 shrink_tostyle(content.text, style) for style in content.style
             ]
-    result.append((high, union(collected)))
+    notempty = collected or high
+    if notempty:
+        # do not add empty items
+        result.append((high, union(collected)))
     return result
 
 
