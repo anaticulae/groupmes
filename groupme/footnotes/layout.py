@@ -57,7 +57,7 @@ def connect_neighbors(items) -> list:
     result = [[items[0]]]
     for item in items[1:]:
         before = result[-1][-1]
-        if connected(before, item):
+        if connected(before.bounding, item.bounding):
             result[-1].append(item)
         else:
             result.append([item])
@@ -168,28 +168,28 @@ SAMELINE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 UNDERFIRST_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
 
 
-def connected(first, second):
-    leftright_diff_max = LEFTRIGHT_DIFF_MAX(first.bounding.x0)
+def connected(first: tuple, second: tuple) -> bool:
+    leftright_diff_max = LEFTRIGHT_DIFF_MAX(first.x0)
     # words are neighbors
     leftright = utila.near(
-        first.bounding.x1,
-        second.bounding.x0,
+        first.x1,
+        second.x0,
         diff=leftright_diff_max,
     )
     # plus indention
     sameorigin = utila.near(
-        first.bounding.x0,
-        second.bounding.x0,
+        first.x0,
+        second.x0,
         diff=SAMEORIGIN_DIFF_MAX,
     )
     sameline = utila.near(
-        first.bounding.y0,
-        second.bounding.y0,
+        first.y0,
+        second.y0,
         diff=SAMELINE_DIFF_MAX,
     )
     underfirst = utila.near(
-        first.bounding.y1,
-        second.bounding.y0,
+        first.y1,
+        second.y0,
         diff=UNDERFIRST_DIFF_MAX,
     )
     result = (leftright or sameorigin) and (sameline or underfirst)
