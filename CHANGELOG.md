@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.31.0
+
+### Feature
+
+* improve footnote detection (583081ab95da)
+
+### Fix
+
+* do not add empty highnote (ad4e584e6114)
+* fix footnote grouper (307ceaf1cd1f)
+
 ## v0.30.0
 
 ## v0.29.1
