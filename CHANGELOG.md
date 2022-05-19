@@ -569,4 +569,3 @@ Every noteable change is logged here.
 * move code from `hey` project (f408d4b38d83)
 
 ## v0.0.0 Initial release
-
