@@ -18,11 +18,7 @@ import utilatest
 import groupme
 import tests
 
-ARCHIVE = utila.join(
-    groupme.ROOT,
-    'tests/footerheader/expected',
-    assert_exists=True,
-)
+ARCHIVE = utila.join(groupme.ROOT, 'tests/footerheader/expected', exist=True)
 
 step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
