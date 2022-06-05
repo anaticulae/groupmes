@@ -162,16 +162,15 @@ def test_validate_pagenumbers(source, pages, expected):
     assert len(result) == expected
 
 
-PAGENUMBERS = [
-    pytest.param(pdf, id=utila.file_name(pdf)) for pdf in [
-        power.HC_DISS128,
-        power.HC_DISS148,
-        power.HC_DISS166,
-        power.HC_DISS171,
-        power.HC_DISS193,
-        power.TECH024_PDF,
-    ]
+RESOURCES = [
+    power.HC_DISS128,
+    power.HC_DISS148,
+    power.HC_DISS166,
+    power.HC_DISS171,
+    power.HC_DISS193,
+    power.TECH024_PDF,
 ]
+PAGENUMBERS = [pytest.param(pdf, id=utila.file_name(pdf)) for pdf in RESOURCES]
 
 
 @utilatest.longrun
