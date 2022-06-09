@@ -109,7 +109,6 @@ def diss218(result):
     assert utila.isascending(current)
 
 
-
 HUNDRED = utila.ranged_list(100)
 
 
@@ -155,6 +154,7 @@ RESOURCES = [
     power.HC_DISS166,
     power.HC_DISS171,
     power.HC_DISS193,
+    power.PAPER14B_PDF,
     power.TECH024_PDF,
 ]
 PAGENUMBERS = [pytest.param(pdf, id=utila.file_name(pdf)) for pdf in RESOURCES]
