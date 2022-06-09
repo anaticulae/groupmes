@@ -109,9 +109,8 @@ class Evaluate(utilatest.BaseLiner):
 
 
 def rawline(footnote) -> str:
+    result = '     '
     if footnote.raw_number is not None:
         result = str(footnote.number).zfill(4) + ' '
-    else:
-        result = '     '
     result += utila.normalize_text(footnote.text.strip())
     return result
