@@ -39,7 +39,11 @@ def parse_group(
     raw = utila.NEWLINE.join([item.text.strip() for item in multiline])
     number, content = groupme.footnotes.utils.search_footnote(raw)
     bounding = tuple(multiline[0].bounding)
-    text = utila.normalize_text(content, normalize_spaces=True, strips=True)
+    text = utila.normalize_text(
+        content,
+        normalize_spaces=True,
+        strips=True,
+    )
     footnote = iamraw.FootNoteRaw(
         bounding=bounding,
         number=number,
