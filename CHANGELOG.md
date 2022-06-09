@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.32.0
+
+### Feature
+
+* use hyperlink improver (ed088dc7de2d)
+* use improver to improve footnote parser (89abb05adbad)
+* add hyperlink improver (a2ca2bae6ea1)
+
 ## v0.31.0
 
 ### Feature
