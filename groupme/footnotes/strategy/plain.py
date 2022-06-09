@@ -8,6 +8,7 @@
 # =============================================================================
 
 import configo
+import german
 import iamraw
 import utila
 
@@ -78,3 +79,41 @@ def merges(content, merge_line_min: int = MERGE_LINE_MIN):
         else:
             collected[-1].append(line)
     return collected
+
+
+def hyperlink_improve(text: str) -> str:
+    r"""\
+    >>> hyperlink_improve('found at https://aur.\narchlinux.org/trusted-user/TUbylaws.html. There')
+    'found at https://aur.archlinux.org/trusted-user/TUbylaws.html. There'
+
+    Do not fail on empty line.
+    >>> hyperlink_improve('htpp://www.google.de\n\nhello.')
+    'htpp://www.google.de  hello.'
+    """
+    # TODO: MOVE TO GERMAN?
+    splitted = text.splitlines()
+    if len(splitted) == 1:
+        # no merging required
+        return text
+    result = splitted[0]
+    for item in splitted[1:]:
+        lastitem = result.split()[-1]
+        if not german.links(lastitem):
+            result += ' ' + item
+            continue
+        firstitem = item.split()
+        if not firstitem:
+            # newline
+            result += ' '
+            continue
+        # select first word
+        firstitem = firstitem[0]
+        # skip last char to avoid single word with sentence sign
+        firstitem = firstitem[0:-1]
+        if any(char in firstitem for char in '/-.:'):
+            # merge link
+            result += item
+            continue
+        # no link to merge
+        result += ' ' + item
+    return result
