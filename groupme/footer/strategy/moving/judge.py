@@ -33,6 +33,8 @@ class MovingFooterResultReport(groupme.footer.strategy.FooterStrategyReport):
 def last(result) -> list:
     numbers = groupme.footer.strategy.moving.utils.footnote_numbers_flat(result)
     if footnote_number_error(numbers):
+        utila.debug('too many footnote number error, skip result')
+        utila.debug(numbers)
         result = []
     return result
 

@@ -93,8 +93,17 @@ class MovingFooterStrategy(gfs.FooterHeaderDetectionStrategy):
 
     def result(self):
         detected = self.run()
+        utila.verbose('footer before merge:')
+        utila.verbose(detected)
+        utila.verbose()
         result = gfsmf.merge_footer_pages(detected)
+        utila.verbose('footer after merge:')
+        utila.verbose(result)
+        utila.verbose()
         result = gfsmj.last(result)
+        utila.verbose('footer after last:')
+        utila.verbose(result)
+        utila.verbose()
         return result
 
     def report(self) -> gfs.FooterStrategyReport:

@@ -48,6 +48,7 @@ def group_footnote_area(content) -> list:
     rate = utila.rate_rel(has_highnote, len(connected_neighbors))
     if rate < FOOTNOTE_RATE_MIN:
         utila.debug(f'no highnotes: {rate} detected, skip footnote result')
+        utila.verbose(result)
         return []
     return result
 
