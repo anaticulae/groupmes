@@ -68,3 +68,17 @@ def test_footer_bachelor028p2(testdir, monkeypatch):
     )
     footnotes = extracted[0].footer
     assert len(footnotes) == 6
+
+
+def test_footer_bachelor078p44p45(testdir, monkeypatch):
+    """Merge single footnote over two pages."""
+    extracted = tests.footerheader.extractor.footer(
+        power.BACHELOR078_PDF,
+        testdir,
+        monkeypatch,
+        pages='44,45',
+    )
+    footnotes = extracted[0].footer.notes
+    assert len(footnotes) == 1
+    merged = footnotes[0].text
+    assert merged.endswith('werden.')
