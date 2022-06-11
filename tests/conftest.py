@@ -20,7 +20,7 @@ PACKAGE = groupme.PACKAGE
 
 RESOURCES = [
     (power.BACHELOR051_PDF, '0:25'),
-    (power.BACHELOR063_PDF, '0:9,59:62'),
+    (power.BACHELOR063_PDF, '0:20'),
     (power.BACHELOR076_PDF, '0:25'),
     (power.BACHELOR090_PDF, '0:25'),
     (power.BACHELOR241_PDF, '0:100'),
