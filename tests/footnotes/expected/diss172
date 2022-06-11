@@ -1,0 +1,14 @@
+0001 https://github.com/snedelkoski
+0001 Parts of this chapter are published in [14, 70, 112] and patented in [113].
+0002 https://cloud.google.com/compute
+0003 https://microservices-demo.github.io/
+0004 https://github.com/prometheus/node_exporter
+0005 https://github.com/google/cadvisor
+0006 https://prometheus.io
+0001 Parts of this chapter are published in [8, 9, 19, 149].
+0001 Based on our early study on trace anomaly detection using deep learning [18]
+0002 Parts of this chapter are published in [14, 18, 19, 40] and a patent is filed in [183].
+0001 Parts of this chapter are published in [19, 191, 192].
+0002 https://zenodo.org/record/3549604
+-001 7.3.1.1 Anomaly scenarios
+-001 To evaluate the combined approach against the single methods, we injected the anomalies described in Table 16. The first considered anomaly is a network failure anomaly. This anomaly eliminates the access to a host, which leads to multiple failures. The second anomaly arises during deployment. Changes in configuration of system A led to failures in A calls to system B. We resolve this problem with deployment with a correct configuration. The third anomaly is

@@ -8,6 +8,7 @@
 # =============================================================================
 
 import iamraw
+import utila
 
 
 def merge_footer_pages(footers):
@@ -43,4 +44,25 @@ def merge_footer_pages(footers):
         #     [item.bounding for item in current.footer[-1].notes])
         # remove merged notes from after
         after.footer.notes = after.footer.notes[1:]
-    return footers
+    result = remove_single_footnote_without_number(footers)
+    return result
+
+
+def remove_single_footnote_without_number(footers):
+    # remove single footer without any number
+    result = []
+    for item in footers:
+        notes = item.footer.notes
+        if len(notes) > 1:
+            result.append(item)
+            continue
+        if len(notes) == 1:
+            firstnote = notes[0]
+            if firstnote.number in NO_FOOTENOTE_NUMBER:
+                utila.verbose(f'remove empty footnote: {notes}')
+                continue
+            result.append(item)
+    return result
+
+
+NO_FOOTENOTE_NUMBER = (-1, None)
