@@ -91,6 +91,9 @@ def extract_footerheader(
             pagetextnavigators=pagetextnavigators,
         ).result() for strategy in strategies
     ]
+    for result, name in zip(results, strategies):
+        utila.verbose('=' * 30 + name.__name__ + '=' * 30)
+        utila.verbose(result)
     result = judge_strategy(results)
     return result
 
