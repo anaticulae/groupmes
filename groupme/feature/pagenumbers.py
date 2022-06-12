@@ -34,7 +34,7 @@ def work(
     text: str,
     textpositions: str,
     pages: tuple = None,
-) -> str:
+) -> typing.Tuple[str, str]:
     utila.call('numbers')
     navigators = serializeraw.ptn_fromfile(
         text=text,
@@ -42,5 +42,7 @@ def work(
         pages=pages,
     )
     detected = groupme.pagenumbers.determine_pagenumbers(navigators)
-    dumped = serializeraw.dump_pagenumbers(detected)
-    return dumped
+    improved = []
+    improved_dumped = serializeraw.dump_pagenumbers(improved)
+    detected_dumped = serializeraw.dump_pagenumbers(detected)
+    return detected_dumped, improved_dumped

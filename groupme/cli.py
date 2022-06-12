@@ -52,7 +52,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
         ],
-        output=('pagenumbers',),
+        output=('pagenumbers', 'magic'),
     ),
     step(
         'footer',
