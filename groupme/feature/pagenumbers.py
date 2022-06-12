@@ -28,6 +28,7 @@ import serializeraw
 import utila
 
 import groupme.pagenumbers
+import groupme.pagenumbers.magic
 
 
 def work(
@@ -42,7 +43,10 @@ def work(
         pages=pages,
     )
     detected = groupme.pagenumbers.determine_pagenumbers(navigators)
-    improved = []
-    improved_dumped = serializeraw.dump_pagenumbers(improved)
+    improved = groupme.pagenumbers.magic.pagenumbers_fill(
+        pagenumbers=detected,
+        pdflength=navigators[-1].page if navigators else 256,
+    )
     detected_dumped = serializeraw.dump_pagenumbers(detected)
+    improved_dumped = utila.yaml_dump(improved)
     return detected_dumped, improved_dumped
