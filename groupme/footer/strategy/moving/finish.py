@@ -29,12 +29,13 @@ def merge_footer_pages(footers):
         if after.footer.notes[0].number not in (-1, None):
             # no merge required, footnote have a number
             continue
+        lastone = current.footer.notes[-1]
         # merge notes together
         current.footer.notes[-1] = iamraw.FootNoteMerged(
-            page=current.footer.notes[-1].page,
-            number=current.footer.notes[-1].number,
+            page=lastone.page,
+            number=lastone.number,
             notes=[
-                current.footer.notes[-1],
+                lastone,
                 after.footer.notes[0],
             ],
         )
