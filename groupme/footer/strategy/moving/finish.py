@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
 import iamraw
 import utila
 
@@ -30,6 +31,8 @@ def merge_footer_pages(footers):
             # no merge required, footnote have a number
             continue
         lastone = current.footer.notes[-1]
+        if not footnote_enough_text_tomerge(lastone):
+            continue
         # merge notes together
         current.footer.notes[-1] = iamraw.FootNoteMerged(
             page=lastone.page,
@@ -47,6 +50,30 @@ def merge_footer_pages(footers):
         after.footer.notes = after.footer.notes[1:]
     result = remove_single_footnote_without_number(footers)
     return result
+
+
+LAST_LINE_MAX_DIFF = configo.HV_PERCENT_PLUS(default=90)
+
+
+def footnote_enough_text_tomerge(lastone) -> bool:
+    """Ensure that text is nearly full width to reduce false positive merges."""
+    lines = lastone.raw.splitlines()
+    firstline = lines[0]
+    if len(lines) == 1:
+        # TODO: HOLY VALUES, MAKE FONT SIZE DEPENDENT
+        if len(firstline) < 80:
+            return False
+        return True
+    length = [len(line) for line in lines if line.strip()]
+    if len(length) <= 1:
+        # ensure that we do not divide to zero later (length[-2])
+        return True
+    diffs = length[-1] / length[-2]
+    if diffs < LAST_LINE_MAX_DIFF:
+        # merge is not possible, last line is not complete, comparing to
+        # line before.
+        return False
+    return True
 
 
 def remove_single_footnote_without_number(footers):
