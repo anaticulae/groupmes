@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.33.0
+
+### Feature
+
+* connect magic page filler (1d6f709d61c5)
+* add page number filling method (906c05b89568)
+* add page number improved data port (0b5f3da3e10d)
+* do not merge footnotes with too few text at end (c45c97bfe316)
+* add result debugging information (2f96983537f3)
+* skip footer without any footnote (d42fa4c7e8c6)
+* add more debugging information (d9c51835c1dd)
+
+### Fix
+
+* allow single empty footnote merge them later (4bdc1df4c0a6)
+
 ## v0.32.0
 
 ### Feature
