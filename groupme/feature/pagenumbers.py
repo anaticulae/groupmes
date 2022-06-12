@@ -56,7 +56,7 @@ def work(
     pages: tuple = None,
 ) -> str:
     utila.call('numbers')
-    navigators = serializeraw.create_pagetextnavigators_fromfile(
+    navigators = serializeraw.ptn_fromfile(
         text=text,
         textpositions=textpositions,
         pages=pages,
