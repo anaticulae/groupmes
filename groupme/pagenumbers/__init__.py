@@ -133,27 +133,13 @@ def valid_content(
     filtered = []
     for pagenumber, footercontent in navigators:
         footercontent = split_ifrequired(footercontent)
-        pagecontent = []
-        for item in footercontent:
-            text = item.text.strip()
-            if utila.rectangle_size(item.bounding) > max_area:
-                # ignore to big items
-                continue
-            if remove_empty and not text:
-                # filter empty items
-                continue
-            if numbers_only and not elements.ispagenumber(text):
-                # remove non numeric items
-                continue
-            # support -1-, -2-, ...
-            clean_number = text.replace('-', '', 2).strip()
-            # 32/54
-            clean_number = clean_number.split('/')[0]
-            # remove gaps: 10 4
-            clean_number = clean_number.replace(' ', ' ')
-            # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
-            item = (item.bounding, clean_number, pagenumber)
-            pagecontent.append(item)
+        pagecontent = search_pagenumbers(
+            pagenumber,
+            footercontent,
+            area_max=max_area,
+            numbers_only=numbers_only,
+            remove_empty=remove_empty,
+        )
         if len(pagecontent) > POTENTIAL_PAGE_NUMBERS_PER_PER:
             # page with a lot of numbers
             utila.error('too many potential page numbers on page: '
@@ -166,6 +152,37 @@ def valid_content(
         min_elements=min_elements,
     )
     return common
+
+
+def search_pagenumbers(
+    pagenumber,
+    footercontent,
+    area_max: float,
+    numbers_only: bool = True,
+    remove_empty: bool = True,
+) -> list:
+    pagecontent = []
+    for item in footercontent:
+        text = item.text.strip()
+        if utila.rectangle_size(item.bounding) > area_max:
+            # ignore to big items
+            continue
+        if remove_empty and not text:
+            # filter empty items
+            continue
+        if numbers_only and not elements.ispagenumber(text):
+            # remove non numeric items
+            continue
+        # support -1-, -2-, ...
+        clean_number = text.replace('-', '', 2).strip()
+        # 32/54
+        clean_number = clean_number.split('/')[0]
+        # remove gaps: 10 4
+        clean_number = clean_number.replace(' ', ' ')
+        # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
+        item = (item.bounding, clean_number, pagenumber)
+        pagecontent.append(item)
+    return pagecontent
 
 
 POTENTIAL_PAGE_NUMBERS_PER_PER = configo.HV_INT_PLUS(default=7)
