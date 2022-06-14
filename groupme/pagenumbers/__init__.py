@@ -8,6 +8,7 @@
 # =============================================================================
 
 import collections
+import re
 import typing
 
 import configo
@@ -179,11 +180,26 @@ def search_pagenumbers(
         clean_number = clean_number.split('/')[0]
         # remove gaps: 10 4
         clean_number = clean_number.replace(' ', ' ')
+        # Page 6 of 16
+        clean_number = COMPLEX_PAGENUMBER.sub(r'\2', clean_number)
         # TODO: DELIVER RAW DATA FOR FOOTER PAGES STRATEGY DETECTION
         item = (item.bounding, clean_number, pagenumber)
         pagecontent.append(item)
     return pagecontent
 
+
+COMPLEX_PAGENUMBER = utila.compiles(r"""
+    \d{0,3}
+    [ ]{0,3}
+    (page|seite){0,1}
+    [ ]{0,3}
+    (\d{1,3})
+    [ ]{0,3}
+    (of|von)
+    [ ]{0,3}
+    \d{0,3}
+    .{0,5}
+""")
 
 POTENTIAL_PAGE_NUMBERS_PER_PER = configo.HV_INT_PLUS(default=7)
 # ( ) is required to avoid losing white space, because there are required
