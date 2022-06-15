@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.34.0
+
+### Feature
+
+* decrease min line merge (48f82d9d8fda)
+* add more complex pattern (7a3456db8b3a)
+
 ## v0.33.0
 
 ### Feature
