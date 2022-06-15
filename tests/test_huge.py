@@ -24,7 +24,7 @@ UNSUPPORTED_DOCUMENTS = {
 
 EXPECTED_FAILURE = {  # yapf:disable
     # 'docu/twine.pdf': 'font extracting problem',
-    'docu014': 'not every headlines can be detected',
+    # 'docu014': 'not every headlines can be detected',
     # ambigous sections, groupme works, words does not work
     # 'order/howtowrite_pages9.pdf': 'headline detection does not works correctly',
 }
