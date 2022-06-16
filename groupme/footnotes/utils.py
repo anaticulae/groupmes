@@ -92,11 +92,15 @@ def hyperlink_improve(text: str) -> str:
     'found at https://aur.archlinux.org/trusted-user/TUbylaws.html. There'
 
     Do not fail on empty line.
-    >>> hyperlink_improve('htpp://www.google.de\n\nhello.')
-    'htpp://www.google.de\n\nhello.'
+    >>> hyperlink_improve('http://www.google.de\n\nhello.')
+    'http://www.google.de\n\nhello.'
+
+    Regression test, do not fail on empty lines
+    >>> hyperlink_improve(' \nfirst\nsecond')
+    'first\nsecond'
     """
     # TODO: MOVE TO GERMAN?
-    splitted = text.splitlines()
+    splitted = text.strip().splitlines()
     if len(splitted) == 1:
         # no merging required
         return text
