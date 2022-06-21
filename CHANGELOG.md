@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.34.1
+
+### Feature
+
+* adjust input to new naming (e161eabcfafd)
+
+### Fix
+
+* do not fail on white space line (bb5574ec1aa9)
+
 ## v0.34.0
 
 ### Feature
