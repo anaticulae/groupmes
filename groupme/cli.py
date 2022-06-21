@@ -23,7 +23,7 @@ WORKPLAN = [
         'area',
         inputs=[
             ResultFile(producer='rawmaker', name='boxes_boxes'),
-            ResultFile(producer='tablero', name='decide_decide', optional=True),
+            ResultFile(producer='tablero', name='result_result', optional=True),
             ResultFile(producer='rawmaker', name='text_text'),
             ResultFile(producer='rawmaker', name='text_positions'),
         ],
