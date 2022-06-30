@@ -36,6 +36,7 @@ import serializeraw
 import texmex
 import utila
 
+import groupme.footer
 import groupme.path
 
 
@@ -98,7 +99,11 @@ def create_strategy(
     pages=None,
 ):
     horizontals = iamraw.path.horizontals(path)
-    horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
+    horizontals = serializeraw.load_horizontals(
+        horizontals,
+        pages=pages,
+        width_min=groupme.footer.FOOTER_SEPARATOR_WIDTH_MIN,
+    )
 
     sizeandborders = iamraw.path.sizeandborder(path)
     sizeandborders = serializeraw.load_pageborders(sizeandborders, pages=pages)

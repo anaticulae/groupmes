@@ -21,6 +21,7 @@ import serializeraw
 import texmex
 import utila
 
+import groupme.footer
 import groupme.footer.strategy
 import groupme.footer.strategy.common
 import groupme.footer.strategy.fixed
@@ -46,7 +47,11 @@ def work(
     """
     utila.call('footer')
     # load
-    horizontals = serializeraw.load_horizontals(horizontals, pages=pages)
+    horizontals = serializeraw.load_horizontals(
+        horizontals,
+        pages=pages,
+        width_min=groupme.footer.FOOTER_SEPARATOR_WIDTH_MIN,
+    )
     sizeandborders = serializeraw.load_pageborders(sizeandborders, pages=pages)
     pagenumber = serializeraw.load_pagenumbers(pagenumber, pages=pages)
     ptns = serializeraw.ptn_fromfile(

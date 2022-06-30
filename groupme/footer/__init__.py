@@ -7,6 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import configo
+
+FOOTER_SEPARATOR_WIDTH_MIN = configo.HV_INT_PLUS(default=70)
+
 
 def strategies():
     import groupme.footer.strategy.common  # pylint:disable=C0415
