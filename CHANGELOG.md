@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.34.2
+
+### Fix
+
+* allow smaller footnote separators (237df46c9fab)
+
 ## v0.34.1
 
 ### Feature
