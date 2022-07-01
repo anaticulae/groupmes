@@ -15,7 +15,7 @@ import groupme.footnotes.layout
 
 FOOTER_SEPARATOR_COUNT_MIN = configo.HV_INT_PLUS(default=10)
 
-BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=60)
+BOTTOM_BORDER = configo.HV_PERCENT_PLUS(default=40)
 
 
 def footer_separator(horizontals, pagesize: callable) -> list:
