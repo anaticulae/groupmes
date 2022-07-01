@@ -173,9 +173,8 @@ def extract_page_footerheader(
             header = create_header(top / pageheight, textnavigator)
         footer = None
         if bottom is not None and groupme.horizontals.match(content, bottom):
-            bottom_ = utila.roundme(bottom / pageheight)
             footer = iamraw.FixedFooterInformation(
-                begin=bottom_,
+                begin=utila.roundme(bottom / pageheight),
                 end=texmex.END,
             )
         if header is None and footer is None:
