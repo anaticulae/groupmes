@@ -180,11 +180,9 @@ def extract_page_footerheader(
                 begin=bottom_,
                 end=texmex.END,
             )
-
         if header is None and footer is None:
             # no matching horizontals
             continue
-
         footer_header = iamraw.PageContentFooterHeader(
             header=header,
             footer=footer,
