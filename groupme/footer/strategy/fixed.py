@@ -206,7 +206,7 @@ def create_header(top: float, navigator):
         if isinstance(item, iamraw.HeaderTitle):
             result.title = item
         if isinstance(item, iamraw.RawText):
-            result.undefined.append(item)  # pylint:disable=E1101
+            result.undefined.append(item)
         if isinstance(item, iamraw.PageInformation):
             result.page = item
     return result
