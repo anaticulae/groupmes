@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.34.3
+
+### Feature
+
+* increase horizontal diff max (eb650b285328)
+* use holy value (758b5befe7bb)
+
 ## v0.34.2
 
 ### Fix
