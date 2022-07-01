@@ -82,7 +82,6 @@ class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy)
                 horizontals=self.horizontals,
                 top=top,
                 bottom=bottom,
-                pageheight=pageheight,
                 pagetextnavigators=self.pagetextnavigators,
             )
             footerheader.extend(extracted)
@@ -151,7 +150,6 @@ def extract_page_footerheader(
     horizontals: iamraw.PagesWithHorizontalList,
     top: float,
     bottom: float,
-    pageheight: float,
     pagetextnavigators: texmex.PageTextNavigators,
 ) -> iamraw.PageContentFooterHeaders:
     """Extract footer and header which matches `top` and `bottom`.
@@ -160,7 +158,6 @@ def extract_page_footerheader(
         horizontals: pages with horizontal lines
         top(pixel): position of header-border horizontal line
         bottom(pixel): position of footer-border horizontal line
-        pageheight(pixel): height of pages in pixel
         pagetextnavigators: list of page content
     Returns:
         list of `iamraw.PageContentFooterHeader` for every
@@ -170,9 +167,10 @@ def extract_page_footerheader(
     for page in horizontals:
         content = page.content
         textnavigator = utila.select_page(pagetextnavigators, page.page)
+        pageheight = textnavigator.height
         header = None
         if top is not None and groupme.horizontals.match(content, top):
-            header = create_header(top, pageheight, textnavigator)
+            header = create_header(top / pageheight, textnavigator)
         footer = None
         if bottom is not None and groupme.horizontals.match(content, bottom):
             bottom_ = utila.roundme(bottom / pageheight)
@@ -196,11 +194,9 @@ def extract_page_footerheader(
 HEADER_PARSING_TOL = configo.HV_PERCENT_PLUS(default=10, limit=25)
 
 
-def create_header(top, pageheight, textnavigator):
-    top = utila.roundme(top / pageheight)  # TODO: Replace with utila method
-    # XXX: 10% percent cause of bad font-bounding-boxing
+def create_header(top: float, navigator):
     top = utila.roundme(top * (1 + HEADER_PARSING_TOL))
-    headercontent = textnavigator.between(
+    headercontent = navigator.between(
         texmex.START,
         top,
     )

@@ -46,13 +46,12 @@ def test_footer_fixed_docu027_extract_common_footer():
 
 
 def test_footer_fixed_docu027_extract_page_footerheader():
-    horizontals, pageheight, top, bottom, pagetextnavigators = _docu027()
+    horizontals, _, top, bottom, pagetextnavigators = _docu027()
     top, bottom = top[0], bottom[0]
     extracted = gfsf.extract_page_footerheader(
         horizontals,
         top,
         bottom,
-        pageheight,
         pagetextnavigators,
     )
     allfooter = [
@@ -82,15 +81,13 @@ def _bachelor111():
 
 
 def _bachelor111_footerheader():
-    horizontals, pageheight, top, bottom, pagetextnavigators = _bachelor111()
-
+    horizontals, _, top, bottom, pagetextnavigators = _bachelor111()
     footerheader = []
     for top, bottom in itertools.zip_longest(top, bottom):
         extracted = gfsf.extract_page_footerheader(
             horizontals,
             top,
             bottom,
-            pageheight,
             pagetextnavigators,
         )
         footerheader.extend(extracted)
