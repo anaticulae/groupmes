@@ -192,10 +192,14 @@ def extract_page_footerheader(
     return result
 
 
+# 10% percent cause of bad font-bounding-boxing
+HEADER_PARSING_TOL = configo.HV_PERCENT_PLUS(default=10, limit=25)
+
+
 def create_header(top, pageheight, textnavigator):
     top = utila.roundme(top / pageheight)  # TODO: Replace with utila method
     # XXX: 10% percent cause of bad font-bounding-boxing
-    top = utila.roundme(top * 1.1)
+    top = utila.roundme(top * (1 + HEADER_PARSING_TOL))
     headercontent = textnavigator.between(
         texmex.START,
         top,
