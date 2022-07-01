@@ -21,23 +21,21 @@ ASSERT_HORIZONTAL_DIFF_MAX = configo.HV_FLOAT_PLUS(default=5.0)
 
 def match(
     content: iamraw.PageContentHorizontals,
-    vertical_position: float,
-    maxdiff=2.0,
+    expected: float,
+    diff_max: float = 2.0,
 ) -> bool:
     """Check if any horizontal match the `vertical_position`
 
     Args:
         content(PageContentHorizontals): list with horizontal lines,
                                          mostly one page
-        vertical_position(float): position on the page in 'pixel'
-        maxdiff(float): max difference which matchs to `vertical_position`
+        expected(float): position on the page in 'pixel'
+        diff_max(float): max difference which matchs to `expected`
     Returns:
-        True if any horizontal line match the `vertical_position`
+        True if any horizontal line match the `expected`
     """
     # TODO: Check y0/y1
-    result = any(
-        utila.near(item.box.y0, vertical_position, diff=maxdiff)
-        for item in content)
+    result = any(utila.near(item.box.y0, expected, diff=diff_max) for item in content)  # yapf:disable
     return result
 
 
