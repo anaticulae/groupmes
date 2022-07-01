@@ -50,6 +50,8 @@ HEADER_SIZE_MAX = configo.HV_PERCENT_PLUS(default=15, limit=100)
 # maximal distance from page bottom in percent where footer can be detected
 FOOTER_SIZE_MAX = configo.HV_PERCENT_PLUS(default=20, limit=100)
 
+HORIZONTALS_MATCH_DIFF_MAX = configo.HV_INT_PLUS(default=10)
+
 class FixedFooterStrategy(groupme.footer.strategy.FooterHeaderDetectionStrategy): # yapf:disable
     """The `FixedFooterStrategy` detects footer and header depending on
     horizontal line position. The strategy detects the most common
@@ -165,16 +167,22 @@ def extract_page_footerheader(
     """
     result = []
     for page in horizontals:
-        content = page.content
         textnavigator = utila.select_page(pagetextnavigators, page.page)
-        pageheight = textnavigator.height
         header = None
-        if top is not None and groupme.horizontals.match(content, top):
-            header = create_header(top / pageheight, textnavigator)
+        if top is not None and groupme.horizontals.match(
+                page.content,
+                top,
+                HORIZONTALS_MATCH_DIFF_MAX,
+        ):
+            header = create_header(top / textnavigator.height, textnavigator)
         footer = None
-        if bottom is not None and groupme.horizontals.match(content, bottom):
+        if bottom is not None and groupme.horizontals.match(
+                page.content,
+                bottom,
+                HORIZONTALS_MATCH_DIFF_MAX,
+        ):
             footer = iamraw.FixedFooterInformation(
-                begin=utila.roundme(bottom / pageheight),
+                begin=utila.roundme(bottom / textnavigator.height),
                 end=texmex.END,
             )
         if header is None and footer is None:
