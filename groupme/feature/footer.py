@@ -135,13 +135,15 @@ def judge_strategy(
     ) in utila.sync_pages(results):
         header = fixed.header if fixed else None
         footer = fixed.footer if fixed else None
-
+        footer_best = 'fixed' if fixed else None
+        # strategy: pages
         if pages and pages.footer:
             footer = pages.footer
-
+            footer_best = 'pages'
+        # strategy: moving
         if moving and moving.footer and moving.footer.notes:
             footer = moving.footer
-
+            footer_best = 'moving'
         if common and common.header:
             if not header:
                 header = common.header
@@ -150,11 +152,14 @@ def judge_strategy(
                 # TODO: MORE THAN ONE EXTRACTION CAN HAVE BEST
                 # EXTRACTION QUALITY.
                 header = common.header
-
+        # strategy: plain
         if not (moving and moving.footer) and plainmoving and plainmoving.footer: # yapf:disable
             # use plain moving only if no other strategy works
             footer = plainmoving.footer
-
+            footer_best = 'plain'
+        # log footer best
+        if footer_best:
+            utila.verbose(f'footer: {pagenumber} {footer_best}')
         current = iamraw.PageContentFooterHeader(
             header=header,
             footer=footer,
