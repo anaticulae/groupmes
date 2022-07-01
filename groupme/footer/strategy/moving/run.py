@@ -182,6 +182,8 @@ def extract_footer(
         width=ptn.width,
         pagenumber=ptn.page,
     )
+    if nonumber(footnotes):
+        return None
     if not footnotes:
         # no footnotes parsed, therefore do not return MovingFooterInformation
         return None
@@ -191,3 +193,17 @@ def extract_footer(
         notes=footnotes,
     )
     return footer
+
+
+NONUMBER = (-1, '-1')
+
+
+def nonumber(footnotes) -> bool:
+    if not footnotes:
+        return False
+    counted = len([item for item in footnotes if item.number in NONUMBER])
+    if not counted:
+        return False
+    if counted >= 2:
+        return True
+    return False
