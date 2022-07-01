@@ -46,7 +46,7 @@ RESOURCES = [
 PAGENUMBERS = [pytest.param(pdf, id=utila.file_name(pdf)) for pdf in RESOURCES]
 
 
-@utilatest.longrun
+@utilatest.nightly
 @pytest.mark.parametrize('source', PAGENUMBERS)
 def test_validate_pagenumbers(source, monkeypatch, testdir):
     Evaluate(
