@@ -81,6 +81,7 @@ RESOURCES = [
     power.MASTER193_PDF,
     power.PAPER14B_PDF,
     power.PAPER18_PDF,
+    power.TECH019_PDF,
     power.TECH024_PDF,
 ]
 
