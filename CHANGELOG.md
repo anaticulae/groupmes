@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.34.4
+
+### Feature
+
+* increase valid footer area (21027929c35a)
+* log selected footer strategy (db370cf82651)
+
+### Fix
+
+* skip to many invalid footnotes numbers (928759d95c96)
+
 ## v0.34.3
 
 ### Feature
