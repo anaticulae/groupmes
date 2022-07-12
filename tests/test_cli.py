@@ -14,19 +14,24 @@ import utilatest
 import tests
 
 
-@pytest.mark.parametrize('cmd', [
-    ['--help'],
-    ['-i', power.link(power.ORDER009_PDF), '-o', 'output'],
-    ['-i', power.link(power.MASTER072_PDF), '-o', 'output'],
-    ['-i', power.link(power.MASTER089_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU009_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU027_PDF), '-o', 'output'],
-    ['-i', power.link(power.DOCU007_PDF), '-o', 'output'],
-])
+def test_run_external_help(mp):
+    tests.run('--help', mp=mp)
+
+
 @pytest.mark.usefixtures('testdir')
+@pytest.mark.parametrize('source', [
+    pytest.param(power.ORDER009_PDF, id='order009'),
+    pytest.param(power.MASTER072_PDF, id='master072'),
+    pytest.param(power.MASTER089_PDF, id='master089'),
+    pytest.param(power.DOCU009_PDF, id='docu009'),
+    pytest.param(power.DOCU027_PDF, id='docu027'),
+    pytest.param(power.DOCU007_PDF, id='docu007'),
+])
 @utilatest.nightly
-def test_run_external(cmd, mp):
+def test_run_external(source, mp):
     """Run help and version and format command to reach basic test coverage"""
+    source = power.link(source)
+    cmd = f'-i {source} -o output'
     tests.run(cmd, mp=mp)
 
 
