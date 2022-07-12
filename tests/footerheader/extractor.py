@@ -14,9 +14,9 @@ import serializeraw
 import tests
 
 
-def footer(source: str, testdir, monkeypatch, pages: str = ':'):
+def footer(source: str, td, mp, pages: str = ':'):
     cmd = f'-i {power.link(source)}  --footer --pages={pages}'
-    tests.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+    tests.run(cmd, mp=mp)
+    headerpath = iamraw.path.headerfooters(td.tmpdir)
     loaded = serializeraw.load_headerfooter(headerpath)
     return loaded

@@ -127,8 +127,9 @@ def test_footer_moving(
         assert extracted_footer[1], utila.log_raw(f'has no footer: {page}')
 
 
-def test_footer_master72pages(testdir):
-    path = iamraw.path.horizontals(power.link(power.MASTER072_PDF))
+def test_footer_master72pages():
+    source = power.link(power.MASTER072_PDF)
+    path = iamraw.path.horizontals(source)
     result = serializeraw.load_horizontals(path)
     assert len(result) > 10, str(result)
 

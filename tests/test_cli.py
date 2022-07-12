@@ -25,17 +25,18 @@ import tests
 ])
 @pytest.mark.usefixtures('testdir')
 @utilatest.nightly
-def test_run_external(cmd, monkeypatch):
+def test_run_external(cmd, mp):
     """Run help and version and format command to reach basic test coverage"""
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
 
 
+@pytest.mark.usefixtures('testdir')
 @utilatest.nightly
-def test_regression_groupme_problem(testdir, monkeypatch):
+def test_regression_groupme_problem(mp):
     """There was a problem with not sorted page numbers which leads
+
     to duplicated header/footer. This was solved by sorting page number
-    of left/right page numbers."""
-    tests.run(
-        f'-i {power.link(power.BACHELOR056_PDF)} -j=8',
-        monkeypatch=monkeypatch,
-    )
+    of left/right page numbers.
+    """
+    source = power.link(power.BACHELOR056_PDF)
+    tests.run(f'-i {source} -j=8', mp=mp)

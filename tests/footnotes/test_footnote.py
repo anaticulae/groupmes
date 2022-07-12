@@ -39,11 +39,11 @@ def test_footer_footenote_parse_notes_multiline():
     assert parsed[-1].number == 23
 
 
-def test_footer_master98_page10(testdir, monkeypatch):
+def test_footer_master98_page10(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER098_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='10',
     )
     footer_ = utila.select_page(extracted, 10).footer
@@ -54,7 +54,7 @@ def test_footer_master98_page10(testdir, monkeypatch):
     assert firstnote_text.endswith('16)'), firstnote_text
 
 
-def test_footer_bachelor028p2(testdir, monkeypatch):
+def test_footer_bachelor028p2(td, mp):
     """The hyperlinks produces blue horizontal lines.
 
     After fixing rawmaker, these horizontal lines does not occur anymore
@@ -62,20 +62,20 @@ def test_footer_bachelor028p2(testdir, monkeypatch):
     """
     extracted = tests.footerheader.extractor.footer(
         power.BACHELOR028_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='2',
     )
     footnotes = extracted[0].footer
     assert len(footnotes) == 6
 
 
-def test_footer_bachelor078p44p45(testdir, monkeypatch):
+def test_footer_bachelor078p44p45(td, mp):
     """Merge single footnote over two pages."""
     extracted = tests.footerheader.extractor.footer(
         power.BACHELOR078_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='44,45',
     )
     footnotes = extracted[0].footer.notes

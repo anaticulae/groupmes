@@ -25,8 +25,8 @@ import tests
 import tests.footerheader.extractor
 
 
-def test_footer_work(testdir):  #pylint:disable=W0621
-    root = str(testdir)
+def test_footer_work(td):  #pylint:disable=W0621
+    root = str(td)
     docu27 = power.link(power.DOCU027_PDF)
     dumped = groupme.feature.footer.work(
         iamraw.path.text(docu27),
@@ -74,10 +74,10 @@ def test_footer_footerheader_detectionstategy(
 
 
 @utilatest.longrun
-def test_footer_master72_extract(testdir, monkeypatch):
-    outdir = testdir.tmpdir
+def test_footer_master72_extract(td, mp):
+    outdir = td.tmpdir
     cmd = f'-i {power.link(power.MASTER072_PDF)}  -o {outdir} --footer --pages=3'
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
 
     headfoot = serializeraw.load_headerfooter(iamraw.path.headerfooters(outdir))
     footnotes = headfoot[0].footer.notes
@@ -87,11 +87,11 @@ def test_footer_master72_extract(testdir, monkeypatch):
     assert first.startswith('Aus Gründen der besseren Lesbarkeit'), first
 
 
-def test_footer_homework18(testdir, monkeypatch):
+def test_footer_homework18(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.HOME018_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='3:17',
     )
     content = utila.flatten([item.footer.notes for item in extracted])
@@ -99,24 +99,24 @@ def test_footer_homework18(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_footer_bachelor51(testdir, monkeypatch):
+def test_footer_bachelor51(td, mp):
     """There are no footnotes. We have to verify pages-pattern.
     `current/maxpage`"""
     extracted = tests.footerheader.extractor.footer(
         power.BACHELOR051_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     pages = [item.footer.page.value for item in extracted]
     assert len(pages) >= 23
 
 
 @utilatest.longrun
-def test_footer_master110(testdir, monkeypatch):
+def test_footer_master110(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER110_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='0:50',
     )
     footers = [item.footer for item in extracted if item.footer]
@@ -124,11 +124,11 @@ def test_footer_master110(testdir, monkeypatch):
     assert len(footers) == 37
 
 
-def test_footer_master99_page8(testdir, monkeypatch):
+def test_footer_master99_page8(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER099_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='8',
     )
     footer = extracted[0].footer.notes[0].text.strip()
@@ -138,11 +138,11 @@ def test_footer_master99_page8(testdir, monkeypatch):
 
 
 @utilatest.nightly
-def test_footer_master155_page107(testdir, monkeypatch):
+def test_footer_master155_page107(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER155_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='0:110',
     )
     footer = utila.select_page(extracted, 107).footer
@@ -150,11 +150,11 @@ def test_footer_master155_page107(testdir, monkeypatch):
 
 
 @utilatest.nightly
-def test_footer_master127(testdir, monkeypatch):
+def test_footer_master127(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER127_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages=':',
     )
     headers = [item.header for item in extracted if item.header is not None]
@@ -170,11 +170,11 @@ def test_footer_master127(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_footer_master075(testdir, monkeypatch):
+def test_footer_master075(td, mp):
     extracted = tests.footerheader.extractor.footer(
         power.MASTER075_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages=':',
     )
     footers = [

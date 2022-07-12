@@ -48,21 +48,21 @@ PAGENUMBERS = [pytest.param(pdf, id=utila.file_name(pdf)) for pdf in RESOURCES]
 
 @utilatest.nightly
 @pytest.mark.parametrize('source', PAGENUMBERS)
-def test_validate_pagenumbers(source, monkeypatch, testdir):
+def test_validate_pagenumbers(source, mp, td):
     Evaluate(
         source=source,
-        workdir=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        workdir=td.tmpdir,
+        mp=mp,
     ).evaluate()
 
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, source, workdir, monkeypatch):
+    def __init__(self, source, workdir, mp):
         super().__init__(
             program=functools.partial(
                 tests.run,
-                monkeypatch=monkeypatch,
+                mp=mp,
             ),
             step='pagenumbers',
             source=source,

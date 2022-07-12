@@ -13,14 +13,14 @@ import serializeraw
 import tests
 
 
-def extract_border(source: str, testdir, monkeypatch) -> set:
+def extract_border(source: str, td, mp) -> set:
     source = power.link(source)
-    tests.run(f'-i {source} --border', monkeypatch=monkeypatch)
-    leftright = serializeraw.load_leftright_border(testdir.tmpdir)
+    tests.run(f'-i {source} --border', mp=mp)
+    leftright = serializeraw.load_leftright_border(td.tmpdir)
     unique = set(leftright.values())
     return unique
 
 
-def test_border_diss264(testdir, monkeypatch):
-    unique = extract_border(power.DISS264_PDF, testdir, monkeypatch)
+def test_border_diss264(td, mp):
+    unique = extract_border(power.DISS264_PDF, td, mp)
     assert len(unique) == 2, str(unique)

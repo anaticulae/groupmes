@@ -54,32 +54,32 @@ def test_footer_extract_footerheader_technical(root, expected):
     assert header == expected
 
 
-def extract_header(source, testdir, monkeypatch, pages=':'):
+def extract_header(source, td, mp, pages=':'):
     cmd = f'-i {power.link(source)}  --footer --pages={pages}'
-    tests.run(cmd, monkeypatch=monkeypatch)
-    headerpath = iamraw.path.headerfooters(testdir.tmpdir)
+    tests.run(cmd, mp=mp)
+    headerpath = iamraw.path.headerfooters(td.tmpdir)
 
     loaded = serializeraw.load_headerfooter(headerpath)
     header = [item.header for item in loaded if item.header]
     return header
 
 
-def test_header_bachelor90(testdir, monkeypatch):
-    header = extract_header(power.BACHELOR090_PDF, testdir, monkeypatch, '11:24') # yapf:disable
+def test_header_bachelor90(td, mp):
+    header = extract_header(power.BACHELOR090_PDF, td, mp, '11:24') # yapf:disable
     assert len(header) == 11
 
 
 @utilatest.longrun
-def test_header_bachelor37_starting_index(testdir, monkeypatch):
+def test_header_bachelor37_starting_index(td, mp):
     """Ensure that parts of pages `4:20` for example are indexed correctly."""
-    header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch, '4:20')
+    header = extract_header(power.BACHELOR037_PDF, td, mp, '4:20')
     assert header[0].page.value == 4
 
 
 @pytest.mark.xfail(reason='detector is too optimistic')
 @utilatest.longrun
-def test_header_bachelor37_all(testdir, monkeypatch):
-    header = extract_header(power.BACHELOR037_PDF, testdir, monkeypatch)
+def test_header_bachelor37_all(td, mp):
+    header = extract_header(power.BACHELOR037_PDF, td, mp)
     noheader = [0, 5, 33]
     expected = [item for item in range(0, 37) if item not in noheader]
     current = [item.page.value for item in header]
@@ -87,27 +87,27 @@ def test_header_bachelor37_all(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_header_diss264_page0_40(testdir, monkeypatch):
+def test_header_diss264_page0_40(td, mp):
     header = extract_header(
         power.DISS264_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='0:40',
     )
     assert len(header) == 37
 
 
 @utilatest.longrun
-def test_header_diss264_all(testdir, monkeypatch):
+def test_header_diss264_all(td, mp):
     """Ensure to parse header of alternating pages correctly."""
-    loaded = extract_header(power.DISS264_PDF, testdir, monkeypatch, '0:150')
+    loaded = extract_header(power.DISS264_PDF, td, mp, '0:150')
     assert len(loaded) == 47  # may change in the future
 
 
 @utilatest.longrun
-def test_header_under_line_master75(testdir, monkeypatch):
+def test_header_under_line_master75(td, mp):
     """Ensure to parse header of alternating pages correctly."""
-    loaded = extract_header(power.MASTER075_PDF, testdir, monkeypatch, '0:50')
+    loaded = extract_header(power.MASTER075_PDF, td, mp, '0:50')
     assert len(loaded) == 48, len(loaded)
 
     # TODO: MAY ENABLE LATER
@@ -117,33 +117,33 @@ def test_header_under_line_master75(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_header_master110(testdir, monkeypatch):
-    loaded = extract_header(power.MASTER110_PDF, testdir, monkeypatch, '0:50')
+def test_header_master110(td, mp):
+    loaded = extract_header(power.MASTER110_PDF, td, mp, '0:50')
     assert len(loaded) == 25  # may change in the future
 
 
 @utilatest.nightly
-def test_header_master155(testdir, monkeypatch):
-    loaded = extract_header(power.MASTER155_PDF, testdir, monkeypatch)
+def test_header_master155(td, mp):
+    loaded = extract_header(power.MASTER155_PDF, td, mp)
     assert len(loaded) == 153  # do not change
 
 
-def test_header_tech24(testdir, monkeypatch):
+def test_header_tech24(td, mp):
     loaded = extract_header(
         power.TECH024_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='0:10',
     )
     assert len(loaded) == 9  # do not change
 
 
 @utilatest.nightly
-def test_header_bachelor128(testdir, monkeypatch):
+def test_header_bachelor128(td, mp):
     loaded = extract_header(
         power.BACHELOR128_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     empty = [item for item in loaded if not item.title and not item.undefined]
     # three may reduces later if we get better algorithms, but for now
@@ -152,42 +152,42 @@ def test_header_bachelor128(testdir, monkeypatch):
 
 
 @utilatest.longrun
-def test_header_diss172page110p130(testdir, monkeypatch):
+def test_header_diss172page110p130(td, mp):
     loaded = extract_header(
         power.DISS172_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
         pages='110:130',
     )
     assert len(loaded) == 16  # MAY CHANGE LATER
 
 
 @utilatest.nightly
-def test_header_diss172(testdir, monkeypatch):
+def test_header_diss172(td, mp):
     loaded = extract_header(
         power.DISS172_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     assert len(loaded) in (148, 152)  # NOT VALIDATED
 
 
 @utilatest.nightly
-def test_header_diss144(testdir, monkeypatch):
+def test_header_diss144(td, mp):
     loaded = extract_header(
         power.DISS144_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     assert len(loaded) in (140, 142)  # NOT VALIDATED
 
 
 @utilatest.nightly
-def test_header_diss406(testdir, monkeypatch):
+def test_header_diss406(td, mp):
     loaded = extract_header(
         power.DISS406_PDF,
-        testdir,
-        monkeypatch,
+        td,
+        mp,
     )
     # this document does not contain any header
     assert not loaded

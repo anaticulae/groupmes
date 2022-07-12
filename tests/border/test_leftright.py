@@ -86,13 +86,13 @@ def test_leftright_strategy_witherror():
     assert isinstance(result.right, tuple), result
 
 
-def test_leftright_bachelor241(testdir, monkeypatch):
+def test_leftright_bachelor241(td, mp):
     """Regression test to ensure that bachelor241 border is detected
     correctly."""
     source = power.link(power.BACHELOR241_PDF)
-    tests.run(f'-i {source} --border', monkeypatch=monkeypatch)
+    tests.run(f'-i {source} --border', mp=mp)
 
-    leftright = serializeraw.load_leftright_border(testdir.tmpdir)
+    leftright = serializeraw.load_leftright_border(td.tmpdir)
     assert leftright[0] != leftright[1]
 
 

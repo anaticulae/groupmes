@@ -72,23 +72,23 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     step(power.TECH024_PDF),
 ])
 @utilatest.nightly
-def test_validate_footnotes(source, pages, expected, testdir, monkeypatch):
+def test_validate_footnotes(source, pages, expected, td, mp):
     Evaluate(
         source=source,
         pages=pages,
         expected=expected,
-        workdir=testdir.tmpdir,
-        monkeypatch=monkeypatch,
+        workdir=td.tmpdir,
+        mp=mp,
     ).evaluate()
 
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, source, pages, expected, workdir, monkeypatch):
+    def __init__(self, source, pages, expected, workdir, mp):
         super().__init__(
             program=functools.partial(
                 tests.run,
-                monkeypatch=monkeypatch,
+                mp=mp,
             ),
             step='footer',
             pages=pages,

@@ -14,13 +14,13 @@ import utila
 import tests
 
 
-def test_footer_rotated_master116page102_108(testdir, monkeypatch):
+def test_footer_rotated_master116page102_108(td, mp):
     source = power.link(power.MASTER116_PDF)
     pages = utila.from_tuple((102, 103, 104, 105, 106, 107, 108), separator=',')
     tests.run(
-        f'-i {source} -o {testdir.tmpdir} --pages {pages} --footer',
-        monkeypatch=monkeypatch,
+        f'-i {source} -o {td.tmpdir} --pages {pages} --footer',
+        mp=mp,
     )
-    footerheader = serializeraw.load_headerfooter(testdir.tmpdir)
+    footerheader = serializeraw.load_headerfooter(td.tmpdir)
     header = [item.header for item in footerheader]
     assert len(header) == 7

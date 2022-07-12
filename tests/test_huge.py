@@ -64,8 +64,8 @@ def params():
 
 
 @pytest.fixture(params=params())
-def rawresult(request, testdir):
-    tmpdir = str(testdir.tmpdir)
+def rawresult(request, td):
+    tmpdir = str(td.tmpdir)
     tocpath = os.path.join(tmpdir, 'toc')
     generalpath = os.path.join(tmpdir, 'general')
     for item in [tocpath, generalpath]:
@@ -74,7 +74,7 @@ def rawresult(request, testdir):
     pdf, toccmd, generalcmd = request.param
     rawtoc = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {tocpath} --prefix=oneline {toccmd}'
     rawgeneral = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {generalpath} {generalcmd}'
-    utila.file_copy(pdf, os.path.join(testdir.tmpdir, 'table'))
+    utila.file_copy(pdf, os.path.join(td.tmpdir, 'table'))
     groupme = f'groupme -i {generalpath} -o {generalpath} --content --pagenumbers --footer -j3'
     tablero = f'tablero -i {generalpath} -o {generalpath} -j3'
 
@@ -86,10 +86,10 @@ def rawresult(request, testdir):
 
 
 @utilatest.nightly
-def test_huge_running(rawresult, monkeypatch):  # pylint:disable=W0621
+def test_huge_running(rawresult, mp):  # pylint:disable=W0621
     tmpdir, tocpath, generalpath = rawresult
     current = os.path.join(tmpdir, 'current')
     os.makedirs(current)
     # run groupme
     cmd = f'-i {generalpath} -i {tocpath} -o {current} -j=auto'
-    tests.run(cmd, monkeypatch=monkeypatch)
+    tests.run(cmd, mp=mp)
