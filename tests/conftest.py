@@ -65,6 +65,7 @@ RESOURCES = [
     power.DOCU009_PDF,
     power.DOCU014_PDF,
     power.DOCU027_PDF,
+    power.HC_BACH106,
     power.HC_DISS128,
     power.HC_DISS148,
     power.HC_DISS166,
