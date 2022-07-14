@@ -72,10 +72,18 @@ def merges(content, merge_line_min: int = MERGE_LINE_MIN):
     collected = [[content[0]]]
     # merge multiple lines
     for line in content[1:]:
-        text = line.text.strip()
-        matched = groupme.footnotes.utils.NUMBER_TEXT.match(text)
-        if matched and len(text) >= merge_line_min:
+        if new_footnote(line.text, merge_line_min):
             collected.append([line])
         else:
             collected[-1].append(line)
     return collected
+
+
+def new_footnote(text, merge_line_min: int) -> bool:
+    text = text.strip()
+    matched = groupme.footnotes.utils.NUMBER_TEXT.match(text)
+    if not matched:
+        return False
+    if len(text) < merge_line_min:
+        return False
+    return True
