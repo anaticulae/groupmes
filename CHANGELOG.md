@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.35.0
+
+### Feature
+
+* increase valid footer area (0a6eb469bc43)
+* use pdfpage to limit allowed footnote number (edfdb98ccf61)
+* improve footnote number finder (a94ac8b83a04)
+
 ## v0.34.4
 
 ### Feature
