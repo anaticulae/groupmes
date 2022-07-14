@@ -50,6 +50,10 @@ NUMBER_TEXT = utila.compiles(
             \d{4}\.\d{1,2}\.\d{1,2}
             # TODO: SUPPORT MORE TYPES OF DATES
         )
+        |
+        (
+            \d{0,4}[;,:/)\]]  # Yorkstr.\n40; vgl. Einwohnerbuch der Stadt Erfurt
+        )
     )
     [ ]{0,4}
     (?P<text>.{3,})
