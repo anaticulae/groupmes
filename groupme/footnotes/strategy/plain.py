@@ -16,7 +16,7 @@ import groupme.footnotes.utils
 
 
 def parse(content: list, width: float = 594.0, pagenumber: int = None) -> list:
-    collected = prepare(content)
+    collected = prepare(content, pagenumber)
     result = []
     # parse footnote
     for multiline in collected:
@@ -57,33 +57,55 @@ def parse_group(
     return footnote
 
 
-def prepare(content: list) -> list:
+def prepare(content: list, pdfpage: int) -> list:
     neighbors = groupme.footnotes.layout.connect_neighbors(content)
-    collected = utila.flatten([merges(neighbor) for neighbor in neighbors])
-    return collected
+    collected = [merges(neighbor, pdfpage) for neighbor in neighbors]
+    result = utila.flatten(collected)
+    return result
 
 
 MERGE_LINE_MIN = configo.HV_INT_PLUS(default=len('1. Ebd.'))
 
 
-def merges(content, merge_line_min: int = MERGE_LINE_MIN):
+def merges(content, pdfpage: int):
     if not content:
         return []
     collected = [[content[0]]]
     # merge multiple lines
     for line in content[1:]:
-        if new_footnote(line.text, merge_line_min):
+        if new_footnote(line.text, pdfpage):
             collected.append([line])
         else:
             collected[-1].append(line)
     return collected
 
 
-def new_footnote(text, merge_line_min: int) -> bool:
+FOOTNOTE_NUMBER_MAX = configo.HolyTable(
+    items=(
+        (0, 40),
+        (20, 200),
+        (30, 300),
+        (40, 500),
+        (70, 500),
+        (500, 1500),
+        (1000, 3000),
+    ),
+    strategy=utila.Strategy.LINEARISE,
+)
+
+
+def new_footnote(
+    text,
+    pdfpage: int,
+    merge_line_min: int = MERGE_LINE_MIN,
+) -> bool:
     text = text.strip()
     matched = groupme.footnotes.utils.NUMBER_TEXT.match(text)
     if not matched:
         return False
     if len(text) < merge_line_min:
+        return False
+    footnote_number_max = FOOTNOTE_NUMBER_MAX[pdfpage]
+    if int(matched['number']) > footnote_number_max:
         return False
     return True
