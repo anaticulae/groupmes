@@ -29,7 +29,6 @@ def test_run_external_help(mp):
 ])
 @utilatest.nightly
 def test_run_external(source, mp):
-    """Run help and version and format command to reach basic test coverage"""
     source = power.link(source)
     cmd = f'-i {source} -o output'
     tests.run(cmd, mp=mp)
