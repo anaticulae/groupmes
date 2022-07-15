@@ -64,7 +64,7 @@ def params():
 
 
 @pytest.fixture(params=params())
-def rawresult(request, td):
+def rawresult(request, td):  # pylint:disable=R0914
     tmpdir = str(td.tmpdir)
     tocpath = os.path.join(tmpdir, 'toc')
     generalpath = os.path.join(tmpdir, 'general')
