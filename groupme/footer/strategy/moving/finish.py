@@ -52,7 +52,7 @@ def merge_footer_pages(footers):
     return result
 
 
-LAST_LINE_MAX_DIFF = configo.HV_PERCENT_PLUS(default=85)
+LAST_LINE_DIFF_MAX = configo.HV_PERCENT_PLUS(default=85)
 
 
 def footnote_enough_text_tomerge(lastone) -> bool:
@@ -69,7 +69,7 @@ def footnote_enough_text_tomerge(lastone) -> bool:
         # ensure that we do not divide to zero later (length[-2])
         return True
     diffs = length[-1] / length[-2]
-    if diffs < LAST_LINE_MAX_DIFF:
+    if diffs < LAST_LINE_DIFF_MAX:
         # merge is not possible, last line is not complete, comparing to
         # line before.
         return False
