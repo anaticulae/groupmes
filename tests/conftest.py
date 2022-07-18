@@ -99,6 +99,8 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
 def extract(resources):
     genex.extract(
         resources,
+        pagenumber=True,
+        cleanup=True,
         groupme=True,
         worker=WORKER,
     )
@@ -115,6 +117,8 @@ def extract_notitle(resources):
         removepages='0',
         folder='notitle',
         pages='0:10',
+        pagenumber=True,
+        cleanup=True,
         groupme=True,
         worker=1,
     )

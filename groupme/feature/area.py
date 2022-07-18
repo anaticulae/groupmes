@@ -151,9 +151,11 @@ def load(
 ) -> RequiredResources:
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
+    # TODO: SHOULD WE REMOVE HIDDEN ITEMS?
     textnavigator = texmex.create_pagetextnavigators(
         text,
         textpositions=textpositions,
+        state=None,  # load hidden items
     )
     boxes = serializeraw.load_boxes(boxes, pages=pages)
     if os.path.exists(tables):
