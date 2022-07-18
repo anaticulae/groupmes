@@ -50,7 +50,9 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
 
     def process_pageside(self, pagenumbers):
         result = []
-        pagenumbers = {item[0]: (item[1], item[2]) for item in pagenumbers}
+        pagenumbers = {
+            item.pdfpage: (item.bounding, item.detected) for item in pagenumbers
+        }
         for pdfpage, rawpage in pagenumbers.items():
             pageheight = self.pageheight(pdfpage)
             assert pageheight > 0, f'invalid pageheight: {pageheight}'
@@ -138,7 +140,7 @@ def create_footerinformation(
     return result
 
 
-def process_page(page, rawpage, horizontals):
+def process_page(pdfpage, rawpage, horizontals):
     if rawpage is None:
         return None
     pagenumber_bounding = rawpage[0]
@@ -147,7 +149,7 @@ def process_page(page, rawpage, horizontals):
         # Require some distance to horizontal line
         # TODO: ADD DOCU HERE
         return None
-    return (page, pagenumber_bounding)
+    return (pdfpage, pagenumber_bounding)
 
 
 def distance(bounding, items):
