@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import iamraw.path
 import power
 import pytest
@@ -25,8 +23,7 @@ import tests
 import tests.footerheader.extractor
 
 
-def test_footer_work(td):  #pylint:disable=W0621
-    root = str(td)
+def test_footer_work(td):
     docu27 = power.link(power.DOCU027_PDF)
     dumped = groupme.feature.footer.work(
         iamraw.path.text(docu27),
@@ -39,8 +36,7 @@ def test_footer_work(td):  #pylint:disable=W0621
     )
     assert dumped
     assert len(dumped) > 100, str(dumped)  # there is some content
-
-    utila.file_create(os.path.join(root, 'result.yaml'), dumped)
+    utila.file_create(td.tmpdir.join('result.yaml'), dumped)
 
 
 # TODO: CHECK 25
