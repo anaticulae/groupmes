@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.36.0
+
+### Feature
+
+* add new pagenumber resource (36d03d613456)
+
+### Fix
+
+* detected raw value is already hidden by cleanup (df1d81f4e788)
+
 ## v0.35.0
 
 ### Feature
