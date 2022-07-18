@@ -101,7 +101,6 @@ def extract(resources):
         resources,
         groupme=True,
         worker=WORKER,
-        base=power.REPOSITORY,
     )
 
 
