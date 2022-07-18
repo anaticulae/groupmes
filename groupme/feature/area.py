@@ -22,7 +22,6 @@ import typing
 
 import configo
 import serializeraw
-import texmex
 import utila
 
 RECTANGLE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
@@ -149,12 +148,11 @@ def load(
     textpositions: str,
     pages: tuple = None,
 ) -> RequiredResources:
-    text = serializeraw.load_document(text, pages=pages)
-    textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     # TODO: SHOULD WE REMOVE HIDDEN ITEMS?
-    textnavigator = texmex.create_pagetextnavigators(
-        text,
+    textnavigator = serializeraw.ptn_fromfile(
+        text=text,
         textpositions=textpositions,
+        pages=pages,
         state=None,  # load hidden items
     )
     boxes = serializeraw.load_boxes(boxes, pages=pages)
