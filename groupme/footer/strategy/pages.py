@@ -58,7 +58,6 @@ class PageNumberStrategy(gfs.FooterHeaderDetectionStrategy):
             assert pageheight > 0, f'invalid pageheight: {pageheight}'
             horizontals = utila.select_page(self.horizontals, pdfpage)
             navigator = utila.select_page(self.pagetextnavigators, pdfpage)
-
             processed = process_page(pdfpage, rawpage, horizontals)
             if processed is None:
                 continue
@@ -109,12 +108,11 @@ def create_headerinformation(
     end = bounding.y1 / pageheight
     end = utila.roundme(HEADER_TOL + end)
     assert 0.0 <= begin < end <= 1.0, f'0.0<={begin}<{end}<=1.0 p{navigator.page}'
-    raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,
         end=end,
         page_location=bounding,
-        page=iamraw.PageInformation(value=rawpage[1], raw=raw),
+        page=iamraw.PageInformation(value=rawpage[1]),
     )
     return result
 
@@ -130,12 +128,11 @@ def create_footerinformation(
     begin = utila.roundme(bounding.y0 / pageheight)
     end = texmex.END
     assert 0.0 <= begin < end <= 1.0, f'0.0<={begin}<{end}<=1.0 p{navigator.page}'
-    raw = navigator.find(bounding).text.strip()
     result = iamraw.PagesFooterInformation(
         begin=begin,
         end=end,
         page_location=bounding,
-        page=iamraw.PageInformation(value=rawpage[1], raw=raw),
+        page=iamraw.PageInformation(value=rawpage[1]),
     )
     return result
 
