@@ -15,7 +15,7 @@ import utila
 import groupme.feature.area
 
 
-def pyporting(pages: tuple = None):
+def docu007(pages: tuple = None):
     source = power.link(power.DOCU007_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
@@ -31,16 +31,16 @@ def pyporting(pages: tuple = None):
     return loaded
 
 
-def test_area_pyporting_table():
-    loaded = pyporting(pages=3)
+def test_area_docu007_table():
+    loaded = docu007(pages=3)
     grouped = groupme.feature.area.group_areas(loaded)
     assert grouped
     assert len(grouped[0].outside['tables']) == 6
 
 
 @pytest.mark.xfail(reason='???')
-def test_area_pyporting_boxes():
-    loaded = pyporting(pages=5)
+def test_area_docu007_boxes():
+    loaded = docu007(pages=5)
     grouped = groupme.feature.area.group_areas(loaded)
     assert grouped
     assert len(grouped) == 1
@@ -49,7 +49,7 @@ def test_area_pyporting_boxes():
 
 
 def test_area_dump_load():
-    data = pyporting()
+    data = docu007()
     grouped = groupme.feature.area.group_areas(data)
 
     assert grouped

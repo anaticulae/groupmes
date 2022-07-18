@@ -15,7 +15,8 @@ import groupme.feature.distance
 import groupme.path
 
 
-def pyporting(pages: tuple = None):
+def docu007(pages: tuple = None):
+    # TODO: REMOVE DUPLICATION
     source = power.link(power.DOCU007_PDF)
     area = groupme.path.area(source)
     text = iamraw.path.text(source)
@@ -30,7 +31,7 @@ def pyporting(pages: tuple = None):
 
 
 def test_distance_pyport_page0():
-    loaded = pyporting(pages=(0))
+    loaded = docu007(pages=(0))
     distances = groupme.feature.distance.determine_distances(loaded)
     first = distances[0].content[0]
     assert first.after >= 40, first.after
@@ -38,7 +39,7 @@ def test_distance_pyport_page0():
 
 
 def test_distance_pyport_page3():
-    loaded = pyporting(pages=(3))
+    loaded = docu007(pages=(3))
     distances = groupme.feature.distance.determine_distances(loaded)
     page = distances[0].content
     assert len(page) == 1, page
@@ -49,7 +50,7 @@ def test_distance_pyport_page3():
 
 @pytest.mark.xfail(reason='improve table parser')
 def test_distance_pyport_page5():
-    loaded = pyporting(pages=(5))
+    loaded = docu007(pages=(5))
     distances = groupme.feature.distance.determine_distances(loaded)
     page = distances[0].content
     assert len(page) == 4, page
@@ -58,13 +59,13 @@ def test_distance_pyport_page5():
 
 
 def test_distance_pyport():
-    loaded = pyporting()
+    loaded = docu007()
     distances = groupme.feature.distance.determine_distances(loaded)
     assert len(distances) == 3, distances
 
 
 def test_distance_dump_load():
-    data = pyporting()
+    data = docu007()
     distances = groupme.feature.distance.determine_distances(data)
 
     dumped = groupme.feature.distance.dump_distance(distances)
