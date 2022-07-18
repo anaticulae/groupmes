@@ -75,10 +75,11 @@ def rawresult(request, td):  # pylint:disable=R0914
     rawtoc = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {tocpath} --prefix=oneline {toccmd}'
     rawgeneral = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {generalpath} {generalcmd}'
     utila.file_copy(pdf, os.path.join(td.tmpdir, 'table'))
-    groupme = f'groupme -i {generalpath} -o {generalpath} --content --pagenumbers --footer -j3'
+    pagenumber = f'pagenumber -i {generalpath} -o {generalpath}'
+    groupme = f'groupme -i {generalpath} -o {generalpath} --content --footer -j3'
     tablero = f'tablero -i {generalpath} -o {generalpath} -j3'
 
-    for todo in [rawtoc, rawgeneral, groupme, tablero]:
+    for todo in [rawtoc, rawgeneral, pagenumber, groupme, tablero]:
         done = utila.run(todo)
         assert done.returncode == utila.SUCCESS, utila.format_completed(done)
 

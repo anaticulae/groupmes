@@ -63,7 +63,7 @@ WORKPLAN = [
             ResultFile(producer='rawmaker', name='fonts_content'),
             ResultFile(producer='rawmaker', name='horizontals_horizontals'),
             ResultFile(producer='rawmaker', name='border_pages'),
-            ResultFile(producer='groupme', name='pagenumbers_pagenumbers'),
+            ResultFile(producer='pagenumber', name='result_result'),
         ],
         output=('footerheader',),
     ),
