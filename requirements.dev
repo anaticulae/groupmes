@@ -15,6 +15,7 @@ hardcore>=0.5.2<1.0.0
 
 # test data generator
 genex==0.32.0
+pagenumber>=0.2.1<1.0.0
 
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.37.7
