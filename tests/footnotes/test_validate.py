@@ -23,6 +23,63 @@ ARCHIVE = utila.join(groupme.ROOT, 'tests/footnotes/expected', exist=True)
 step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 
 
+@pytest.mark.parametrize(
+    'source',
+    utilatest.test_resources([
+        power.BACHELOR028_PDF,
+        power.BACHELOR032A_PDF,
+        power.BACHELOR032_PDF,
+        power.BACHELOR037_PDF,
+        power.BACHELOR039_PDF,
+        power.BACHELOR041A_PDF,
+        power.BACHELOR056_PDF,
+        power.BACHELOR063_PDF,
+        power.BACHELOR077_PDF,
+        power.BACHELOR078_PDF,
+        power.BACHELOR086_PDF,
+        power.BACHELOR101_PDF,
+        power.BACHELOR105_PDF,
+        power.BACHELOR111_PDF,
+        power.DISS143_PDF,
+        power.DISS172_PDF,
+        power.DOCU014_PDF,
+        power.DOCU027_PDF,
+        power.HC_BACH106,
+        power.HC_DISS128,
+        power.HC_DISS148,
+        power.HC_DISS166,
+        power.HC_DISS171,
+        power.HC_DISS193,
+        power.HOME018_PDF,
+        power.MASTER063_PDF,
+        power.MASTER072_PDF,
+        power.MASTER075_PDF,
+        power.MASTER089_PDF,
+        power.MASTER091A_PDF,
+        power.MASTER091B_PDF,
+        power.MASTER099C_PDF,
+        power.MASTER110_PDF,
+        power.MASTER112_PDF,
+        power.MASTER116_PDF,
+        power.MASTER127_PDF,
+        power.MASTER155_PDF,
+        power.MASTER193_PDF,
+        power.PAPER14B_PDF,
+        power.PAPER18_PDF,
+        power.TECH024_PDF,
+    ]),
+)
+@utilatest.nightly
+def test_validate_footnotes_all(source, td, mp):
+    Evaluate(
+        source=source,
+        pages=':',
+        expected=None,
+        workdir=td.tmpdir,
+        mp=mp,
+    ).evaluate()
+
+
 @pytest.mark.parametrize('source, pages, expected', [
     pytest.param(power.BACHELOR128_PDF, '0:14', 'bachelor128', id='bachelo128'),
     pytest.param(power.DISS143_PDF, '20:26', 'diss143page20', id='diss143p20'),
@@ -33,60 +90,6 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
 ])
 @utilatest.nightly
 def test_validate_footnotes_selected(source, pages, expected, td, mp):
-    Evaluate(
-        source=source,
-        pages=pages,
-        expected=expected,
-        workdir=td.tmpdir,
-        mp=mp,
-    ).evaluate()
-
-
-@pytest.mark.parametrize('source, pages, expected', [
-    step(power.BACHELOR028_PDF),
-    step(power.BACHELOR032A_PDF),
-    step(power.BACHELOR032_PDF),
-    step(power.BACHELOR037_PDF),
-    step(power.BACHELOR039_PDF),
-    step(power.BACHELOR041A_PDF),
-    step(power.BACHELOR056_PDF),
-    step(power.BACHELOR063_PDF),
-    step(power.BACHELOR077_PDF),
-    step(power.BACHELOR078_PDF),
-    step(power.BACHELOR086_PDF),
-    step(power.BACHELOR101_PDF),
-    step(power.BACHELOR105_PDF),
-    step(power.BACHELOR111_PDF),
-    step(power.DISS143_PDF),
-    step(power.DISS172_PDF),
-    step(power.DOCU014_PDF),
-    step(power.DOCU027_PDF),
-    step(power.HC_BACH106),
-    step(power.HC_DISS128),
-    step(power.HC_DISS148),
-    step(power.HC_DISS166),
-    step(power.HC_DISS171),
-    step(power.HC_DISS193),
-    step(power.HOME018_PDF),
-    step(power.MASTER063_PDF),
-    step(power.MASTER072_PDF),
-    step(power.MASTER075_PDF),
-    step(power.MASTER089_PDF),
-    step(power.MASTER091A_PDF),
-    step(power.MASTER091B_PDF),
-    step(power.MASTER099C_PDF),
-    step(power.MASTER110_PDF),
-    step(power.MASTER112_PDF),
-    step(power.MASTER116_PDF),
-    step(power.MASTER127_PDF),
-    step(power.MASTER155_PDF),
-    step(power.MASTER193_PDF),
-    step(power.PAPER14B_PDF),
-    step(power.PAPER18_PDF),
-    step(power.TECH024_PDF),
-])
-@utilatest.nightly
-def test_validate_footnotes_all(source, pages, expected, td, mp):
     Evaluate(
         source=source,
         pages=pages,
