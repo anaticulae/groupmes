@@ -30,6 +30,19 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     pytest.param(power.DISS273_PDF, '30:60', 'diss273', id='diss273'),
     pytest.param(power.DISS406_PDF, '0:50', 'diss406', id='diss406'),
     pytest.param(power.DISS480_PDF, '4,5', 'diss480p4p5', id='diss480p4p5'),
+])
+@utilatest.nightly
+def test_validate_footnotes_selected(source, pages, expected, td, mp):
+    Evaluate(
+        source=source,
+        pages=pages,
+        expected=expected,
+        workdir=td.tmpdir,
+        mp=mp,
+    ).evaluate()
+
+
+@pytest.mark.parametrize('source, pages, expected', [
     step(power.BACHELOR028_PDF),
     step(power.BACHELOR032A_PDF),
     step(power.BACHELOR032_PDF),
@@ -73,7 +86,7 @@ step = lambda x: pytest.param(x, ':', utila.file_name(x), id=utila.file_name(x))
     step(power.TECH024_PDF),
 ])
 @utilatest.nightly
-def test_validate_footnotes(source, pages, expected, td, mp):
+def test_validate_footnotes_all(source, pages, expected, td, mp):
     Evaluate(
         source=source,
         pages=pages,
