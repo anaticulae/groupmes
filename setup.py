@@ -53,7 +53,6 @@ if __name__ == "__main__":
             'groupme.footer.strategy.moving',
             'groupme.footnotes',
             'groupme.footnotes.strategy',
-            'groupme.pagenumbers',
         ],
         entry_points={
             'console_scripts': ['groupme = groupme.cli:main',],

@@ -24,11 +24,10 @@ Required API:
 
 import typing
 
+import pagenumber.strategy.magic
+import pagenumber.strategy.numbers
 import serializeraw
 import utila
-
-import groupme.pagenumbers
-import groupme.pagenumbers.magic
 
 
 def work(
@@ -42,8 +41,8 @@ def work(
         textpositions=textpositions,
         pages=pages,
     )
-    detected = groupme.pagenumbers.determine_pagenumbers(navigators)
-    improved = groupme.pagenumbers.magic.pagenumbers_fill(
+    detected = pagenumber.strategy.numbers.determine_pagenumbers(navigators)
+    improved = pagenumber.strategy.magic.pagenumbers_fill(
         pagenumbers=detected,
         pdflength=navigators[-1].page if navigators else 256,
     )
