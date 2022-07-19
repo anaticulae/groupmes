@@ -18,3 +18,6 @@ elements>=0.21.3<1.0.0
 
 tablero>=0.9.4<1.0.0
 german>=1.26.3<2.0.0
+
+# TODO: MOVE TO DEV_REQ LATER
+pagenumber>=0.2.1<1.0.0
