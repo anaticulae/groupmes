@@ -63,33 +63,25 @@ def params():
     return result
 
 
-@pytest.fixture(params=params())
-def rawresult(request, td):  # pylint:disable=R0914
-    tmpdir = str(td.tmpdir)
-    tocpath = os.path.join(tmpdir, 'toc')
-    generalpath = os.path.join(tmpdir, 'general')
+@utilatest.nightly
+@pytest.mark.parametrize('config', params())
+def test_huge_running(config, td, mp):  # pylint:disable=R0914
+    pdf, toccmd, generalcmd = config
+    tocpath = td.tmpdir.join('toc')
+    generalpath = td.tmpdir.join('general')
     for item in [tocpath, generalpath]:
         os.makedirs(item)
-
-    pdf, toccmd, generalcmd = request.param
-    rawtoc = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {tocpath} --prefix=oneline {toccmd}'
-    rawgeneral = f'rawmaker -i {pdf} -j=auto --pages=0:20 -o {generalpath} {generalcmd}'
-    utila.file_copy(pdf, os.path.join(td.tmpdir, 'table'))
+    pages = '--pages=0:20'
+    rawtoc = f'rawmaker -i {pdf} -j=auto {pages} -o {tocpath} --prefix=oneline {toccmd}'
+    rawgeneral = f'rawmaker -i {pdf} -j=auto {pages} -o {generalpath} {generalcmd}'
+    utila.file_copy(pdf, td.tmpdir.join('table'))
     pagenumber = f'pagenumber -i {generalpath} -o {generalpath}'
     groupme = f'groupme -i {generalpath} -o {generalpath} --content --footer -j3'
     tablero = f'tablero -i {generalpath} -o {generalpath} -j3'
-
     for todo in [rawtoc, rawgeneral, pagenumber, groupme, tablero]:
         done = utila.run(todo)
         assert done.returncode == utila.SUCCESS, utila.format_completed(done)
-
-    return (tmpdir, tocpath, generalpath)
-
-
-@utilatest.nightly
-def test_huge_running(rawresult, mp):  # pylint:disable=W0621
-    tmpdir, tocpath, generalpath = rawresult
-    current = os.path.join(tmpdir, 'current')
+    current = td.tmpdir.join('current')
     os.makedirs(current)
     # run groupme
     cmd = f'-i {generalpath} -i {tocpath} -o {current} -j=auto'
