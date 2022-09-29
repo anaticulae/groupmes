@@ -1,10 +1,6 @@
 Welcome to groupme
 ==================
 
-.. toctree::
-  :maxdepth: 1
-  technique/index
-
 Progress
 --------
 
@@ -13,7 +9,7 @@ Progress
 
   releases/releases
   releases/backlog
-  pages/changelog
+  CHANGELOG
 
 
 Modules
