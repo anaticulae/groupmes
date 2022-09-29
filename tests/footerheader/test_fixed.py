@@ -21,6 +21,7 @@ import groupme.footer.strategy.fixed as gfsf
 
 
 def _docu027():
+    utilatest.fixture_requires(power.DOCU027_PDF)
     horizontals = iamraw.path.horizontals(power.link(power.DOCU027_PDF))
     horizontals = serializeraw.load_horizontals(horizontals)
 
@@ -61,6 +62,7 @@ def test_footer_fixed_docu027_extract_page_footerheader():
 
 
 def _bachelor111():
+    utilatest.fixture_requires(power.BACHELOR241_PDF)
     horizontals = iamraw.path.horizontals(power.link(power.BACHELOR111_PDF))
     horizontals = serializeraw.load_horizontals(horizontals)
 

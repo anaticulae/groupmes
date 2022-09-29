@@ -29,6 +29,7 @@ import groupme.footer.strategy.pages
     ])
 @utilatest.longrun
 def test_footer_pagenumber_strategy(source, expected):
+    utilatest.fixture_requires(source)
     source = power.link(source)
     # prepare data
     horizontallines = serializeraw.load_horizontals(source)

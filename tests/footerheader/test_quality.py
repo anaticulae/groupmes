@@ -17,6 +17,7 @@ import groupme.feature.footer
 
 
 @utilatest.longrun
+@utilatest.requires(power.BACHELOR111_PDF)
 def test_footerheader_quality_bachelor111():
     source = power.link(power.BACHELOR111_PDF)
     dumped = groupme.feature.footer.work(

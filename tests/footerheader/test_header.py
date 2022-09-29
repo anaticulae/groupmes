@@ -55,6 +55,7 @@ def test_footer_extract_footerheader_technical(root, expected):
 
 
 def extract_header(source, td, mp, pages=':'):
+    utilatest.fixture_requires(source)
     cmd = f'-i {power.link(source)}  --footer --pages={pages}'
     tests.run(cmd, mp=mp)
     headerpath = iamraw.path.headerfooters(td.tmpdir)

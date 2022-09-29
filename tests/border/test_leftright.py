@@ -9,12 +9,14 @@
 
 import power
 import serializeraw
+import utilatest
 
 import groupme.border.leftright
 import tests
 
 
 def load_example(path: str):
+    utilatest.fixture_requires(path)
     # TODO: USE ONELINE?
     textpositions = serializeraw.load_textpositions(path)
     pagesizes = serializeraw.load_pageborders(path)
@@ -22,6 +24,7 @@ def load_example(path: str):
 
 
 def load_leftright(path: str):
+    utilatest.fixture_requires(path)
     textpositions, pagesizes = load_example(path)
     left, right = groupme.border.leftright.determine_pageborder(
         textpositions,
@@ -40,6 +43,7 @@ def test_leftright_run():
     assert isinstance(result.right, tuple), result
 
 
+@utilatest.requires(power.MASTER072_PDF)
 def test_leftright_run_noleftright():
     """Ensure that document with single page layout has no different
     border for left and right but only a single border."""
@@ -86,6 +90,7 @@ def test_leftright_strategy_witherror():
     assert isinstance(result.right, tuple), result
 
 
+@utilatest.requires(power.BACHELOR241_PDF)
 def test_leftright_bachelor241(td, mp):
     """Regression test to ensure that bachelor241 border is detected
     correctly."""

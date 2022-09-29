@@ -30,6 +30,7 @@ import groupme.footer
 @utilatest.longrun
 def test_footer_judge_strategy_quality(path, expected_quality):
     """Ensure that enough header and footer are detected"""
+    utilatest.fixture_requires(path)
     pages = tuple(range(0, 20))
 
     strategies = groupme.footer.strategies()

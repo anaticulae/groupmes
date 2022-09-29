@@ -10,10 +10,12 @@
 import power
 import serializeraw
 import utila
+import utilatest
 
 import tests
 
 
+@utilatest.requires(power.MASTER116_PDF)
 def test_footer_rotated_master116page102_108(td, mp):
     source = power.link(power.MASTER116_PDF)
     pages = utila.from_tuple((102, 103, 104, 105, 106, 107, 108), separator=',')

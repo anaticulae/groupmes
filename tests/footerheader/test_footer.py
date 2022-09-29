@@ -23,6 +23,7 @@ import tests
 import tests.footerheader.extractor
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_footer_work(td):
     docu27 = power.link(power.DOCU027_PDF)
     dumped = groupme.feature.footer.work(
@@ -45,6 +46,7 @@ def test_footer_work(td):
     (groupme.footer.strategy.fixed.FixedFooterStrategy, 25),
     (groupme.footer.strategy.pages.PageNumberStrategy, 0),
 ])
+@utilatest.requires(power.DOCU027_PDF)
 def test_footer_footerheader_detectionstategy(
     strategy,
     expected_results,
@@ -70,6 +72,7 @@ def test_footer_footerheader_detectionstategy(
 
 
 @utilatest.longrun
+@utilatest.requires(power.MASTER072_PDF)
 def test_footer_master72_extract(td, mp):
     outdir = td.tmpdir
     cmd = f'-i {power.link(power.MASTER072_PDF)}  -o {outdir} --footer --pages=3'

@@ -10,12 +10,14 @@
 import iamraw.path
 import power
 import pytest
+import utilatest
 
 import groupme.feature.distance
 import groupme.path
 
 
 def docu007(pages: tuple = None):
+    utilatest.fixture_requires(power.DOCU007_PDF)
     # TODO: REMOVE DUPLICATION
     source = power.link(power.DOCU007_PDF)
     area = groupme.path.area(source)

@@ -9,11 +9,13 @@
 
 import power
 import serializeraw
+import utilatest
 
 import tests
 
 
 def extract_border(source: str, td, mp) -> set:
+    utilatest.fixture_requires(source)
     source = power.link(source)
     tests.run(f'-i {source} --border', mp=mp)
     leftright = serializeraw.load_leftright_border(td.tmpdir)

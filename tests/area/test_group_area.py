@@ -11,11 +11,13 @@ import iamraw.path
 import power
 import pytest
 import utila
+import utilatest
 
 import groupme.feature.area
 
 
 def docu007(pages: tuple = None):
+    utilatest.fixture_requires(power.DOCU007_PDF)
     source = power.link(power.DOCU007_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)

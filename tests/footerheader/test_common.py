@@ -16,6 +16,7 @@ import tests
 
 
 @utilatest.longrun
+@utilatest.requires(power.BACHELOR037_PDF)
 def test_footer_regression_common_strategy(td, mp):
     """There was a bug in handling selective --pages=1 correctly. In the
     old implementation the page height of page zero was used for the
