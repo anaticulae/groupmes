@@ -25,21 +25,3 @@ def border_leftright(path: str, prefix: str = '') -> str:
 
 def distance(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'groupme', 'distance_distance', prefix)
-
-
-def pagenumbers(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'pagenumbers_pagenumbers',
-        prefix,
-    )
-
-
-def headerfooters(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'footer_footerheader',
-        prefix,
-    )
