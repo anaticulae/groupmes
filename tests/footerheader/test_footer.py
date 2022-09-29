@@ -105,6 +105,7 @@ def test_footer_bachelor51(td, mp):
         power.BACHELOR051_PDF,
         td,
         mp,
+        pages='0:25',
     )
     pages = [item.footer.page.value for item in extracted]
     assert len(pages) >= 23
