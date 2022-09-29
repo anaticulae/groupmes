@@ -2,6 +2,32 @@
 
 Every noteable change is logged here.
 
+## v0.37.0 (2022-09-29)
+
+### Feature
+
+* use footnote result (7dacbdba4413)
+* remove pagenumbers and footer step (21d3f573419e)
+
+### Fix
+
+* skip rotated pages (7b0a14cf36af)
+
+### Documentation
+
+* remove outdated docs (54bc138c4395)
+
+### Chore
+
+* change generator (d6885ce8bad5)
+* upgrade requirements.txt (0e142fd5097b)
+* reduce resource generator (89bdfcc41410)
+* extend test data generator (3ceeb0b416c7)
+* add generator step (0720ace1fb47)
+* add Jenkinsfile (ef446a9247cc)
+* upgrade requirements.txt (75d4b3ed0244)
+* upgrade requirements.txt (0b1d6a773970)
+
 ## v0.36.1
 
 ## v0.36.0
