@@ -18,4 +18,4 @@ genex==0.35.2
 
 # ensure that test data is generated with the right version of rawmaker
 rawmaker==2.40.0
-cleanup>=0.6.0<1.0.0
+cleanup>=0.7.0<1.0.0
