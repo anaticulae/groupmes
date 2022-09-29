@@ -8,51 +8,48 @@
 #==============================================================================
 
 import utila
-from utila import ResultFile
-from utila import create_step as step
-from utila import featurepack
 
-from groupme import PROCESS
-from groupme import ROOT
-from groupme import __version__
+import groupme
 
 DESCRIPTION = 'TODO'
 
 WORKPLAN = [
-    step(
+    utila.create_step(
         'area',
         inputs=[
-            ResultFile(producer='rawmaker', name='boxes_boxes'),
-            ResultFile(producer='tablero', name='result_result', optional=True),
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
+            utila.ResultFile(producer='rawmaker', name='boxes_boxes'),
+            utila.ResultFile(producer='tablero',
+                             name='result_result',
+                             optional=True),
+            utila.ResultFile(producer='rawmaker', name='text_text'),
+            utila.ResultFile(producer='rawmaker', name='text_positions'),
         ],
         output=('area',),
     ),
-    step(
+    utila.create_step(
         'border',
         inputs=[
-            ResultFile(producer='rawmaker', name='border_pages'),
-            ResultFile(producer='rawmaker', name='text_positions'),
+            utila.ResultFile(producer='rawmaker', name='border_pages'),
+            utila.ResultFile(producer='rawmaker', name='text_positions'),
         ],
         output=('leftright',),
     ),
-    step(
+    utila.create_step(
         'distance',
         inputs=[
-            ResultFile(producer='groupme', name='area_area'),
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
+            utila.ResultFile(producer='groupme', name='area_area'),
+            utila.ResultFile(producer='rawmaker', name='text_text'),
+            utila.ResultFile(producer='rawmaker', name='text_positions'),
         ],
         output=('distance',),
     ),
-    step(
+    utila.create_step(
         'content',
         inputs=[
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-            ResultFile(producer='groupme', name='footer_footerheader'),
+            utila.ResultFile(producer='rawmaker', name='text_text'),
+            utila.ResultFile(producer='rawmaker', name='text_positions'),
+            utila.ResultFile(producer='rawmaker', name='border_pages'),
+            utila.ResultFile(producer='groupme', name='footer_footerheader'),
         ],
         output=('content',),
     )
@@ -60,15 +57,15 @@ WORKPLAN = [
 
 
 def main():
-    featurepack(
+    utila.featurepack(
         workplan=WORKPLAN,
-        root=ROOT,
+        root=groupme.ROOT,
         featurepackage='groupme.feature',
         config=utila.FeaturePackConfig(
             description=DESCRIPTION,
             multiprocessed=True,
-            name=PROCESS,
+            name=groupme.PROCESS,
             pages=True,
-            version=__version__,
+            version=groupme.__version__,
         ),
     )
