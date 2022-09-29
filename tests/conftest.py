@@ -20,7 +20,6 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 PACKAGE = groupme.PACKAGE
 
 RESOURCES = [
-    (power.BACHELOR051_PDF, '0:25'),
     (power.BACHELOR063_PDF, '0:20'),
     (power.BACHELOR076_PDF, '0:25'),
     (power.BACHELOR090_PDF, '0:25'),
@@ -46,6 +45,7 @@ RESOURCES = [
     power.BACHELOR037_PDF,
     power.BACHELOR039_PDF,
     power.BACHELOR041A_PDF,
+    power.BACHELOR051_PDF,
     power.BACHELOR056_PDF,
     power.BACHELOR077_PDF,
     power.BACHELOR078_PDF,
