@@ -47,27 +47,6 @@ WORKPLAN = [
         output=('distance',),
     ),
     step(
-        'pagenumbers',
-        inputs=[
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-        ],
-        output=('pagenumbers', 'magic'),
-    ),
-    step(
-        'footer',
-        inputs=[
-            ResultFile(producer='rawmaker', name='text_text'),
-            ResultFile(producer='rawmaker', name='text_positions'),
-            ResultFile(producer='rawmaker', name='fonts_header'),
-            ResultFile(producer='rawmaker', name='fonts_content'),
-            ResultFile(producer='rawmaker', name='horizontals_horizontals'),
-            ResultFile(producer='rawmaker', name='border_pages'),
-            ResultFile(producer='pagenumber', name='result_result'),
-        ],
-        output=('footerheader',),
-    ),
-    step(
         'content',
         inputs=[
             ResultFile(producer='rawmaker', name='text_text'),

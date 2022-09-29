@@ -48,11 +48,6 @@ if __name__ == "__main__":
             'groupme',
             'groupme.border',
             'groupme.feature',
-            'groupme.footer',
-            'groupme.footer.strategy',
-            'groupme.footer.strategy.moving',
-            'groupme.footnotes',
-            'groupme.footnotes.strategy',
         ],
         entry_points={
             'console_scripts': ['groupme = groupme.cli:main',],
