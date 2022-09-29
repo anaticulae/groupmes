@@ -49,7 +49,7 @@ WORKPLAN = [
             utila.ResultFile(producer='rawmaker', name='text_text'),
             utila.ResultFile(producer='rawmaker', name='text_positions'),
             utila.ResultFile(producer='rawmaker', name='border_pages'),
-            utila.ResultFile(producer='groupme', name='footer_footerheader'),
+            utila.ResultFile(producer='footnote', name='result_result'),
         ],
         output=('content',),
     )
