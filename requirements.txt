@@ -20,4 +20,4 @@ tablero>=0.10.0<1.0.0
 german>=1.26.3<2.0.0
 
 # TODO: MOVE TO DEV_REQ LATER
-pagenumber>=0.2.1<1.0.0
+footnote>=0.2.2<1.0.0
