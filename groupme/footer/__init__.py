@@ -18,6 +18,7 @@ def strategies():
     import groupme.footer.strategy.moving.run  # pylint:disable=C0415
     import groupme.footer.strategy.pages  # pylint:disable=C0415
     import groupme.footer.strategy.plainmoving  # pylint:disable=C0415
+
     # TODO: Automate collection
     result = [
         groupme.footer.strategy.common.CommonTextStrategy,

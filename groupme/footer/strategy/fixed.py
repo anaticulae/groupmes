@@ -109,10 +109,7 @@ def extract_common_footer(
         a tuple with the `top` and `bottom` border of header and footer.
         None - If no header or footer is detected.
     """
-    bounding = []
-    for page in horizontals:
-        for horizontal in page.content:
-            bounding.append(horizontal.box)
+    bounding = select_horizontals(horizontals)
     # Hint: Use same line cluster instead of same area cluster. In
     # documents with alternating left right pages the horizonal lines
     # alternates also. Therefore we have only check the y-direction
@@ -146,6 +143,14 @@ def extract_common_footer(
     # the header is on the top(0.0) and the footer is on the bottom(1.0)
     assert max(top) < min(bottom), f'{top} < {bottom}'
     return top, bottom
+
+
+def select_horizontals(horizontals: iamraw.PagesWithHorizontalList) -> list:
+    bounding = []
+    for page in horizontals:
+        for horizontal in page.content:
+            bounding.append(horizontal.box)
+    return bounding
 
 
 def extract_page_footerheader(
