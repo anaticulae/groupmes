@@ -148,6 +148,9 @@ def extract_common_footer(
 def select_horizontals(horizontals: iamraw.PagesWithHorizontalList) -> list:
     bounding = []
     for page in horizontals:
+        if page.rotated:
+            # skip rotated pages
+            continue
         for horizontal in page.content:
             bounding.append(horizontal.box)
     return bounding
