@@ -63,7 +63,7 @@ def params():
     return result
 
 
-@utilatest.nightly
+@utilatest.monday
 @pytest.mark.parametrize('config', params())
 def test_huge_running(config, td, mp):  # pylint:disable=R0914
     pdf, toccmd, generalcmd = config
