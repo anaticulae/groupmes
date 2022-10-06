@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.37.1 (2022-10-06)
+
+### Chore
+
+* run huge only on Monday (7241bd8766ad)
+* root user is not required (9ac1928d9ed7)
+* publish generated data if nightly fails (fe64101296f0)
+* upgrade requirements.txt (289aa8426992)
+* add missing dev resources (6760ecd93281)
+* upgrade requirements.txt (4e7914225b6f)
+
 ## v0.37.0 (2022-09-29)
 
 ### Feature
