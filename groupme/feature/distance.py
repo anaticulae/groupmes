@@ -20,7 +20,6 @@ TODO: SUPPORT LEFT RIGHT DISTANCE
 """
 
 import collections
-import typing
 
 import serializeraw
 import texmex
@@ -37,13 +36,13 @@ AreaDistance = collections.namedtuple(
     'AreaDistance',
     'index, before, after',
 )
-AreaDistances = typing.List[AreaDistance]
+AreaDistances = list[AreaDistance]
 
 PageContentAreaDistance = collections.namedtuple(
     'PageContentAreaDistance',
     'page, content',
 )
-PageContentAreaDistances = typing.List[PageContentAreaDistance]
+PageContentAreaDistances = list[PageContentAreaDistance]
 
 
 def work(
@@ -87,10 +86,9 @@ def group_page(navigator, areas) -> AreaDistances:
 
     final = []
     for key, value in collected.items():
-        negative = max([item for item in value if item < 0], default=None)
-        positive = min([item for item in value if item >= 0], default=None)
-
+        negative = max((item for item in value if item < 0), default=None)
         negative = utila.roundme(negative) if negative is not None else None
+        positive = min((item for item in value if item >= 0), default=None)
         positive = utila.roundme(positive) if positive is not None else None
         final.append(AreaDistance(index=key, before=negative, after=positive))
     return final

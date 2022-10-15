@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
-
 import configo
 import iamraw
 import serializeraw
@@ -22,7 +20,7 @@ def work(
     sizeandborder: str,
     textpositions: str,
     pages: tuple = None,
-) -> typing.Tuple[str]:
+) -> tuple[str]:
     sizeandborder = serializeraw.load_pageborders(sizeandborder, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
 

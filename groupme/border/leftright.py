@@ -80,9 +80,9 @@ RAISING_FAILRATE = configo.HolyTable(
     right_outranges_none=False,
 )
 
-LeftRight = typing.Tuple[float, float]
+LeftRight = tuple[float, float]
 
-DetectedBorder = typing.TypeVar('DetectedBorder', typing.Tuple[float], float)
+DetectedBorder = typing.TypeVar('DetectedBorder', tuple[float], float)
 
 
 @dataclasses.dataclass
@@ -244,13 +244,11 @@ def handle_emptypage(left, right):
     # ignore empty pages
     left_none = 0.0
     left = [item if item is not None else left_none for item in left]
-
     # TODO: Is default=0 a good one?
-    right_none = max([item for item in right if item is not None], default=0)
+    right_none = max((item for item in right if item is not None), default=0)
     # NOTE: Determine more pages as large than it realy are - is this a
     # problem?
     right = [item if item is not None else right_none for item in right]
-
     return left, right
 
 
@@ -293,26 +291,18 @@ def maximize_leftright(
     right_min = size.size.width * (1 - RIGHT_PERCENT)
     left_max, right_min = utila.roundme(left_max, right_min)
     assert left_max <= right_min, 'left and right bounds are flipped'
-
     left = [item[0] for item in boundings if item[0] <= left_max]
     right = [item[2] for item in boundings if item[2] >= right_min]
-
     # TODO: DO WE RELAY NEED THIS?
-    if not left:
-        left = 0.0
-    else:
-        left = utila.mode(left, minimize=True)
-    if not right:
-        right = size.size.width
-    else:
-        right = utila.mode(right, minimize=False)
+    left = utila.mode(left, minimize=True) if left else 0.0
+    right = utila.mode(right, minimize=False) if right else size.size.width
     return left, right
 
 
 CLUSTER_CANDIAT_DIFF_MAX = configo.HV_FLOAT_PLUS(default=2.0)
 
 
-def longest_two(items: utila.Numbers) -> typing.Tuple[float, float]:
+def longest_two(items: utila.Numbers) -> tuple[float, float]:
 
     def close(candidat, clusteritem) -> bool:
         diff = math.fabs(candidat - clusteritem)

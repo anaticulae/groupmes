@@ -18,7 +18,6 @@ TODO:
 
 import collections
 import os
-import typing
 
 import configo
 import serializeraw
@@ -35,7 +34,7 @@ PageContentTextualArea = collections.namedtuple(
     'PageContentTextualArea',
     'page, textual, outside, border',
 )
-PageContentTextualAreas = typing.List[PageContentTextualArea]
+PageContentTextualAreas = list[PageContentTextualArea]
 
 
 def work(
