@@ -1,9 +1,9 @@
-@Library('caelum@e5c35590fa70bc13c087756276e7e041c163d574') _
+@Library('caelum@d84cdc61c790353ffe9a62d9af6b1ac2f8c27d4d') _
 
 pipeline {
     agent {
         docker {
-            image '169.254.149.20:6001/arch_python_baw_opengl:0.10.6'
+            image '169.254.149.20:6001/arch_python_baw_opengl:0.14.0'
             args  '-v $WORKSPACE:/var/workdir'
         }
     }
