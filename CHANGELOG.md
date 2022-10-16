@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.37.2 (2022-10-16)
+
+### Chore
+
+* upgrade pipe library (e67d7f3f97d9)
+* upgrade baw (43f30535491a)
+* upgrade requirements.txt (039a747e631f)
+
 ## v0.37.1 (2022-10-06)
 
 ### Chore
