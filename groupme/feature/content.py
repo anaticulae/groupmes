@@ -31,7 +31,7 @@ def work(
     Returns:
         dump of extracted content bounding boxes
     """
-    navigators = serializeraw.create_pagetextcontentnavigators_fromfile(
+    navigators = serializeraw.ptcn_fromfile(
         text,
         textpositions,
         sizeandborder=sizeandborder,

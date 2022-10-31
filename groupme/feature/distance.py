@@ -108,7 +108,7 @@ class Distance:
             self.sort()
         top, bottom = bounding[1], bounding[3]
         if len(self) == 1:
-            if utila.rectangle_inside(self[0], bounding, diff=self.diff):
+            if utila.rect_inside(self[0], bounding, diff=self.diff):
                 return None
             top_current = self[0][1]
             bottom_current = self[0][3]
@@ -126,9 +126,9 @@ class Distance:
         for index, (before, after) in enumerate(zip(self[0:-1], self[1:])):
             bottom_before = before[3]
             top_after = after[1]
-            if utila.rectangle_inside(before, bounding):
+            if utila.rect_inside(before, bounding):
                 return None
-            if utila.rectangle_inside(after, bounding):
+            if utila.rect_inside(after, bounding):
                 return None
             if bottom_before <= top <= bottom <= top_after:
                 diff_top = top - bottom_before

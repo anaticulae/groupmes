@@ -60,7 +60,7 @@ def test_area_dump_load():
     assert grouped == loaded
 
 
-def test_area_rectangle_merge():
+def test_area_rect_merge():
     before = [
         (10, 10, 100, 100),
         (10, 10, 30, 30),
@@ -72,7 +72,7 @@ def test_area_rectangle_merge():
         (90, 10, 150, 100),
     ]
 
-    merged = utila.rectangle_merge(before)
+    merged = utila.rect_merge(before)
     assert merged == expected
 
     before = [
@@ -85,5 +85,5 @@ def test_area_rectangle_merge():
         (10, 10, 100, 100),
     ]
 
-    merged = utila.rectangle_merge(before)
+    merged = utila.rect_merge(before)
     assert merged == expected

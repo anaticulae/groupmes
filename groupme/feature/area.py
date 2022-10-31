@@ -104,9 +104,9 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
             textual.append(bounding)
 
     # optimize rectangles
-    textual = utila.rectangle_merge(textual)
-    inside_tables = utila.rectangle_merge(inside_tables)
-    inside_boxes = utila.rectangle_merge(inside_boxes)
+    textual = utila.rect_merge(textual)
+    inside_tables = utila.rect_merge(inside_tables)
+    inside_boxes = utila.rect_merge(inside_boxes)
     outside = {
         'boxes': inside_boxes,
         'tables': inside_tables,

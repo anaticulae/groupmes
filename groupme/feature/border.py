@@ -39,7 +39,7 @@ def determine_border(
     for pages_incluster in clustered:
         border = cluster_border(textpositions, pagesizes, pages_incluster)
         result.append(border)
-    result = utila.flatten(result)
+    result = utila.flat(result)
     # sort by page number
     result = sorted(result, key=lambda x: x[0])
     return result
@@ -49,8 +49,8 @@ def cluster_border(textpositions, pagesizes, pages_incluster):
     textpositions = utila.select_pages(textpositions, pages_incluster)
     pagesizes = utila.select_pages(pagesizes, pages_incluster)
 
-    textpositions = utila.not_none(textpositions)
-    pagesizes = utila.not_none(pagesizes)
+    textpositions = utila.notnone(textpositions)
+    pagesizes = utila.notnone(pagesizes)
 
     most = groupme.border.most.run(pagesizes)
     leftright = groupme.border.leftright.run(textpositions, pagesizes)
