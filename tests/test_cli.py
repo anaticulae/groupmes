@@ -37,6 +37,7 @@ def test_run_external(source, mp):
 
 @pytest.mark.usefixtures('testdir')
 @utilatest.nightly
+@utilatest.requires(power.BACHELOR056_PDF)
 def test_regression_groupme_problem(mp):
     """There was a problem with not sorted page numbers which leads
 
