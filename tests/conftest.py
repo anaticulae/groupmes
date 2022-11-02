@@ -42,6 +42,8 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
 def extract(resources):
     genex.extract(
         resources,
+        pagenumber=True,
+        headnote=True,
         footnote=True,
         cleanup=True,
         groupme=True,
