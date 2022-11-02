@@ -49,21 +49,3 @@ def extract(resources):
         groupme=True,
         worker=WORKER,
     )
-
-
-RESOURCES_NOTITLE = [
-    power.DOCU027_PDF,
-]
-
-
-def extract_notitle(resources):
-    genex.extract_removepages(
-        resources,
-        removepages='0',
-        folder='notitle',
-        pages='0:10',
-        footnote=True,
-        cleanup=True,
-        groupme=True,
-        worker=1,
-    )
