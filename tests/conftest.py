@@ -22,7 +22,6 @@ PACKAGE = groupme.PACKAGE
 RESOURCES = [
     (power.BACHELOR241_PDF, '0:100'),
     (power.DISS264_PDF, '0:50'),
-    (power.ORDER009_PDF, '0:10'),
     genex.todo(power.DOCU007_PDF, tablero=True),
     power.BACHELOR056_PDF,
     power.BOOK007_PDF,
@@ -30,6 +29,7 @@ RESOURCES = [
     power.DOCU027_PDF,
     power.MASTER072_PDF,
     power.MASTER089_PDF,
+    power.ORDER009_PDF,
 ]
 
 WORKER = utilatest.worker_count(5, onci=len(RESOURCES))
