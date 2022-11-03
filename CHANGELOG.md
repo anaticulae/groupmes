@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v0.37.3 (2022-11-03)
+
+### Chore
+
+* ensure that baw has generated path (166ece5f1dde)
+* remove useless page numbers (b430c357ab1c)
+* notitle is not required in this project (2d20b40bb19f)
+* extend test data generator (0f322125b665)
+* convert nightly to all (afab14e265f5)
+* upgrade environment (fae2104a174d)
+* upgrade requirements.txt (83765c71e918)
+
 ## v0.37.2 (2022-10-16)
 
 ### Chore
