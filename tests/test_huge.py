@@ -30,6 +30,15 @@ EXPECTED_FAILURE = {  # yapf:disable
 }
 
 
+def determine_mark(pdf):
+    relative = utila.file_name(pdf)
+    if relative in UNSUPPORTED_DOCUMENTS:
+        return pytest.mark.xfail(reason='contains unsupported feature')
+    with contextlib.suppress(KeyError):
+        return pytest.mark.xfail(reason=EXPECTED_FAILURE[relative])
+    return pytest.mark.huge
+
+
 def params():
     # do not ignore any document, it's a nightly
     ignore = []
@@ -40,15 +49,6 @@ def params():
         ])
     ]
     result = []
-
-    def determine_mark(pdf):
-        relative = utila.file_name(pdf)
-        if relative in UNSUPPORTED_DOCUMENTS:
-            return pytest.mark.xfail(reason='contains unsupported feature')
-        with contextlib.suppress(KeyError):
-            return pytest.mark.xfail(reason=EXPECTED_FAILURE[relative])
-        return pytest.mark.huge
-
     for item in pdf:
         double = pytest.param(
             (
