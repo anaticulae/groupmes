@@ -8,14 +8,19 @@
 # =============================================================================
 
 import power
+import pytest
 import serializeraw
 import utilatest
 
 import tests
+import tests.conftest
 
 
-@utilatest.requires(power.BACHELOR056_PDF)
-def test_hefopa(testdir, mp):
+@pytest.mark.parametrize(
+    'source',
+    utilatest.test_resources(tests.conftest.RESOURCES),
+)
+def test_hefopa(source, testdir, mp):
     source = power.link(power.BACHELOR056_PDF)
     cmd = f'-i {source} -o {testdir.tmpdir} --hefopa'
     tests.run(cmd, mp=mp)
