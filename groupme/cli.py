@@ -52,6 +52,15 @@ WORKPLAN = [
             utila.ResultFile(producer='footnote', name='result_result'),
         ],
         output=('content',),
+    ),
+    utila.create_step(
+        'hefopa',
+        inputs=[
+            utila.ResultFile(producer='headnote', name='result_result'),
+            utila.ResultFile(producer='footnote', name='result_result'),
+            utila.ResultFile(producer='pagenumber', name='result_result'),
+        ],
+        output=('result',),
     )
 ]
 
