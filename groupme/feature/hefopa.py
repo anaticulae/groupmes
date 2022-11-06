@@ -29,6 +29,7 @@ def work(
 def merge(headnotes, footnotes, pagenumbers) -> list:
     result = iamraw.PageContentFooterHeaders(content=[])
     result.__strategy__ = 'hefopa'
+    pagenumbers = []  # TODO: ENABLE LATER
     for page, (headnote, footnote, pagenumber) in utila.sync_pages(
         (headnotes, footnotes, pagenumbers)):
         if not any((headnote, footnote, pagenumber)):
