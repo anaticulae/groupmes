@@ -21,7 +21,7 @@ import tests.conftest
     utilatest.test_resources(tests.conftest.RESOURCES),
 )
 def test_hefopa(source, testdir, mp):
-    source = power.link(power.BACHELOR056_PDF)
+    source = power.link(source)
     cmd = f'-i {source} -o {testdir.tmpdir} --hefopa'
     tests.run(cmd, mp=mp)
     merged = serializeraw.load_headerfooter(testdir.tmpdir)
