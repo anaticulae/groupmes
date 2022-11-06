@@ -54,8 +54,15 @@ def load_pagenumbers(
     result = iamraw.PageContentFooterHeaders(content=[])
     result.__stategy__ = 'pagenumber'
     loaded = serializeraw.load_pagenumbers(pagenumber, pages=pages)
+    single = utila.Single()
     for item in loaded:
-        # PageNumber(pdfpage=4,
-        header = iamraw.PageContentFooterHeader(page=item.pdfpage, header=item)  # pylint:disable=E1101
+        # TODO: MAY REMOVE LATER
+        if single.contains(item.pdfpage):
+            utila.error(f'duplicated pagenumber/pdfpage: {item}')
+            continue
+        header = iamraw.PageContentFooterHeader(
+            page=item.pdfpage,
+            header=item,
+        )  # pylint:disable=E1101
         result.content.append(header)
     return result
