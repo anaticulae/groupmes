@@ -24,6 +24,5 @@ def test_hefopa(source, testdir, mp):
     source = power.link(power.BACHELOR056_PDF)
     cmd = f'-i {source} -o {testdir.tmpdir} --hefopa'
     tests.run(cmd, mp=mp)
-    outpath = testdir.tmpdir.join('groupme__hefopa_result.yaml')
-    merged = serializeraw.load_headerfooter(outpath)
+    merged = serializeraw.load_headerfooter(testdir.tmpdir)
     assert merged
