@@ -22,6 +22,7 @@ PACKAGE = groupme.PACKAGE
 RESOURCES = [
     (power.BACHELOR241_PDF, '0:100'),
     (power.DISS264_PDF, '0:50'),
+    (power.HC_DISS193, '0:100'),
     genex.todo(power.DOCU007_PDF, tablero=True),
     power.BACHELOR056_PDF,
     power.BOOK007_PDF,
