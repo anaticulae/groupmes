@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.38.0 (2022-11-06)
+
+### Feature
+
+* add header, footer, pagenumber merging step (078debd3cc3f)
+
+### Chore
+
+* add classifier (359ba436f95f)
+* upgrade requirements.txt (0e7b3819b25c)
+
 ## v0.37.3 (2022-11-03)
 
 ### Chore
