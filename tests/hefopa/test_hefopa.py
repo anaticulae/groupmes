@@ -10,6 +10,7 @@
 import power
 import pytest
 import serializeraw
+import utila
 import utilatest
 
 import tests
@@ -27,3 +28,13 @@ def test_hefopa(pdf, testdir, mp):
     merged = serializeraw.load_headerfooter(testdir.tmpdir)
     skip = pdf == power.BOOK007_PDF  # TODO: ENABLE LATER
     assert merged or skip
+
+
+def test_pagenumbers(testdir, mp):
+    source = power.link(power.HC_DISS193)
+    if not utila.exists(source):
+        pytest.skip(reason=f'generate: {source}')
+    cmd = f'-i {source} -o {testdir.tmpdir} --hefopa'
+    tests.run(cmd, mp=mp)
+    merged = serializeraw.load_headerfooter(testdir.tmpdir)
+    assert len(merged) == 98
