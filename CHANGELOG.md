@@ -2,6 +2,23 @@
 
 Every noteable change is logged here.
 
+## v0.39.0 (2022-11-07)
+
+### Feature
+
+* use pagenumber in result determination (c88c49b44787)
+* merge hefopa pagenumber data (646d2db24b08)
+
+### Fix
+
+* remove duplicated page number (b4b09ea19732)
+* do not use page numbers, fix up required (e8a284da71f0)
+
+### Chore
+
+* extend test data generator (b009be9e7276)
+* upgrade requirements.txt (d8b240905c3a)
+
 ## v0.38.0 (2022-11-06)
 
 ### Feature
