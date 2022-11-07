@@ -43,6 +43,9 @@ def merge(headnotes, footnotes, pagenumbers) -> list:
             if headnote.footer:
                 if not item.footer:
                     item.footer = headnote.footer
+        if pagenumber and pagenumber.footer:
+            if not item.header and not item.footer:
+                item.footer = pagenumber.footer
         result.content.append(item)
     return result
 
@@ -56,13 +59,16 @@ def load_pagenumbers(
     loaded = serializeraw.load_pagenumbers(pagenumber, pages=pages)
     single = utila.Single()
     for item in loaded:
+        pdfpage = item.pdfpage  # pylint:disable=E1101
         # TODO: MAY REMOVE LATER
-        if single.contains(item.pdfpage):
+        if single.contains(pdfpage):
             utila.error(f'duplicated pagenumber/pdfpage: {item}')
             continue
-        header = iamraw.PageContentFooterHeader(
-            page=item.pdfpage,
-            header=item,
-        )  # pylint:disable=E1101
-        result.content.append(header)
+        pageinfo = iamraw.PageInformation(value=item.detected)  # pylint:disable=E1101
+        footer = iamraw.FixedFooterInfo(page=pageinfo)
+        page = iamraw.PageContentFooterHeader(
+            page=pdfpage,
+            footer=footer,
+        )
+        result.content.append(page)
     return result
