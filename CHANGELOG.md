@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.40.0 (2022-11-11)
+
+### Feature
+
+* add footer start/end to pagenumber footer (68ddd39409c2)
+
+### Chore
+
+* upgrade requirements.txt (ba40520e08a7)
+
 ## v0.39.0 (2022-11-07)
 
 ### Feature
