@@ -47,6 +47,7 @@ def merge(headnotes, footnotes, pagenumbers) -> list:
                     item.footer = headnote.footer
         if pagenumber and pagenumber.footer:
             if not item.header and not item.footer:
+                item.header = pagenumber.header
                 item.footer = pagenumber.footer
         result.content.append(item)
     return result
@@ -69,22 +70,39 @@ def load_pagenumbers(
             utila.error(f'duplicated pagenumber/pdfpage: {item}')
             continue
         pageinfo = iamraw.PageInformation(value=item.detected)  # pylint:disable=E1101
-        footer = iamraw.FixedFooterInfo(page=pageinfo)
-        footer.begin = footer_start(pageborder, item.bounding)  # pylint:disable=E1101
-        footer.end = texmex.END
+        header, footer = None, None
+        begin, end = head_foot_area(pageborder, item.bounding)  # pylint:disable=E1101
+        isheader = begin == texmex.START
+        if isheader:
+            header = iamraw.FixedHeaderInfo(page=pageinfo)
+            header.begin = begin
+            header.end = end
+        else:
+            footer = iamraw.FixedFooterInfo(page=pageinfo)
+            footer.begin = begin
+            footer.end = end
         page = iamraw.PageContentFooterHeader(
             page=pdfpage,
+            header=header,
             footer=footer,
         )
         result.content.append(page)
     return result
 
 
-def footer_start(pageborder, pagenumber_bounding) -> float:
+def head_foot_area(pageborder, pagenumber_bounding) -> float:
     pageheight = pageborder.size.height
     if not pageheight:
         utila.error(f'missing page height: {pageborder} {pagenumber_bounding}')
         return texmex.END
     pagenumber_y0 = pagenumber_bounding.y0
-    start = utila.roundme(pagenumber_y0 / pageheight - 0.03)  # TOL
-    return start
+    pagenumber_y1 = pagenumber_bounding.y1
+    header = pagenumber_y1 < 350
+    if header:
+        begin = texmex.START
+        end = utila.roundme(pagenumber_y1 / pageheight + 0.02)  # TOL
+    else:
+        # footer
+        begin = utila.roundme(pagenumber_y0 / pageheight - 0.02)  # TOL
+        end = texmex.END
+    return begin, end
