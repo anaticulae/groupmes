@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.40.1 (2022-11-11)
+
+### Fix
+
+* distinguish between footer and header page number (e39c78978275)
+
 ## v0.40.0 (2022-11-11)
 
 ### Feature
