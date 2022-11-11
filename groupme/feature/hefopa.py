@@ -69,24 +69,33 @@ def load_pagenumbers(
         if single.contains(pdfpage):
             utila.error(f'duplicated pagenumber/pdfpage: {item}')
             continue
-        pageinfo = iamraw.PageInformation(value=item.detected)  # pylint:disable=E1101
-        header, footer = None, None
-        begin, end = head_foot_area(pageborder, item.bounding)  # pylint:disable=E1101
-        isheader = begin == texmex.START
-        if isheader:
-            header = iamraw.FixedHeaderInfo(page=pageinfo)
-            header.begin = begin
-            header.end = end
-        else:
-            footer = iamraw.FixedFooterInfo(page=pageinfo)
-            footer.begin = begin
-            footer.end = end
-        page = iamraw.PageContentFooterHeader(
-            page=pdfpage,
-            header=header,
-            footer=footer,
+        page = create(
+            item,
+            pdfpage,
+            pageborder,
         )
         result.content.append(page)
+    return result
+
+
+def create(item, pdfpage, pageborder) -> iamraw.PageContentFooterHeader:
+    pageinfo = iamraw.PageInformation(value=item.detected)  # pylint:disable=E1101
+    header, footer = None, None
+    begin, end = head_foot_area(pageborder, item.bounding)  # pylint:disable=E1101
+    isheader = begin == texmex.START
+    if isheader:
+        header = iamraw.FixedHeaderInfo(page=pageinfo)
+        header.begin = begin
+        header.end = end
+    else:
+        footer = iamraw.FixedFooterInfo(page=pageinfo)
+        footer.begin = begin
+        footer.end = end
+    result = iamraw.PageContentFooterHeader(
+        page=pdfpage,
+        header=header,
+        footer=footer,
+    )
     return result
 
 
