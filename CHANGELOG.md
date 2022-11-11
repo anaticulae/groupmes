@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.40.2 (2022-11-11)
+
+### Fix
+
+* reduce header miss matching (8cbd144b0c29)
+
 ## v0.40.1 (2022-11-11)
 
 ### Fix
