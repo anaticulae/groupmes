@@ -59,6 +59,7 @@ WORKPLAN = [
             utila.ResultFile(producer='headnote', name='result_result'),
             utila.ResultFile(producer='footnote', name='result_result'),
             utila.ResultFile(producer='pagenumber', name='result_result'),
+            utila.ResultFile(producer='rawmaker', name='border_pages'),
         ],
         output=('result',),
     )

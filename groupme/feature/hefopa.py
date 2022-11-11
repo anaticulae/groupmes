@@ -9,6 +9,7 @@
 
 import iamraw
 import serializeraw
+import texmex
 import utila
 
 
@@ -16,11 +17,13 @@ def work(
     headnote: str,
     footnote: str,
     pagenumber: str,
+    borders: str,
     pages: tuple = None,
 ) -> str:
     headnote = serializeraw.load_headerfooter(headnote, pages=pages)
     footnote = serializeraw.load_headerfooter(footnote, pages=pages)
-    pagenumber = load_pagenumbers(pagenumber, pages)
+    borders = serializeraw.load_pageborders(borders, pages=pages)
+    pagenumber = load_pagenumbers(pagenumber, borders, pages=pages)
     merged = merge(headnote, footnote, pagenumber)
     dumped = serializeraw.dump_headerfooter(merged)
     return dumped
@@ -51,6 +54,7 @@ def merge(headnotes, footnotes, pagenumbers) -> list:
 
 def load_pagenumbers(
     pagenumber,
+    borders,
     pages: tuple,
 ) -> iamraw.PageContentFooterHeaders:
     result = iamraw.PageContentFooterHeaders(content=[])
@@ -59,15 +63,28 @@ def load_pagenumbers(
     single = utila.Single()
     for item in loaded:
         pdfpage = item.pdfpage  # pylint:disable=E1101
+        pageborder = utila.select_page(borders, page=pdfpage)
         # TODO: MAY REMOVE LATER
         if single.contains(pdfpage):
             utila.error(f'duplicated pagenumber/pdfpage: {item}')
             continue
         pageinfo = iamraw.PageInformation(value=item.detected)  # pylint:disable=E1101
         footer = iamraw.FixedFooterInfo(page=pageinfo)
+        footer.begin = footer_start(pageborder, item.bounding)  # pylint:disable=E1101
+        footer.end = texmex.END
         page = iamraw.PageContentFooterHeader(
             page=pdfpage,
             footer=footer,
         )
         result.content.append(page)
     return result
+
+
+def footer_start(pageborder, pagenumber_bounding) -> float:
+    pageheight = pageborder.size.height
+    if not pageheight:
+        utila.error(f'missing page height: {pageborder} {pagenumber_bounding}')
+        return texmex.END
+    pagenumber_y0 = pagenumber_bounding.y0
+    start = utila.roundme(pagenumber_y0 / pageheight - 0.03)  # TOL
+    return start
