@@ -109,9 +109,9 @@ def head_foot_area(pageborder, pagenumber_bounding) -> float:
     header = pagenumber_y1 < 350
     if header:
         begin = texmex.START
-        end = utila.roundme(pagenumber_y1 / pageheight + 0.02)  # TOL
+        end = utila.roundme(pagenumber_y1 / pageheight + 0.00)  # TOL
     else:
         # footer
-        begin = utila.roundme(pagenumber_y0 / pageheight - 0.02)  # TOL
+        begin = utila.roundme(pagenumber_y0 / pageheight - 0.01)  # TOL
         end = texmex.END
     return begin, end
