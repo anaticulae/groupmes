@@ -169,7 +169,7 @@ def load(
     area = groupme.feature.area.load_area(area, pages=pages)
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
-    textnavigator = texmex.create_pagetextnavigators(
+    textnavigator = texmex.create_ptns(
         text,
         textpositions=textpositions,
         fill_empty=False,

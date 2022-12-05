@@ -18,7 +18,7 @@ def test_run_external_help(mp):
     tests.run('--help', mp=mp)
 
 
-@pytest.mark.usefixtures('testdir')
+@pytest.mark.usefixtures('td')
 @pytest.mark.parametrize('source', [
     pytest.param(power.ORDER009_PDF, id='order009'),
     pytest.param(power.MASTER072_PDF, id='master072'),
@@ -35,7 +35,7 @@ def test_run_external(source, mp):
     tests.run(cmd, mp=mp)
 
 
-@pytest.mark.usefixtures('testdir')
+@pytest.mark.usefixtures('td')
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR056_PDF)
 def test_regression_groupme_problem(mp):
