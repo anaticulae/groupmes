@@ -9,6 +9,7 @@
 
 import genex
 import power
+import resinf
 import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
@@ -23,7 +24,7 @@ RESOURCES = [
     (power.BACHELOR241_PDF, '0:100'),
     (power.DISS264_PDF, '0:50'),
     (power.HC_DISS193, '0:100'),
-    genex.todo(power.DOCU007_PDF, tablero=True),
+    resinf.todo(power.DOCU007_PDF, tablero=True),
     power.BACHELOR056_PDF,
     power.BOOK007_PDF,
     power.DOCU009_PDF,
