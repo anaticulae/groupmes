@@ -9,12 +9,12 @@
 
 import os
 
-import groupme.__patch__
-import groupme.path
+import groupmes.__patch__
+import groupmes.path
 
 __version__ = '0.40.5'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-PACKAGE = 'groupme'
-PROCESS = 'groupme'
+PACKAGE = 'groupmes'
+PROCESS = 'groupmes'

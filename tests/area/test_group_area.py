@@ -13,7 +13,7 @@ import pytest
 import utila
 import utilatest
 
-import groupme.feature.area
+import groupmes.feature.area
 
 
 def docu007(pages: tuple = None):
@@ -23,7 +23,7 @@ def docu007(pages: tuple = None):
     textpositions = iamraw.path.textposition(source)
     tables = iamraw.path.tablero_result(source)
     boxes = iamraw.path.boxed(source)
-    loaded = groupme.feature.area.load(
+    loaded = groupmes.feature.area.load(
         boxes=boxes,
         tables=tables,
         text=text,
@@ -35,7 +35,7 @@ def docu007(pages: tuple = None):
 
 def test_area_docu007_table():
     loaded = docu007(pages=3)
-    grouped = groupme.feature.area.group_areas(loaded)
+    grouped = groupmes.feature.area.group_areas(loaded)
     assert grouped
     assert len(grouped[0].outside['tables']) == 6
 
@@ -43,7 +43,7 @@ def test_area_docu007_table():
 @pytest.mark.xfail(reason='???')
 def test_area_docu007_boxes():
     loaded = docu007(pages=5)
-    grouped = groupme.feature.area.group_areas(loaded)
+    grouped = groupmes.feature.area.group_areas(loaded)
     assert grouped
     assert len(grouped) == 1
     # elements inside boxes
@@ -52,11 +52,11 @@ def test_area_docu007_boxes():
 
 def test_area_dump_load():
     data = docu007()
-    grouped = groupme.feature.area.group_areas(data)
+    grouped = groupmes.feature.area.group_areas(data)
 
     assert grouped
-    dumped = groupme.feature.area.dump_area(grouped)
-    loaded = groupme.feature.area.load_area(dumped)
+    dumped = groupmes.feature.area.dump_area(grouped)
+    loaded = groupmes.feature.area.load_area(dumped)
     assert grouped == loaded
 
 

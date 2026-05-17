@@ -11,7 +11,7 @@ import power
 import serializeraw
 import utilatest
 
-import groupme.border.leftright
+import groupmes.border.leftright
 import tests
 
 
@@ -26,7 +26,7 @@ def load_example(path: str):
 def load_leftright(path: str):
     utilatest.fixture_requires(path)
     textpositions, pagesizes = load_example(path)
-    left, right = groupme.border.leftright.determine_pageborder(
+    left, right = groupmes.border.leftright.determine_pageborder(
         textpositions,
         pagesizes,
     )
@@ -37,7 +37,7 @@ def test_leftright_run():
     """Detect book-like document with different border for left and
     right page."""
     left, right = load_leftright(power.link(power.BOOK007_PDF))
-    result = groupme.border.leftright.simple(left, right)
+    result = groupmes.border.leftright.simple(left, right)
     assert result.valid, result
     assert isinstance(result.left, tuple), result
     assert isinstance(result.right, tuple), result
@@ -48,7 +48,7 @@ def test_leftright_run_noleftright():
     """Ensure that document with single page layout has no different
     border for left and right but only a single border."""
     textpositions, pagesizes = load_example(power.link(power.MASTER072_PDF))
-    result = groupme.border.leftright.run(textpositions, pagesizes)
+    result = groupmes.border.leftright.run(textpositions, pagesizes)
     assert not result.valid, result
     # ensure that left border is more left then right
     assert result.left < result.right, result
@@ -61,7 +61,7 @@ def test_leftright_one_error():
     left.append(left.pop(3))
     right.append(right.pop(3))
 
-    result = groupme.border.leftright.raising(left, right)
+    result = groupmes.border.leftright.raising(left, right)
     assert result, result
     assert result.valid, result
     assert isinstance(result.left, tuple), result
@@ -70,7 +70,7 @@ def test_leftright_one_error():
 
 def test_leftright_raising_bachelor241():
     left, right = load_leftright(power.link(power.BACHELOR241_PDF))
-    result = groupme.border.leftright.raising(left, right)
+    result = groupmes.border.leftright.raising(left, right)
     assert result, result
     assert result.valid, result
     assert isinstance(result.left, tuple), result
@@ -83,7 +83,7 @@ def test_leftright_strategy_witherror():
 
     textpositions, pagesizes = introduce_error(textpositions, pagesizes)
 
-    result = groupme.border.leftright.run(textpositions, pagesizes)
+    result = groupmes.border.leftright.run(textpositions, pagesizes)
     assert result, result
     assert result.valid, result
     assert isinstance(result.left, tuple), result

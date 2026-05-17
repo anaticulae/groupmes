@@ -38,7 +38,7 @@ def test_run_external(source, mp):
 @pytest.mark.usefixtures('td')
 @utilatest.nightly
 @utilatest.requires(power.BACHELOR056_PDF)
-def test_regression_groupme_problem(mp):
+def test_regression_groupmes_problem(mp):
     """There was a problem with not sorted page numbers which leads
 
     to duplicated header/footer. This was solved by sorting page number

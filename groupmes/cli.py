@@ -9,7 +9,7 @@
 
 import utila
 
-import groupme
+import groupmes
 
 DESCRIPTION = 'TODO'
 
@@ -37,7 +37,7 @@ WORKPLAN = [
     utila.create_step(
         'distance',
         inputs=[
-            utila.ResultFile(producer='groupme', name='area_area'),
+            utila.ResultFile(producer='groupmes', name='area_area'),
             utila.ResultFile(producer='rawmaker', name='text_text'),
             utila.ResultFile(producer='rawmaker', name='text_positions'),
         ],
@@ -69,13 +69,13 @@ WORKPLAN = [
 def main():
     utila.featurepack(
         workplan=WORKPLAN,
-        root=groupme.ROOT,
-        featurepackage='groupme.feature',
+        root=groupmes.ROOT,
+        featurepackage='groupmes.feature',
         config=utila.FeaturePackConfig(
             description=DESCRIPTION,
             multiprocessed=True,
-            name=groupme.PROCESS,
+            name=groupmes.PROCESS,
             pages=True,
-            version=groupme.__version__,
+            version=groupmes.__version__,
         ),
     )

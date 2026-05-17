@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-from groupme.cli import main
+from groupmes.cli import main
 
 if __name__ == "__main__":
     main()

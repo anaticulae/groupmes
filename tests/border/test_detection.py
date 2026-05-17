@@ -9,7 +9,7 @@
 
 import pytest
 
-import groupme.border.most
+import groupmes.border.most
 
 
 @pytest.mark.parametrize('roundme, expected', [
@@ -32,7 +32,7 @@ def test_border_most_boundingbox(roundme, expected):
         (50.4, 41.15, 544.89, 807.93),
         (50.4, 41.15, 544.88, 807.93),
     ]
-    result = groupme.border.most.most_boundingbox(
+    result = groupmes.border.most.most_boundingbox(
         vim_diff_example,
         roundme=roundme,
     )

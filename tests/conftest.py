@@ -14,11 +14,11 @@ import utilatest
 from utilatest import mp  # pylint:disable=W0611
 from utilatest import td  # pylint:disable=W0611
 
-import groupme
+import groupmes
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
-PACKAGE = groupme.PACKAGE
+PACKAGE = groupmes.PACKAGE
 
 RESOURCES = [
     (power.BACHELOR241_PDF, '0:100'),
@@ -48,6 +48,6 @@ def extract(resources):
         headnote=True,
         footnote=True,
         cleanup=True,
-        groupme=True,
+        groupmes=True,
         worker=WORKER,
     )

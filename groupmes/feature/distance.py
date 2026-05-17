@@ -25,7 +25,7 @@ import serializeraw
 import texmex
 import utila
 
-import groupme.feature.area
+import groupmes.feature.area
 
 RequiredResources = collections.namedtuple(
     'RequiredResources',
@@ -166,7 +166,7 @@ def load(
     textpositions: str,
     pages: tuple = None,
 ) -> RequiredResources:
-    area = groupme.feature.area.load_area(area, pages=pages)
+    area = groupmes.feature.area.load_area(area, pages=pages)
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     textnavigator = texmex.create_ptns(

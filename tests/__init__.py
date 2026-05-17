@@ -10,10 +10,10 @@
 import power
 import utilatest
 
-import groupme
+import groupmes
 
-power.setup(groupme.ROOT)
+power.setup(groupmes.ROOT)
 
 utilatest.register_marker('huge')
 
-run, fail = utilatest.create_cli_runner(groupme)
+run, fail = utilatest.create_cli_runner(groupmes)

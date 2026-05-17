@@ -11,17 +11,17 @@ import utila
 
 
 def area(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'groupme', 'area_area', prefix)
+    return utila.pathconnector(path, 'groupmes', 'area_area', prefix)
 
 
 def border_leftright(path: str, prefix: str = '') -> str:
     return utila.pathconnector(
         path,
-        'groupme',
+        'groupmes',
         'border_leftright',
         prefix,
     )
 
 
 def distance(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'groupme', 'distance_distance', prefix)
+    return utila.pathconnector(path, 'groupmes', 'distance_distance', prefix)

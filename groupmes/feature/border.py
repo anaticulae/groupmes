@@ -12,8 +12,8 @@ import iamraw
 import serializeraw
 import utila
 
-import groupme.border.leftright
-import groupme.border.most
+import groupmes.border.leftright
+import groupmes.border.most
 
 
 def work(
@@ -52,8 +52,8 @@ def cluster_border(textpositions, pagesizes, pages_incluster):
     textpositions = utila.notnone(textpositions)
     pagesizes = utila.notnone(pagesizes)
 
-    most = groupme.border.most.run(pagesizes)
-    leftright = groupme.border.leftright.run(textpositions, pagesizes)
+    most = groupmes.border.most.run(pagesizes)
+    leftright = groupmes.border.leftright.run(textpositions, pagesizes)
 
     result = [(page, *expected_border(leftright, most, pagesizes, page))
               for page in pages_incluster]
