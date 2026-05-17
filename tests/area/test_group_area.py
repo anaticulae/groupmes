@@ -8,17 +8,17 @@
 # =============================================================================
 
 import iamraw.path
-import power
+import hoverpower
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import groupmes.feature.area
 
 
 def docu007(pages: tuple = None):
-    utilatest.fixture_requires(power.DOCU007_PDF)
-    source = power.link(power.DOCU007_PDF)
+    utilotest.fixture_requires(hoverpower.DOCU007_PDF)
+    source = hoverpower.link(hoverpower.DOCU007_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
     tables = iamraw.path.tablero_result(source)
@@ -72,7 +72,7 @@ def test_area_rect_merge():
         (90, 10, 150, 100),
     ]
 
-    merged = utila.rect_merge(before)
+    merged = utilo.rect_merge(before)
     assert merged == expected
 
     before = [
@@ -85,5 +85,5 @@ def test_area_rect_merge():
         (10, 10, 100, 100),
     ]
 
-    merged = utila.rect_merge(before)
+    merged = utilo.rect_merge(before)
     assert merged == expected

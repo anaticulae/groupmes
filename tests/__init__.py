@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import utilatest
+import hoverpower
+import utilotest
 
 import groupmes
 
-power.setup(groupmes.ROOT)
+hoverpower.setup(groupmes.ROOT)
 
-utilatest.register_marker('huge')
+utilotest.register_marker('huge')
 
-run, fail = utilatest.create_cli_runner(groupmes)
+run, fail = utilotest.create_cli_runner(groupmes)

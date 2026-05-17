@@ -11,7 +11,7 @@ import dataclasses
 import math
 
 import iamraw
-import utila
+import utilo
 
 
 @dataclasses.dataclass
@@ -41,9 +41,9 @@ def run(sizeandborder: iamraw.PageSizeBorderList) -> MostBoundingDetected:
 
 
 def most_boundingbox(
-    boxes: utila.Rectangles,
+    boxes: utilo.Rectangles,
     roundme: bool = False,
-) -> utila.Rectangle:
+) -> utilo.Rectangle:
     """Extract bounding box of most common occurence for every side.
 
     Round detected boundingbox to full number to make approach more
@@ -64,7 +64,7 @@ def most_boundingbox(
         # support multiple border options.
         minimize = method is math.floor
         # TODO: REQUIRE A BETTER TY-BREAKER
-        mode = utila.mode(rounded, minimize=minimize)
+        mode = utilo.mode(rounded, minimize=minimize)
         result.append(mode)
     # (x0, y0, x1, y1)
     return tuple(result)

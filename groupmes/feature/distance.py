@@ -23,7 +23,7 @@ import collections
 
 import serializeraw
 import texmex
-import utila
+import utilo
 
 import groupmes.feature.area
 
@@ -61,7 +61,7 @@ def determine_distances(loaded: RequiredResources) -> PageContentAreaDistances:
     result = []
     for navigator in loaded.textnavigator:
         page = navigator.page
-        areas = utila.select_page(loaded.area, page)
+        areas = utilo.select_page(loaded.area, page)
         grouped = group_page(navigator, areas)
         if not grouped:
             continue
@@ -87,9 +87,9 @@ def group_page(navigator, areas) -> AreaDistances:
     final = []
     for key, value in collected.items():
         negative = max((item for item in value if item < 0), default=None)
-        negative = utila.roundme(negative) if negative is not None else None
+        negative = utilo.roundme(negative) if negative is not None else None
         positive = min((item for item in value if item >= 0), default=None)
-        positive = utila.roundme(positive) if positive is not None else None
+        positive = utilo.roundme(positive) if positive is not None else None
         final.append(AreaDistance(index=key, before=negative, after=positive))
     return final
 
@@ -108,27 +108,27 @@ class Distance:
             self.sort()
         top, bottom = bounding[1], bounding[3]
         if len(self) == 1:
-            if utila.rect_inside(self[0], bounding, diff=self.diff):
+            if utilo.rect_inside(self[0], bounding, diff=self.diff):
                 return None
             top_current = self[0][1]
             bottom_current = self[0][3]
             if bottom <= top_current:
                 # content is above
-                return (utila.roundme(bottom - top_current), 0)
+                return (utilo.roundme(bottom - top_current), 0)
             # content is below
-            return (utila.roundme(top - bottom_current), 0)
+            return (utilo.roundme(top - bottom_current), 0)
 
         if self[-1][3] <= bounding[1]:
             # after
-            return (utila.roundme(bounding[1] - self[-1][3]), len(self) - 1)
+            return (utilo.roundme(bounding[1] - self[-1][3]), len(self) - 1)
 
         # in the middle
         for index, (before, after) in enumerate(zip(self[0:-1], self[1:])):
             bottom_before = before[3]
             top_after = after[1]
-            if utila.rect_inside(before, bounding):
+            if utilo.rect_inside(before, bounding):
                 return None
-            if utila.rect_inside(after, bounding):
+            if utilo.rect_inside(after, bounding):
                 return None
             if bottom_before <= top <= bottom <= top_after:
                 diff_top = top - bottom_before
@@ -186,11 +186,11 @@ def dump_distance(items: PageContentAreaDistances) -> str:
     for page in items:
         content = []
         for item in page.content:
-            before = utila.roundme(item.before) if item.before is not None else 'None' # yapf:disable
-            after = utila.roundme(item.after) if item.after is not None else 'None' # yapf:disable
+            before = utilo.roundme(item.before) if item.before is not None else 'None' # yapf:disable
+            after = utilo.roundme(item.after) if item.after is not None else 'None' # yapf:disable
             content.append(f'{item.index} {before} {after}')
         raw.append({'page': page.page, 'content': content})
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -199,11 +199,11 @@ def load_distance(
     pages: tuple = None,
 ) -> PageContentAreaDistances:
     # TODO: MOVE TO SERIALIZERAW
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         pagecontent = []
         for line in page['content']:

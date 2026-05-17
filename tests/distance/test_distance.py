@@ -8,18 +8,18 @@
 # =============================================================================
 
 import iamraw.path
-import power
+import hoverpower
 import pytest
-import utilatest
+import utilotest
 
 import groupmes.feature.distance
 import groupmes.path
 
 
 def docu007(pages: tuple = None):
-    utilatest.fixture_requires(power.DOCU007_PDF)
+    utilotest.fixture_requires(hoverpower.DOCU007_PDF)
     # TODO: REMOVE DUPLICATION
-    source = power.link(power.DOCU007_PDF)
+    source = hoverpower.link(hoverpower.DOCU007_PDF)
     area = groupmes.path.area(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)

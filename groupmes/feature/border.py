@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 import groupmes.border.leftright
 import groupmes.border.most
@@ -39,18 +39,18 @@ def determine_border(
     for pages_incluster in clustered:
         border = cluster_border(textpositions, pagesizes, pages_incluster)
         result.append(border)
-    result = utila.flat(result)
+    result = utilo.flat(result)
     # sort by page number
     result = sorted(result, key=lambda x: x[0])
     return result
 
 
 def cluster_border(textpositions, pagesizes, pages_incluster):
-    textpositions = utila.select_pages(textpositions, pages_incluster)
-    pagesizes = utila.select_pages(pagesizes, pages_incluster)
+    textpositions = utilo.select_pages(textpositions, pages_incluster)
+    pagesizes = utilo.select_pages(pagesizes, pages_incluster)
 
-    textpositions = utila.notnone(textpositions)
-    pagesizes = utila.notnone(pagesizes)
+    textpositions = utilo.notnone(textpositions)
+    pagesizes = utilo.notnone(pagesizes)
 
     most = groupmes.border.most.run(pagesizes)
     leftright = groupmes.border.leftright.run(textpositions, pagesizes)
@@ -71,27 +71,27 @@ def expected_border(leftright, most, pagesizes, page: int):
     if isinstance(right, tuple):
         right = right[page % 2]  # pylint:disable=E1136
 
-    pagesize = utila.select_page(pagesizes, page).size
+    pagesize = utilo.select_page(pagesizes, page).size
     rightborder = pagesize.width - right
     bottomborder = pagesize.height - most.bottom
 
     result = (left, rightborder, most.top, bottomborder)
-    result = utila.roundme(result)
+    result = utilo.roundme(result)
     return result
 
 
-PAGE_CLUSTER_SIZE_MIN = configo.HV_INT_PLUS(default=3)
+PAGE_CLUSTER_SIZE_MIN = configos.HV_INT_PLUS(default=3)
 
-PAGE_CLUSTER_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+PAGE_CLUSTER_DIFF_MAX = configos.HV_FLOAT_PLUS(default=10.0)
 
 
 def pagecluster(pagesizes) -> list:
 
     def equal_size(candidat, clusteritem) -> bool:
-        diff = utila.norms(candidat[0], clusteritem[0])
+        diff = utilo.norms(candidat[0], clusteritem[0])
         return diff < PAGE_CLUSTER_DIFF_MAX
 
-    grouped = utila.determine_cluster(
+    grouped = utilo.determine_cluster(
         pagesizes,
         classifier=equal_size,
         min_elements=PAGE_CLUSTER_SIZE_MIN,

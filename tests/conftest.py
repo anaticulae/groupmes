@@ -8,11 +8,11 @@
 # =============================================================================
 
 import genex
-import power
+import hoverpower
 import resinf
-import utilatest
-from utilatest import mp  # pylint:disable=W0611
-from utilatest import td  # pylint:disable=W0611
+import utilotest
+from utilotest import mp  # pylint:disable=W0611
+from utilotest import td  # pylint:disable=W0611
 
 import groupmes
 
@@ -21,24 +21,24 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 PACKAGE = groupmes.PACKAGE
 
 RESOURCES = [
-    (power.BACHELOR241_PDF, '0:100'),
-    (power.DISS264_PDF, '0:50'),
-    (power.HC_DISS193, '0:100'),
-    resinf.todo(power.DOCU007_PDF, tablero=True),
-    power.BACHELOR056_PDF,
-    power.BOOK007_PDF,
-    power.DOCU009_PDF,
-    power.DOCU027_PDF,
-    power.MASTER072_PDF,
-    power.MASTER089_PDF,
-    power.ORDER009_PDF,
+    (hoverpower.BACHELOR241_PDF, '0:100'),
+    (hoverpower.DISS264_PDF, '0:50'),
+    (hoverpower.HC_DISS193, '0:100'),
+    resinf.todo(hoverpower.DOCU007_PDF, tablero=True),
+    hoverpower.BACHELOR056_PDF,
+    hoverpower.BOOK007_PDF,
+    hoverpower.DOCU009_PDF,
+    hoverpower.DOCU027_PDF,
+    hoverpower.MASTER072_PDF,
+    hoverpower.MASTER089_PDF,
+    hoverpower.ORDER009_PDF,
 ]
 
-WORKER = utilatest.worker_count(5, onci=len(RESOURCES))
+WORKER = utilotest.worker_count(5, onci=len(RESOURCES))
 
 
 def pytest_sessionstart(session):  # pylint:disable=W0613
-    power.run()
+    hoverpower.run()
 
 
 def extract(resources):

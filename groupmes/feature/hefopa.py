@@ -10,7 +10,7 @@
 import iamraw
 import serializeraw
 import texmex
-import utila
+import utilo
 
 
 def work(
@@ -32,7 +32,7 @@ def work(
 def merge(headnotes, footnotes, pagenumbers) -> list:
     result = iamraw.PageContentFooterHeaders(content=[])
     result.__strategy__ = 'hefopa'
-    for page, (headnote, footnote, pagenumber) in utila.sync_pages(
+    for page, (headnote, footnote, pagenumber) in utilo.sync_pages(
         (headnotes, footnotes, pagenumbers)):
         if not any((headnote, footnote, pagenumber)):
             continue
@@ -61,13 +61,13 @@ def load_pagenumbers(
     result = iamraw.PageContentFooterHeaders(content=[])
     result.__stategy__ = 'pagenumber'
     loaded = serializeraw.load_pagenumbers(pagenumber, pages=pages)
-    single = utila.Single()
+    single = utilo.Single()
     for item in loaded:
         pdfpage = item.pdfpage  # pylint:disable=E1101
-        pageborder = utila.select_page(borders, page=pdfpage)
+        pageborder = utilo.select_page(borders, page=pdfpage)
         # TODO: MAY REMOVE LATER
         if single.contains(pdfpage):
-            utila.error(f'duplicated pagenumber/pdfpage: {item}')
+            utilo.error(f'duplicated pagenumber/pdfpage: {item}')
             continue
         page = create(
             item,
@@ -102,16 +102,16 @@ def create(item, pdfpage, pageborder) -> iamraw.PageContentFooterHeader:
 def head_foot_area(pageborder, pagenumber_bounding) -> float:
     pageheight = pageborder.size.height
     if not pageheight:
-        utila.error(f'missing page height: {pageborder} {pagenumber_bounding}')
+        utilo.error(f'missing page height: {pageborder} {pagenumber_bounding}')
         return texmex.END
     pagenumber_y0 = pagenumber_bounding.y0
     pagenumber_y1 = pagenumber_bounding.y1
     header = pagenumber_y1 < 350
     if header:
         begin = texmex.START
-        end = utila.roundme(pagenumber_y1 / pageheight + 0.00)  # TOL
+        end = utilo.roundme(pagenumber_y1 / pageheight + 0.00)  # TOL
     else:
         # footer
-        begin = utila.roundme(pagenumber_y0 / pageheight - 0.01)  # TOL
+        begin = utilo.roundme(pagenumber_y0 / pageheight - 0.01)  # TOL
         end = texmex.END
     return begin, end

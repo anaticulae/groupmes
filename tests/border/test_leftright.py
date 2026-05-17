@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import serializeraw
-import utilatest
+import utilotest
 
 import groupmes.border.leftright
 import tests
 
 
 def load_example(path: str):
-    utilatest.fixture_requires(path)
+    utilotest.fixture_requires(path)
     # TODO: USE ONELINE?
     textpositions = serializeraw.load_textpositions(path)
     pagesizes = serializeraw.load_pageborders(path)
@@ -24,7 +24,7 @@ def load_example(path: str):
 
 
 def load_leftright(path: str):
-    utilatest.fixture_requires(path)
+    utilotest.fixture_requires(path)
     textpositions, pagesizes = load_example(path)
     left, right = groupmes.border.leftright.determine_pageborder(
         textpositions,
@@ -36,18 +36,18 @@ def load_leftright(path: str):
 def test_leftright_run():
     """Detect book-like document with different border for left and
     right page."""
-    left, right = load_leftright(power.link(power.BOOK007_PDF))
+    left, right = load_leftright(hoverpower.link(hoverpower.BOOK007_PDF))
     result = groupmes.border.leftright.simple(left, right)
     assert result.valid, result
     assert isinstance(result.left, tuple), result
     assert isinstance(result.right, tuple), result
 
 
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_leftright_run_noleftright():
     """Ensure that document with single page layout has no different
     border for left and right but only a single border."""
-    textpositions, pagesizes = load_example(power.link(power.MASTER072_PDF))
+    textpositions, pagesizes = load_example(hoverpower.link(hoverpower.MASTER072_PDF))
     result = groupmes.border.leftright.run(textpositions, pagesizes)
     assert not result.valid, result
     # ensure that left border is more left then right
@@ -56,7 +56,7 @@ def test_leftright_run_noleftright():
 
 def test_leftright_one_error():
     """Introduce error to challenge algorithm."""
-    left, right = load_leftright(power.link(power.BOOK007_PDF))
+    left, right = load_leftright(hoverpower.link(hoverpower.BOOK007_PDF))
 
     left.append(left.pop(3))
     right.append(right.pop(3))
@@ -69,7 +69,7 @@ def test_leftright_one_error():
 
 
 def test_leftright_raising_bachelor241():
-    left, right = load_leftright(power.link(power.BACHELOR241_PDF))
+    left, right = load_leftright(hoverpower.link(hoverpower.BACHELOR241_PDF))
     result = groupmes.border.leftright.raising(left, right)
     assert result, result
     assert result.valid, result
@@ -79,7 +79,7 @@ def test_leftright_raising_bachelor241():
 
 def test_leftright_strategy_witherror():
     """Run left right strategy with example which contains an error."""
-    textpositions, pagesizes = load_example(power.link(power.BOOK007_PDF))
+    textpositions, pagesizes = load_example(hoverpower.link(hoverpower.BOOK007_PDF))
 
     textpositions, pagesizes = introduce_error(textpositions, pagesizes)
 
@@ -90,11 +90,11 @@ def test_leftright_strategy_witherror():
     assert isinstance(result.right, tuple), result
 
 
-@utilatest.requires(power.BACHELOR241_PDF)
+@utilotest.requires(hoverpower.BACHELOR241_PDF)
 def test_leftright_bachelor241(td, mp):
     """Regression test to ensure that bachelor241 border is detected
     correctly."""
-    source = power.link(power.BACHELOR241_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR241_PDF)
     tests.run(f'-i {source} --border', mp=mp)
 
     leftright = serializeraw.load_leftright_border(td.tmpdir)

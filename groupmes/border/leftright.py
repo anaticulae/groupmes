@@ -41,14 +41,14 @@ import math
 import statistics
 import typing
 
-import configo
+import configos
 import iamraw
-import utila
+import utilo
 
 # max diff to match in common group.
-SIDE_DIFF_MAX = configo.HV_INT_PLUS(default=2)
+SIDE_DIFF_MAX = configos.HV_INT_PLUS(default=2)
 # exceptions which are allowed cause of user defined error.
-FIRSTSECOND_ERROR_COUNT_MAX = configo.HolyTable(
+FIRSTSECOND_ERROR_COUNT_MAX = configos.HolyTable(
     items=(
         (2, 0.5),
         (3, 0.35),
@@ -60,16 +60,16 @@ FIRSTSECOND_ERROR_COUNT_MAX = configo.HolyTable(
     right_outranges_none=False,
 )
 # errors which are a result of handle alternating border as single border.
-MIXED_ERROR_MIN = configo.HV_PERCENT_PLUS(default=15)
+MIXED_ERROR_MIN = configos.HV_PERCENT_PLUS(default=15)
 # area where left border can be located.
-LEFT_PERCENT = configo.HV_PERCENT_PLUS(default=30)
+LEFT_PERCENT = configos.HV_PERCENT_PLUS(default=30)
 # area where right border can be located.
-RIGHT_PERCENT = configo.HV_PERCENT_PLUS(default=30)
+RIGHT_PERCENT = configos.HV_PERCENT_PLUS(default=30)
 
-RAISING_EDGE_MIN = configo.HV_PERCENT_PLUS(default=75)
+RAISING_EDGE_MIN = configos.HV_PERCENT_PLUS(default=75)
 
 # TODO: SHOULD WE DISABLE ALGO ON BIG FAIL COUNT?
-RAISING_FAILRATE = configo.HolyTable(
+RAISING_FAILRATE = configos.HolyTable(
     items=(
         (5, 1 / 5),
         (7, 2 / 7),
@@ -113,8 +113,8 @@ def run(
     if result:
         return result
 
-    leftborder = utila.mode(left, minimize=True)
-    rightborder = utila.mode(right, minimize=False)
+    leftborder = utilo.mode(left, minimize=True)
+    rightborder = utilo.mode(right, minimize=False)
     return LeftRightDetected(
         left=leftborder,
         right=rightborder,
@@ -122,7 +122,7 @@ def run(
     )
 
 
-def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
+def simple(left: utilo.Numbers, right: utilo.Numbers) -> LeftRightDetected:
     """Determine LeftRight border based on changing text feed. We use
     the even numbers to determine the left page and the odd numbers to
     determine the right text feed.
@@ -139,23 +139,23 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
     """
     if len(left) <= 1:
         # TODO: INVESTIGATE HERE
-        utila.error('could not run simple approach')
+        utilo.error('could not run simple approach')
         return None
-    mixed = utila.diff_mode(left, max_diff=SIDE_DIFF_MAX)
+    mixed = utilo.diff_mode(left, max_diff=SIDE_DIFF_MAX)
     # first side
     first = left[::2]
-    first_matched = utila.diff_mode(first, max_diff=SIDE_DIFF_MAX)
+    first_matched = utilo.diff_mode(first, max_diff=SIDE_DIFF_MAX)
     # second side
     second = left[1::2]
-    second_matched = utila.diff_mode(second, max_diff=SIDE_DIFF_MAX)
+    second_matched = utilo.diff_mode(second, max_diff=SIDE_DIFF_MAX)
 
     mixed_error = 1 - len(mixed) / len(left)
     first_error = 1 - len(first_matched) / len(first)
     second_error = 1 - len(second_matched) / len(second)
 
-    utila.debug(f'mixed: {mixed_error}')
-    utila.debug(f'first: {first_error}')
-    utila.debug(f'second: {second_error}')
+    utilo.debug(f'mixed: {mixed_error}')
+    utilo.debug(f'first: {first_error}')
+    utilo.debug(f'second: {second_error}')
 
     # left right
     # TODO: DEFINE BETTER CONFIDENCE APPROACH
@@ -165,12 +165,12 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
             second_error < max_firstsecond_error,
     ]):
         leftborder = (
-            utila.mode(first, minimize=True),
-            utila.mode(second, minimize=True),
+            utilo.mode(first, minimize=True),
+            utilo.mode(second, minimize=True),
         )
         rightborder = (
-            utila.mode(right[::2]),
-            utila.mode(right[1::2]),
+            utilo.mode(right[::2]),
+            utilo.mode(right[1::2]),
         )
         return LeftRightDetected(
             left=leftborder,
@@ -180,7 +180,7 @@ def simple(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
     return None
 
 
-def raising(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
+def raising(left: utilo.Numbers, right: utilo.Numbers) -> LeftRightDetected:
     """Determine border depending on changing text feed on left page
     border.
 
@@ -209,7 +209,7 @@ def raising(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
     first_right = statistics.mean(longest_right[0])
     second_right = statistics.mean(longest_right[1])
 
-    edges = utila.diffs(left)
+    edges = utilo.diffs(left)
     failures = [
         index for index, item in enumerate(edges)
         if item < edge * RAISING_EDGE_MIN.value
@@ -220,8 +220,8 @@ def raising(left: utila.Numbers, right: utila.Numbers) -> LeftRightDetected:
     if failrate > max_failrate:
         return None
 
-    first_left, second_left = utila.roundme(first_left, second_left)
-    first_right, second_right = utila.roundme(first_right, second_right)
+    first_left, second_left = utilo.roundme(first_left, second_left)
+    first_right, second_right = utilo.roundme(first_right, second_right)
 
     leftborder = (
         min([first_left, second_left]),
@@ -256,7 +256,7 @@ def determine_pageborder(textpositions, pagesizes):
     left = []
     right = []
     before = -1
-    for current, (page, size) in utila.sync_pages([textpositions, pagesizes]):
+    for current, (page, size) in utilo.sync_pages([textpositions, pagesizes]):
         assert current > before, f'{before} < {current}'
         before = current
         if not page or not size:
@@ -271,7 +271,7 @@ def determine_pageborder(textpositions, pagesizes):
 
 
 def maximize_leftright(
-    boundings: utila.Rectangles,
+    boundings: utilo.Rectangles,
     size: iamraw.PageSizeBorder,
 ) -> LeftRight:
     """Determine the left and right border of a page based on `mode`
@@ -289,26 +289,26 @@ def maximize_leftright(
     """
     left_max = size.size.width * LEFT_PERCENT
     right_min = size.size.width * (1 - RIGHT_PERCENT)
-    left_max, right_min = utila.roundme(left_max, right_min)
+    left_max, right_min = utilo.roundme(left_max, right_min)
     assert left_max <= right_min, 'left and right bounds are flipped'
     left = [item[0] for item in boundings if item[0] <= left_max]
     right = [item[2] for item in boundings if item[2] >= right_min]
     # TODO: DO WE RELAY NEED THIS?
-    left = utila.mode(left, minimize=True) if left else 0.0
-    right = utila.mode(right, minimize=False) if right else size.size.width
+    left = utilo.mode(left, minimize=True) if left else 0.0
+    right = utilo.mode(right, minimize=False) if right else size.size.width
     return left, right
 
 
-CLUSTER_CANDIAT_DIFF_MAX = configo.HV_FLOAT_PLUS(default=2.0)
+CLUSTER_CANDIAT_DIFF_MAX = configos.HV_FLOAT_PLUS(default=2.0)
 
 
-def longest_two(items: utila.Numbers) -> tuple[float, float]:
+def longest_two(items: utilo.Numbers) -> tuple[float, float]:
 
     def close(candidat, clusteritem) -> bool:
         diff = math.fabs(candidat - clusteritem)
         return diff < CLUSTER_CANDIAT_DIFF_MAX
 
-    clustered = utila.determine_cluster(items, close)
+    clustered = utilo.determine_cluster(items, close)
     result = sorted(clustered, key=len, reverse=True)
     if len(result) < 2:
         return None

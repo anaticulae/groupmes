@@ -9,7 +9,7 @@
 
 import iamraw
 import serializeraw
-import utila
+import utilo
 
 
 def work(
@@ -41,7 +41,7 @@ def work(
     result = []
     for page in navigators:
         top, bottom = page.content.top, page.content.bottom
-        top, bottom = utila.roundme((top, bottom))
+        top, bottom = utilo.roundme((top, bottom))
         result.append(
             iamraw.ContentBoundingBox(
                 page=page.page,

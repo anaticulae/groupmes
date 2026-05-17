@@ -253,7 +253,7 @@ Every noteable change is logged here.
 ### Fix
 
 * reduce debugging verbosity (4dc2cb736578)
-* adjust configo data type (fca0f4b38111)
+* adjust configos data type (fca0f4b38111)
 * do not include page number into toc content (c69f852cf533)
 * remove toc headline of the first page (10268b854176)
 * fix very lines at the top of the page (d41d7f049980)
@@ -634,7 +634,7 @@ Every noteable change is logged here.
 
 ### Fix
 
-* replace with utila code (703d7f7a7128)
+* replace with utilo code (703d7f7a7128)
 
 ## v0.9.1
 

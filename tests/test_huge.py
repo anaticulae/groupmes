@@ -10,10 +10,10 @@
 import contextlib
 import os
 
-import power
+import hoverpower
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import tests
 
@@ -31,7 +31,7 @@ EXPECTED_FAILURE = {  # yapf:disable
 
 
 def determine_mark(pdf):
-    relative = utila.file_name(pdf)
+    relative = utilo.file_name(pdf)
     if relative in UNSUPPORTED_DOCUMENTS:
         return pytest.mark.xfail(reason='contains unsupported feature')
     with contextlib.suppress(KeyError):
@@ -43,8 +43,8 @@ def params():
     # do not ignore any document, it's a nightly
     ignore = []
     pdf = [
-        item for item in power.PDF if all([
-            utila.file_name(item) not in ignore,
+        item for item in hoverpower.PDF if all([
+            utilo.file_name(item) not in ignore,
             'notitle' not in item,
         ])
     ]
@@ -56,14 +56,14 @@ def params():
                 '--char_margin 100.0 --boxes_flow 1.0',
                 '--char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3',
             ),
-            id=utila.file_name(item),
+            id=utilo.file_name(item),
             marks=determine_mark(item),
         )
         result.append(double)
     return result
 
 
-@utilatest.monday
+@utilotest.monday
 @pytest.mark.parametrize('config', params())
 def test_huge_running(config, td, mp):  # pylint:disable=R0914
     pdf, toccmd, generalcmd = config
@@ -74,7 +74,7 @@ def test_huge_running(config, td, mp):  # pylint:disable=R0914
     pages = '--pages=0:20'
     rawtoc = f'rawmaker -i {pdf} -j=auto {pages} -o {tocpath} --prefix=oneline {toccmd}'
     rawgeneral = f'rawmaker -i {pdf} -j=auto {pages} -o {generalpath} {generalcmd}'
-    utila.file_copy(pdf, td.tmpdir.join('table'))
+    utilo.file_copy(pdf, td.tmpdir.join('table'))
     pagenumber = f'pagenumber -i {generalpath} -o {generalpath}'
     groupmes = f'groupmes -i {generalpath} -o {generalpath} --content -j2'
     foonote = f'footnote -i {generalpath} -o {generalpath} -j2'
@@ -83,8 +83,8 @@ def test_huge_running(config, td, mp):  # pylint:disable=R0914
     for todo in [
             rawtoc, rawgeneral, pagenumber, foonote, cleanup, groupmes, tablero
     ]:
-        done = utila.run(todo)
-        assert done.returncode == utila.SUCCESS, utila.format_completed(done)
+        done = utilo.run(todo)
+        assert done.returncode == utilo.SUCCESS, utilo.format_completed(done)
     current = td.tmpdir.join('current')
     os.makedirs(current)
     # run groupmes

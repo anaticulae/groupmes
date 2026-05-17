@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import serializeraw
-import utilatest
+import utilotest
 
 import tests
 
 
 def extract_border(source: str, td, mp) -> set:
-    utilatest.fixture_requires(source)
-    source = power.link(source)
+    utilotest.fixture_requires(source)
+    source = hoverpower.link(source)
     tests.run(f'-i {source} --border', mp=mp)
     leftright = serializeraw.load_leftright_border(td.tmpdir)
     unique = set(leftright.values())
@@ -24,5 +24,5 @@ def extract_border(source: str, td, mp) -> set:
 
 
 def test_border_diss264(td, mp):
-    unique = extract_border(power.DISS264_PDF, td, mp)
+    unique = extract_border(hoverpower.DISS264_PDF, td, mp)
     assert len(unique) == 2, str(unique)

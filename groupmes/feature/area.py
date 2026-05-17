@@ -19,11 +19,11 @@ TODO:
 import collections
 import os
 
-import configo
+import configos
 import serializeraw
-import utila
+import utilo
 
-RECTANGLE_DIFF_MAX = configo.HV_FLOAT_PLUS(default=10.0)
+RECTANGLE_DIFF_MAX = configos.HV_FLOAT_PLUS(default=10.0)
 
 RequiredResources = collections.namedtuple(
     'RequiredResources',
@@ -74,9 +74,9 @@ def group_areas(loaded: RequiredResources) -> PageContentTextualAreas:
     for navigator in loaded.textnavigator:
         page = navigator.page
 
-        tables = utila.select_page(loaded.tables, page)
+        tables = utilo.select_page(loaded.tables, page)
 
-        boxes = utila.select_page(loaded.boxes, page)
+        boxes = utilo.select_page(loaded.boxes, page)
         boxes = boxes.content if boxes else None
 
         grouped = group_page(navigator, tables=tables, boxes=boxes)
@@ -104,9 +104,9 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
             textual.append(bounding)
 
     # optimize rectangles
-    textual = utila.rect_merge(textual)
-    inside_tables = utila.rect_merge(inside_tables)
-    inside_boxes = utila.rect_merge(inside_boxes)
+    textual = utilo.rect_merge(textual)
+    inside_tables = utilo.rect_merge(inside_tables)
+    inside_boxes = utilo.rect_merge(inside_boxes)
     outside = {
         'boxes': inside_boxes,
         'tables': inside_tables,
@@ -126,15 +126,15 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
     return result
 
 
-def boxed_checker(items) -> utila.RectangleCheck:
-    result = utila.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
+def boxed_checker(items) -> utilo.RectangleCheck:
+    result = utilo.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
     for item in items:
         result.extend(*item.box)
     return result
 
 
-def table_checker(items) -> utila.RectangleCheck:
-    result = utila.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
+def table_checker(items) -> utilo.RectangleCheck:
+    result = utilo.RectangleCheck(max_diff=RECTANGLE_DIFF_MAX)
     for item in items:
         result.extend(*item.bounding)
     return result
@@ -158,7 +158,7 @@ def load(
     if os.path.exists(tables):
         tables = serializeraw.load_tables(tables, pages=pages)
     else:
-        utila.log(f'skip using tablero: {tables}, generation is required')
+        utilo.log(f'skip using tablero: {tables}, generation is required')
         tables = []
     result = RequiredResources(
         boxes=boxes,
@@ -172,16 +172,16 @@ def dump_area(items) -> str:
     raw = []
     for page in items:
         outside = {
-            key: [utila.from_tuple(item) for item in value] if value else value
+            key: [utilo.from_tuple(item) for item in value] if value else value
             for key, value in page.outside.items()
         }
         border = {
-            key: [utila.from_tuple(item) for item in border]
+            key: [utilo.from_tuple(item) for item in border]
                  if border else border for key, border in page.border.items()
         }
         textual = page.textual
         if textual:
-            textual = [utila.from_tuple(item) for item in textual]
+            textual = [utilo.from_tuple(item) for item in textual]
 
         content = {
             'border': border,
@@ -190,25 +190,25 @@ def dump_area(items) -> str:
             'textual': textual,
         }
         raw.append(content)
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 def load_area(content: str, pages: tuple = None) -> PageContentTextualAreas:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
-        textual = [utila.parse_tuple(item) for item in page['textual']
+        textual = [utilo.parse_tuple(item) for item in page['textual']
                   ] if page['textual'] else page['textual']
         outside = {
-            key: [utila.parse_tuple(item) for item in values] if values else
+            key: [utilo.parse_tuple(item) for item in values] if values else
                  values for key, values in page['outside'].items()
         }
         border = {
-            key: [utila.parse_tuple(item) for item in values] if values else
+            key: [utilo.parse_tuple(item) for item in values] if values else
                  values for key, values in page['border'].items()
         }
         result.append(

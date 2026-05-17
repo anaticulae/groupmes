@@ -7,15 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 
 def area(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'groupmes', 'area_area', prefix)
+    return utilo.pathconnector(path, 'groupmes', 'area_area', prefix)
 
 
 def border_leftright(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
+    return utilo.pathconnector(
         path,
         'groupmes',
         'border_leftright',
@@ -24,4 +24,4 @@ def border_leftright(path: str, prefix: str = '') -> str:
 
 
 def distance(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'groupmes', 'distance_distance', prefix)
+    return utilo.pathconnector(path, 'groupmes', 'distance_distance', prefix)
