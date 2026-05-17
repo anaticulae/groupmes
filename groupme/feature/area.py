@@ -172,12 +172,12 @@ def dump_area(items) -> str:
     raw = []
     for page in items:
         outside = {
-            key: [utila.from_tuple(item) for item in value
-                 ] if value else value for key, value in page.outside.items()
+            key: [utila.from_tuple(item) for item in value] if value else value
+            for key, value in page.outside.items()
         }
         border = {
-            key: [utila.from_tuple(item) for item in border
-                 ] if border else border for key, border in page.border.items()
+            key: [utila.from_tuple(item) for item in border]
+                 if border else border for key, border in page.border.items()
         }
         textual = page.textual
         if textual:
@@ -204,14 +204,12 @@ def load_area(content: str, pages: tuple = None) -> PageContentTextualAreas:
         textual = [utila.parse_tuple(item) for item in page['textual']
                   ] if page['textual'] else page['textual']
         outside = {
-            key:
-            [utila.parse_tuple(item) for item in values] if values else values
-            for key, values in page['outside'].items()
+            key: [utila.parse_tuple(item) for item in values] if values else
+                 values for key, values in page['outside'].items()
         }
         border = {
-            key:
-            [utila.parse_tuple(item) for item in values] if values else values
-            for key, values in page['border'].items()
+            key: [utila.parse_tuple(item) for item in values] if values else
+                 values for key, values in page['border'].items()
         }
         result.append(
             PageContentTextualArea(
