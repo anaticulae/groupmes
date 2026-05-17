@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import genex
+import gennex
 import hoverpower
 import resinf
 import utilotest
@@ -42,7 +42,7 @@ def pytest_sessionstart(session):  # pylint:disable=W0613
 
 
 def extract(resources):
-    genex.extract(
+    gennex.extract(
         resources,
         pagenumber=True,
         headnote=True,
