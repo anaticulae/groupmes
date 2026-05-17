@@ -16,7 +16,6 @@
 # import tests
 # import tests.conftest
 
-
 # @pytest.mark.parametrize(
 #     'pdf',
 #     utilotest.test_resources(tests.conftest.RESOURCES),
@@ -28,7 +27,6 @@
 #     merged = serializeraw.load_headerfooter(td.tmpdir)
 #     skip = pdf == hoverpower.BOOK007_PDF  # TODO: ENABLE LATER
 #     assert merged or skip
-
 
 # def test_pagenumbers(td, mp):
 #     source = hoverpower.link(hoverpower.HC_DISS193)
