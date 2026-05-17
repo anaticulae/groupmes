@@ -47,7 +47,8 @@ def test_leftright_run():
 def test_leftright_run_noleftright():
     """Ensure that document with single page layout has no different
     border for left and right but only a single border."""
-    textpositions, pagesizes = load_example(hoverpower.link(hoverpower.MASTER072_PDF))
+    textpositions, pagesizes = load_example(
+        hoverpower.link(hoverpower.MASTER072_PDF))
     result = groupmes.border.leftright.run(textpositions, pagesizes)
     assert not result.valid, result
     # ensure that left border is more left then right
@@ -79,7 +80,8 @@ def test_leftright_raising_bachelor241():
 
 def test_leftright_strategy_witherror():
     """Run left right strategy with example which contains an error."""
-    textpositions, pagesizes = load_example(hoverpower.link(hoverpower.BOOK007_PDF))
+    textpositions, pagesizes = load_example(
+        hoverpower.link(hoverpower.BOOK007_PDF))
 
     textpositions, pagesizes = introduce_error(textpositions, pagesizes)
 
