@@ -17,7 +17,7 @@ def work(
     textpositions: str,
     sizeandborder: str,
     headerfooter: str,
-    pages: tuple = None,
+    pages: tuple | None = None,
 ) -> str:
     """Extract table of content out of `document`.
 
