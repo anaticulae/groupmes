@@ -19,7 +19,6 @@ dependencies = [
     "configos>=1.0.4,<2.0.0",
     # "geostrat>=1.4.4,<2.0.0",
     "konradus>=1.0.1,<2.0.0",
-    # "elements>=0.21.7,<1.0.0",
     # "tablero>=0.10.4,<1.0.0",
     # "footnote>=0.2.6,<1.0.0",
 ]
