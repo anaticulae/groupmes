@@ -49,6 +49,6 @@ def extract(resources):
         headnote=True,
         footnote=True,
         cleanup=True,
-        groupmes=True,
+        groupme=True,
         worker=WORKER,
     )
