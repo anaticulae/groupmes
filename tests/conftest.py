@@ -23,7 +23,8 @@ PACKAGE = groupmes.PACKAGE
 RESOURCES = [
     (hoverpower.BACHELOR241_PDF, '0:100'),
     (hoverpower.DISS264_PDF, '0:50'),
-    (hoverpower.HC_DISS193, '0:100'),
+    # TODO: enable hoverpower.HC_DISS20 later
+    # (hoverpower.HC_DISS193, '0:100'),
     resinf.todo(hoverpower.DOCU007_PDF, tablero=True),
     hoverpower.BACHELOR056_PDF,
     hoverpower.BOOK007_PDF,
