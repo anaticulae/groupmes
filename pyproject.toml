@@ -41,8 +41,8 @@ content-type = "text/markdown"
 [project.optional-dependencies]
 dev = [
     "utilotest>=1.0.1,<2.0.0",
-    "hoverpower==1.1.0",
-    "gennex==1.0.1",
+    "hoverpower==1.4.0",
+    "gennex==1.0.3",
     "rawmaker==2.40.3",
 ]
 
