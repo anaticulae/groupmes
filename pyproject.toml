@@ -75,6 +75,16 @@ patch_tags = [
     "deps",
 ]
 
+[tool.hoverpower]
+packages = [
+    "bachelor",
+    "book",
+    "diss",
+    "docu",
+    "master",
+    "order",
+]
+
 [tool.setuptools.packages.find]
 where = [
     ".",
