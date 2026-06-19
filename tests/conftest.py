@@ -46,9 +46,9 @@ def extract(resources):
     gennex.extract(
         resources,
         pagenumber=True,
-        headnote=True,
-        footnote=True,
-        cleanup=True,
+        # headnote=True,
+        # footnote=True,
+        # cleanup=True,
         groupme=True,
         worker=WORKER,
     )
