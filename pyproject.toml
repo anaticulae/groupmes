@@ -48,7 +48,7 @@ Homepage = "https://github.com/anaticulae/groupmes"
 Repository = "https://github.com/anaticulae/groupmes"
 
 [project.scripts]
-groupmes = "groupmes.cli:main"
+groupme = "groupmes.cli:main"
 
 [tool.semantic_release]
 version_toml = [
