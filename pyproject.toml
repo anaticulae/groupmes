@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "groupmes"
-version = "0.40.5"
+version = "1.0.0"
 description = ""
 requires-python = ">=3.12"
 authors = [

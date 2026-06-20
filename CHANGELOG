@@ -1,792 +1,3557 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
+
+## v1.0.0 (2026-06-20)
+
+### Bug Fixes
+
+- **cli**: Adjust interface
+  ([`49259be`](https://github.com/anaticulae/groupmes/commit/49259be42ac9e8dda4f95b55f7c0fb4f37660422))
+
+- **conftest**: Adjust interface
+  ([`c59ee3c`](https://github.com/anaticulae/groupmes/commit/c59ee3c5ffcdda87ab5f3be74f3071762dc85e2d))
+
+- **project**: Adjust pyproject
+  ([`5ef6c23`](https://github.com/anaticulae/groupmes/commit/5ef6c23347ad3ddb9388a4dce9fb6bd133cc083f))
+
+- **test**: Skip invalid tests
+  ([`2264af0`](https://github.com/anaticulae/groupmes/commit/2264af02748e9aed01028211f621dc91b3bb85f5))
+
+### Chores
+
+- **docker**: Add dockerignore
+  ([`ae8dfba`](https://github.com/anaticulae/groupmes/commit/ae8dfba05f4587f22be495f1b5ad9c6c069627fd))
+
+- **docker**: Add missing envs
+  ([`56c6b39`](https://github.com/anaticulae/groupmes/commit/56c6b394efb45751ff4688bba23d37dc1bffd18f))
+
+- **docker**: Do not copy dev artifact
+  ([`c6e45c5`](https://github.com/anaticulae/groupmes/commit/c6e45c50c6899f0d9d5cb2f2367e6fe087c1414b))
+
+- **github**: Add .github
+  ([`6bff057`](https://github.com/anaticulae/groupmes/commit/6bff05782f54cb1d4e3281f75af5a7c526e9184a))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`64ecaa5`](https://github.com/anaticulae/groupmes/commit/64ecaa59677ecd20c02c8d7c9869978b3a51d8d5))
+
+- **make**: Ensure that downloaded data is not downloaded to repo
+  ([`6599ef1`](https://github.com/anaticulae/groupmes/commit/6599ef17355b0c727f8b060c6f0bfaea90b477f5))
+
+- **make**: Pass secret to read encrypted data
+  ([`5bffdb3`](https://github.com/anaticulae/groupmes/commit/5bffdb39199bae87b461305b658a4982524d4a85))
+
+- **packages**: Shrink download
+  ([`c350c28`](https://github.com/anaticulae/groupmes/commit/c350c28549fa0c2c84e1d06802c7ab5c305b2c40))
+
+- **project**: Add modern setup
+  ([`58370fc`](https://github.com/anaticulae/groupmes/commit/58370fcf136bac227aafcd173b15c24a4333a9d1))
+
+- **project**: Remove unused dependency
+  ([`360fb93`](https://github.com/anaticulae/groupmes/commit/360fb93501845a960da4448140be1ff01acef9c2))
+
+- **project**: Rename project
+  ([`fd7afb3`](https://github.com/anaticulae/groupmes/commit/fd7afb3535094322390ab47b5d03e8f74fe6c1ba))
+
+- **pyproject**: Enable later
+  ([`cd18ed6`](https://github.com/anaticulae/groupmes/commit/cd18ed6a0d62b84ec10e25d01f88bb32619a0796))
+
+- **pyproject**: Rename groupme cli
+  ([`b0e1a2d`](https://github.com/anaticulae/groupmes/commit/b0e1a2d26a8107e89ea7f555b33c3d601ecff92b))
+
+- **requirements**: Add konradus
+  ([`c5d0d88`](https://github.com/anaticulae/groupmes/commit/c5d0d88923f65fecc50b66c617782c6eea66b2f0))
+
+- **requirements**: Add missing generator
+  ([`9cabfe6`](https://github.com/anaticulae/groupmes/commit/9cabfe6cb2589f6970ee068fcc2a48e1f643e58b))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`c2c2717`](https://github.com/anaticulae/groupmes/commit/c2c271711af04f420cb45178999a5e06d1ff9478))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`88936bb`](https://github.com/anaticulae/groupmes/commit/88936bb3643570f50902ac4fe1e13490d6dfabbc))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b40f859`](https://github.com/anaticulae/groupmes/commit/b40f8596f2d8f93aa16d295dbde2e72ae98616b2))
+
+- **resources**: Disable missing generator
+  ([`83bf4c7`](https://github.com/anaticulae/groupmes/commit/83bf4c73a2d2a586a911a8f6448433e9510d3618))
+
+### Code Style
+
+- **format**: Format code
+  ([`d5a8ff6`](https://github.com/anaticulae/groupmes/commit/d5a8ff6f0dbccdbf97872081ffe1464f0e6104f4))
+
+- **github**: Format code
+  ([`3fe841e`](https://github.com/anaticulae/groupmes/commit/3fe841e52c0a2ab2f1076e8b28e7e8285260c0ce))
+
+### Documentation
+
+- **linter**: Extend interface documentation
+  ([`aad3bc9`](https://github.com/anaticulae/groupmes/commit/aad3bc9085fe36a685230f003d39aa3e09ae70cf))
+
+### Features
+
+- **ptcn**: Skip creation if does not exists
+  ([`d70e0d4`](https://github.com/anaticulae/groupmes/commit/d70e0d477c74d68b22233faf239378e10d579764))
+
+### Refactoring
+
+- **names**: Adjust package names
+  ([`1fc1d46`](https://github.com/anaticulae/groupmes/commit/1fc1d46bde6a9f014a44f65f0460580ec820c051))
+
+### Testing
+
+- **conftest**: Disable None-resource
+  ([`9f67299`](https://github.com/anaticulae/groupmes/commit/9f67299ee162f55bbc6c61e616e5e47a27da61d8))
+
+- **fix**: Disable falling test
+  ([`eb6f63d`](https://github.com/anaticulae/groupmes/commit/eb6f63d2a1686a3c60ba5acfc2dd5349c5f42622))
+
+- **skip**: Skip failing test
+  ([`b9d46c1`](https://github.com/anaticulae/groupmes/commit/b9d46c112930606758b742b26a193c96287f1276))
+
 
 ## v0.40.5 (2023-01-01)
 
+### Chores
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`51f07bd`](https://github.com/anaticulae/groupmes/commit/51f07bdf340f07dba10e6edbda8987d91c9aa581))
+
+- **Jenkins**: Upgrade pipe library
+  ([`7145c75`](https://github.com/anaticulae/groupmes/commit/7145c750ae3288616fcec7457e554a576550532a))
+
+- **Jenkins**: Use new pre step
+  ([`15d554d`](https://github.com/anaticulae/groupmes/commit/15d554d3f2ee0dc1dd7f84d0be2d80c7dfe8512a))
+
+- **requirements**: Upgrade requirements.txt
+  ([`f3f80cb`](https://github.com/anaticulae/groupmes/commit/f3f80cbacb656b9d556bc5ecd92fae51ff663335))
+
 ### Documentation
 
-* happy New Year! (bf84bca60d0c)
+- **copyright**: Happy New Year!
+  ([`bf84bca`](https://github.com/anaticulae/groupmes/commit/bf84bca60d0c33626dade1d8d4bb0fcd1c69c20d))
 
-### Chore
-
-* use new pre step (15d554d3f2ee)
-* upgrade Jenkinsfile (51f07bdf340f)
-* upgrade pipe library (7145c750ae32)
-* upgrade requirements.txt (f3f80cbacb65)
 
 ## v0.40.4 (2022-12-21)
 
-### Chore
+### Chores
 
-* use quick installer (949321ba4997)
-* upgrade requirements.txt (fe573671f342)
-* upgrade pipeline (e722092a116f)
+- **Jenkins**: Upgrade pipeline
+  ([`e722092`](https://github.com/anaticulae/groupmes/commit/e722092a116fc91a14bc42457ba07cf1892a7b33))
+
+- **requirements**: Upgrade requirements.txt
+  ([`fe57367`](https://github.com/anaticulae/groupmes/commit/fe573671f342cdab7ee67059b7f759c9463e1e3f))
+
+- **setup**: Use quick installer
+  ([`949321b`](https://github.com/anaticulae/groupmes/commit/949321ba49972ff920271f464121a0c8764c7dbd))
+
+### Refactoring
+
+- **replace**: Automated replacement
+  ([`a32db41`](https://github.com/anaticulae/groupmes/commit/a32db41c0b105cc45af06b1f4cd717e01180e507))
+
 
 ## v0.40.3 (2022-12-04)
 
-### Chore
+### Chores
 
-* upgrade pipeline (27e8de157e12)
-* upgrade requirements.txt (5da956bfab7f)
-* upgrade pipe library (2c77619cbd12)
+- **Jenkins**: Upgrade pipe library
+  ([`2c77619`](https://github.com/anaticulae/groupmes/commit/2c77619cbd1292492ef48b8f58cacec684ec1f35))
+
+- **Jenkins**: Upgrade pipeline
+  ([`27e8de1`](https://github.com/anaticulae/groupmes/commit/27e8de157e1207432ac7fbd1e56f83fa8f3fc900))
+
+- **requirements**: Upgrade requirements.txt
+  ([`5da956b`](https://github.com/anaticulae/groupmes/commit/5da956bfab7faae2ff424138fb7172dd7ec8a0c6))
+
 
 ## v0.40.2 (2022-11-11)
 
-### Fix
+### Bug Fixes
 
-* reduce header miss matching (8cbd144b0c29)
+- **hefopa**: Reduce header miss matching
+  ([`8cbd144`](https://github.com/anaticulae/groupmes/commit/8cbd144b0c29bc718a005dcde7988db5a28ee108))
+
 
 ## v0.40.1 (2022-11-11)
 
-### Fix
+### Bug Fixes
 
-* distinguish between footer and header page number (e39c78978275)
+- **hefopa**: Distinguish between footer and header page number
+  ([`e39c789`](https://github.com/anaticulae/groupmes/commit/e39c78978275dcb4f3b25b748d0d750162bbf72f))
+
+### Refactoring
+
+- **hefopa**: Reduce complexity
+  ([`5480a28`](https://github.com/anaticulae/groupmes/commit/5480a280237c4b2ddfcae2b59b42d160106e0f32))
+
 
 ## v0.40.0 (2022-11-11)
 
-### Feature
+### Chores
 
-* add footer start/end to pagenumber footer (68ddd39409c2)
+- **requirements**: Upgrade requirements.txt
+  ([`ba40520`](https://github.com/anaticulae/groupmes/commit/ba40520e08a7a43e03a8fa131763e15e8ba51546))
 
-### Chore
+### Features
 
-* upgrade requirements.txt (ba40520e08a7)
+- **hefopa**: Add footer start/end to pagenumber footer
+  ([`68ddd39`](https://github.com/anaticulae/groupmes/commit/68ddd39409c22f07b46db9d3d0c3a78d9f1d1f30))
+
 
 ## v0.39.0 (2022-11-07)
 
-### Feature
+### Bug Fixes
 
-* use pagenumber in result determination (c88c49b44787)
-* merge hefopa pagenumber data (646d2db24b08)
+- **hefopa**: Do not use page numbers, fix up required
+  ([`e8a284d`](https://github.com/anaticulae/groupmes/commit/e8a284da71f030e2087e7d9b9b8352169b1d825d))
 
-### Fix
+- **pagenumber**: Remove duplicated page number
+  ([`b4b09ea`](https://github.com/anaticulae/groupmes/commit/b4b09ea197329fc558348ea3c83f2f240b2c0b31))
 
-* remove duplicated page number (b4b09ea19732)
-* do not use page numbers, fix up required (e8a284da71f0)
+### Chores
 
-### Chore
+- **requirements**: Upgrade requirements.txt
+  ([`d8b2409`](https://github.com/anaticulae/groupmes/commit/d8b240905c3a5bb02394f958991ba11d2441fe0e))
 
-* extend test data generator (b009be9e7276)
-* upgrade requirements.txt (d8b240905c3a)
+- **resources**: Extend test data generator
+  ([`b009be9`](https://github.com/anaticulae/groupmes/commit/b009be9e7276818e11ae34e36486fb71909bff03))
+
+### Features
+
+- **hefopa**: Merge hefopa pagenumber data
+  ([`646d2db`](https://github.com/anaticulae/groupmes/commit/646d2db24b0801a9dad0da752b5ec29cd33ae03f))
+
+- **hefopa**: Use pagenumber in result determination
+  ([`c88c49b`](https://github.com/anaticulae/groupmes/commit/c88c49b447878b15b2d2d7676fd51d9166a5906c))
+
+### Testing
+
+- **fix**: Determine generated path correctly
+  ([`af24d53`](https://github.com/anaticulae/groupmes/commit/af24d53ecad4d6d7daee7c5fdbef12c2d505fc69))
+
+- **hefopa**: Enable book007 later
+  ([`ce24ee6`](https://github.com/anaticulae/groupmes/commit/ce24ee67a3dd1b4c778325052224aef96b9100dd))
+
+- **hefopa**: Use new default path after upgrade
+  ([`bd99daf`](https://github.com/anaticulae/groupmes/commit/bd99daf2d3511668e8ac8c1eedf71778a796f292))
+
+- **pagenumber**: Verify selecting pagenumber
+  ([`9c22334`](https://github.com/anaticulae/groupmes/commit/9c2233423731165cc4a3333acbbb8537313f0c1d))
+
 
 ## v0.38.0 (2022-11-06)
 
-### Feature
+### Chores
 
-* add header, footer, pagenumber merging step (078debd3cc3f)
+- **requirements**: Upgrade requirements.txt
+  ([`0e7b381`](https://github.com/anaticulae/groupmes/commit/0e7b3819b25c8f7ac5a8900a6c6ade3551c6b106))
 
-### Chore
+- **setup**: Add classifier
+  ([`359ba43`](https://github.com/anaticulae/groupmes/commit/359ba436f95f1370e89e9fb12a44f350da117ff0))
 
-* add classifier (359ba436f95f)
-* upgrade requirements.txt (0e7b3819b25c)
+### Features
+
+- **hefopa**: Add header, footer, pagenumber merging step
+  ([`078debd`](https://github.com/anaticulae/groupmes/commit/078debd3cc3f3c8b2f02fd429cd058cb8efcf5ad))
+
+### Testing
+
+- **hefopa**: Verify more resources
+  ([`e28b143`](https://github.com/anaticulae/groupmes/commit/e28b143e3c23019df545740acf02ec1096f4e88b))
+
 
 ## v0.37.3 (2022-11-03)
 
-### Chore
+### Chores
 
-* ensure that baw has generated path (166ece5f1dde)
-* remove useless page numbers (b430c357ab1c)
-* notitle is not required in this project (2d20b40bb19f)
-* extend test data generator (0f322125b665)
-* convert nightly to all (afab14e265f5)
-* upgrade environment (fae2104a174d)
-* upgrade requirements.txt (83765c71e918)
+- **Jenkins**: Convert nightly to all
+  ([`afab14e`](https://github.com/anaticulae/groupmes/commit/afab14e265f5a1b15b9ace55a7c9fd6c87059570))
+
+- **Jenkins**: Ensure that baw has generated path
+  ([`166ece5`](https://github.com/anaticulae/groupmes/commit/166ece5f1dde0987f3d3e90353bcea4b08fff45a))
+
+- **Jenkins**: Upgrade environment
+  ([`fae2104`](https://github.com/anaticulae/groupmes/commit/fae2104a174d6f8bbf227ab119eceaafa5f1f77f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`83765c7`](https://github.com/anaticulae/groupmes/commit/83765c71e9185d008bd90f058e12f91722ec239c))
+
+- **resources**: Extend test data generator
+  ([`0f32212`](https://github.com/anaticulae/groupmes/commit/0f322125b6650b076fadcd3d2c75beee816531a1))
+
+- **resources**: Notitle is not required in this project
+  ([`2d20b40`](https://github.com/anaticulae/groupmes/commit/2d20b40bb19f0415b896cc5905ad8b560fcad092))
+
+- **resources**: Remove useless page numbers
+  ([`b430c35`](https://github.com/anaticulae/groupmes/commit/b430c357ab1c333ae56332bb92e0a62e5ca0d375))
+
+### Refactoring
+
+- **replace**: Automated replacement
+  ([`03ab6ac`](https://github.com/anaticulae/groupmes/commit/03ab6aca9bfcfbcb5f5403270c95a0d278b9ce94))
+
+### Testing
+
+- **cli**: Skip test if not generated
+  ([`2319db0`](https://github.com/anaticulae/groupmes/commit/2319db0d4190d0336faafbf0c4f4052e920acbfb))
+
+- **refactor**: Reduce complexity
+  ([`0a1128e`](https://github.com/anaticulae/groupmes/commit/0a1128e826c24b58ee02ffbc639daeacbd81971d))
+
 
 ## v0.37.2 (2022-10-16)
 
-### Chore
+### Chores
 
-* upgrade pipe library (e67d7f3f97d9)
-* upgrade baw (43f30535491a)
-* upgrade requirements.txt (039a747e631f)
+- **Jenkins**: Upgrade baw
+  ([`43f3053`](https://github.com/anaticulae/groupmes/commit/43f30535491aea14a23d5c2b52d7ce0cd6d0c064))
+
+- **Jenkins**: Upgrade pipe library
+  ([`e67d7f3`](https://github.com/anaticulae/groupmes/commit/e67d7f3f97d9ef622bf814062c32721b67b60e59))
+
+- **requirements**: Upgrade requirements.txt
+  ([`039a747`](https://github.com/anaticulae/groupmes/commit/039a747e631f04cdcaa04c3ee90b2bdd95b9f149))
+
+### Refactoring
+
+- **linter**: Solve linter warning
+  ([`daa44bc`](https://github.com/anaticulae/groupmes/commit/daa44bc80d9cc0fe81bdede4a8808884e8d09f13))
+
 
 ## v0.37.1 (2022-10-06)
 
-### Chore
+### Chores
 
-* run huge only on Monday (7241bd8766ad)
-* root user is not required (9ac1928d9ed7)
-* publish generated data if nightly fails (fe64101296f0)
-* upgrade requirements.txt (289aa8426992)
-* add missing dev resources (6760ecd93281)
-* upgrade requirements.txt (4e7914225b6f)
+- **huge**: Run huge only on Monday
+  ([`7241bd8`](https://github.com/anaticulae/groupmes/commit/7241bd8766ad8066d94bb2d8f5bf2c4116275eef))
+
+- **Jenkinsfile**: Publish generated data if nightly fails
+  ([`fe64101`](https://github.com/anaticulae/groupmes/commit/fe64101296f0ffb9c15f1a0834b523d23596c992))
+
+- **Jenkinsfile**: Root user is not required
+  ([`9ac1928`](https://github.com/anaticulae/groupmes/commit/9ac1928d9ed7b2de310bc812c57eb1a9dfa42e46))
+
+- **requirements**: Add missing dev resources
+  ([`6760ecd`](https://github.com/anaticulae/groupmes/commit/6760ecd93281726509dd444597b61688ae51dc72))
+
+- **requirements**: Upgrade requirements.txt
+  ([`289aa84`](https://github.com/anaticulae/groupmes/commit/289aa8426992bd36956731d257d126227461308f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4e79142`](https://github.com/anaticulae/groupmes/commit/4e7914225b6f0c4b2c881008d9e7222fd7a84fa1))
+
+### Testing
+
+- **huge**: Adjust groupme
+  ([`9f61894`](https://github.com/anaticulae/groupmes/commit/9f6189487c9487cf9bb3415577870d6c8074aefe))
+
+- **skip**: Skip non generated tests
+  ([`cf916de`](https://github.com/anaticulae/groupmes/commit/cf916def7f296bab12688f2bf1642b20c1e7414c))
+
 
 ## v0.37.0 (2022-09-29)
 
-### Feature
+### Bug Fixes
 
-* use footnote result (7dacbdba4413)
-* remove pagenumbers and footer step (21d3f573419e)
+- **fixed**: Skip rotated pages
+  ([`7b0a14c`](https://github.com/anaticulae/groupmes/commit/7b0a14cf36afc7603103248bcf2ff998f207120e))
 
-### Fix
+### Chores
 
-* skip rotated pages (7b0a14cf36af)
+- **ci**: Add Jenkinsfile
+  ([`ef446a9`](https://github.com/anaticulae/groupmes/commit/ef446a9247ccb4dad88d51ce58af78c84f9d2569))
+
+- **Jenkinsfile**: Add generator step
+  ([`0720ace`](https://github.com/anaticulae/groupmes/commit/0720ace1fb4716098b9344fee37029198f62281f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`0e142fd`](https://github.com/anaticulae/groupmes/commit/0e142fd5097b103051006c6f40e5aba19bc4906e))
+
+- **requirements**: Upgrade requirements.txt
+  ([`75d4b3e`](https://github.com/anaticulae/groupmes/commit/75d4b3ed024479f077eaa9c3cd4e64438e9a0dca))
+
+- **requirements**: Upgrade requirements.txt
+  ([`0b1d6a7`](https://github.com/anaticulae/groupmes/commit/0b1d6a773970fa0eb334b387e59cf4ba6eafd44c))
+
+- **resource**: Change generator
+  ([`d6885ce`](https://github.com/anaticulae/groupmes/commit/d6885ce8bad597fe4e395e8f4f4369db99c796bd))
+
+- **resources**: Extend test data generator
+  ([`3ceeb0b`](https://github.com/anaticulae/groupmes/commit/3ceeb0b416c72bb02898805dda436112ebf2df05))
+
+- **resources**: Reduce resource generator
+  ([`89bdfcc`](https://github.com/anaticulae/groupmes/commit/89bdfcc41410e8be1177821b45435984ab45a27a))
+
+### Code Style
+
+- **changelog**: Adjust automation tool
+  ([`2aab682`](https://github.com/anaticulae/groupmes/commit/2aab68229ab3f0953d6ecaab3222c704e5d25515))
 
 ### Documentation
 
-* remove outdated docs (54bc138c4395)
+- **remove**: Remove outdated docs
+  ([`54bc138`](https://github.com/anaticulae/groupmes/commit/54bc138c439557962f064067f3f7b2998d0abdd4))
 
-### Chore
+### Features
 
-* change generator (d6885ce8bad5)
-* upgrade requirements.txt (0e142fd5097b)
-* reduce resource generator (89bdfcc41410)
-* extend test data generator (3ceeb0b416c7)
-* add generator step (0720ace1fb47)
-* add Jenkinsfile (ef446a9247cc)
-* upgrade requirements.txt (75d4b3ed0244)
-* upgrade requirements.txt (0b1d6a773970)
+- **cli**: Remove pagenumbers and footer step
+  ([`21d3f57`](https://github.com/anaticulae/groupmes/commit/21d3f573419e4d04f280636f5222ff52fea5a040))
 
-## v0.36.1
+- **cli**: Use footnote result
+  ([`7dacbdb`](https://github.com/anaticulae/groupmes/commit/7dacbdba4413f835d6b039870ecef49ce8793de9))
 
-## v0.36.0
+### Refactoring
 
-### Feature
+- **cli**: Clarify code
+  ([`5495fe7`](https://github.com/anaticulae/groupmes/commit/5495fe714cac88a8aa5cb8e5db3db20f89a4a3e9))
 
-* add new pagenumber resource (36d03d613456)
+- **fixed**: Simplify code
+  ([`b9a6644`](https://github.com/anaticulae/groupmes/commit/b9a6644924810085d4c87c27704e9ebaf32d45b4))
 
-### Fix
+- **footnotes**: Split into separate methods
+  ([`29e723f`](https://github.com/anaticulae/groupmes/commit/29e723f25bedf964abbdf850c9404df280800410))
 
-* detected raw value is already hidden by cleanup (df1d81f4e788)
+- **pagenumber**: Remove outdated code
+  ([`1f562a3`](https://github.com/anaticulae/groupmes/commit/1f562a3bb66318f14c10ade46abe4af705d19ffe))
 
-## v0.35.0
+### Testing
 
-### Feature
+- **disable**: Disable failing test
+  ([`5dbfda1`](https://github.com/anaticulae/groupmes/commit/5dbfda11d5bc614f3dffe70441812b3c1d9273c0))
 
-* increase valid footer area (0a6eb469bc43)
-* use pdfpage to limit allowed footnote number (edfdb98ccf61)
-* improve footnote number finder (a94ac8b83a04)
+- **footer**: Adjust page number
+  ([`c85b2fe`](https://github.com/anaticulae/groupmes/commit/c85b2fe558e4a90f16744bbe2f4b5216da5d1827))
 
-## v0.34.4
+- **format**: Format code
+  ([`d6d4548`](https://github.com/anaticulae/groupmes/commit/d6d4548816d0c6a41b79d6c86c9f7ce9096e4a3d))
 
-### Feature
+- **refactor**: Simplify code
+  ([`1621ed8`](https://github.com/anaticulae/groupmes/commit/1621ed8aaa579465100f7467e38917d9a16cdd63))
 
-* increase valid footer area (21027929c35a)
-* log selected footer strategy (db370cf82651)
+- **refactor**: Simplify test code
+  ([`3cbbaf6`](https://github.com/anaticulae/groupmes/commit/3cbbaf6b3a978f456c21e1a3e49664104b370d54))
 
-### Fix
+- **remove**: Remove outdated unit tests
+  ([`7148bb7`](https://github.com/anaticulae/groupmes/commit/7148bb7e5c86544dd3f350ca2a0e90eb3c2b7498))
 
-* skip to many invalid footnotes numbers (928759d95c96)
+- **skip**: Skip non generated tests
+  ([`642eb5d`](https://github.com/anaticulae/groupmes/commit/642eb5df559f74e8e5955366d4ba8411f20897f5))
 
-## v0.34.3
 
-### Feature
+## v0.36.1 (2022-07-19)
 
-* increase horizontal diff max (eb650b285328)
-* use holy value (758b5befe7bb)
+### Chores
 
-## v0.34.2
+- **requirements**: Make pagenumber mandatory
+  ([`64ddc7d`](https://github.com/anaticulae/groupmes/commit/64ddc7d1801e4de35b2c191e25094236060aae1f))
 
-### Fix
+### Refactoring
 
-* allow smaller footnote separators (237df46c9fab)
+- **pagenumber**: Replace with pagenumber package
+  ([`645a351`](https://github.com/anaticulae/groupmes/commit/645a351afd4527568dd50b5557bfb7ef24d602aa))
 
-## v0.34.1
+### Testing
 
-### Feature
+- **remove**: Remove outdated pagenumbers test
+  ([`2ec593b`](https://github.com/anaticulae/groupmes/commit/2ec593b5b28bac2547dfee04c6b89fcfa8d93bd4))
 
-* adjust input to new naming (e161eabcfafd)
 
-### Fix
+## v0.36.0 (2022-07-19)
 
-* do not fail on white space line (bb5574ec1aa9)
+### Bug Fixes
 
-## v0.34.0
+- **pages**: Detected raw value is already hidden by cleanup
+  ([`df1d81f`](https://github.com/anaticulae/groupmes/commit/df1d81f4e78869d67ff7cd5171e399c59e0e1757))
 
-### Feature
+### Chores
 
-* decrease min line merge (48f82d9d8fda)
-* add more complex pattern (7a3456db8b3a)
+- **requirements**: Add pagenumber
+  ([`9f42873`](https://github.com/anaticulae/groupmes/commit/9f4287324942f64ba9e99ae2ec67358bf94d2be6))
 
-## v0.33.0
+- **requirements**: Jam is not required anymore
+  ([`ef25095`](https://github.com/anaticulae/groupmes/commit/ef25095a26daa212d7024c2f81ca3fca1b77b3e2))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`71e1b2d`](https://github.com/anaticulae/groupmes/commit/71e1b2db16be493d5973af2bd193fa615f062ce2))
 
-* connect magic page filler (1d6f709d61c5)
-* add page number filling method (906c05b89568)
-* add page number improved data port (0b5f3da3e10d)
-* do not merge footnotes with too few text at end (c45c97bfe316)
-* add result debugging information (2f96983537f3)
-* skip footer without any footnote (d42fa4c7e8c6)
-* add more debugging information (d9c51835c1dd)
+- **resources**: Adjust generator step
+  ([`87e17e8`](https://github.com/anaticulae/groupmes/commit/87e17e8444c7720890457ddc9937edb69fc45982))
 
-### Fix
+- **resources**: Remove default config
+  ([`9580bd2`](https://github.com/anaticulae/groupmes/commit/9580bd2ad3acaf7f4b326ceebdd6ec1c509c57e3))
 
-* allow single empty footnote merge them later (4bdc1df4c0a6)
+### Code Style
 
-## v0.32.0
+- **test**: Remove outdated test description
+  ([`e287973`](https://github.com/anaticulae/groupmes/commit/e287973c9763a1cfc18b0fac59be907c3204c5e8))
 
-### Feature
+### Features
 
-* use hyperlink improver (ed088dc7de2d)
-* use improver to improve footnote parser (89abb05adbad)
-* add hyperlink improver (a2ca2bae6ea1)
+- **cli**: Add new pagenumber resource
+  ([`36d03d6`](https://github.com/anaticulae/groupmes/commit/36d03d61345613b3b86421b010a129431ba5b5d7))
 
-## v0.31.0
+### Refactoring
 
-### Feature
+- **area**: Replace with serializeraw code
+  ([`2d9f436`](https://github.com/anaticulae/groupmes/commit/2d9f4362d33ffe94ea05c26b7ee062d79081a471))
 
-* improve footnote detection (583081ab95da)
+- **moving**: Clarify naming
+  ([`ffc9c60`](https://github.com/anaticulae/groupmes/commit/ffc9c60280c0a8f24768ecd775426912f8d6fa91))
 
-### Fix
+- **pages**: Clarify code
+  ([`2bcc99c`](https://github.com/anaticulae/groupmes/commit/2bcc99c0caca12150a5e424d427d20ad7667b3f1))
 
-* do not add empty highnote (ad4e584e6114)
-* fix footnote grouper (307ceaf1cd1f)
+### Testing
 
-## v0.30.0
+- **baseline**: Adjust baseline
+  ([`e26f417`](https://github.com/anaticulae/groupmes/commit/e26f417d3301f2cc7c110ec30385464d980e10c4))
 
-## v0.29.1
+- **refactor**: Clarify code
+  ([`3153541`](https://github.com/anaticulae/groupmes/commit/31535412d6429be11abeccbc614789277934a576))
 
-## v0.29.0
+- **refactor**: Improve code style
+  ([`3680435`](https://github.com/anaticulae/groupmes/commit/3680435aef26fb49570cb7e17703bf2cf0876ddb))
 
-### Feature
 
-* use improved decider strategy (0c136eb9c65c)
-* add strategy to disable to many invalid detections (0919f08b3607)
-* skip multiple page top lines (66d8598599ec)
-* introduce raw length to improve toc selector (8e7d3c0dd2de)
-* debug decider module (92df84565a6c)
-* add page top strategy (a7f485cc474f)
-* make separator border adjustable (ecf250b18818)
+## v0.35.0 (2022-07-14)
 
-### Fix
+### Chores
 
-* reduce debugging verbosity (4dc2cb736578)
-* adjust configos data type (fca0f4b38111)
-* do not include page number into toc content (c69f852cf533)
-* remove toc headline of the first page (10268b854176)
-* fix very lines at the top of the page (d41d7f049980)
-* make page dimension page size dependent (480ca3538e56)
-* add # as valid character (643ab7c7cc14)
-* adjust to new rawmaker behavior (edcdfd8d3534)
+- **requirements**: Upgrade requirements.txt
+  ([`eaf22bf`](https://github.com/anaticulae/groupmes/commit/eaf22bf8ff587baddcd63e068ed8e7fad28f6c42))
 
-## v0.28.0
+- **resources**: Extend test data generator
+  ([`67d5381`](https://github.com/anaticulae/groupmes/commit/67d5381adb2c5af05b93451cc2d463bc1e74072d))
 
-### Feature
+### Features
 
-* filter potential footer horizontals (9d7ac468eb15)
-* use common document footer line to reduce hyperlink lines (1e5d7b99db3c)
-* add footer horizontals selector (4c8e862119e6)
-* remove potential wrong footnote hline which are too right (57189fae72cb)
-* increase debugging information (20a27fbe9d4a)
+- **moving**: Increase valid footer area
+  ([`0a6eb46`](https://github.com/anaticulae/groupmes/commit/0a6eb469bc4369a49c29e1798b4babbb99d3ce6c))
 
-### Fix
+- **plain**: Use pdfpage to limit allowed footnote number
+  ([`edfdb98`](https://github.com/anaticulae/groupmes/commit/edfdb98ccf6137937770fd324c3904ad6c7e17ce))
 
-* improve line separator selector (999187286c27)
-* do not detect date as footnote (9be768146377)
+- **utils**: Improve footnote number finder
+  ([`a94ac8b`](https://github.com/anaticulae/groupmes/commit/a94ac8b83a04d4d27a5f16175619405522affa32))
 
-## v0.27.0
+### Refactoring
 
-### Feature
+- **plain**: Clarify code
+  ([`f2268c8`](https://github.com/anaticulae/groupmes/commit/f2268c80526faf54c07462a8ad1c0a1b68d0ac11))
 
-* add strategy name to extraction result (220ce74a5664)
-* debug invalid footer strategy (431e75f376e3)
-* do not handle few endnotes as invalid footnotes (7210fee43679)
+### Testing
 
-### Fix
+- **baseline**: Adjust baseline
+  ([`3245477`](https://github.com/anaticulae/groupmes/commit/3245477c1b6d58717c055f648653f6d0ec90413a))
 
-* add missing character (45d80ed949d6)
-* adjust min valid footer (e05cbe92142d)
+- **cli**: Shorten test code
+  ([`481e9c2`](https://github.com/anaticulae/groupmes/commit/481e9c218aeeedd05463d335f57de5290f575107))
 
-## v0.26.1
+- **conftest**: Use new fixture shortcuts
+  ([`efb3684`](https://github.com/anaticulae/groupmes/commit/efb3684ce7b726c8fec8a242f24bdbb6303a6908))
 
-### Feature
+- **footnotes**: Validate bachelor106
+  ([`cecc081`](https://github.com/anaticulae/groupmes/commit/cecc081403edfdc623f1fb6745b18885681ba97b))
 
-* add brackets as valid split (550b86c46e3e)
+- **refactor**: Shorten code
+  ([`1c97291`](https://github.com/anaticulae/groupmes/commit/1c97291f022e2b3cd0f5b4767526519d19f150bc))
 
-### Fix
 
-* append newline after removing newline in rawmaker (d3c569c06208)
-* shrink regex computation time (5e9843a92814)
+## v0.34.4 (2022-07-03)
 
-## v0.26.0
+### Bug Fixes
 
-### Feature
+- **moving**: Skip to many invalid footnotes numbers
+  ([`928759d`](https://github.com/anaticulae/groupmes/commit/928759d95c96452d9c1885c68b95b3d409b7cad8))
 
-* skip pages with too many numbers (26069a2fe3f2)
-* split text if required to gather better numbers (95face05bdf7)
+### Chores
 
-### Fix
+- **requirements**: Upgrade requirements.txt
+  ([`e5aeb16`](https://github.com/anaticulae/groupmes/commit/e5aeb16b754496b3582039026ec56ed076fb725d))
 
-* adjust raw entry (5d5c8fdab043)
+- **resources**: Extend test data generator
+  ([`ab7e19d`](https://github.com/anaticulae/groupmes/commit/ab7e19d0230715bc005981ac44d89f6c458c7504))
 
-## v0.25.0
+### Features
 
-### Feature
+- **footer**: Log selected footer strategy
+  ([`db370cf`](https://github.com/anaticulae/groupmes/commit/db370cf826516f840a33f4aea57a3229106f3021))
 
-* use raw field to enable more analyzing later (1494a9b127be)
-* add new style concept (1e945074b27c)
-* add plus sign as possible user character (a63c7f61556b)
-* make footnote parser more strict (59be89cbb9ee)
+- **moving**: Increase valid footer area
+  ([`2102792`](https://github.com/anaticulae/groupmes/commit/21027929c35a7275179e9ee25a0f269176be7a61))
 
-## v0.24.0
+### Testing
 
-### Feature
+- **footnotes**: Validate bachelor077
+  ([`8fa61a4`](https://github.com/anaticulae/groupmes/commit/8fa61a44cbd9dbd6f72a24f1bd6dfec7525acd88))
 
-* add toc style (ef4fa7b4de24)
 
-### Fix
+## v0.34.3 (2022-07-01)
 
-* ensure that table table starts with headline (733cef8c673a)
+### Chores
 
-## v0.23.0
+- **requirements**: Upgrade requirements.txt
+  ([`edf1918`](https://github.com/anaticulae/groupmes/commit/edf19185175b0c3424505c19aef40e17a1343b10))
 
-### Feature
+- **resources**: Extend test data generator
+  ([`e83e189`](https://github.com/anaticulae/groupmes/commit/e83e189d5000c76243bebcc9cafa828aac3c3b10))
 
-* ensure that first page contain figure table headline (8881ec13e64e)
-* use elements headlines list (2a9af7189ccd)
-* add English support (b5e5906e3e73)
+- **test**: Keep longrun fast
+  ([`d6aebed`](https://github.com/anaticulae/groupmes/commit/d6aebed7578c7c47875badbe36833ec93e8d7dac))
+
+### Code Style
+
+- **fixed**: Format code
+  ([`e198852`](https://github.com/anaticulae/groupmes/commit/e198852e8ae4dc212cea34dacd2bf704cf905e43))
+
+### Features
+
+- **fixed**: Increase horizontal diff max
+  ([`eb650b2`](https://github.com/anaticulae/groupmes/commit/eb650b28532861114152b34251e4f7ddc2de29a6))
+
+- **fixed**: Use holy value
+  ([`758b5be`](https://github.com/anaticulae/groupmes/commit/758b5befe7bb904dd8e8b24ff3080033d3f90769))
+
+### Refactoring
+
+- **fixed**: Reduce interface complexity
+  ([`2ba3739`](https://github.com/anaticulae/groupmes/commit/2ba3739cb07a7a42503f61c74ab98b5ebbc18461))
+
+- **fixed**: Simplify code
+  ([`fae6c16`](https://github.com/anaticulae/groupmes/commit/fae6c16876e0b6f9eba7e2308ac87881b5e61579))
+
+- **horizontals**: Adjust interface
+  ([`eaaa433`](https://github.com/anaticulae/groupmes/commit/eaaa433538ca0169cc3df042fdf1030986e96bb3))
+
+### Testing
+
+- **footer**: Validate tech019
+  ([`40b3f09`](https://github.com/anaticulae/groupmes/commit/40b3f09392edec4c342895c1f82c37cede4da02e))
+
+
+## v0.34.2 (2022-06-30)
+
+### Bug Fixes
+
+- **footer**: Allow smaller footnote separators
+  ([`237df46`](https://github.com/anaticulae/groupmes/commit/237df46c9fab1678c4a99e9ff771c07cea90fac9))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`138189c`](https://github.com/anaticulae/groupmes/commit/138189c1839679c6e721254bf5ff7606f9af4935))
+
+- **resources**: Extend test data generator
+  ([`b494ca2`](https://github.com/anaticulae/groupmes/commit/b494ca2435b07f058f3191dd0e011fa49f6a1751))
+
+- **resources**: Remove default config
+  ([`c2352d5`](https://github.com/anaticulae/groupmes/commit/c2352d5ed333c7775ba56b18b4cfd77eec236945))
+
+### Testing
+
+- **footnotes**: Validate master193
+  ([`b25a8ab`](https://github.com/anaticulae/groupmes/commit/b25a8abbad1c0b0a6ed7a1e5e0b5bf419b074ede))
+
+
+## v0.34.1 (2022-06-21)
+
+### Bug Fixes
+
+- **utils**: Do not fail on white space line
+  ([`bb5574e`](https://github.com/anaticulae/groupmes/commit/bb5574ec1aa9572159fccb06389d581bed265afb))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fffddf5`](https://github.com/anaticulae/groupmes/commit/fffddf50143a3071462ef3784e31fb7a9c9e715d))
+
+### Features
+
+- **cli**: Adjust input to new naming
+  ([`e161eab`](https://github.com/anaticulae/groupmes/commit/e161eabcfafd01b79995c5f17a66db44be478315))
+
+
+## v0.34.0 (2022-06-15)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d36d3d2`](https://github.com/anaticulae/groupmes/commit/d36d3d2488b9d95d1a7667182b6961f261607243))
+
+- **requirements**: Upgrade requirements.txt
+  ([`7c897b2`](https://github.com/anaticulae/groupmes/commit/7c897b20563bffcb30c5f8c513f69efdcaa31863))
+
+- **resources**: Extend test data generator
+  ([`b5f3852`](https://github.com/anaticulae/groupmes/commit/b5f3852d37c5f0ed294ce1fd19b307c3f597aa54))
+
+### Code Style
+
+- **moving**: Adjust error message
+  ([`2c9a100`](https://github.com/anaticulae/groupmes/commit/2c9a100ec37ea242b0526910d0bc928613f6cf5c))
+
+### Features
+
+- **footnote**: Decrease min line merge
+  ([`48f82d9`](https://github.com/anaticulae/groupmes/commit/48f82d9d8fdac1d35f8c76710da2c40a278dadd4))
+
+- **pagenumber**: Add more complex pattern
+  ([`7a3456d`](https://github.com/anaticulae/groupmes/commit/7a3456db8b3a9c5fe7a2ba6277438e88cae04961))
+
+### Refactoring
+
+- **pagenumbers**: Reduce complexity
+  ([`0365e93`](https://github.com/anaticulae/groupmes/commit/0365e93acb7854ae4b4a4c1fc024da0ce756599a))
+
+### Testing
+
+- **footnotes**: Validate master099c
+  ([`87aed7f`](https://github.com/anaticulae/groupmes/commit/87aed7fcf9967dbc6633f832df2c970b255cdcde))
+
+- **pagenumbers**: Convert unit test
+  ([`eebfae4`](https://github.com/anaticulae/groupmes/commit/eebfae4d3989d10e5a5b2745f1014c8521917956))
+
+- **pagenumbers**: Validate paper18
+  ([`1f5ebf7`](https://github.com/anaticulae/groupmes/commit/1f5ebf793949a7b33ba6b3555bbf17db5fe76641))
+
+- **xfail**: Disable xfailing test
+  ([`e7e720e`](https://github.com/anaticulae/groupmes/commit/e7e720e006802834a8bd5f1523a35bf7ebd1d73f))
+
+
+## v0.33.0 (2022-06-12)
+
+### Bug Fixes
+
+- **layout**: Allow single empty footnote merge them later
+  ([`4bdc1df`](https://github.com/anaticulae/groupmes/commit/4bdc1df4c0a632994ed2b75c31c99be76a82ae00))
+
+### Chores
+
+- **requirements**: Adjust cleanup
+  ([`7a67a52`](https://github.com/anaticulae/groupmes/commit/7a67a52e37459ecf60993b74d61315662e8ee3b5))
+
+- **requirements**: Upgrade requirements.txt
+  ([`94774c4`](https://github.com/anaticulae/groupmes/commit/94774c441f86ce913c2948089b1d9e4c40398442))
+
+- **resources**: Extend test data generator
+  ([`9da1586`](https://github.com/anaticulae/groupmes/commit/9da158645672447fd308bd41485324b455f6ea4c))
+
+- **resources**: Extend test data generator
+  ([`d9df17f`](https://github.com/anaticulae/groupmes/commit/d9df17ff14a438f6c7725f3d5de3f3d53c6fe516))
+
+### Features
+
+- **finish**: Do not merge footnotes with too few text at end
+  ([`c45c97b`](https://github.com/anaticulae/groupmes/commit/c45c97bfe316b7aaaf817b193494b80f8da876d5))
+
+- **footer**: Add result debugging information
+  ([`2f96983`](https://github.com/anaticulae/groupmes/commit/2f96983537f3f97150cd36aece1f58df44baa299))
+
+- **layout**: Add more debugging information
+  ([`d9c5183`](https://github.com/anaticulae/groupmes/commit/d9c51835c1ddc13b38bad34d1966bca6b8927486))
+
+- **moving**: Skip footer without any footnote
+  ([`d42fa4c`](https://github.com/anaticulae/groupmes/commit/d42fa4c7e8c601cce1c988f08071970f5493e53c))
+
+- **pagenumbers**: Add page number filling method
+  ([`906c05b`](https://github.com/anaticulae/groupmes/commit/906c05b8956836d4f2e1f3f28a032cbc5be6eaaa))
+
+- **pagenumbers**: Add page number improved data port
+  ([`0b5f3da`](https://github.com/anaticulae/groupmes/commit/0b5f3da3e10df960b36c9030d9af82d07ef8a95f))
+
+- **pagenumbers**: Connect magic page filler
+  ([`1d6f709`](https://github.com/anaticulae/groupmes/commit/1d6f709d61c55f78f0dcc2780a5708d4a593f0b0))
+
+### Refactoring
+
+- **finish**: Clarify code
+  ([`8cab247`](https://github.com/anaticulae/groupmes/commit/8cab247b0031c06ba9c39150dfd15913f1f688cb))
+
+- **pagenumbers**: Move to separate package
+  ([`3adcc60`](https://github.com/anaticulae/groupmes/commit/3adcc60e536b318fec16f3b78e12679d5487a2a7))
+
+- **rename**: Shorten naming
+  ([`fecbc85`](https://github.com/anaticulae/groupmes/commit/fecbc85b2592a8eb51381d994573d34f0a6b3eea))
+
+### Testing
+
+- **footnote**: Ensure that footnote is merged correctly
+  ([`46e6072`](https://github.com/anaticulae/groupmes/commit/46e607210fa54a9c1ee5d6396fb8927570398eea))
+
+- **refactor**: Simplify code
+  ([`4fe7415`](https://github.com/anaticulae/groupmes/commit/4fe7415763dc81b1b1e9b16c7155ef61ff958003))
+
+- **style**: Align name
+  ([`75ab91c`](https://github.com/anaticulae/groupmes/commit/75ab91cef7f03fd57e6dbf0b0a929f7370b5069f))
+
+
+## v0.32.0 (2022-06-09)
+
+### Chores
+
+- **requirements**: Add german
+  ([`2824dff`](https://github.com/anaticulae/groupmes/commit/2824dff84faac15892b1e30ace6958d0f4889c20))
+
+- **requirements**: Upgrade requirements.txt
+  ([`f2ed25c`](https://github.com/anaticulae/groupmes/commit/f2ed25c6afabcfdd79a475ada5d027ca14603ded))
+
+- **resources**: Extend resource
+  ([`3f8ec64`](https://github.com/anaticulae/groupmes/commit/3f8ec64eb8d46949996d2b6542f76dff4ebe3b44))
+
+### Code Style
+
+- **changelog**: Remove trailing whitespace
+  ([`50632e2`](https://github.com/anaticulae/groupmes/commit/50632e2ec282895962428d990e34da0d79f9fd7c))
+
+- **plain**: Format code
+  ([`7d817f4`](https://github.com/anaticulae/groupmes/commit/7d817f4d76f542cd64477a5359eb55e08c3a9b06))
+
+### Features
+
+- **highnote**: Use hyperlink improver
+  ([`ed088dc`](https://github.com/anaticulae/groupmes/commit/ed088dc7de2d34fe86a952e7c3f77573913b3101))
+
+- **plain**: Add hyperlink improver
+  ([`a2ca2ba`](https://github.com/anaticulae/groupmes/commit/a2ca2bae6ea13270535cb1f9018b7696e30de9d8))
+
+- **plain**: Use improver to improve footnote parser
+  ([`89abb05`](https://github.com/anaticulae/groupmes/commit/89abb05adbad9a98313799f8c5947d34c84e1e5f))
+
+### Refactoring
+
+- **plain**: Move hyperlink improver
+  ([`98e68c1`](https://github.com/anaticulae/groupmes/commit/98e68c105baeaf31a137c35f84c45d0e8ba0d20f))
+
+### Testing
+
+- **footnotes**: Validate paper014b
+  ([`b72897a`](https://github.com/anaticulae/groupmes/commit/b72897a431e39bba9abad1a160d8986ed4d926cc))
+
+- **format**: Format code
+  ([`367c96f`](https://github.com/anaticulae/groupmes/commit/367c96f6575e92df4bbb919ca7b7e9aa48d087e0))
+
+- **pagenumbers**: Move diss287 test
+  ([`58bb652`](https://github.com/anaticulae/groupmes/commit/58bb6529db624a5352978c03ea6738350d4b422e))
+
+- **pagenumbers**: Validate paper014b
+  ([`3a673b0`](https://github.com/anaticulae/groupmes/commit/3a673b0601df3eb4991075e99e050f9d9b28be58))
+
+- **refactor**: Clarify code
+  ([`1996ac0`](https://github.com/anaticulae/groupmes/commit/1996ac0baf5aa708b04d80ccd8884bbed2d2bb30))
+
+- **rename**: Adjust expected file names
+  ([`766a90b`](https://github.com/anaticulae/groupmes/commit/766a90bb2e29cbb0d430bd2f630a76473835944a))
+
+
+## v0.31.0 (2022-05-16)
+
+### Bug Fixes
+
+- **layout**: Do not add empty highnote
+  ([`ad4e584`](https://github.com/anaticulae/groupmes/commit/ad4e584e6114e51c15efba380ae37b1a3f1860f9))
+
+- **layout**: Fix footnote grouper
+  ([`307ceaf`](https://github.com/anaticulae/groupmes/commit/307ceaf1cd1f0898a38f9f7e184237efa4822164))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f33c2cb`](https://github.com/anaticulae/groupmes/commit/f33c2cb285fad817de93da9bdba8c3c0f63417c4))
+
+- **resources**: Extend test data generator
+  ([`1ad0348`](https://github.com/anaticulae/groupmes/commit/1ad0348e40f847f7f9101a86d120075fa9b7a0a3))
+
+- **resources**: Generate figures and run cleanup later
+  ([`234432d`](https://github.com/anaticulae/groupmes/commit/234432d0389de92bb16e80bd1f2d0db9ffaab52b))
+
+### Code Style
+
+- **config**: Add copyright header
+  ([`a302ab7`](https://github.com/anaticulae/groupmes/commit/a302ab7f67d932346a1a4fc7fc74277b43c0fab3))
+
+### Features
+
+- **layout**: Improve footnote detection
+  ([`583081a`](https://github.com/anaticulae/groupmes/commit/583081ab95da1b3693d934eb9bca72ce5c6b8e49))
+
+### Refactoring
+
+- **layout**: Reduce complexity
+  ([`cdaee8c`](https://github.com/anaticulae/groupmes/commit/cdaee8cd47b6138cf5d4141e45ddaaf7a876821f))
+
+- **moving**: Move moving strategy
+  ([`866319e`](https://github.com/anaticulae/groupmes/commit/866319ec620d8bd7b136dff2ef0863472b71e19f))
+
+- **plain**: Improve naming
+  ([`1bb261d`](https://github.com/anaticulae/groupmes/commit/1bb261d9d5bd89367c076a51097e3e972fa38dfd))
+
+### Testing
+
+- **adjust**: Adjust expected footnotes
+  ([`a3ebe23`](https://github.com/anaticulae/groupmes/commit/a3ebe23deb6f73b46a312f836f22fc5df686fdeb))
+
+- **footnotes**: Validate master063
+  ([`bfee849`](https://github.com/anaticulae/groupmes/commit/bfee849aba79e01301d8a57a201f13f6f02f6a86))
+
+- **footnotes**: Validate master091b
+  ([`a20f3ae`](https://github.com/anaticulae/groupmes/commit/a20f3ae2e153dbd82c1bd0f4b803efdf27cd982c))
+
+
+## v0.30.0 (2022-05-04)
+
+### Chores
+
+- **config**: Remove default behavior
+  ([`9c303bd`](https://github.com/anaticulae/groupmes/commit/9c303bdf88b3c99ab88e5797971c8704d79f0fe6))
+
+- **requirements**: Add missing hardcore package
+  ([`1cdc6b9`](https://github.com/anaticulae/groupmes/commit/1cdc6b9745271f5f63f9c881547e8a98d9614eed))
+
+- **requirements**: Upgrade requirements.txt
+  ([`7c41796`](https://github.com/anaticulae/groupmes/commit/7c41796f88e6c20946d5a7769ff6066e36bed581))
+
+- **resources**: Remove outdated files
+  ([`ba1be26`](https://github.com/anaticulae/groupmes/commit/ba1be26f27ae09e235baab65d0517b8c0e012ef4))
+
+- **resources**: Sort resources alphabetically
+  ([`9d1bc79`](https://github.com/anaticulae/groupmes/commit/9d1bc793ce66a188783c05eb7580f2162cbbe0a2))
+
+### Refactoring
+
+- **interface**: Update parameter name
+  ([`5655fd1`](https://github.com/anaticulae/groupmes/commit/5655fd18f17d608c610233ac93fdaf7b42d9bbfd))
+
+### Testing
+
+- **cleanup**: Remove outdated code
+  ([`7f3a7b9`](https://github.com/anaticulae/groupmes/commit/7f3a7b9fee0431c680151380b65d2607f81281d7))
+
+- **huge**: Adjust unit test
+  ([`692cc47`](https://github.com/anaticulae/groupmes/commit/692cc4720ecced8271a1aaa04594a45b7393e10b))
+
+- **refactor**: Replace with utilatest code
+  ([`806867b`](https://github.com/anaticulae/groupmes/commit/806867b9d2db9ae46aa7832d1e59ab175d4868d1))
+
+- **remove**: Remove unused code
+  ([`2b74b3a`](https://github.com/anaticulae/groupmes/commit/2b74b3a6fd6ea81703f73d36a816d8b12d5ca0c7))
+
+
+## v0.29.1 (2022-04-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`7e22056`](https://github.com/anaticulae/groupmes/commit/7e22056fff5bddfb3dbe60a2090799ceb5bda12a))
+
+- **resources**: Add bachelor078
+  ([`d05197f`](https://github.com/anaticulae/groupmes/commit/d05197ffdd50b268b1369699b5bf875092cc9496))
+
+- **resources**: Add bachelor086
+  ([`71ce2d9`](https://github.com/anaticulae/groupmes/commit/71ce2d9903233f8bc56bb5ae4256b247bf42ebac))
+
+- **resources**: Add bachelor101
+  ([`3695d0a`](https://github.com/anaticulae/groupmes/commit/3695d0ae31302caa708892cad21296f0a6e7126e))
+
+- **resources**: Add bachelor105
+  ([`17ce2ed`](https://github.com/anaticulae/groupmes/commit/17ce2ed10e0333738673f824d95d98f0a47a30c3))
+
+### Testing
+
+- **footer**: Adjust special sign
+  ([`7a8f05a`](https://github.com/anaticulae/groupmes/commit/7a8f05a3e8cbc2fda97a88c7cf42134c83200ef7))
+
+- **footnotes**: Validate bachelor078
+  ([`f6ba069`](https://github.com/anaticulae/groupmes/commit/f6ba0699e3b4e1eb25b3c782259cdcd3346ae752))
+
+- **footnotes**: Validate bachelor086
+  ([`cc82d40`](https://github.com/anaticulae/groupmes/commit/cc82d4097bd1813f18233f7e321e2d433d1091c2))
+
+- **footnotes**: Validate bachelor101
+  ([`0adca34`](https://github.com/anaticulae/groupmes/commit/0adca34d5d040582d23e832962933488641da98d))
+
+- **footnotes**: Validate bachelor105
+  ([`3adcfba`](https://github.com/anaticulae/groupmes/commit/3adcfba58c6f4cc81dc4343566f05b8d0f7d78e8))
+
+- **toc**: Adjust page number
+  ([`98e3e32`](https://github.com/anaticulae/groupmes/commit/98e3e32efa723285f0bf932197e46d732bfc3571))
+
+- **toc**: Ensure that bachelor101 is detected as numbered
+  ([`ba06750`](https://github.com/anaticulae/groupmes/commit/ba06750261411ce003e7d069d1363f53ea26b71f))
+
+- **toc**: Validate bachelor078
+  ([`9488cba`](https://github.com/anaticulae/groupmes/commit/9488cba2f67fd8d815ef056e44448c5de79f6f78))
+
+- **toc**: Validate bachelor086
+  ([`926a823`](https://github.com/anaticulae/groupmes/commit/926a8233a4bfd936955403717567a2beee91f828))
+
+- **toc**: Validate bachelor101
+  ([`643166e`](https://github.com/anaticulae/groupmes/commit/643166e107d5824a4f665cdaf94e5cd00822e90e))
+
+- **toc**: Validate bachelor105
+  ([`cee2025`](https://github.com/anaticulae/groupmes/commit/cee2025a6c9045324d911ec6f76e8170cd5b3f69))
+
+
+## v0.29.0 (2022-04-07)
+
+### Bug Fixes
+
+- **balance**: Reduce debugging verbosity
+  ([`4dc2cb7`](https://github.com/anaticulae/groupmes/commit/4dc2cb736578ec01e1d54740791bf9e498cf22cc))
+
+- **geometry**: Do not include page number into toc content
+  ([`c69f852`](https://github.com/anaticulae/groupmes/commit/c69f852cf533b1eeda78f6310f4669c81a256572))
+
+- **moving**: Make page dimension page size dependent
+  ([`480ca35`](https://github.com/anaticulae/groupmes/commit/480ca3538e56afb804f5108fb1e5a4b518aa0784))
+
+- **plain**: Adjust to new rawmaker behavior
+  ([`edcdfd8`](https://github.com/anaticulae/groupmes/commit/edcdfd8d35344d87ecfbb01d04cbb27ba8feff78))
+
+- **regex**: Adjust configo data type
+  ([`fca0f4b`](https://github.com/anaticulae/groupmes/commit/fca0f4b38111cfaf10c955cca9871d1988e37c28))
+
+- **regex**: Remove toc headline of the first page
+  ([`10268b8`](https://github.com/anaticulae/groupmes/commit/10268b8541766293df404508fd152f28b211c3a7))
+
+- **separator**: Fix very lines at the top of the page
+  ([`d41d7f0`](https://github.com/anaticulae/groupmes/commit/d41d7f049980d4aa937b3c3371c1791a54efa114))
+
+- **toc**: Add # as valid character
+  ([`643ab7c`](https://github.com/anaticulae/groupmes/commit/643ab7c7cc1403a48b71837fe1164da2249f7ecd))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`f613d97`](https://github.com/anaticulae/groupmes/commit/f613d9719a875754095ececda75598eae7001ffe))
+
+- **resources**: Add bachelor039
+  ([`1b68633`](https://github.com/anaticulae/groupmes/commit/1b686334796ac3a378795171942d98d95dd5cdcd))
+
+- **resources**: Add bachelor041a
+  ([`82ea9b6`](https://github.com/anaticulae/groupmes/commit/82ea9b6b5aa03fb53b5a0255ed5977124a13bf58))
+
+- **resources**: Extend test data generator
+  ([`048aa35`](https://github.com/anaticulae/groupmes/commit/048aa35fd7ade492a74bb3229e959349c650a269))
+
+### Features
+
+- **separator**: Make separator border adjustable
+  ([`ecf250b`](https://github.com/anaticulae/groupmes/commit/ecf250b1881871166fc0a1809533f0774d93a888))
+
+- **toc**: Add page top strategy
+  ([`a7f485c`](https://github.com/anaticulae/groupmes/commit/a7f485cc474fd47373bb555aa498c7ed3b3c4748))
+
+- **toc**: Add strategy to disable to many invalid detections
+  ([`0919f08`](https://github.com/anaticulae/groupmes/commit/0919f08b360775331dcb9202acd77de193b5f9ba))
+
+- **toc**: Debug decider module
+  ([`92df845`](https://github.com/anaticulae/groupmes/commit/92df84565a6c56df9df57550d0f96d7afaa19524))
+
+- **toc**: Introduce raw length to improve toc selector
+  ([`8e7d3c0`](https://github.com/anaticulae/groupmes/commit/8e7d3c0dd2de6da2538ce98d4de4d90eb0e48851))
+
+- **toc**: Skip multiple page top lines
+  ([`66d8598`](https://github.com/anaticulae/groupmes/commit/66d8598599ec45964f57fe759c1debf379c1ed6e))
+
+- **toc**: Use improved decider strategy
+  ([`0c136eb`](https://github.com/anaticulae/groupmes/commit/0c136eb9c65c15b20ff028022dbfa57da8c976bf))
+
+### Refactoring
+
+- **moving**: Improve code order
+  ([`5a68cd7`](https://github.com/anaticulae/groupmes/commit/5a68cd796e15799aeeb936ed33ce6314e26fc429))
+
+- **moving**: Improve naming
+  ([`e8af9c2`](https://github.com/anaticulae/groupmes/commit/e8af9c20500327b4f6b7afad2c7213f52be98b67))
+
+- **regex**: Convert to configo holy value
+  ([`7617fd8`](https://github.com/anaticulae/groupmes/commit/7617fd876c8c59ff3ac4076e206d7e8125f39e6d))
+
+- **separator**: Improve method orders
+  ([`c0a3a62`](https://github.com/anaticulae/groupmes/commit/c0a3a62ff4771289267aa0778e2c188046133992))
+
+### Testing
+
+- **footnotes**: Validate bachelor032a
+  ([`cf79b7e`](https://github.com/anaticulae/groupmes/commit/cf79b7ef87cdfba7a4e0629bdc2a31d2bf1a83de))
+
+- **footnotes**: Validate bachelor039
+  ([`3344348`](https://github.com/anaticulae/groupmes/commit/3344348c3ee6a8b848398d77b0023a01c6313ef9))
+
+- **footnotes**: Validate bachelor041a
+  ([`7fbd065`](https://github.com/anaticulae/groupmes/commit/7fbd06568525f2d6679f27dbf52f63fe87634bbd))
+
+- **style**: Improve code style
+  ([`8369f5d`](https://github.com/anaticulae/groupmes/commit/8369f5d6e8264eb25668ea982cb33356a80e08ca))
+
+- **toc**: Adjust bachelor241 toc result
+  ([`57c678a`](https://github.com/anaticulae/groupmes/commit/57c678a4705c1f0bb560bcb5eee2fd507c1d638a))
+
+- **toc**: Adjust page number
+  ([`86b8f3a`](https://github.com/anaticulae/groupmes/commit/86b8f3a8e38634919ba50428d53321b86e606d23))
+
+- **toc**: Adjust unit test
+  ([`226c40e`](https://github.com/anaticulae/groupmes/commit/226c40e610c230ecc0e867ca7b63d14e54abc63d))
+
+- **toc**: Ensure that level is computed correctly
+  ([`38459f7`](https://github.com/anaticulae/groupmes/commit/38459f76d55baa16afc1a6968bd15c5e8c4e0a5c))
+
+- **toc**: Use modern approach
+  ([`0a3df72`](https://github.com/anaticulae/groupmes/commit/0a3df72ef6c9ce78d8122e9a9e119d38c80a1ef5))
+
+- **toc**: Validate bachelor032a
+  ([`1900cde`](https://github.com/anaticulae/groupmes/commit/1900cde3b92161e8e70100604bc6d48f3550315b))
+
+- **toc**: Validate bachelor039
+  ([`0a8862b`](https://github.com/anaticulae/groupmes/commit/0a8862b0cb266ee23aac3684ef5e7cdac21a858a))
+
+- **toc**: Validate bachelor041a
+  ([`5765a66`](https://github.com/anaticulae/groupmes/commit/5765a66a0a21234885493e0841c7ab648ba72ff4))
+
+- **toc**: Validate bachelor241 page 6,4
+  ([`66803d1`](https://github.com/anaticulae/groupmes/commit/66803d13d09458d6cae7c34832637302f6dfd9c0))
+
+
+## v0.28.0 (2022-04-06)
+
+### Bug Fixes
+
+- **separator**: Improve line separator selector
+  ([`9991872`](https://github.com/anaticulae/groupmes/commit/999187286c27fd141f0c997c6eddc9a633acad65))
+
+- **utils**: Do not detect date as footnote
+  ([`9be7681`](https://github.com/anaticulae/groupmes/commit/9be7681463774c13efbf09c78c0bf9f9f129b2ce))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`ef7dcb8`](https://github.com/anaticulae/groupmes/commit/ef7dcb88127312d5fff10bf7f96c72626c7f3906))
+
+- **resources**: Add bachelor032
+  ([`d358820`](https://github.com/anaticulae/groupmes/commit/d3588200adeec3a3ccf90598baa2410225e39946))
+
+- **resources**: Extend test data generator
+  ([`bc9c016`](https://github.com/anaticulae/groupmes/commit/bc9c016746c3ab4afe111ca2c239a408874a3143))
+
+- **resources**: Sort documents by document length
+  ([`38822f1`](https://github.com/anaticulae/groupmes/commit/38822f137946dcdde45be175d33b2c8c841415cd))
+
+### Code Style
+
+- **docs**: Format docs
+  ([`295ca3d`](https://github.com/anaticulae/groupmes/commit/295ca3d1f61f77668a4485d425f776e56c5a6082))
+
+- **footnotes**: Sort tests alphabetically
+  ([`73c0f23`](https://github.com/anaticulae/groupmes/commit/73c0f2364d4489553a1cade2f133e3bf46f5a112))
+
+- **moving**: Format code
+  ([`673cb74`](https://github.com/anaticulae/groupmes/commit/673cb74cb630e50cf46dbdca59dece1d8a239078))
+
+- **test**: Fix spelling error
+  ([`ea72a7d`](https://github.com/anaticulae/groupmes/commit/ea72a7dee60baf36bc7fa605b90f99c38404ce77))
+
+- **toc**: Sort test alphabetically
+  ([`0c62327`](https://github.com/anaticulae/groupmes/commit/0c62327e49b4c19cd8d6d5d0045909fc4a003d9c))
+
+### Features
+
+- **moving**: Add footer horizontals selector
+  ([`4c8e862`](https://github.com/anaticulae/groupmes/commit/4c8e862119e6c7d61567705286e885eac324eda2))
+
+- **moving**: Filter potential footer horizontals
+  ([`9d7ac46`](https://github.com/anaticulae/groupmes/commit/9d7ac468eb15946e26ef866cb002a71c9175a3c5))
+
+- **moving**: Increase debugging information
+  ([`20a27fb`](https://github.com/anaticulae/groupmes/commit/20a27fbe9d4a1c99fb52febf5f7379b292c62636))
+
+- **moving**: Remove potential wrong footnote hline which are too right
+  ([`57189fa`](https://github.com/anaticulae/groupmes/commit/57189fae72cb6b830392513156aa174d849a7ed9))
+
+- **moving**: Use common document footer line to reduce hyperlink lines
+  ([`1e5d7b9`](https://github.com/anaticulae/groupmes/commit/1e5d7b99db3ccc8a6171f8b391dee7b8891c511a))
+
+### Refactoring
+
+- **layout**: Remove default behavior
+  ([`ef15cf7`](https://github.com/anaticulae/groupmes/commit/ef15cf7f8dacbc3f01c261f34fad478dc0d59dca))
+
+- **moving**: Format code
+  ([`3d7b067`](https://github.com/anaticulae/groupmes/commit/3d7b0679fc720297f4b96d20c481ad334f08ac2f))
+
+- **moving**: Move horizontal filter to separate method
+  ([`603b295`](https://github.com/anaticulae/groupmes/commit/603b295bcd4f3cfa812f96c4f2b1bde9d5ce0ed0))
+
+- **moving**: Move to separate package
+  ([`0aa0097`](https://github.com/anaticulae/groupmes/commit/0aa00975cec7bb5f6647415a8cb630b00a94ae8c))
+
+- **moving**: Split strategy into separate modules
+  ([`04833d8`](https://github.com/anaticulae/groupmes/commit/04833d8b85676fc896f61e7d15254d3959339f2a))
+
+- **moving**: Use improved page selector
+  ([`a696489`](https://github.com/anaticulae/groupmes/commit/a696489d4bf5b93df21c1b2fe680b6f70b24aa07))
+
+### Testing
+
+- **footnote**: Add bachelor028 p2 regression test
+  ([`1b706c2`](https://github.com/anaticulae/groupmes/commit/1b706c21b17673ff13d9dbc02c0737267cafd1f2))
+
+- **footnotes**: Update tests after improving algorithm
+  ([`08999fd`](https://github.com/anaticulae/groupmes/commit/08999fd40e1ba0f9eec7bfbc5f259ae4ffeecd2a))
+
+- **footnotes**: Validate bachelor028
+  ([`28d9b29`](https://github.com/anaticulae/groupmes/commit/28d9b29dfb318f7a7e7173a4b0d99f1ecf04f3e4))
+
+- **footnotes**: Validate bachelor028
+  ([`5a9db91`](https://github.com/anaticulae/groupmes/commit/5a9db918a232b2b0a2b44a142adfaff99211abed))
+
+- **footnotes**: Validate bachelor032
+  ([`6ff97c8`](https://github.com/anaticulae/groupmes/commit/6ff97c89a4c05871754b4634db048002a677901f))
+
+- **toc**: Validate bachelor028
+  ([`bc4503f`](https://github.com/anaticulae/groupmes/commit/bc4503fcd8682b3a1611fc592b343f3754d82c54))
+
+- **toc**: Validate bachelor032
+  ([`e1561c7`](https://github.com/anaticulae/groupmes/commit/e1561c79010c0455ce197a33db15073491363c04))
+
+
+## v0.27.0 (2022-04-05)
+
+### Bug Fixes
+
+- **line**: Add missing character
+  ([`45d80ed`](https://github.com/anaticulae/groupmes/commit/45d80ed949d6c989f38337ead5fa9f0ab93cbc6a))
+
+- **plain**: Adjust min valid footer
+  ([`e05cbe9`](https://github.com/anaticulae/groupmes/commit/e05cbe92142d3ad5f3f2bbba44a3fa425fd102b5))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d843a3f`](https://github.com/anaticulae/groupmes/commit/d843a3f3982471213c2638223b0cd6a6a0b2d91b))
+
+- **resources**: Extend test data generator
+  ([`f007e64`](https://github.com/anaticulae/groupmes/commit/f007e6490e971fc0302caa1c02113ad8d44e2e0b))
+
+### Code Style
+
+- **docs**: Adjust headline
+  ([`dff070c`](https://github.com/anaticulae/groupmes/commit/dff070c74aec1991117d8bddb7ec9f0b9f8c6aad))
+
+- **spelling**: Fix spelling error
+  ([`360fae9`](https://github.com/anaticulae/groupmes/commit/360fae90b808381224445c79b8b75ce94f670154))
+
+### Features
+
+- **moving**: Do not handle few endnotes as invalid footnotes
+  ([`7210fee`](https://github.com/anaticulae/groupmes/commit/7210fee436799abc077406d9f50fabf19b9243f2))
+
+- **plain**: Debug invalid footer strategy
+  ([`431e75f`](https://github.com/anaticulae/groupmes/commit/431e75f376e33641bd7dcf9e1b5cdbe7336e58f7))
+
+- **toc**: Add strategy name to extraction result
+  ([`220ce74`](https://github.com/anaticulae/groupmes/commit/220ce74a56644582797d3fbfda2cfca8ccea68a8))
+
+### Refactoring
+
+- **common**: Clarify naming
+  ([`be587fd`](https://github.com/anaticulae/groupmes/commit/be587fd6a019ad215a7ec9c20b74bd5b3010719e))
+
+- **moving**: Reduce complexity before improving strategy
+  ([`bed7653`](https://github.com/anaticulae/groupmes/commit/bed76535067a406bbf6bd53a83aa39fec7173264))
+
+- **toc**: Clarify code
+  ([`803f63c`](https://github.com/anaticulae/groupmes/commit/803f63c0bef68458dc0ca7c65618e876b2a444a1))
+
+### Testing
+
+- **footnote**: Adjust unit tests
+  ([`295c55b`](https://github.com/anaticulae/groupmes/commit/295c55ba0d9706f10a42452f9cc291d382f0731d))
+
+- **footnotes**: Validate diss from hardcore package
+  ([`d72a2db`](https://github.com/anaticulae/groupmes/commit/d72a2db804d30046ee7716202ce420107123a872))
+
+- **header**: Validate hcdiss examples
+  ([`d670331`](https://github.com/anaticulae/groupmes/commit/d6703315ff1506cab8980933f078ede9493d9b5a))
+
+- **pages**: Use modern pagenumber validator approach
+  ([`995507c`](https://github.com/anaticulae/groupmes/commit/995507c9e8af14c735bb35092eeac977869a45e7))
+
+- **pages**: Validate hc diss page numbers
+  ([`18773d0`](https://github.com/anaticulae/groupmes/commit/18773d0310e280a5e976b5f95f3fa1fcc7641a2d))
+
+- **refactor**: Simplify test code
+  ([`3e5da38`](https://github.com/anaticulae/groupmes/commit/3e5da38691a7baaa9a1c9464988aec3b6009ff34))
+
+- **toc**: Validate hardcore diss
+  ([`2470515`](https://github.com/anaticulae/groupmes/commit/2470515170e09a09dd9e995c8f2b5948bb5320fc))
+
+
+## v0.26.1 (2022-04-03)
+
+### Bug Fixes
+
+- **footnotes**: Shrink regex computation time
+  ([`5e9843a`](https://github.com/anaticulae/groupmes/commit/5e9843a9281464fb2260a4b8fa2ed31eea0c617a))
+
+- **highnote**: Append newline after removing newline in rawmaker
+  ([`d3c569c`](https://github.com/anaticulae/groupmes/commit/d3c569c06208903f637b746cf411424083982d48))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2f116c7`](https://github.com/anaticulae/groupmes/commit/2f116c7abeec5d3a4a0179b66b67dcd3c877b4f7))
+
+### Code Style
+
+- **docs**: Fix spelling error
+  ([`1986e5f`](https://github.com/anaticulae/groupmes/commit/1986e5f54611a7cd47731c1a4bd35017b2346711))
+
+- **docs**: Format docs
+  ([`12215e8`](https://github.com/anaticulae/groupmes/commit/12215e8df4af1a7b0a2fdcff6dcf254cb014cb9f))
+
+- **pagenumbers**: Fix spelling error
+  ([`42c1761`](https://github.com/anaticulae/groupmes/commit/42c17611459a37608d75aa10db124e00c0abcaef))
+
+### Features
+
+- **textraw**: Add brackets as valid split
+  ([`550b86c`](https://github.com/anaticulae/groupmes/commit/550b86c46e3e89d8b6636efbf2557d4188ca77f2))
+
+### Refactoring
+
+- **layout**: Use real holy value
+  ([`bc6799d`](https://github.com/anaticulae/groupmes/commit/bc6799dadba9af612666358981e866ef4523d15d))
+
+- **textraw**: Compile pattern
+  ([`2a0e238`](https://github.com/anaticulae/groupmes/commit/2a0e2387ba07080706755aa955ae18c41782dd25))
+
+- **todo**: Replace with utila code
+  ([`456cc90`](https://github.com/anaticulae/groupmes/commit/456cc90c6eba9ba18220cad407ae19142af11ff1))
+
+- **utils**: Simplify code
+  ([`0daf91f`](https://github.com/anaticulae/groupmes/commit/0daf91fc095b93e06a706d403c983c77ab5ddf0c))
+
+### Testing
+
+- **refactor**: Simplify code
+  ([`a8fc0c7`](https://github.com/anaticulae/groupmes/commit/a8fc0c7e31e30e1aba25f85608793bb8194e7584))
+
+- **refactor**: Simplify test
+  ([`8b5a9ae`](https://github.com/anaticulae/groupmes/commit/8b5a9aed94e8552d8f3105b9673eb776c3917b5c))
+
+
+## v0.26.0 (2022-03-01)
+
+### Bug Fixes
+
+- **plain**: Adjust raw entry
+  ([`5d5c8fd`](https://github.com/anaticulae/groupmes/commit/5d5c8fdab0431f814f60e560a1c2d81ef4998ceb))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`dbed0d6`](https://github.com/anaticulae/groupmes/commit/dbed0d60ab0cd047c69ba1df68a26b9869463333))
+
+- **resources**: Extend test data generator
+  ([`03d25b1`](https://github.com/anaticulae/groupmes/commit/03d25b1cc788850dee5a856542916dc3009cabeb))
+
+- **resources**: Extend test data generator
+  ([`79d2a95`](https://github.com/anaticulae/groupmes/commit/79d2a95d2b9b0baec03e499ce5184f5beb5be608))
+
+- **resources**: Extend test data generator
+  ([`0eb64d7`](https://github.com/anaticulae/groupmes/commit/0eb64d74cb3d1d6fdb31df1b9bda272dfc30c2e6))
+
+- **resources**: Extend test data generator
+  ([`b125896`](https://github.com/anaticulae/groupmes/commit/b1258961ed000bf9cc96a23215bff807cfc72dbe))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`b275b11`](https://github.com/anaticulae/groupmes/commit/b275b118aef0e23b7343d75a0971d9c08e19e856))
+
+### Features
+
+- **pagenumbers**: Skip pages with too many numbers
+  ([`26069a2`](https://github.com/anaticulae/groupmes/commit/26069a2fe3f2069abbbbe31a4af2b7d5e298e0db))
+
+- **pagenumbers**: Split text if required to gather better numbers
+  ([`95face0`](https://github.com/anaticulae/groupmes/commit/95face05bdf71442da8236f8ad44164d3ffc2360))
+
+### Testing
+
+- **footer**: Adjust unit test
+  ([`a08670a`](https://github.com/anaticulae/groupmes/commit/a08670af3bc3630bb80dd8d50cc6f78adb1496a9))
+
+- **pagenumbers**: Validate diss287
+  ([`c585306`](https://github.com/anaticulae/groupmes/commit/c585306225f0be6a2b1937e317150d7219d57488))
+
+- **pagenumbers**: Validate page number diss170b
+  ([`7ab49ed`](https://github.com/anaticulae/groupmes/commit/7ab49ed42f83c256cd9ae3af6c59e314ef414469))
+
+- **pages**: Validate bachelor085
+  ([`05cb07c`](https://github.com/anaticulae/groupmes/commit/05cb07c57019763e587bd143fb2f92cb0a89eb42))
+
+- **pages**: Validate diss148
+  ([`7eb8e65`](https://github.com/anaticulae/groupmes/commit/7eb8e65bb44411fb945126e8c5bfce9a5cb375a8))
+
+- **refactor**: Sort tests
+  ([`a5f5fa1`](https://github.com/anaticulae/groupmes/commit/a5f5fa10512466b6db11f9b0402d0df68e023bfe))
+
+
+## v0.25.0 (2022-02-25)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`73a51e9`](https://github.com/anaticulae/groupmes/commit/73a51e901dc52690b820b19d348dc7ac71ab782e))
+
+- **resources**: Extend test data generator
+  ([`51265e7`](https://github.com/anaticulae/groupmes/commit/51265e75521ee9914c7266efb405c52951e5c8ee))
+
+### Features
+
+- **footnote**: Make footnote parser more strict
+  ([`59be89c`](https://github.com/anaticulae/groupmes/commit/59be89cbb9eef7c6455ebae2cb0433908875789b))
+
+- **highnote**: Add new style concept
+  ([`1e94507`](https://github.com/anaticulae/groupmes/commit/1e945074b27c8ef91bf9503a072637c44aae74dd))
+
+- **highnote**: Use raw field to enable more analyzing later
+  ([`1494a9b`](https://github.com/anaticulae/groupmes/commit/1494a9b127bedd67d43fe60c9ec4767768fbf7e1))
+
+- **line**: Add plus sign as possible user character
+  ([`a63c7f6`](https://github.com/anaticulae/groupmes/commit/a63c7f61556b1dcaefacab7e0670ddd8390f773d))
+
+### Refactoring
+
+- **line**: Replace with utila code
+  ([`7fdd6af`](https://github.com/anaticulae/groupmes/commit/7fdd6afb1a85087bc684d67f1c854719fe2aff21))
+
+### Testing
+
+- **footnotes**: Validate master112
+  ([`345b230`](https://github.com/anaticulae/groupmes/commit/345b23088c079a8b13a336c39ad5d96553f9bfb3))
+
+- **toc**: Validate master112
+  ([`83fafbb`](https://github.com/anaticulae/groupmes/commit/83fafbb505cf9aea6b75fabc0d3aa00aac42b0d0))
+
+
+## v0.24.0 (2022-02-20)
+
+### Bug Fixes
+
+- **table**: Ensure that table table starts with headline
+  ([`733cef8`](https://github.com/anaticulae/groupmes/commit/733cef8c673a94bc421573310744bfd664071a25))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`9296d08`](https://github.com/anaticulae/groupmes/commit/9296d08c4cbaf2b7bf6fab95f89f00bff01f74cb))
+
+### Features
+
+- **toc**: Add toc style
+  ([`ef4fa7b`](https://github.com/anaticulae/groupmes/commit/ef4fa7b4de2448823399dafc80383bb3b5a7aeea))
+
+### Refactoring
+
+- **rename**: Use fixed name
+  ([`4864e3f`](https://github.com/anaticulae/groupmes/commit/4864e3f4f6d95bf030da4b6b180ada4e07162f17))
+
+- **table**: Replace with elements approach
+  ([`717dd95`](https://github.com/anaticulae/groupmes/commit/717dd950452f41b3cbd2604b9c92ed597ec467f5))
+
+### Testing
+
+- **refactor**: Change table validator
+  ([`0b04121`](https://github.com/anaticulae/groupmes/commit/0b04121c2ae99491ed30fdff0bf0689bc4f0cc76))
+
+- **table**: Validate bachelor111
+  ([`27b68bc`](https://github.com/anaticulae/groupmes/commit/27b68bc7e036a998e1b3ada337e2c3c9fa842ab6))
+
+
+## v0.23.0 (2022-02-14)
 
 ### Documentation
 
-* adjust interface documentation (c1ae55266c63)
+- **figure**: Adjust interface documentation
+  ([`c1ae552`](https://github.com/anaticulae/groupmes/commit/c1ae55266c63fa2af4d40f48948a4e6f7e22fad5))
 
-## v0.22.0
+### Features
 
-### Feature
+- **column**: Add English support
+  ([`b5e5906`](https://github.com/anaticulae/groupmes/commit/b5e5906e3e739413ac7c534fa36530b645cf47dc))
 
-* run page number extraction twice for wide pages (87e517e9ba90)
-* remove small text token trash (a8ceb3527fc4)
-* add debugging information (40e55bf1a770)
+- **figure**: Ensure that first page contain figure table headline
+  ([`8881ec1`](https://github.com/anaticulae/groupmes/commit/8881ec13e64eb67b69ef83b3729c23857df1f698))
 
-### Fix
+- **figure**: Use elements headlines list
+  ([`2a9af71`](https://github.com/anaticulae/groupmes/commit/2a9af7189ccd1fc143084418a99cfd5b791c18b4))
 
-* strip text to improve extraction result (c58e17ff43b7)
-* skip None to avoid computation error (e3f663310d41)
+### Refactoring
 
-### Documentation
+- **figure**: Move strategy into separate package
+  ([`0abe4ac`](https://github.com/anaticulae/groupmes/commit/0abe4ac79a63e0820d111a500f8762d74f0902fe))
 
-* adjust method documentation (0220fef345b0)
+- **figure**: Reduce complexity
+  ([`31f6d29`](https://github.com/anaticulae/groupmes/commit/31f6d293e9114ccec57afa4104a8979fa4233ef8))
 
-## v0.21.0
+- **figures**: Change figure validator
+  ([`6566b83`](https://github.com/anaticulae/groupmes/commit/6566b839bcd2c2d45d74d82346fbcd17a85f8c91))
 
-### Feature
+- **page**: Fix holy value definition
+  ([`4bc15aa`](https://github.com/anaticulae/groupmes/commit/4bc15aa6f920b0a64c2921501136c7872c9334c3))
 
-* skip huge text size in potential header (9a320ada3805)
-* increase possible word gap at line start (7f1f8d59ef0e)
-* make max word dist inline dependent (278087546ac2)
+### Testing
 
-### Fix
+- **fig**: Validate bachelor111
+  ([`5c1c1f5`](https://github.com/anaticulae/groupmes/commit/5c1c1f503d39a07417fd0107a831689a9f1c6f72))
 
-* add raw_number to result (fdf10981b7df)
+- **refactor**: Simplify code
+  ([`95ed4aa`](https://github.com/anaticulae/groupmes/commit/95ed4aa688935db978f20c1df092a9792e4dafdc))
 
-### Documentation
+- **regression**: Do not detect toc as figure
+  ([`0b62aee`](https://github.com/anaticulae/groupmes/commit/0b62aee0493af9f4b9ba6dc0080ab87d02ae1937))
 
-* adjust modules path (2798f58c052a)
+- **style**: Format code
+  ([`0c96096`](https://github.com/anaticulae/groupmes/commit/0c96096c77c7a7caed806d5cd279129fd83d671e))
 
-## v0.20.0
+- **toc**: Adjust toc path
+  ([`be76b0f`](https://github.com/anaticulae/groupmes/commit/be76b0f6b37d8fce56315c2553676d5b1d5cf8ca))
 
-### Feature
+- **toc**: Validate book173
+  ([`2bff9b7`](https://github.com/anaticulae/groupmes/commit/2bff9b7c4609dd367b0a83562a5ed71f38147389))
 
-* add option to change remove headlines (17e0121bcfec)
-* add balance backup parser (f0399976c54c)
-* connect balance strategy (b5202d4b760f)
-* add balanced toc parser strategy (c7f43bcf04c0)
-* add strategy to group toc lines with errors (621d6bf46a73)
-* add regex to determine toc line start and toc line ending (5130cdd20780)
-* improve headline skipper (5ac6110df47e)
-* use improve style selector (88d3eec4bf2e)
-* add special character (78d8e490d14a)
-* align white spaces (331f0a8a0fdd)
 
-### Fix
+## v0.22.0 (2022-02-10)
 
-* normalize text to improve extraction behavior (6b1e649be2ba)
-* improve extraction result (b72983c79c70)
-* adjust figure table parser after enabling balance strategy (bfa92525208e)
-* ignore character case (fd8fb7ed0b53)
-* do not group empty toc (b09f40c776e8)
-* do not fail on empty page (7e70ee7075cf)
+### Bug Fixes
 
-## v0.19.0
+- **common**: Strip text to improve extraction result
+  ([`c58e17f`](https://github.com/anaticulae/groupmes/commit/c58e17ff43b7f8fc652389b5f28669126aa35bd3))
 
-### Feature
+- **toc**: Skip None to avoid computation error
+  ([`e3f6633`](https://github.com/anaticulae/groupmes/commit/e3f663310d415ebe75361dcf6491920cd03e55b4))
 
-* improve footnote grouping (189db213be34)
-* add raw page location (dc702b486ece)
-* do not detect more than one page number per page (93c61df5a1b3)
-* support None highnotes correctly (9a5eb2d04337)
-* move highnote check to separate method (feed63d2a375)
-* allow None as valid highnote (7fba1f3211ec)
-* disable strategy if too few high notes are parsed (e0c45d208354)
-* add no level strategy to group toc with only few level (20341eed18cf)
-* add method to detect sections-pattern-toc (d29eebd76e42)
-* extend possible toc line pattern (11679c38e84a)
-* add attribute raw_level (2559a20346fa)
-* use numbered attribute (0df980e7fd5e)
-* cache line pattern to reduce execution time (20443da369c1)
-* add step wise toc level converter (8fc5281d6db9)
-* extend line regex pattern (3d459cf39807)
-* use headlines from elements (ff8a841b593a)
+### Chores
 
-### Fix
+- **requirements**: Upgrade requirements.txt
+  ([`3aceae8`](https://github.com/anaticulae/groupmes/commit/3aceae8d8dd12166cbf19de86a358f59518facce))
 
-* improve plain text parser (2625087af2ba)
-* footnote error in only a few items (fdb9e2d414c0)
-* skip potential footnotes with very short text (7d739a3427c8)
-* do not run forever (8e72f642612b)
-* split page number from page number (7067f2c7c6ec)
+- **resources**: Extend test data generator
+  ([`a4d4ce3`](https://github.com/anaticulae/groupmes/commit/a4d4ce38ceacf685c2c8d2ce185c45b80d9d8629))
+
+- **test**: Keep longrun fast
+  ([`cf741ef`](https://github.com/anaticulae/groupmes/commit/cf741ef10248ac00b9f1579f854cb6493d2d2b36))
+
+### Code Style
+
+- **footer**: Format code
+  ([`37d03ed`](https://github.com/anaticulae/groupmes/commit/37d03edea6362eeec2eee9a065d92b9752ccc924))
+
+- **rename**: Clarify naming
+  ([`065dd5f`](https://github.com/anaticulae/groupmes/commit/065dd5fdd50bbc7f8b7afc0d6c8a6a55c8c0664d))
 
 ### Documentation
 
-* describe how algorithm work (dd446d514042)
-* Happy New Year! (135858f97333)
+- **fix**: Adjust method documentation
+  ([`0220fef`](https://github.com/anaticulae/groupmes/commit/0220fef345b068af8ce6c96fb0d1718abf28dc1a))
 
-## v0.18.1
+### Features
 
-### Feature
+- **common**: Remove small text token trash
+  ([`a8ceb35`](https://github.com/anaticulae/groupmes/commit/a8ceb3527fc4861b669a231f2f10020305876fd1))
 
-* disable header strategy on too few results (055460d2452b)
+- **pagenumbers**: Run page number extraction twice for wide pages
+  ([`87e517e`](https://github.com/anaticulae/groupmes/commit/87e517e9ba908b984bbac4a7806dccaaa81f0348))
 
-### Documentation
+- **pages**: Add debugging information
+  ([`40e55bf`](https://github.com/anaticulae/groupmes/commit/40e55bf1a770a0656a3707abc8a620dc4aa06e1a))
 
-* Happy New Year! (a2be43289880)
+### Testing
 
-## v0.18.0
+- **header**: Validate diss148
+  ([`2e5dc4d`](https://github.com/anaticulae/groupmes/commit/2e5dc4ddbb4f987aeb6392e88168e5c439b4ce7f))
 
-### Feature
+- **toc**: Validate bachelor037
+  ([`2299e1a`](https://github.com/anaticulae/groupmes/commit/2299e1add4845be42615608c39c1a661b7975e61))
 
-* support optional seite or page in toc line (1ea946d4cc2f)
-* improve headline skipper (1401f3aca24c)
-* ensure that matches with correct font size (49d602ad8659)
-* add second try strategy (fcdd45212a6a)
-* return cluster data for further processing (966b44445e86)
-* add support for page numbers with gaps (de89a34e9c0d)
-* support [133] as highnote (86e9beaaa147)
-* reduce required occurrence to catch lower occurrence (54397ffed2ff)
-* use text tolerance to group more in pre selection process (0e0b75b65304)
 
-### Fix
+## v0.21.0 (2022-02-02)
 
-* skip table line as potential header (6cc62b85584d)
-* use backup result if first one fails (62ff52016ad1)
+### Bug Fixes
 
-### Documentation
+- **footnote**: Add raw_number to result
+  ([`fdf1098`](https://github.com/anaticulae/groupmes/commit/fdf10981b7df9f10eecfc020e83f7bcc57a22f3f))
 
-* extend interface documentation (6146a1ecf7df)
+### Chores
 
-## v0.17.0
+- **requirements**: Upgrade requirements.txt
+  ([`7b55d87`](https://github.com/anaticulae/groupmes/commit/7b55d87f1e630139a8c1c710cb2c8f4c1ae8902f))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`aaceb15`](https://github.com/anaticulae/groupmes/commit/aaceb15552daacd8078e8bd1dadb2e93fa0f8e1f))
 
-* rotate rotated page to use normal header detector (fa44e5e7aaa2)
-* simplify code (189734dfe074)
-* detected rotated page numbers (c8ce472de634)
+- **resources**: Extend test data generator
+  ([`f71b980`](https://github.com/anaticulae/groupmes/commit/f71b980e6a66c7ecf7b9fb48286a2e604232d559))
 
-### Fix
+### Code Style
 
-* add page size (0930b8f2760d)
-
-## v0.16.3
-
-### Feature
-
-* use improved remover (c05723b5fd34)
-
-## v0.16.2
-
-### Feature
-
-* detect pagenumbers as a single list (7ae83e0a9eca)
-
-## v0.16.1
-
-### Feature
-
-* introduce holy value (775eb73f141f)
-
-### Fix
-
-* do not use magic parameter (13094613af4a)
-
-## v0.16.0
-
-### Feature
-
-* replace with modifiable holy values (a07de10c3b05)
-
-### Fix
-
-* adjust holy value definition (0fbda91dfd72)
-* strip parsed abbreviation (2448577f92f9)
-
-## v0.15.2
-
-### Feature
-
-* skip bad parsing as a result of invalid footer line (ad9a3496cf7e)
-
-### Fix
-
-* add missing page parameter (a4e4fccf4066)
-
-## v0.15.1
-
-### Fix
-
-* update FootNoteMerged bounding (31347d54768e)
-* extend invalid abbr list (4b370c81001c)
-
-## v0.15.0
-
-### Feature
-
-* make error notes dependent (2a1b24bdd24e)
-* increase potential horizontal line diff (5ab214f7db57)
-* merge unconnected footnotes (efb6e22b564d)
-* merge both together (0ce3baa56f6e)
-* add option to use different footnote parser (5e8c2101510b)
-* adjust plain footnote extractor (6e5138af62a0)
-
-### Fix
-
-* round footer start (4d179d53080a)
+- **format**: Format code
+  ([`5f9e26b`](https://github.com/anaticulae/groupmes/commit/5f9e26bada9ae29451c039ad403bf7e86e452b57))
 
 ### Documentation
 
-* extend interface documentation (6b9941aed997)
+- **fix**: Adjust modules path
+  ([`2798f58`](https://github.com/anaticulae/groupmes/commit/2798f58c052a7454b74ec2e7feb06443f20656c3))
 
-## v0.14.1
+### Features
 
-### Fix
+- **footnote**: Increase possible word gap at line start
+  ([`7f1f8d5`](https://github.com/anaticulae/groupmes/commit/7f1f8d59ef0e8d526bfbc336709f4b4981756d13))
 
-* remove senseless check (dd82870eb1b5)
+- **footnotes**: Make max word dist inline dependent
+  ([`2780875`](https://github.com/anaticulae/groupmes/commit/278087546ac2447561a3f3122fca64c77a415bb1))
 
-## v0.14.0
+- **header**: Skip huge text size in potential header
+  ([`9a320ad`](https://github.com/anaticulae/groupmes/commit/9a320ada38050c64eaf7c78464c9b8981abd43e7))
 
-### Feature
+### Refactoring
 
-* replace linero with new tablero (5b2a23547095)
-* log skipping tables (6983a84fd210)
+- **footnotes**: Move methods to better places
+  ([`dce7c35`](https://github.com/anaticulae/groupmes/commit/dce7c35cbcf778e014428e34ac2ec35dd721cf65))
 
-## v0.13.1
+- **footnotes**: Move strategies into separate package
+  ([`3214ee6`](https://github.com/anaticulae/groupmes/commit/3214ee6247fdec8a1cf372934e267c44f85a7a43))
 
-### Fix
+- **highnote**: Move methods into separate methods
+  ([`32f8d5a`](https://github.com/anaticulae/groupmes/commit/32f8d5a50f1ac25f8de322bab9d89a3b7474b59a))
 
-* adjust data type (68308fde905a)
+- **plain**: Move steps into separate methods
+  ([`c8ea88b`](https://github.com/anaticulae/groupmes/commit/c8ea88be77ea06835d04e226375a7a54b306682d))
 
-## v0.13.0
+- **rename**: Improve naming
+  ([`aa283d9`](https://github.com/anaticulae/groupmes/commit/aa283d9272ef4d02deaaa34df03651cf6970025b))
 
-### Feature
+- **rename**: Rename parser to textraw strategy
+  ([`7188ed9`](https://github.com/anaticulae/groupmes/commit/7188ed98c313bd827c426549cf8e43266a17f00d))
 
-* add content step to determine ptcn border (008492171238)
+- **rename**: Use new naming convention
+  ([`fbc818c`](https://github.com/anaticulae/groupmes/commit/fbc818c6e2c8e4cda533e82a5ae52a85de6e0b12))
 
-### Fix
+- **textraw**: Move methods into separate methods
+  ([`f83c12d`](https://github.com/anaticulae/groupmes/commit/f83c12db894e97e50342722140c822c19b9e9dc2))
 
-* add missing rounding (87f097eab5f8)
-* adjust header tolerance (84613a15ea42)
+### Testing
 
-## v0.12.0
+- **footnotes**: Validate diss480 page 4 and 5
+  ([`6ea1f2e`](https://github.com/anaticulae/groupmes/commit/6ea1f2e7af146cf47014456cb83f8f2f927d88e4))
 
-### Feature
+- **footnotes**: Validate footnote number also
+  ([`ca01e21`](https://github.com/anaticulae/groupmes/commit/ca01e21ff3b8d097cea60e90d1731ed552f9db62))
 
-* add option to run collector with lower requirements (575ea57817d0)
-* improve common headline parser (57f6efe0e5bb)
-* use improved title checker (0f7b0b8532aa)
+- **footnotes**: Validate more documents
+  ([`93baf9e`](https://github.com/anaticulae/groupmes/commit/93baf9e017cde4816f089475d7ed1d9a043c679a))
 
-### Fix
+- **header**: Validate book173
+  ([`260ced8`](https://github.com/anaticulae/groupmes/commit/260ced86fcfb18a26599282bb8864028b039b55f))
 
-* ensure that header is separated correctly (364bb84b5cc6)
+- **move**: Move fixture
+  ([`98f99b4`](https://github.com/anaticulae/groupmes/commit/98f99b488f06c11633753b60805b60a8de00851b))
+
+- **refactor**: Merge tests to improved behavior
+  ([`23bb75b`](https://github.com/anaticulae/groupmes/commit/23bb75b287258b040744f1845feea681b839a47a))
+
+- **refactor**: Reduce structure complexity
+  ([`76791d2`](https://github.com/anaticulae/groupmes/commit/76791d210923efdc59e5bc09e0337815d00c46c7))
+
+- **refactor**: Shorten test code
+  ([`5e4c4b6`](https://github.com/anaticulae/groupmes/commit/5e4c4b648e9d647af826d219d6aa51c3909108f9))
+
+- **refactor**: Simplify code
+  ([`fab65ba`](https://github.com/anaticulae/groupmes/commit/fab65bad3616171111f0070aa85e878f0fb8dddb))
+
+- **remove**: Remove senseless brackets
+  ([`537853e`](https://github.com/anaticulae/groupmes/commit/537853e803364ca9240b2dc0fdf0c15c594ca8c1))
+
+- **style**: Sort tests alphabetically
+  ([`f0b8a84`](https://github.com/anaticulae/groupmes/commit/f0b8a849d4a4f96dd2ab27374a82efc19f4e4b9c))
+
+
+## v0.20.0 (2022-01-27)
+
+### Bug Fixes
+
+- **balance**: Improve extraction result
+  ([`b72983c`](https://github.com/anaticulae/groupmes/commit/b72983c79c7022f1640e4e196478c488eefb9300))
+
+- **balance**: Normalize text to improve extraction behavior
+  ([`6b1e649`](https://github.com/anaticulae/groupmes/commit/6b1e649be2ba16a085c6b30d3b671478886e75e7))
+
+- **create**: Do not group empty toc
+  ([`b09f40c`](https://github.com/anaticulae/groupmes/commit/b09f40c776e871c8695b92903105bf9840a0cbf9))
+
+- **figuretable**: Adjust figure table parser after enabling balance strategy
+  ([`bfa9252`](https://github.com/anaticulae/groupmes/commit/bfa92525208ec7d28ad1e53b72bd496101072d38))
+
+- **georegex**: Do not fail on empty page
+  ([`7e70ee7`](https://github.com/anaticulae/groupmes/commit/7e70ee7075cfdde20940d448f21c4cf762944c31))
+
+- **level**: Ignore character case
+  ([`fd8fb7e`](https://github.com/anaticulae/groupmes/commit/fd8fb7ed0b5354f63731e149f1b1a26d9492c3c2))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6ab0046`](https://github.com/anaticulae/groupmes/commit/6ab0046841a7a36373e95715b33c1f5a884842e5))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4d7e213`](https://github.com/anaticulae/groupmes/commit/4d7e21341e6421ed6ac5d0ad2028e4a8394a808e))
+
+- **resources**: Extend test data generator
+  ([`5b9ccbf`](https://github.com/anaticulae/groupmes/commit/5b9ccbf28d5aaf0d589cda454bff312178d1a761))
+
+- **resources**: Extend test data generator
+  ([`aa351e0`](https://github.com/anaticulae/groupmes/commit/aa351e0fe1ea71946e7157beecd24e75339eed5a))
+
+- **test**: Keep longrun fast
+  ([`9f33918`](https://github.com/anaticulae/groupmes/commit/9f33918ff5f5ad3b6047baaed8a11e6d67ee1e90))
+
+### Code Style
+
+- **imports**: Organize imports
+  ([`db58f83`](https://github.com/anaticulae/groupmes/commit/db58f830934a80bfe783669a612d9bfd56255736))
+
+- **lineregex**: Improve code style
+  ([`863ac78`](https://github.com/anaticulae/groupmes/commit/863ac784f2cfd91cf10d1b1d02b749cb6de5357c))
+
+- **toc**: Add missing copyright header
+  ([`dacd3f1`](https://github.com/anaticulae/groupmes/commit/dacd3f14bbcd474db2f635607e7512a4cb983fe1))
+
+### Features
+
+- **balance**: Add balance backup parser
+  ([`f039997`](https://github.com/anaticulae/groupmes/commit/f0399976c54c9cdea8d84c3a9e1046320c846ef0))
+
+- **balance**: Add strategy to group toc lines with errors
+  ([`621d6bf`](https://github.com/anaticulae/groupmes/commit/621d6bf46a73a560bfa5d1678aed3d6828a76268))
+
+- **geometry**: Improve headline skipper
+  ([`5ac6110`](https://github.com/anaticulae/groupmes/commit/5ac6110df47e98d824e996f30a99430e6d87e64b))
+
+- **lineregex**: Add regex to determine toc line start and toc line ending
+  ([`5130cdd`](https://github.com/anaticulae/groupmes/commit/5130cdd2078071c00ef0c058a80a7d0d4e936a5f))
+
+- **lineregex**: Add special character
+  ([`78d8e49`](https://github.com/anaticulae/groupmes/commit/78d8e490d14abfd8cac264f06e994458a9f8bcc4))
+
+- **lineregex**: Align white spaces
+  ([`331f0a8`](https://github.com/anaticulae/groupmes/commit/331f0a8a0fddb1d5f5b9972bdaf15e235f6cface))
+
+- **strategy**: Add option to change remove headlines
+  ([`17e0121`](https://github.com/anaticulae/groupmes/commit/17e0121bcfecd39b0950e7db2466ad0a6049b7c6))
+
+- **toc**: Add balanced toc parser strategy
+  ([`c7f43bc`](https://github.com/anaticulae/groupmes/commit/c7f43bcf04c0a44d758cda41bf59a5d8b6676d9b))
+
+- **toc**: Connect balance strategy
+  ([`b5202d4`](https://github.com/anaticulae/groupmes/commit/b5202d4b760f870c903a3f6a735232990d8d4e9a))
+
+- **toc**: Use improve style selector
+  ([`88d3eec`](https://github.com/anaticulae/groupmes/commit/88d3eec4bf2eab8f95466299ef606720a2383126))
+
+### Refactoring
+
+- **basic**: Simplify code
+  ([`cc6b1f9`](https://github.com/anaticulae/groupmes/commit/cc6b1f9698c96435e063b8d300c21fa34249ec6d))
+
+- **geometry**: Clarify naming
+  ([`a2b337d`](https://github.com/anaticulae/groupmes/commit/a2b337d28f92c98f45a8c9fe528be45c0c5fcb06))
+
+- **geometry**: Replace with strategy headline remover
+  ([`b740cca`](https://github.com/anaticulae/groupmes/commit/b740ccab8d626250e0759914dfff7089b9f31b55))
+
+- **geometry**: Replace with utila code
+  ([`2a70509`](https://github.com/anaticulae/groupmes/commit/2a70509a3ed6f60a75300efc0010acc73c6999d6))
+
+- **geometry**: Simplify code after using improved configo
+  ([`edf210f`](https://github.com/anaticulae/groupmes/commit/edf210fe3d310fac0022e20f9e718f73341e0b9e))
+
+- **geometry**: Use cache to reduce computation time
+  ([`46d1455`](https://github.com/anaticulae/groupmes/commit/46d1455948d11c31db8e4187954a1896cb9a28d3))
+
+- **regex**: Move layout improver to separate module
+  ([`fffffda`](https://github.com/anaticulae/groupmes/commit/fffffda65b1046043ae73485cb8fbd1c6285933f))
+
+- **regex**: Move no level parser
+  ([`9e02ef4`](https://github.com/anaticulae/groupmes/commit/9e02ef49897b7fba30f374d59411f3b44eb5ec36))
+
+- **rename**: Improve naming
+  ([`dfce892`](https://github.com/anaticulae/groupmes/commit/dfce892912bfb777713956e113d27d7256052034))
+
+- **replace**: Remove senseless create method
+  ([`d983666`](https://github.com/anaticulae/groupmes/commit/d983666597df2cc0b0d722c4a0f9128bcfe8b9f5))
+
+- **strategy**: Reduce code complexity
+  ([`98fff8c`](https://github.com/anaticulae/groupmes/commit/98fff8c43857a6a5f1493b11274bb83b89fd9e59))
+
+- **strategy**: Simplify code
+  ([`f2e27c1`](https://github.com/anaticulae/groupmes/commit/f2e27c10f44c5763c38bc72e03630997d3a0deb4))
+
+- **toc**: Move modules into better structure
+  ([`156aec6`](https://github.com/anaticulae/groupmes/commit/156aec6a05bfcd249c02b6e4fa4cf2a33f353540))
+
+- **utils**: Improve code style
+  ([`acf6d86`](https://github.com/anaticulae/groupmes/commit/acf6d864af08c9ee0e7c5424d7d0f77256091445))
+
+- **utils**: Improve naming
+  ([`58ba4d0`](https://github.com/anaticulae/groupmes/commit/58ba4d03a5570b0d6ee90d3a9325b5b58ce01f39))
+
+### Testing
+
+- **pages**: Validate diss480
+  ([`2b21921`](https://github.com/anaticulae/groupmes/commit/2b2192194d865c695c3a91cd51cbcd803383ccf6))
+
+- **refactor**: Extend test code
+  ([`333ebde`](https://github.com/anaticulae/groupmes/commit/333ebdef14def4c4ea536c24846e0a5908a80ac9))
+
+- **refactor**: Simplify code
+  ([`6eedc30`](https://github.com/anaticulae/groupmes/commit/6eedc30782d4b5b713607343b3b42c222ad4ded5))
+
+- **refactor**: Sort tests alphabetically
+  ([`7932fcd`](https://github.com/anaticulae/groupmes/commit/7932fcd936f0d07d72f539b5efa0b29568c0263b))
+
+- **toc**: Fix test to new behavior
+  ([`ab28551`](https://github.com/anaticulae/groupmes/commit/ab28551ac102ae721fa864149142762ef528720a))
+
+- **toc**: Validate bachelor128
+  ([`9c6eca8`](https://github.com/anaticulae/groupmes/commit/9c6eca86e74b8fec5d5ae1a2f9fa8d33998c0768))
+
+- **toc**: Validate diss172
+  ([`2d7963b`](https://github.com/anaticulae/groupmes/commit/2d7963bb39c8f0365b408b1b11a1aa903c079e88))
+
+- **toc**: Validate diss178
+  ([`4110270`](https://github.com/anaticulae/groupmes/commit/411027097e7ea550bebed7c5c6e901703060eaaf))
+
+- **toc**: Validate diss480
+  ([`409e081`](https://github.com/anaticulae/groupmes/commit/409e0816f33659f52bd73c4b662cc077a6759dde))
+
+- **toc**: Validate master155
+  ([`d97857c`](https://github.com/anaticulae/groupmes/commit/d97857c514a5e9d82ecbdcaa25a725f7627f7ec4))
+
+- **toc**: Validate master193
+  ([`aaea907`](https://github.com/anaticulae/groupmes/commit/aaea9077bb6c2159c0101a03409e66c83a4f96e6))
+
+- **toc**: Validate master193 toc style
+  ([`c0eaadc`](https://github.com/anaticulae/groupmes/commit/c0eaadc6de415cffb7e8ceda7b2e3ae4797a9f01))
+
+- **toc**: Validate toc style selector
+  ([`b74f3ec`](https://github.com/anaticulae/groupmes/commit/b74f3ec170ad452541a2d36d05c8ecf8f961f002))
+
+
+## v0.19.0 (2022-01-17)
+
+### Bug Fixes
+
+- **highnote**: Footnote error in only a few items
+  ([`fdb9e2d`](https://github.com/anaticulae/groupmes/commit/fdb9e2d414c026e239bbfadba2f9b5e320c36d90))
+
+- **highnote**: Skip potential footnotes with very short text
+  ([`7d739a3`](https://github.com/anaticulae/groupmes/commit/7d739a3427c8c75487a2ea9ea9d8be3015038ae5))
+
+- **line**: Do not run forever
+  ([`8e72f64`](https://github.com/anaticulae/groupmes/commit/8e72f642612b1b6c998ecd43ea709f24ea57bab5))
+
+- **line**: Split page number from page number
+  ([`7067f2c`](https://github.com/anaticulae/groupmes/commit/7067f2c7c6ecb30b026666dcfab06e35ff2e0cad))
+
+- **plain**: Improve plain text parser
+  ([`2625087`](https://github.com/anaticulae/groupmes/commit/2625087af2bacfe059fd47b999bcfb946fdbe2c4))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`93ea434`](https://github.com/anaticulae/groupmes/commit/93ea4345fd518d0139016af370218d75612ecfca))
+
+- **requirements**: Upgrade requirements.txt
+  ([`109c977`](https://github.com/anaticulae/groupmes/commit/109c9779f93f88890a0df715c41abb002d4aa51a))
+
+- **requirements**: Upgrade requirements.txt
+  ([`1fc6f1a`](https://github.com/anaticulae/groupmes/commit/1fc6f1acad9b9b0e4de7ebd3faf3ee391d8c268f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`a7fd60e`](https://github.com/anaticulae/groupmes/commit/a7fd60e606f3f43dca86aee8384cd3a66cac94d7))
+
+- **resources**: Extend test data generator
+  ([`2e6fe5e`](https://github.com/anaticulae/groupmes/commit/2e6fe5ee856e78dca3685336b3b69a13b9d1a938))
+
+- **resources**: Extend test data generator
+  ([`d87e977`](https://github.com/anaticulae/groupmes/commit/d87e9778fe0acc1cfeb1a7a009f656abd3c35299))
+
+- **resources**: Extend test data generator
+  ([`6fa019b`](https://github.com/anaticulae/groupmes/commit/6fa019b90f456ee540311a79196e90a86ee59746))
+
+- **resources**: Extend test data generator
+  ([`9c6f3aa`](https://github.com/anaticulae/groupmes/commit/9c6f3aa7c17863e9f5e4c4dde65de6649c18dde4))
+
+- **resources**: Extend test data generator
+  ([`6cced7c`](https://github.com/anaticulae/groupmes/commit/6cced7c74bb8968edaeba1d240a62301e17704a9))
+
+- **test**: Keep dev build fast
+  ([`d037920`](https://github.com/anaticulae/groupmes/commit/d0379207f514d29548bc047568fdce167b4e41e9))
+
+### Code Style
+
+- **docs**: Fix spelling error
+  ([`62ee5e6`](https://github.com/anaticulae/groupmes/commit/62ee5e6b67091216c2b5d9d354c684c77b451433))
+
+- **docs**: Format docs
+  ([`6d735d8`](https://github.com/anaticulae/groupmes/commit/6d735d83546bd1bf948506f604097b56fca5ab85))
+
+- **format**: Format code
+  ([`4ddc3d9`](https://github.com/anaticulae/groupmes/commit/4ddc3d9df82a246147b0cec3fac9d74ee76c3235))
 
 ### Documentation
 
-* format docs (686d231f8e30)
+- **copyright**: Happy New Year!
+  ([`135858f`](https://github.com/anaticulae/groupmes/commit/135858f973336927c8ce729fd4526d852ec075e4))
 
-## v0.11.1
+- **utils**: Describe how algorithm work
+  ([`dd446d5`](https://github.com/anaticulae/groupmes/commit/dd446d514042f9141b38d8241837890a5b03535d))
 
-### Feature
+### Features
 
-* improve page number detector (89a11628e6f7)
+- **footnotes**: Improve footnote grouping
+  ([`189db21`](https://github.com/anaticulae/groupmes/commit/189db213be346c29c2162ae36b0a04da3e2ebe17))
 
-### Fix
+- **group**: Add step wise toc level converter
+  ([`8fc5281`](https://github.com/anaticulae/groupmes/commit/8fc5281d6db92ba2dae3999b01c60679fbe6fca6))
 
-* adjust footnote merge algo (0fb9ff1695d1)
+- **highnote**: Support None highnotes correctly
+  ([`9a5eb2d`](https://github.com/anaticulae/groupmes/commit/9a5eb2d043371d436c9112329fb1180395d34aed))
 
-## v0.11.0
+- **line**: Cache line pattern to reduce execution time
+  ([`20443da`](https://github.com/anaticulae/groupmes/commit/20443da369c1793c879bbe561af8f0f9ac7b6e1e))
 
-### Feature
+- **line**: Extend line regex pattern
+  ([`3d459cf`](https://github.com/anaticulae/groupmes/commit/3d459cf3980749895d669c10cb3f19923c305c86))
 
-* normalize parsed footnote (29f93d1f93dc)
-* do not detect more than one page number per page (0c45ad8bf9fb)
-* reduce verbosity (9d40f8ce9ebe)
+- **line**: Extend possible toc line pattern
+  ([`11679c3`](https://github.com/anaticulae/groupmes/commit/11679c38e84a77846a4201a80b9b80870a17b222))
 
-### Fix
+- **line**: Use headlines from elements
+  ([`ff8a841`](https://github.com/anaticulae/groupmes/commit/ff8a841b593a017abb0fc6b08bd6088a2b7b4033))
 
-* increase possible indention of second footnotes line (62e173cc3e26)
+- **moving**: Allow None as valid highnote
+  ([`7fba1f3`](https://github.com/anaticulae/groupmes/commit/7fba1f3211ec3b660bef0d3a846af984bc567591))
 
-## v0.10.0
+- **pagenumbers**: Do not detect more than one page number per page
+  ([`93c61df`](https://github.com/anaticulae/groupmes/commit/93c61df5a1b35e962584243acbfa21e95167a2e7))
 
-### Feature
+- **toc**: Add attribute raw_level
+  ([`2559a20`](https://github.com/anaticulae/groupmes/commit/2559a20346fa58e7cffed6791b11d6cf4a92456c))
 
-* detect page numbers in header area (3e468582efdd)
-* decide between normal and rotated pages (61faf84af366)
+- **toc**: Add method to detect sections-pattern-toc
+  ([`d29eebd`](https://github.com/anaticulae/groupmes/commit/d29eebd76e42a057f6819625c50d60eb803d3334))
 
-### Fix
+- **toc**: Add no level strategy to group toc with only few level
+  ([`20341ee`](https://github.com/anaticulae/groupmes/commit/20341eed18cf202ef0fd45050ad85d98bf13f0e4))
 
-* decide between header and footer (f1198ba5bbb1)
+- **toc**: Add raw page location
+  ([`dc702b4`](https://github.com/anaticulae/groupmes/commit/dc702b486ece152a969ea03d8d268dcb8c6e65d2))
+
+- **toc**: Use numbered attribute
+  ([`0df980e`](https://github.com/anaticulae/groupmes/commit/0df980e7fd5e4b048fcb0fcd353b9b54a40e04d4))
+
+- **utils**: Disable strategy if too few high notes are parsed
+  ([`e0c45d2`](https://github.com/anaticulae/groupmes/commit/e0c45d20835482036cb36ab03e0174f9fef7f2f3))
+
+- **utils**: Move highnote check to separate method
+  ([`feed63d`](https://github.com/anaticulae/groupmes/commit/feed63d2a3756593d82ada3a98b74d75c71bac75))
+
+### Refactoring
+
+- **footer**: Simplify code
+  ([`6d5eeb0`](https://github.com/anaticulae/groupmes/commit/6d5eeb0b4ef179020e79f1d8412ac62c296f2386))
+
+- **group**: Improve naming
+  ([`2bb1516`](https://github.com/anaticulae/groupmes/commit/2bb15162677f09a6c5607e20589134341a2603c7))
+
+- **group**: Replace with elements code
+  ([`5a0e8c8`](https://github.com/anaticulae/groupmes/commit/5a0e8c8d36d1da0240cd3ce7cf85bc04a53b10e6))
+
+- **group**: Simplify code
+  ([`c12b5c1`](https://github.com/anaticulae/groupmes/commit/c12b5c1793768bd1c40e50d254e96f907e66d271))
+
+- **group**: Split method to support two toc formats
+  ([`75002ca`](https://github.com/anaticulae/groupmes/commit/75002caf85455e3507edb9255cec48bb293fd29f))
+
+- **highnote**: Move high note detector
+  ([`d8ef431`](https://github.com/anaticulae/groupmes/commit/d8ef431393b7e98fb502a4f8423952b13e201af7))
+
+- **line**: Simplify code
+  ([`64c1bcc`](https://github.com/anaticulae/groupmes/commit/64c1bccce9c86d68d36c5f621214c2f57fa62b43))
+
+- **line**: Simplify code
+  ([`c085e1a`](https://github.com/anaticulae/groupmes/commit/c085e1a1c5965e77229f60885dc377fa21ba42e9))
+
+- **line**: Simplify code
+  ([`499436e`](https://github.com/anaticulae/groupmes/commit/499436ecb7ed0d73ad72faf3a7fd5f1617da975a))
+
+- **plain**: Replace with real holy value
+  ([`7025cf9`](https://github.com/anaticulae/groupmes/commit/7025cf9077c1feb87e83313ce2fd2f3e83459688))
+
+- **replace**: Replace with utila code
+  ([`a93be52`](https://github.com/anaticulae/groupmes/commit/a93be52dd3d3f370e138153f0872b60383646fb3))
+
+- **yaml**: Replace with utila code
+  ([`4c405db`](https://github.com/anaticulae/groupmes/commit/4c405db94e6dc1fe27913aefbaed213fa9071692))
+
+### Testing
+
+- **adjust**: Adjust test after generating resources
+  ([`4b7ee18`](https://github.com/anaticulae/groupmes/commit/4b7ee187f3f8d8aa8eafb4769c4bd1f8b019a3c6))
+
+- **diss**: Improve test data
+  ([`1bbc849`](https://github.com/anaticulae/groupmes/commit/1bbc8492c048f9eb9783a7953a8895918d23d7e8))
+
+- **footer**: Adjust unit test
+  ([`16eb6f5`](https://github.com/anaticulae/groupmes/commit/16eb6f5d98d1ec062c87a9f88770c5ab09e82e9e))
+
+- **footnote**: Validate diss172
+  ([`827636a`](https://github.com/anaticulae/groupmes/commit/827636a6b875cb74fb95ff65dc47ebd7cab4d588))
+
+- **footnote**: Validate diss273
+  ([`1074106`](https://github.com/anaticulae/groupmes/commit/1074106867c39a1558cc5deb8558c3baf2cde4ad))
+
+- **footnotes**: Validate diss178
+  ([`b24f94b`](https://github.com/anaticulae/groupmes/commit/b24f94b7cfa57765f496c0a68f15d1c457c38f63))
+
+- **footnotes**: Validate diss406
+  ([`5b91260`](https://github.com/anaticulae/groupmes/commit/5b9126051e9701d0f6ad456d703b13ac5ac0c03d))
+
+- **footnotes**: Validate master127
+  ([`59e8139`](https://github.com/anaticulae/groupmes/commit/59e8139e7762b476d5affec7a5f91200b0b462c7))
+
+- **moving**: Ensure to detect footnotes without number start correctly
+  ([`2ec0783`](https://github.com/anaticulae/groupmes/commit/2ec07830766768ecaeac58f0ef85ee80a74882e2))
+
+- **pages**: Introduce pages
+  ([`9d0043b`](https://github.com/anaticulae/groupmes/commit/9d0043baea4849ba89319e95306f81fd9f110d7a))
+
+- **refactor**: Clarify naming
+  ([`0e8422d`](https://github.com/anaticulae/groupmes/commit/0e8422d19b4ac871f2496dc7941351ee5a4d4221))
+
+- **refactor**: Simplify code
+  ([`f6a75b5`](https://github.com/anaticulae/groupmes/commit/f6a75b5f029b320203249ba6a8dfdd1410f14a79))
+
+- **refactor**: Simplify code
+  ([`f508f2d`](https://github.com/anaticulae/groupmes/commit/f508f2d642da27da52c97501e440a79118aac43c))
+
+- **remove**: Remove outdated code
+  ([`9e50872`](https://github.com/anaticulae/groupmes/commit/9e5087213049641fc34780b1985bcaade821a6c3))
+
+- **rename**: Clarify test names
+  ([`d4b13cd`](https://github.com/anaticulae/groupmes/commit/d4b13cd8751634c81e07b47780fb4b6de52fc589))
+
+- **toc**: Adjust diss406 after improving parser
+  ([`0238db0`](https://github.com/anaticulae/groupmes/commit/0238db078b784045ca60438da7467bb866488746))
+
+- **toc**: Validate master049 toc
+  ([`f2bf423`](https://github.com/anaticulae/groupmes/commit/f2bf423b992ffa67fbc4beb01c81f43b909ea7e3))
+
+- **toc**: Validate master099b toc
+  ([`f28cabb`](https://github.com/anaticulae/groupmes/commit/f28cabbcfb7ff1062c875aff4e5f28eb83f3002b))
+
+
+## v0.18.1 (2022-01-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8ed6deb`](https://github.com/anaticulae/groupmes/commit/8ed6deb8ce0dd9b81e133f5e89e34787562d760e))
+
+- **resources**: Extend test data generator
+  ([`aca8c9f`](https://github.com/anaticulae/groupmes/commit/aca8c9f6d49d9e6e1ef5ea66a7b8d5f8eee800b0))
 
 ### Documentation
 
-* clarify docs (c8789e3c8129)
+- **copyright**: Happy New Year!
+  ([`a2be432`](https://github.com/anaticulae/groupmes/commit/a2be432898808738eabb81d5c0d1e7851cb50b3b))
 
-## v0.9.2
+### Features
 
-### Fix
+- **common**: Disable header strategy on too few results
+  ([`055460d`](https://github.com/anaticulae/groupmes/commit/055460d2452b43ef88c1ee7ce71256b6661cdd08))
 
-* replace with utilo code (703d7f7a7128)
+### Testing
 
-## v0.9.1
+- **header**: Verify absence of header in diss406
+  ([`9aaeda2`](https://github.com/anaticulae/groupmes/commit/9aaeda2082161815d74d9b5a0195472b13c60331))
 
-### Feature
 
-* dump page to abbr geometry parser (8d1ac2eb8e85)
+## v0.18.0 (2022-01-01)
 
-### Documentation
+### Bug Fixes
 
-* extend interface documentation (f4a80bffa64c)
+- **common**: Skip table line as potential header
+  ([`6cc62b8`](https://github.com/anaticulae/groupmes/commit/6cc62b85584dd2f5b27958b78df6407250c82433))
 
-## v0.9.0
+- **common**: Use backup result if first one fails
+  ([`62ff520`](https://github.com/anaticulae/groupmes/commit/62ff52016ad191eb20c752be096ff7d0ed1b836e))
 
-### Feature
+### Chores
 
-* skip potential horizontal line which is too right (dc48699749de)
-* add page number to parser footnote (006b7fa397e2)
+- **requirements**: Upgrade requirements.txt
+  ([`e8b7fd1`](https://github.com/anaticulae/groupmes/commit/e8b7fd133139a968ef364764346c55f0a4cb04b6))
 
-## v0.8.2
+- **resources**: Extend test data generator
+  ([`fd4ca23`](https://github.com/anaticulae/groupmes/commit/fd4ca231c32a9fd9aa6859709959c1ef5f7b78fa))
 
-## v0.8.1
+- **resources**: Extend test data generator
+  ([`f52360a`](https://github.com/anaticulae/groupmes/commit/f52360ac33caa43196a2d611d72f5d989cfd0742))
 
-### Feature
+- **resources**: Extend test data generator
+  ([`c71ad32`](https://github.com/anaticulae/groupmes/commit/c71ad32b25428601ac773d7693eb7668841f56bf))
 
-* add footnote bounding to footnote parser (f26136c6371b)
+- **resources**: Extend test data generator
+  ([`d37e993`](https://github.com/anaticulae/groupmes/commit/d37e9938cf4b34562a33f3d63a8c5b73cce101df))
 
-## v0.8.0
+### Code Style
 
-### Feature
+- **docs**: Fix spelling error
+  ([`feee930`](https://github.com/anaticulae/groupmes/commit/feee93065348a116cdba756368d5d5c661eb3b34))
 
-* make table resource optional (dd325c79c68e)
+- **fixed**: Improve naming
+  ([`a099a25`](https://github.com/anaticulae/groupmes/commit/a099a25756010614ef42aca3b2cab590ac62c26d))
 
-## v0.7.5
-
-### Feature
-
-* add abbreviation generated path (60b4bd5d674d)
-
-### Fix
-
-* enable longer Arabic numbers in table of content (e379d71a13bd)
-
-## v0.7.4
-
-### Documentation
-
-* move class doc (1936598733a2)
-
-## v0.7.3
+- **refactor**: Improve naming
+  ([`cef313a`](https://github.com/anaticulae/groupmes/commit/cef313a99a3e0b27768de72ef61a5ac7e0903b41))
 
 ### Documentation
 
-* Happy New Year! (7173c3aa3537)
+- **moving**: Extend interface documentation
+  ([`6146a1e`](https://github.com/anaticulae/groupmes/commit/6146a1ecf7df3d1ad77de6ca049b4130538946d8))
 
-## v0.7.2
+### Features
 
-## v0.7.1
+- **common**: Add second try strategy
+  ([`fcdd452`](https://github.com/anaticulae/groupmes/commit/fcdd45212a6a4b4fa0f74f95695ed935765efe8a))
 
-## v0.7.0
+- **common**: Ensure that matches with correct font size
+  ([`49d602a`](https://github.com/anaticulae/groupmes/commit/49d602ad8659f4a3ddb5ce5ff4549e64936a6c61))
 
-### Feature
+- **common**: Reduce required occurrence to catch lower occurrence
+  ([`54397ff`](https://github.com/anaticulae/groupmes/commit/54397ffed2ff2bcf993b87948479b76fda956014))
 
-* disable toc parser for too few results (e95b1d3dcd06)
-* remove start sequence from title (466a305515d5)
+- **common**: Return cluster data for further processing
+  ([`966b444`](https://github.com/anaticulae/groupmes/commit/966b44445e86fa85fbff7b78d0bcedc2436108ec))
 
-### Fix
+- **common**: Use text tolerance to group more in pre selection process
+  ([`0e0b75b`](https://github.com/anaticulae/groupmes/commit/0e0b75b653048c46570d06bb4b7097c6265c0a41))
 
-* adjust min count to pass short documents (a4952f455526)
+- **highnote**: Support [133] as highnote
+  ([`86e9bea`](https://github.com/anaticulae/groupmes/commit/86e9beaaa1474e7407fdde67e3e52cae7110c3a3))
+
+- **line**: Support optional seite or page in toc line
+  ([`1ea946d`](https://github.com/anaticulae/groupmes/commit/1ea946d4cc2fbfeb362ee2210bce94b98d862bbf))
+
+- **page**: Improve headline skipper
+  ([`1401f3a`](https://github.com/anaticulae/groupmes/commit/1401f3aca24ce08cb319885df2e118e64adfa7d2))
+
+- **pagenumber**: Add support for page numbers with gaps
+  ([`de89a34`](https://github.com/anaticulae/groupmes/commit/de89a34e9c0d63b5db217c827cd708c38d0479a4))
+
+### Refactoring
+
+- **abbr**: Replace with elements code
+  ([`2eabf15`](https://github.com/anaticulae/groupmes/commit/2eabf154d189c4aefa3488aab6fa7323eec35d21))
+
+- **common**: Clarify naming
+  ([`9ef1ebf`](https://github.com/anaticulae/groupmes/commit/9ef1ebfdef5199464abaf071d59de706c67d582f))
+
+- **common**: Evaluate required count late as possible
+  ([`e8db777`](https://github.com/anaticulae/groupmes/commit/e8db77787cb50be6866366f2fe672ae6683e57e2))
+
+- **common**: Move to separate method
+  ([`3f9678a`](https://github.com/anaticulae/groupmes/commit/3f9678a8d33a9d97536a58054a01af27e417a31a))
+
+- **common**: Reduce code complexity
+  ([`0ba6018`](https://github.com/anaticulae/groupmes/commit/0ba60184bd94d1891906596a81390595acc16608))
+
+- **common**: Reduce code complexity
+  ([`59873ec`](https://github.com/anaticulae/groupmes/commit/59873ecabe78370a70a9c5ac1f96ffcd8ee184f6))
+
+- **toc**: Replace with elements code
+  ([`7df1649`](https://github.com/anaticulae/groupmes/commit/7df164915ce0b23b741b5c8894e16b4b40ba6bd2))
+
+- **todo**: Use more functional approach
+  ([`bee5506`](https://github.com/anaticulae/groupmes/commit/bee550684f52f004599cc0e6369a6db9634c1048))
+
+### Testing
+
+- **dev**: Keep dev build fast
+  ([`f58c3fd`](https://github.com/anaticulae/groupmes/commit/f58c3fdc9955d751ef85b09d454a187cf01eb0f4))
+
+- **header**: Disable failing unit test
+  ([`77b3960`](https://github.com/anaticulae/groupmes/commit/77b3960d71a4834672a1d41d2f6ddc4441d6d090))
+
+- **header**: Validate diss172 header
+  ([`1dcd46b`](https://github.com/anaticulae/groupmes/commit/1dcd46b53f4325724415634f0a756dc79da349e8))
+
+- **header**: Verify diss144 header
+  ([`89b6a3a`](https://github.com/anaticulae/groupmes/commit/89b6a3ac8d73e8ef900e61f53458df21a2681865))
+
+- **toc**: Validate diss406
+  ([`19deef7`](https://github.com/anaticulae/groupmes/commit/19deef744f284c5704cc1879b78d8248210f1653))
+
+
+## v0.17.0 (2021-12-27)
+
+### Bug Fixes
+
+- **pagenumber**: Add page size
+  ([`0930b8f`](https://github.com/anaticulae/groupmes/commit/0930b8f2760d76d4b61dd13a1db32b5c3b2e4be7))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bc95131`](https://github.com/anaticulae/groupmes/commit/bc9513108cdf05b7a7cba1010c9423c8021bc3a5))
+
+### Features
+
+- **footer**: Rotate rotated page to use normal header detector
+  ([`fa44e5e`](https://github.com/anaticulae/groupmes/commit/fa44e5e7aaa251ef4d39049a83f7393e48237641))
+
+- **pagenumbers**: Detected rotated page numbers
+  ([`c8ce472`](https://github.com/anaticulae/groupmes/commit/c8ce472de634732f9a0c3deff60ca5a65c48ee80))
+
+- **pagenumbers**: Simplify code
+  ([`189734d`](https://github.com/anaticulae/groupmes/commit/189734dfe07478f7beae7b2cb9d80d8ff24d580a))
+
+### Testing
+
+- **rotated**: Verify normal and rotated page numbers
+  ([`f21e256`](https://github.com/anaticulae/groupmes/commit/f21e256c128fab9e7d2f3eb0f98ee8d3f2d8ef64))
+
+
+## v0.16.3 (2021-12-07)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fecee50`](https://github.com/anaticulae/groupmes/commit/fecee506f34d35732322f23d0d91d09a71a133be))
+
+- **resources**: Extend test data generator
+  ([`97305bb`](https://github.com/anaticulae/groupmes/commit/97305bb7d219bbb8ea7172a81347b669397ee4c3))
+
+### Code Style
+
+- **format**: Format code
+  ([`b4b4ecc`](https://github.com/anaticulae/groupmes/commit/b4b4eccbacbbac6a02d781fd91323c465d403eed))
+
+- **imports**: Organize imports
+  ([`72b0194`](https://github.com/anaticulae/groupmes/commit/72b0194a43d51f587f12aeb0efa4321ddb9d7398))
+
+- **rename**: Improve naming
+  ([`a32f149`](https://github.com/anaticulae/groupmes/commit/a32f149664568b8d8d3014c8abb5a1a7097166f6))
+
+### Features
+
+- **strategy**: Use improved remover
+  ([`c05723b`](https://github.com/anaticulae/groupmes/commit/c05723b5fd347814f646caabfa97dec3e1602b98))
+
+### Refactoring
+
+- **group**: Reduce complexity
+  ([`30f355f`](https://github.com/anaticulae/groupmes/commit/30f355f4c04e98773eb4551f17c49a4312330b93))
+
+- **rename**: Improve method name
+  ([`18141f8`](https://github.com/anaticulae/groupmes/commit/18141f84ef67334d121bed9a5f648b067bca6541))
+
+- **replace**: Replace with utila code
+  ([`7bc0a91`](https://github.com/anaticulae/groupmes/commit/7bc0a9107568f774653b8d3c779c49b5e9ce20fd))
+
+### Testing
+
+- **refactor**: Replace with utilatest evaluator
+  ([`f4336e5`](https://github.com/anaticulae/groupmes/commit/f4336e553bc80655883da7b7def706ac07a20cdc))
+
+- **refactor**: Shorten validation code
+  ([`9c6a199`](https://github.com/anaticulae/groupmes/commit/9c6a199a7091d880fd39ed1ec3e3ae4a7eb61923))
+
+- **refactor**: Use improved baseliner
+  ([`7a1b640`](https://github.com/anaticulae/groupmes/commit/7a1b640627250478c1b4bdc74398d8999007d5f3))
+
+- **toc**: Validate diss157
+  ([`285c897`](https://github.com/anaticulae/groupmes/commit/285c89782349facf857a1545ab084691d560c0f3))
+
+- **toc**: Validate second level appendix of level diss157
+  ([`bebc03e`](https://github.com/anaticulae/groupmes/commit/bebc03e3301e8250eff044a501b5ac8f4a4b0c3f))
+
+
+## v0.16.2 (2021-11-18)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`2cb3186`](https://github.com/anaticulae/groupmes/commit/2cb318642e4868af9dcd560b76c27a0c7cdc67b3))
+
+- **requirements**: Upgrade requirements.txt
+  ([`2350de0`](https://github.com/anaticulae/groupmes/commit/2350de02d7e9264190e1b0c04ee5a4f6a67f4d6f))
+
+### Features
+
+- **numbers**: Detect pagenumbers as a single list
+  ([`7ae83e0`](https://github.com/anaticulae/groupmes/commit/7ae83e0a9eca0fcdd0f56426d9d43262b2679295))
+
+### Refactoring
+
+- **test**: Simplify test code
+  ([`77808ad`](https://github.com/anaticulae/groupmes/commit/77808adfafb63967bcf2094909e4e4a64c16bb64))
+
+### Testing
+
+- **numbers**: Adjust unit tests
+  ([`674be95`](https://github.com/anaticulae/groupmes/commit/674be95f3362190959444812d79b205eb0e57242))
+
+- **pagenumber**: Move master110 validation
+  ([`6f21ebf`](https://github.com/anaticulae/groupmes/commit/6f21ebf4c2758a188eccf12947bd941e4fcd51ce))
+
+- **validate**: Validate bachelor111
+  ([`bb376dd`](https://github.com/anaticulae/groupmes/commit/bb376dde147bc1ad4d3433a8498f59e911f22af2))
+
+
+## v0.16.1 (2021-11-10)
+
+### Bug Fixes
+
+- **interface**: Do not use magic parameter
+  ([`1309461`](https://github.com/anaticulae/groupmes/commit/13094613af4a33257890037461d77ce762ca07c3))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bfcb92b`](https://github.com/anaticulae/groupmes/commit/bfcb92b074f9e044752f995ab92e1f6833b929a5))
+
+- **test**: Replace with genex code
+  ([`cead2d3`](https://github.com/anaticulae/groupmes/commit/cead2d3630260223b9e8a01cb827217aa881d29b))
+
+### Code Style
+
+- **test**: Organize imports
+  ([`d7f94ec`](https://github.com/anaticulae/groupmes/commit/d7f94ec12b71d09d4954236a34e492db9e60ab38))
+
+### Features
+
+- **footnotes**: Introduce holy value
+  ([`775eb73`](https://github.com/anaticulae/groupmes/commit/775eb73f141f943420c4713e9d7e902e2e9ea8e1))
+
+### Refactoring
+
+- **group**: Use real holy value
+  ([`00ef82b`](https://github.com/anaticulae/groupmes/commit/00ef82ba9333ea50fb531b438bcebc8ae2ca2f35))
+
+- **plain**: Introduce real holy values
+  ([`a876d39`](https://github.com/anaticulae/groupmes/commit/a876d39b0cce68430dcc8a2b438959318f7326a0))
+
+
+## v0.16.0 (2021-10-17)
+
+### Bug Fixes
+
+- **abbr**: Strip parsed abbreviation
+  ([`2448577`](https://github.com/anaticulae/groupmes/commit/2448577f92f923b28189480785cd1c26fb69cf19))
+
+- **hv**: Adjust holy value definition
+  ([`0fbda91`](https://github.com/anaticulae/groupmes/commit/0fbda91dfd720b4f481c7eed231975213288d203))
+
+### Chores
+
+- **config**: Move config
+  ([`f0fe360`](https://github.com/anaticulae/groupmes/commit/f0fe36087a2310af488da44851281aed16d2661d))
+
+- **requirements**: Upgrade requirements.txt
+  ([`f8b86c6`](https://github.com/anaticulae/groupmes/commit/f8b86c63eb9a518f38f15ba614a9c235cf45301d))
+
+- **resources**: Sort resources to reduce generation time
+  ([`993572d`](https://github.com/anaticulae/groupmes/commit/993572d778b5b383d2454e1d9796d0a8b5f54678))
+
+- **resources**: Use fewer worker
+  ([`be5e776`](https://github.com/anaticulae/groupmes/commit/be5e7768010e4bc897b9ab0edee72e217afc1a34))
+
+### Features
+
+- **hv**: Replace with modifiable holy values
+  ([`a07de10`](https://github.com/anaticulae/groupmes/commit/a07de10c3b05fde29adcd4978be80aad2fb3b8f1))
+
+### Refactoring
+
+- **holy**: Simplify code
+  ([`3cacfc5`](https://github.com/anaticulae/groupmes/commit/3cacfc5b166897545821d15e88f0766b58a2575e))
+
+- **rename**: Clarify holy value names
+  ([`15caa08`](https://github.com/anaticulae/groupmes/commit/15caa0895017ef149f21758516863da81cf560bb))
+
+- **rename**: Shorten naming
+  ([`1554787`](https://github.com/anaticulae/groupmes/commit/155478765a617bcab2e7a4219299c3ceb350c4f1))
+
+### Testing
+
+- **adjust**: Adjust failing unit test
+  ([`fab6352`](https://github.com/anaticulae/groupmes/commit/fab6352574196debc829c06492c722617cbe6543))
+
+- **disable**: Disable falling tests
+  ([`c517f07`](https://github.com/anaticulae/groupmes/commit/c517f079c72bde1936697c871351ee4b4a7121d5))
+
+- **fix**: Add missing tablero step
+  ([`17b4d97`](https://github.com/anaticulae/groupmes/commit/17b4d97b427db9786544676e00d8ece6b676d264))
+
+
+## v0.15.2 (2021-10-01)
+
+### Bug Fixes
+
+- **moving**: Add missing page parameter
+  ([`a4e4fcc`](https://github.com/anaticulae/groupmes/commit/a4e4fccf4066da80e72b58b4d63dd8cc3b084f8e))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`6b49a24`](https://github.com/anaticulae/groupmes/commit/6b49a24f9691651a681825ed3cbd2cef76e46104))
+
+### Features
+
+- **moving**: Skip bad parsing as a result of invalid footer line
+  ([`ad9a349`](https://github.com/anaticulae/groupmes/commit/ad9a3496cf7ee67036ea27456a90c5959aa5ee37))
+
+### Testing
+
+- **footer**: Validate bachelor037 footers
+  ([`8c45b7e`](https://github.com/anaticulae/groupmes/commit/8c45b7ed751ef7f60069e7e8e066b180fa9ae501))
+
+
+## v0.15.1 (2021-09-21)
+
+### Bug Fixes
+
+- **moving**: Update FootNoteMerged bounding
+  ([`31347d5`](https://github.com/anaticulae/groupmes/commit/31347d54768ed6c2acc070fa8712eecd50c3a6d6))
+
+- **simple**: Extend invalid abbr list
+  ([`4b370c8`](https://github.com/anaticulae/groupmes/commit/4b370c81001cfdcf657292204b5397e7b2070297))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`165997e`](https://github.com/anaticulae/groupmes/commit/165997e9677808c9edd44e239638c55b3f37a770))
+
+- **resources**: Extend test data generator
+  ([`5d21571`](https://github.com/anaticulae/groupmes/commit/5d215714bce597a6c795ba4eae63f8832b578fa3))
+
+### Refactoring
+
+- **abbr**: Simplify code
+  ([`a63575d`](https://github.com/anaticulae/groupmes/commit/a63575d097aecf17a8fad8a06431daa90caba5ab))
+
+- **geometry**: Replace with geostrat code
+  ([`0345883`](https://github.com/anaticulae/groupmes/commit/0345883e6871730a2d27c9b7dd2238a7b1b3f788))
+
+- **interface**: Adjust to new power version
+  ([`58cfb3e`](https://github.com/anaticulae/groupmes/commit/58cfb3e8d768f99149e7c672b43b9d8f45abf0ec))
+
+- **simple**: Move invalid abbr to separate list
+  ([`2ecb086`](https://github.com/anaticulae/groupmes/commit/2ecb086c31a8b1ae66fd43c9c2fdc3257426888e))
+
+### Testing
+
+- **abbr**: Verify diss205 abbr parser
+  ([`97003d4`](https://github.com/anaticulae/groupmes/commit/97003d48a3d5366b0772fa69af4a048c95bd2e26))
+
+- **refactor**: Simplify code
+  ([`08c494e`](https://github.com/anaticulae/groupmes/commit/08c494e9cbe3648ee7a4c4e6f798cffc945cfc57))
+
+- **refactor**: Simplify code
+  ([`54c6c09`](https://github.com/anaticulae/groupmes/commit/54c6c0989da1be27831eb2d24b62bde3c10231e4))
+
+- **remove**: Remove moved test
+  ([`558e402`](https://github.com/anaticulae/groupmes/commit/558e402fde5f798e6d1a69b2480e4cb1215beb50))
+
+
+## v0.15.0 (2021-08-11)
+
+### Bug Fixes
+
+- **moving**: Round footer start
+  ([`4d179d5`](https://github.com/anaticulae/groupmes/commit/4d179d53080abd985c2d24c531df8987b0d8f166))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b2631dc`](https://github.com/anaticulae/groupmes/commit/b2631dc353b85aa0244169c8770b9e596d829d4c))
+
+- **requirements**: Upgrade requirements.txt
+  ([`53bc889`](https://github.com/anaticulae/groupmes/commit/53bc889a664b71232403d352ab2efe3f7a7e6ee0))
+
+- **requirements**: Upgrade requirements.txt
+  ([`5960fa6`](https://github.com/anaticulae/groupmes/commit/5960fa6b0936963bdf43ecf257a557915507e82d))
+
+- **resources**: Extend test data generator
+  ([`61ccfcb`](https://github.com/anaticulae/groupmes/commit/61ccfcb3ec5c7420ca4c82f944f0a91782322be1))
+
+- **resources**: Extend test data generator
+  ([`9182fd4`](https://github.com/anaticulae/groupmes/commit/9182fd4047a9b0fa331496b069a0ddb0570219e8))
+
+- **test**: Keep dev build fast
+  ([`eecf85d`](https://github.com/anaticulae/groupmes/commit/eecf85d9d0ec11f55b70a614dda0f35a612c52f3))
+
+### Code Style
+
+- **format**: Format code
+  ([`f99c2d5`](https://github.com/anaticulae/groupmes/commit/f99c2d55026789d8bd4a1013f69aeb2c85106685))
+
+- **spelling**: Fix spelling error
+  ([`5b611f8`](https://github.com/anaticulae/groupmes/commit/5b611f82f9e50406ad95b14069a3172a9b785dab))
 
 ### Documentation
 
-* fix comment (03af860626a0)
+- **moving**: Extend interface documentation
+  ([`6b9941a`](https://github.com/anaticulae/groupmes/commit/6b9941aed9977fd87d634af9b12f6f6ac079654e))
 
-## v0.6.2
+### Features
 
-## v0.6.1
+- **footnotes**: Merge unconnected footnotes
+  ([`efb6e22`](https://github.com/anaticulae/groupmes/commit/efb6e22b564d960e3bb62f6e60b09d850787bb7c))
 
-## v0.6.0
+- **horizontals**: Increase potential horizontal line diff
+  ([`5ab214f`](https://github.com/anaticulae/groupmes/commit/5ab214f7db57ba367cacbbeb6418549d82823493))
 
-### Feature
+- **moving**: Add option to use different footnote parser
+  ([`5e8c210`](https://github.com/anaticulae/groupmes/commit/5e8c2101510b1fff8ebd3d0a8a913647579eabd9))
 
-* add min content count to plain moving extractor (8e39b7ecb06b)
-* improve common header detector (d302e27b2d4f)
-* fix footnote parser (04c9f5d9a00b)
+- **moving**: Merge both together
+  ([`0ce3baa`](https://github.com/anaticulae/groupmes/commit/0ce3baa56f6e6ec8076871761f3bfa5732fcee75))
 
-## v0.5.1
+- **plain**: Adjust plain footnote extractor
+  ([`6e5138a`](https://github.com/anaticulae/groupmes/commit/6e5138af62a0a4405025e9ac1474a50147f09f9d))
 
-## v0.5.0
+- **plain**: Make error notes dependent
+  ([`2a1b24b`](https://github.com/anaticulae/groupmes/commit/2a1b24bdd24eb41975d8994e507e35cdd1ceea60))
 
-### Feature
+### Testing
 
-* use common cluster to use position instead of repeating content (3707ee19c80c)
-* add pagenumber to common header extractor (13b0e0e7d3db)
-* add another pages pattern (6c082bcf66c7)
-* add quality judgement to prefer common quality (e4886571f137)
+- **adjust**: Adjust tests after merging footnotes together
+  ([`a70467a`](https://github.com/anaticulae/groupmes/commit/a70467aae2c645feefa7e6eaf39f623a4e12a2ca))
 
-### Fix
+- **enable**: Enable xpassed test
+  ([`71ec8db`](https://github.com/anaticulae/groupmes/commit/71ec8db9ccfd40a2290561381918cca1647ac63e))
 
-* add missing count update (5f533d001586)
-* add missing import (c4e8284f88c5)
-* do not fail on level conversion (944ff9ed18bb)
-* do not fail on empty content (005ad94b85eb)
-* do not handle date as valid headline level (88bab4a73ab9)
+- **footer**: Ensure that no false positive footer is parsed
+  ([`2037e24`](https://github.com/anaticulae/groupmes/commit/2037e24553bc0c7bb8799547fa4485c2897b81d9))
 
-## v0.4.0
+- **footnote**: Add test to merge footnotes
+  ([`a0727c6`](https://github.com/anaticulae/groupmes/commit/a0727c64528d6a876c195af5db5335e86cd545e2))
 
-### Feature
+- **footnote**: Validate diss143 footnotes
+  ([`273205c`](https://github.com/anaticulae/groupmes/commit/273205cea1259cab906520902cb6adc60112ebd8))
 
-* use bounding of text to improve text grouping (ae5e862221b3)
-* add text bounding to improve footnotes detection (ef38c3409dc4)
-* shrink potential footnotes area (b8b30d6f5314)
+- **refactor**: Improve test code
+  ([`422af47`](https://github.com/anaticulae/groupmes/commit/422af4762963d83e1d12c7a3fe4a4142be65413b))
 
-## v0.3.3
+- **refactor**: Simplify code
+  ([`d2133eb`](https://github.com/anaticulae/groupmes/commit/d2133ebf2322bd852c5f5cd2786b6d00c4c33915))
 
-### Fix
+- **rename**: Make test name unique
+  ([`b17898b`](https://github.com/anaticulae/groupmes/commit/b17898bad7a6fec59838cfcb413ce4b60d58db83))
 
-* fix dimension of holy value (8494dae179d1)
+- **toc**: Validate diss180
+  ([`226cc07`](https://github.com/anaticulae/groupmes/commit/226cc078973aa4731ae5d61967e59881baaf7432))
 
-## v0.3.2
 
-## v0.3.1
+## v0.14.1 (2021-07-25)
 
-### Fix
+### Bug Fixes
 
-* fix loading of fewer than 15 pages (52c0f6793cd9)
+- **most**: Remove senseless check
+  ([`dd82870`](https://github.com/anaticulae/groupmes/commit/dd82870eb1b5aa3201b09c6b9a59bab83672b01a))
 
-## v0.3.0
+### Chores
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`210a07a`](https://github.com/anaticulae/groupmes/commit/210a07ac8b75aebe0655d82b952ae11eb4c5a9e0))
 
-* use more generalized toc page selector (a2cd84f49588)
-* add option to disable level three selector (4f6761c408e4)
-* extend toc level parser with code from words project (e90b2f6a8126)
 
-## v0.2.1
+## v0.14.0 (2021-07-19)
 
-## v0.2.0
+### Chores
 
-### Feature
+- **requirements**: Add tablero
+  ([`24e309d`](https://github.com/anaticulae/groupmes/commit/24e309d31874ea486954abc08d0eaa21adf942c6))
 
-* support fixed horizontal header on alternating pages (6cc1c5604a60)
+- **requirements**: Upgrade requirements.txt
+  ([`7be8937`](https://github.com/anaticulae/groupmes/commit/7be893777a51d5dbf06193e4f8ed3fa72d8a95a0))
 
-## v0.1.1
+- **requirements**: Upgrade requirements.txt
+  ([`527b719`](https://github.com/anaticulae/groupmes/commit/527b719ea9c32590a43d2c71b8767b4bb3b69de0))
+
+- **resources**: Reduce amount of used worker
+  ([`9191ff8`](https://github.com/anaticulae/groupmes/commit/9191ff81f10dc895a06da007831e532d8f3d985e))
+
+### Features
+
+- **area**: Log skipping tables
+  ([`6983a84`](https://github.com/anaticulae/groupmes/commit/6983a84fd2105209928462f4d4606d42302e8a16))
+
+- **cli**: Replace linero with new tablero
+  ([`5b2a235`](https://github.com/anaticulae/groupmes/commit/5b2a23547095a711665f452438dcc76c225dd8d0))
+
+### Testing
+
+- **huge**: Adjust unit test
+  ([`24ccb25`](https://github.com/anaticulae/groupmes/commit/24ccb25ae91a8814013092468546337567856128))
+
+- **refactor**: Improve code style
+  ([`18b3066`](https://github.com/anaticulae/groupmes/commit/18b30665b734ced41673b9916b9e74e584826b86))
+
+
+## v0.13.1 (2021-07-18)
+
+### Bug Fixes
+
+- **content**: Adjust data type
+  ([`68308fd`](https://github.com/anaticulae/groupmes/commit/68308fde905adc2a57acd4be260debc17678a078))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`1ebf533`](https://github.com/anaticulae/groupmes/commit/1ebf533accb0b5ff38588687ff70dad654bc7ae1))
+
+
+## v0.13.0 (2021-07-18)
+
+### Bug Fixes
+
+- **fixed**: Adjust header tolerance
+  ([`84613a1`](https://github.com/anaticulae/groupmes/commit/84613a15ea428c4dd8773500d42b233962601374))
+
+- **footer**: Add missing rounding
+  ([`87f097e`](https://github.com/anaticulae/groupmes/commit/87f097eab5f8aaa8571c6be3a473f242da3a4712))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`e14a7d3`](https://github.com/anaticulae/groupmes/commit/e14a7d3eb3453930087af0a55d15474e2f54097e))
+
+### Features
+
+- **groupme**: Add content step to determine ptcn border
+  ([`0084921`](https://github.com/anaticulae/groupmes/commit/008492171238ceec16a09c17bd9bccc3661767ae))
+
+
+## v0.12.0 (2021-07-05)
+
+### Bug Fixes
+
+- **header**: Ensure that header is separated correctly
+  ([`364bb84`](https://github.com/anaticulae/groupmes/commit/364bb84b5cc6f122d294fd5218e31372e26b042c))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b75dc4a`](https://github.com/anaticulae/groupmes/commit/b75dc4adbaa558b105539245a32f6561e678893c))
+
+- **resources**: Extend test data generator
+  ([`960836b`](https://github.com/anaticulae/groupmes/commit/960836bf4a370c11e32bda274413cd62d47ade31))
+
+### Code Style
+
+- **format**: Format code
+  ([`79f8711`](https://github.com/anaticulae/groupmes/commit/79f8711596ce7efa1c737678ca11cff2a6ff4956))
+
+- **imports**: Organize imports
+  ([`3ca2d38`](https://github.com/anaticulae/groupmes/commit/3ca2d383bef1eec53ffe2185043f006db9dc6b32))
 
 ### Documentation
 
-* move doc code from hey project (1146ff578761)
+- **format**: Format docs
+  ([`686d231`](https://github.com/anaticulae/groupmes/commit/686d231f8e3055ee8b9decf7e1231d2c9d71cca4))
 
-## v0.1.0
+### Features
 
-### Feature
+- **common**: Add option to run collector with lower requirements
+  ([`575ea57`](https://github.com/anaticulae/groupmes/commit/575ea57817d08d1ecbf47122bec6fb54bc9aed57))
 
-* move code from `hey` project (f408d4b38d83)
+- **common**: Improve common headline parser
+  ([`57f6efe`](https://github.com/anaticulae/groupmes/commit/57f6efe0e5bb07936ac58022985467f4833622df))
 
-## v0.0.0 Initial release
+- **headnotes**: Use improved title checker
+  ([`0f7b0b8`](https://github.com/anaticulae/groupmes/commit/0f7b0b8532aae152169daa3e1aa89a60b6f12fb6))
+
+### Refactoring
+
+- **common**: Improve code style
+  ([`2278150`](https://github.com/anaticulae/groupmes/commit/227815013b4a5a1f7392c7ad6616bb2ac0e53102))
+
+- **common**: Simplify code
+  ([`4988f81`](https://github.com/anaticulae/groupmes/commit/4988f8109b1cfb89388e707ddb9ae9dd7f51a545))
+
+### Testing
+
+- **header**: Validate bachelor128 header
+  ([`1cff791`](https://github.com/anaticulae/groupmes/commit/1cff7914588a8e54e3999291691e3e9deb19c1db))
+
+
+## v0.11.1 (2021-06-28)
+
+### Bug Fixes
+
+- **plain**: Adjust footnote merge algo
+  ([`0fb9ff1`](https://github.com/anaticulae/groupmes/commit/0fb9ff1695d14ec2415e45d2dce52533eeab9694))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`540a526`](https://github.com/anaticulae/groupmes/commit/540a526c0d63872d6fa13671d1179e37a9be8504))
+
+- **resources**: Extend test data generator
+  ([`706455f`](https://github.com/anaticulae/groupmes/commit/706455f671d4cdaef200d47ce953f4b139dab979))
+
+### Features
+
+- **pagenumber**: Improve page number detector
+  ([`89a1162`](https://github.com/anaticulae/groupmes/commit/89a11628e6f76e32ed8a5b3374ee53ae8eaac90e))
+
+### Testing
+
+- **footer**: Validate master127
+  ([`618456c`](https://github.com/anaticulae/groupmes/commit/618456c2c2888839154e975edbea10413d9fb4bc))
+
+- **footnotes**: Normalize extracted footnotes
+  ([`44c9f0e`](https://github.com/anaticulae/groupmes/commit/44c9f0e5bf49ae8c276720c67c0bf8b12502ba16))
+
+- **footnotes**: Validate home018 footnotes
+  ([`0cf5d67`](https://github.com/anaticulae/groupmes/commit/0cf5d67b91f3c2c591589fbbd2cf2efe5b0149df))
+
+- **pagenumber**: Validate master127
+  ([`926e683`](https://github.com/anaticulae/groupmes/commit/926e6832ee56f542331e1d9f40bddb006590d5a9))
+
+- **toc**: Validate master078
+  ([`adad676`](https://github.com/anaticulae/groupmes/commit/adad676eba3e9dd19655065ce56dba8b36d35f66))
+
+
+## v0.11.0 (2021-06-04)
+
+### Bug Fixes
+
+- **footnotes**: Increase possible indention of second footnotes line
+  ([`62e173c`](https://github.com/anaticulae/groupmes/commit/62e173cc3e265fe4bfdd05742c09c27dea70b1bb))
+
+### Chores
+
+- **resources**: Extend test data generator
+  ([`5f82aae`](https://github.com/anaticulae/groupmes/commit/5f82aaeebe8530d53d71faba9804a78e7bdd9c80))
+
+- **resources**: Extend test data generator
+  ([`aeb1003`](https://github.com/anaticulae/groupmes/commit/aeb100339e0190945201b7deb645a72ee0faa166))
+
+### Code Style
+
+- **spelling**: Fix spelling error
+  ([`d86f468`](https://github.com/anaticulae/groupmes/commit/d86f468061f9772cf63852eb172071ce6f068f99))
+
+### Features
+
+- **footnotes**: Normalize parsed footnote
+  ([`29f93d1`](https://github.com/anaticulae/groupmes/commit/29f93d1f93dcca0be721c4c0eda109c104cf92d1))
+
+- **pagenumber**: Do not detect more than one page number per page
+  ([`0c45ad8`](https://github.com/anaticulae/groupmes/commit/0c45ad8bf9fba473c284a8ba7e727a222f7539e8))
+
+- **toc**: Reduce verbosity
+  ([`9d40f8c`](https://github.com/anaticulae/groupmes/commit/9d40f8ce9ebe1e5acace62c76e20d61ce73751e0))
+
+### Refactoring
+
+- **footnotes**: Improve structure
+  ([`48d2118`](https://github.com/anaticulae/groupmes/commit/48d2118ca5ce81b18f4c0a47a4f225ea67f71613))
+
+### Testing
+
+- **footnotes**: Validate bachelor128 footnotes
+  ([`c8ec460`](https://github.com/anaticulae/groupmes/commit/c8ec46064ae442e38ec07ba862efcfd116759309))
+
+- **numbers**: Validate master110 page numbers
+  ([`6f0a32b`](https://github.com/anaticulae/groupmes/commit/6f0a32bc9d4b7b3d5199185074eb63595e7dab7e))
+
+- **refactor**: Ease fixtures
+  ([`fb9d79f`](https://github.com/anaticulae/groupmes/commit/fb9d79faed375e34155f4bc597a788a2575cd9e4))
+
+- **regression**: Ensure that footer extraction does not fail
+  ([`2e06254`](https://github.com/anaticulae/groupmes/commit/2e06254cac3c925375c0e8e556c45442af2a9e34))
+
+- **replace**: Replace with utila code
+  ([`ff4f087`](https://github.com/anaticulae/groupmes/commit/ff4f0874391018c7376d434235f3c7793746f49d))
+
+
+## v0.10.0 (2021-05-28)
+
+### Bug Fixes
+
+- **pages**: Decide between header and footer
+  ([`f1198ba`](https://github.com/anaticulae/groupmes/commit/f1198ba5bbb1d6bb9a2f390447cad3ad0a7bfe85))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d5beed8`](https://github.com/anaticulae/groupmes/commit/d5beed8c92bfc0c3fb840f96e79323b44e6da967))
+
+- **resources**: Extend test data generator
+  ([`fe39aac`](https://github.com/anaticulae/groupmes/commit/fe39aac2091add89401f3b1aebc23a209cde148d))
+
+### Documentation
+
+- **pagenumber**: Clarify docs
+  ([`c8789e3`](https://github.com/anaticulae/groupmes/commit/c8789e3c8129b79c35a4639d177519c49a4e21f6))
+
+### Features
+
+- **pagenumbers**: Decide between normal and rotated pages
+  ([`61faf84`](https://github.com/anaticulae/groupmes/commit/61faf84af36680bc0d2b0242831f30acc3fb18b4))
+
+- **pagenumbers**: Detect page numbers in header area
+  ([`3e46858`](https://github.com/anaticulae/groupmes/commit/3e468582efddafdbb2ff2fea318e67a8c755039d))
+
+### Refactoring
+
+- **rename**: Clarify naming
+  ([`99444d5`](https://github.com/anaticulae/groupmes/commit/99444d5b782f3f300d707d2c71913a19e2f61d05))
+
+- **rename**: Improve naming
+  ([`5630ee2`](https://github.com/anaticulae/groupmes/commit/5630ee261a4cf0afb43a967cd76fcc4c9312b473))
+
+- **replace**: Replace with elements code
+  ([`7a553e6`](https://github.com/anaticulae/groupmes/commit/7a553e6e5f0aab23c512c1dd235583b1d0bf1e10))
+
+- **replace**: Replace with serialize code
+  ([`0d885cf`](https://github.com/anaticulae/groupmes/commit/0d885cffac340d00c09d740f9f010e0bce4392e0))
+
+### Testing
+
+- **move**: Move validation test
+  ([`8a72a38`](https://github.com/anaticulae/groupmes/commit/8a72a38ac36925fd8be6e6b89ea9e28d7b57a6b8))
+
+- **pagenumbers**: Validate master91a
+  ([`d5931e3`](https://github.com/anaticulae/groupmes/commit/d5931e39ec2c7abcf18bd0e09cadfdeffc0b65fd))
+
+- **pages**: Validate master91a
+  ([`cdf22cc`](https://github.com/anaticulae/groupmes/commit/cdf22cc136ad67d455488d4fba9b8632f5557a76))
+
+- **refactor**: Move expected toc's
+  ([`229840a`](https://github.com/anaticulae/groupmes/commit/229840aed5fb412efe27b5e62f878ad5c9760e41))
+
+- **refactor**: Move tests
+  ([`6f0a125`](https://github.com/anaticulae/groupmes/commit/6f0a1254d4adba110d946d453aaaaa8ddf005cf9))
+
+- **refactor**: Simplify test code
+  ([`f774c61`](https://github.com/anaticulae/groupmes/commit/f774c6191b28749bbaf4df4b132b6b4f1f5966b7))
+
+- **refactor**: Simplify test code
+  ([`c9fe495`](https://github.com/anaticulae/groupmes/commit/c9fe495c76214a50ade281aa3cef973f8b6c3e00))
+
+- **refactor**: Simplify test code
+  ([`96cebc5`](https://github.com/anaticulae/groupmes/commit/96cebc57cfbfa21b9102a092317c1b55036f681f))
+
+
+## v0.9.2 (2021-05-22)
+
+### Bug Fixes
+
+- **replace**: Replace with utila code
+  ([`703d7f7`](https://github.com/anaticulae/groupmes/commit/703d7f7a7128e569dbfd2d6b60e65ec43cccb1d9))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`59185dc`](https://github.com/anaticulae/groupmes/commit/59185dcffab1da82718557b4e3aca9d501f55a36))
+
+
+## v0.9.1 (2021-05-22)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`de64fcf`](https://github.com/anaticulae/groupmes/commit/de64fcfb3b02e7f44433bbb980131de3203589d6))
+
+- **requirements**: Upgrade requirements.txt
+  ([`583228f`](https://github.com/anaticulae/groupmes/commit/583228fd22a57d754276e369ed54c08ffc3db447))
+
+### Code Style
+
+- **format**: Use improved yapf formatter
+  ([`ff7e011`](https://github.com/anaticulae/groupmes/commit/ff7e01131e425d31c555c7ddefd8add64fd1d16e))
+
+### Documentation
+
+- **abbr**: Extend interface documentation
+  ([`f4a80bf`](https://github.com/anaticulae/groupmes/commit/f4a80bffa64cada81bac61d3b1b31b4d87a50772))
+
+### Features
+
+- **abbr**: Dump page to abbr geometry parser
+  ([`8d1ac2e`](https://github.com/anaticulae/groupmes/commit/8d1ac2eb8e855bc2e4a91d4847155aaef4639dad))
+
+
+## v0.9.0 (2021-03-11)
+
+### Chores
+
+- **test**: Keep dev build fast
+  ([`d29a695`](https://github.com/anaticulae/groupmes/commit/d29a695029e7778529016bd57f11a17b113683aa))
+
+### Features
+
+- **footnote**: Add page number to parser footnote
+  ([`006b7fa`](https://github.com/anaticulae/groupmes/commit/006b7fa397e2c71a2a6952255294bc309d18383e))
+
+- **moving**: Skip potential horizontal line which is too right
+  ([`dc48699`](https://github.com/anaticulae/groupmes/commit/dc48699749de02fd7cdc2d3c4aed1e28a4186981))
+
+### Refactoring
+
+- **API**: Remove duplicated argument
+  ([`06fa2ab`](https://github.com/anaticulae/groupmes/commit/06fa2ab909badc516e8f7aef465599933b58e7c3))
+
+- **replace**: Replace with utila code
+  ([`0a430fc`](https://github.com/anaticulae/groupmes/commit/0a430fcf7e3bb65a7dc7178b4549433b63b6c953))
+
+### Testing
+
+- **footer**: Validate master072 footer example
+  ([`46cb470`](https://github.com/anaticulae/groupmes/commit/46cb470a3470a96c71d3706f7859c3510c05ff02))
+
+
+## v0.8.2 (2021-03-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d1fb7bf`](https://github.com/anaticulae/groupmes/commit/d1fb7bf2a24f93b70885bbc094ac7819b9c15394))
+
+
+## v0.8.1 (2021-02-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`d649f1d`](https://github.com/anaticulae/groupmes/commit/d649f1d6a1dfa25a1b1c1f02671bf8f467fa58df))
+
+### Features
+
+- **parser**: Add footnote bounding to footnote parser
+  ([`f26136c`](https://github.com/anaticulae/groupmes/commit/f26136c6371b8f04410f6742267e94cdf23a72e1))
+
+### Refactoring
+
+- **remove**: Remove unused code
+  ([`99a586b`](https://github.com/anaticulae/groupmes/commit/99a586baa2c1aad3a87eca52d8b42dab582c332f))
+
+- **test**: Simplify footer validation code
+  ([`9babd96`](https://github.com/anaticulae/groupmes/commit/9babd96f1c605f603ed48e5ef4483f6720c040bd))
+
+### Testing
+
+- **disable**: Disable broken figure parser test
+  ([`5da9904`](https://github.com/anaticulae/groupmes/commit/5da9904593ecc1cfd3ba79985fe9b6cbca7adb81))
+
+- **footer**: Validate home18 example
+  ([`100d6ed`](https://github.com/anaticulae/groupmes/commit/100d6ed0de16cbab9e52585a57dd6b4e770e18da))
+
+
+## v0.8.0 (2021-02-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b71440f`](https://github.com/anaticulae/groupmes/commit/b71440f11bfa5fdba0207ccaf158674ea8739de8))
+
+### Features
+
+- **area**: Make table resource optional
+  ([`dd325c7`](https://github.com/anaticulae/groupmes/commit/dd325c79c68e13e1d2cf8ddc94a613b42016baf9))
+
+### Refactoring
+
+- **replace**: Replace with utila code
+  ([`93a62d1`](https://github.com/anaticulae/groupmes/commit/93a62d1fa47308a1156f02a935d5b39f404a3cc3))
+
+
+## v0.7.5 (2021-01-28)
+
+### Bug Fixes
+
+- **toc**: Enable longer Arabic numbers in table of content
+  ([`e379d71`](https://github.com/anaticulae/groupmes/commit/e379d71a13bd18a04eecb60817e4438fa7d71be8))
+
+### Chores
+
+- **requirements**: Add elements package
+  ([`aa3f640`](https://github.com/anaticulae/groupmes/commit/aa3f640e7eec5ca7bf4a5c1c94d01f6000a39310))
+
+- **requirements**: Upgrade requirements.txt
+  ([`0792efb`](https://github.com/anaticulae/groupmes/commit/0792efb72c4cd5f8ef262994fd06a1a56888a65a))
+
+- **resources**: Adjust test data generator
+  ([`9ee7538`](https://github.com/anaticulae/groupmes/commit/9ee7538c212060a92f9533c416df8672c1912061))
+
+### Features
+
+- **path**: Add abbreviation generated path
+  ([`60b4bd5`](https://github.com/anaticulae/groupmes/commit/60b4bd5d674dc1bfb9964152637aeb6f1d51ef4c))
+
+### Refactoring
+
+- **border**: Improve method naming
+  ([`7e7ac42`](https://github.com/anaticulae/groupmes/commit/7e7ac420cae5773ca54dc2b515050f9cba7cdfe7))
+
+- **border**: Reduce code complexity
+  ([`f6afaf1`](https://github.com/anaticulae/groupmes/commit/f6afaf170f0be7a6e62bc3e381b9903f56015078))
+
+- **remove**: Remove already ported code
+  ([`83c5ae3`](https://github.com/anaticulae/groupmes/commit/83c5ae3a4c0fb7895a66f0e443a3be7c76f37197))
+
+- **rename**: Improve naming
+  ([`b47a2b2`](https://github.com/anaticulae/groupmes/commit/b47a2b2969378bb67b725da219b89967801353d3))
+
+- **replace**: Replace with elements code
+  ([`9122ab9`](https://github.com/anaticulae/groupmes/commit/9122ab928f52078ad6ef519b9a380451a06366fc))
+
+- **replace**: Replace with texmex code
+  ([`47df120`](https://github.com/anaticulae/groupmes/commit/47df12023d2b4c3adbe84183fca731e77b3b3c8f))
+
+- **test**: Simplify test code
+  ([`5f13449`](https://github.com/anaticulae/groupmes/commit/5f13449b7860a1c88781e3fe21066f45e19d36c1))
+
+- **test**: Simplify validation test
+  ([`3abbbad`](https://github.com/anaticulae/groupmes/commit/3abbbad8f05b1cbddedca94a236960520d674ee8))
+
+- **toc**: Move expected test result to separate file
+  ([`8c996ec`](https://github.com/anaticulae/groupmes/commit/8c996ece9ba888e85510097039130e363bd0d396))
+
+- **toc**: Simplify toc validation test
+  ([`db7adce`](https://github.com/anaticulae/groupmes/commit/db7adceee56164a637e5f907103f37d596504cca))
+
+### Testing
+
+- **abbr**: Validate bachelor76 abbreviation
+  ([`8d6fe59`](https://github.com/anaticulae/groupmes/commit/8d6fe59e8a6baae5eff83aceb70f2ef9a9561380))
+
+- **disable**: Disable failing test
+  ([`9d8307e`](https://github.com/anaticulae/groupmes/commit/9d8307e732f864873026bd14459906d1fdfafaf8))
+
+- **marker**: Register huge marker
+  ([`f22f9ec`](https://github.com/anaticulae/groupmes/commit/f22f9ec3dd3c9b97ab998d44bc4d885da3eae5c3))
+
+- **toc**: Validate bachelor63 tocs
+  ([`9e082b4`](https://github.com/anaticulae/groupmes/commit/9e082b4779a85fd63fa31beb84f40401ff2beed6))
+
+
+## v0.7.4 (2021-01-19)
+
+### Chores
+
+- **requirements**: Add `konrad` package
+  ([`f68a89c`](https://github.com/anaticulae/groupmes/commit/f68a89c88ec30d97411f3e4ad1920e1e21cedc24))
+
+- **requirements**: Upgrade requirements.txt
+  ([`9f37df3`](https://github.com/anaticulae/groupmes/commit/9f37df390ee50caddf1c9802f5644736c205565d))
+
+### Documentation
+
+- **fix**: Move class doc
+  ([`1936598`](https://github.com/anaticulae/groupmes/commit/1936598733a2f8319fda95c1c341b5b44a9af3dd))
+
+### Refactoring
+
+- **abbr**: Replace with `konrad` code
+  ([`f30ab09`](https://github.com/anaticulae/groupmes/commit/f30ab09bbb0c013833820d09e7d36de912f93374))
+
+- **toc**: Replace magic number
+  ([`c2dea0c`](https://github.com/anaticulae/groupmes/commit/c2dea0c734cc66555e708d86b5eef8ae2e3f2731))
+
+
+## v0.7.3 (2021-01-04)
+
+### Chores
+
+- **fix**: Use correct base path
+  ([`2f7b660`](https://github.com/anaticulae/groupmes/commit/2f7b66055e13a608e4bc3dcfdfb9908d3dcbd43b))
+
+- **generator**: Increase used worker
+  ([`fc15964`](https://github.com/anaticulae/groupmes/commit/fc1596411a676ea490f7033239e60d2af8fc17c4))
+
+- **requirements**: Do not release so often
+  ([`11b161e`](https://github.com/anaticulae/groupmes/commit/11b161e294ad7d97bd77cac247f4963b5c67c4b8))
+
+- **requirements**: Upgrade requirements.txt
+  ([`8574a9d`](https://github.com/anaticulae/groupmes/commit/8574a9d3a0017e8db07987d69c2c8e06ee2dcdce))
+
+### Documentation
+
+- **copyright**: Happy New Year!
+  ([`7173c3a`](https://github.com/anaticulae/groupmes/commit/7173c3aa3537b7118d3c8fec725ad182650c058c))
+
+### Refactoring
+
+- **generator**: Use new base path
+  ([`320bbaf`](https://github.com/anaticulae/groupmes/commit/320bbaf10ff662d56d0a0dc8a051c23776fc1e71))
+
+
+## v0.7.2 (2020-12-09)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`88d69f4`](https://github.com/anaticulae/groupmes/commit/88d69f441d35a144576cb4c067c18c940da9cdde))
+
+
+## v0.7.1 (2020-12-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`feb36fb`](https://github.com/anaticulae/groupmes/commit/feb36fbffc7be98befbabdf5490abcbff9f795d6))
+
+
+## v0.7.0 (2020-12-04)
+
+### Bug Fixes
+
+- **common**: Adjust min count to pass short documents
+  ([`a4952f4`](https://github.com/anaticulae/groupmes/commit/a4952f455526788cfec395806070f5d8c34c2d5f))
+
+### Chores
+
+- **test**: Extend test data generator
+  ([`aa4920b`](https://github.com/anaticulae/groupmes/commit/aa4920b7db93889f74370791317e82797fb1533e))
+
+- **test**: Extend test data generator
+  ([`d665e03`](https://github.com/anaticulae/groupmes/commit/d665e03b758dc651c99e33bc815e5450b2799b8b))
+
+### Documentation
+
+- **fix**: Fix comment
+  ([`03af860`](https://github.com/anaticulae/groupmes/commit/03af860626a02b636bd850e66d8eea11c20558dc))
+
+### Features
+
+- **figuretable**: Remove start sequence from title
+  ([`466a305`](https://github.com/anaticulae/groupmes/commit/466a305515d5528a629a0245208730f698ff75cf))
+
+- **toc**: Disable toc parser for too few results
+  ([`e95b1d3`](https://github.com/anaticulae/groupmes/commit/e95b1d3dcd06159966ae5c880cb309a73a0ef9ec))
+
+### Testing
+
+- **figure**: Add master75 figure table validation
+  ([`b2186f0`](https://github.com/anaticulae/groupmes/commit/b2186f004fe13596205809ed5e76944a58d452bb))
+
+
+## v0.6.2 (2020-11-19)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`4cd53e4`](https://github.com/anaticulae/groupmes/commit/4cd53e4e27b989e67b4100fc6e22a0a28df2bc35))
+
+
+## v0.6.1 (2020-11-02)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`8f639b0`](https://github.com/anaticulae/groupmes/commit/8f639b0bda19ca86b3232472107adc011411db94))
+
+
+## v0.6.0 (2020-10-27)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`fd9f737`](https://github.com/anaticulae/groupmes/commit/fd9f73768486ba7ccfe857b03ec5b1de4fa2e609))
+
+- **requirements**: Upgrade requirements.txt
+  ([`bf5cbc3`](https://github.com/anaticulae/groupmes/commit/bf5cbc309f4383c78c4ecb56942b1447e2db0d22))
+
+- **test**: Extend test data generator
+  ([`b22d852`](https://github.com/anaticulae/groupmes/commit/b22d85232abaab8c074b971ef7044a7ffd75874c))
+
+- **test**: Extend test data generator
+  ([`5e970c4`](https://github.com/anaticulae/groupmes/commit/5e970c4f5bf6c0946e4abb8abed90bc5e2ea5289))
+
+- **test**: Keep dev build fast
+  ([`45bd413`](https://github.com/anaticulae/groupmes/commit/45bd413108df6323fd50d286d4a8391c5145bab7))
+
+- **test**: Use new test selector
+  ([`5f1f224`](https://github.com/anaticulae/groupmes/commit/5f1f224fa7f5ddb5f33f15db0f8205c4cf8ee0bb))
+
+### Features
+
+- **common**: Improve common header detector
+  ([`d302e27`](https://github.com/anaticulae/groupmes/commit/d302e27b2d4f154b5bdeec4255d23fb45b64e5a2))
+
+- **footer**: Add min content count to plain moving extractor
+  ([`8e39b7e`](https://github.com/anaticulae/groupmes/commit/8e39b7ecb06b9c9c114110b2d6b89932094a4d16))
+
+- **footnote**: Fix footnote parser
+  ([`04c9f5d`](https://github.com/anaticulae/groupmes/commit/04c9f5d9a00b888499df96daeb04acec511f1628))
+
+### Testing
+
+- **footer**: Add test to verify master155 footer
+  ([`adb313d`](https://github.com/anaticulae/groupmes/commit/adb313d781ac7e5eed9b89789963f16ac5059238))
+
+- **header**: Add master155 header extraction test
+  ([`597c912`](https://github.com/anaticulae/groupmes/commit/597c91244f24b9a2b158ae9555c7e6d9543d7416))
+
+
+## v0.5.1 (2020-10-14)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`0132d7c`](https://github.com/anaticulae/groupmes/commit/0132d7c619973dcb6b8d31267e58ca8b87a394db))
+
+### Testing
+
+- **regression**: Ensure to extract master110 footer
+  ([`04bc068`](https://github.com/anaticulae/groupmes/commit/04bc068143042c227c0eb25011e429dd9fd08af9))
+
+
+## v0.5.0 (2020-10-08)
+
+### Bug Fixes
+
+- **border**: Do not fail on empty content
+  ([`005ad94`](https://github.com/anaticulae/groupmes/commit/005ad94b85eb9ffc433999de21f0db44339494ec))
+
+- **footer**: Add missing count update
+  ([`5f533d0`](https://github.com/anaticulae/groupmes/commit/5f533d001586db73a23203280ae8702d74d5916b))
+
+- **group**: Do not handle date as valid headline level
+  ([`88bab4a`](https://github.com/anaticulae/groupmes/commit/88bab4a73ab90e59d78fa6804e18606e43928f59))
+
+- **imports**: Add missing import
+  ([`c4e8284`](https://github.com/anaticulae/groupmes/commit/c4e8284f88c54e554b988cd34255ab4c86ea1f48))
+
+- **toc**: Do not fail on level conversion
+  ([`944ff9e`](https://github.com/anaticulae/groupmes/commit/944ff9ed18bb508df6e2fbee69d8a1143bd76417))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`00f3535`](https://github.com/anaticulae/groupmes/commit/00f35353fa7da80e16831eda52ee43c2ffafa63f))
+
+- **requirements**: Upgrade requirements.txt
+  ([`fb41efb`](https://github.com/anaticulae/groupmes/commit/fb41efb965b302b0fc31d23af1c1fa1dadb32fd2))
+
+- **test**: Extend test data generator
+  ([`003d221`](https://github.com/anaticulae/groupmes/commit/003d221f1ae4ea5a5aec5c97fd060bddff134849))
+
+- **test**: Extend test data generator
+  ([`acb5d48`](https://github.com/anaticulae/groupmes/commit/acb5d48abe27c4ea4635399c662aa29a446a1bff))
+
+- **test**: Extend test data generator
+  ([`b11d8e2`](https://github.com/anaticulae/groupmes/commit/b11d8e2503cbdb1a61fba013c22fe32d23731ca5))
+
+- **test**: Keep dev build fast
+  ([`b6bde05`](https://github.com/anaticulae/groupmes/commit/b6bde05306cced83f02966c92dd5afe9a1725939))
+
+### Code Style
+
+- **docs**: Fix headline
+  ([`d2038ea`](https://github.com/anaticulae/groupmes/commit/d2038ea6db72fef5105bd52c018ad6b9dabaac4a))
+
+- **imports**: Organize imports
+  ([`14758b4`](https://github.com/anaticulae/groupmes/commit/14758b43707655b71ebc1b70967c27a8b6eb91ab))
+
+### Features
+
+- **header**: Add pagenumber to common header extractor
+  ([`13b0e0e`](https://github.com/anaticulae/groupmes/commit/13b0e0e7d3dbd0e173eb5473994e890f1a786efc))
+
+- **header**: Add quality judgement to prefer common quality
+  ([`e488657`](https://github.com/anaticulae/groupmes/commit/e4886571f137218343ad88643c083340cc6b141c))
+
+- **header**: Use common cluster to use position instead of repeating content
+  ([`3707ee1`](https://github.com/anaticulae/groupmes/commit/3707ee19c80c423e5a8f2e656f619726d951205a))
+
+- **numbers**: Add another pages pattern
+  ([`6c082bc`](https://github.com/anaticulae/groupmes/commit/6c082bcf66c7b7bb69a2aeab233eb26a17fda133))
+
+### Refactoring
+
+- **footer**: Replace with utila code
+  ([`d38e50b`](https://github.com/anaticulae/groupmes/commit/d38e50bc985e9d2d3d96d6c605444660d6534737))
+
+- **footer**: Simplify code
+  ([`b59d0b1`](https://github.com/anaticulae/groupmes/commit/b59d0b192af2cd22cbb0fff96b00ae7e7a32b005))
+
+- **numbers**: Convert example to doctests
+  ([`1f5e5a7`](https://github.com/anaticulae/groupmes/commit/1f5e5a70d0eaf703f02918ea4900b042cb02f278))
+
+- **remove**: Remove redundant import
+  ([`ce1a7bd`](https://github.com/anaticulae/groupmes/commit/ce1a7bd6fa6b16d5ada87c1d531f0a5da8c559ea))
+
+- **remove**: Remove useless code
+  ([`73e265a`](https://github.com/anaticulae/groupmes/commit/73e265a7cb0e629454dfa1666121342789f1f472))
+
+- **rename**: Remove useless prefix
+  ([`a850a60`](https://github.com/anaticulae/groupmes/commit/a850a6001a2ef240ecc0c6b079ec098727d60c2e))
+
+- **rename**: Rename file to step name
+  ([`27f25c8`](https://github.com/anaticulae/groupmes/commit/27f25c8841d0d1adeace59ecc4c8f9fc379b81cf))
+
+- **replace**: Replace with utila code
+  ([`be6baf0`](https://github.com/anaticulae/groupmes/commit/be6baf095e8a11414c9fa25c200561d49f88a072))
+
+- **replace**: Replace with utila code
+  ([`fbb3da1`](https://github.com/anaticulae/groupmes/commit/fbb3da12beb3163f8710b817763b526c312a997e))
+
+- **test**: Replace outdated code
+  ([`f3b036c`](https://github.com/anaticulae/groupmes/commit/f3b036c38b296baf2b77d1d9b8413471a3453b9f))
+
+- **test**: Simplify test code
+  ([`a199ad7`](https://github.com/anaticulae/groupmes/commit/a199ad7a6aa2ef35bc0499ced780cfecbb56af29))
+
+### Testing
+
+- **footer**: Add test to verify bachelor51 page numbers
+  ([`aabc3a6`](https://github.com/anaticulae/groupmes/commit/aabc3a63f5cfc6b22c444be62f81d7f007438aa3))
+
+- **header**: Add test prefer good common quality over fixed header
+  ([`1744120`](https://github.com/anaticulae/groupmes/commit/174412004c59d482c9496586a51248854c0bab9b))
+
+- **header**: Add test to verify headers of master110
+  ([`7db92f3`](https://github.com/anaticulae/groupmes/commit/7db92f393611b78cbfa04a774a299035874d8171))
+
+
+## v0.4.0 (2020-09-26)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`bf48e45`](https://github.com/anaticulae/groupmes/commit/bf48e45aa201656ba0f74f7e1b9421abbd2f8574))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4444fb7`](https://github.com/anaticulae/groupmes/commit/4444fb7a855a32a6ae9c7ff8fad6d7cc81e9c4dd))
+
+- **test**: Extend test data generator
+  ([`03c84e5`](https://github.com/anaticulae/groupmes/commit/03c84e5f3a5c2df118f70a30bde885bf1e886293))
+
+- **test**: Extend test data generator
+  ([`6362b77`](https://github.com/anaticulae/groupmes/commit/6362b7770addcb7bacb8f0d2b28a8bfffb5a9ea3))
+
+### Features
+
+- **footer**: Shrink potential footnotes area
+  ([`b8b30d6`](https://github.com/anaticulae/groupmes/commit/b8b30d6f5314d51a25b354467f56d57f8419938a))
+
+- **footnotes**: Use bounding of text to improve text grouping
+  ([`ae5e862`](https://github.com/anaticulae/groupmes/commit/ae5e862221b3b2bcd807aef68c41b668e344b02f))
+
+- **highnotes**: Add text bounding to improve footnotes detection
+  ([`ef38c34`](https://github.com/anaticulae/groupmes/commit/ef38c3409dc44cbfea4bd7b7a44b6306963b6248))
+
+### Refactoring
+
+- **remove**: Remove outdated code
+  ([`17a4d5f`](https://github.com/anaticulae/groupmes/commit/17a4d5f89dd1adab898ac71e28a7e9506e3a8dd8))
+
+- **test**: Simplify code and move to better locations
+  ([`8945d69`](https://github.com/anaticulae/groupmes/commit/8945d69d62c1a998a58bdf7b768ff3061e13efb5))
+
+### Testing
+
+- **footer**: Add test to exclude page number from footer
+  ([`3209e28`](https://github.com/anaticulae/groupmes/commit/3209e281d112f51f479089acffc5d6711783b68b))
+
+
+## v0.3.3 (2020-09-14)
+
+### Bug Fixes
+
+- **toc**: Fix dimension of holy value
+  ([`8494dae`](https://github.com/anaticulae/groupmes/commit/8494dae179d1e92f9eaed2375547eb6fe0036841))
+
+### Chores
+
+- **requirements**: Add geometry detector package
+  ([`bb6d249`](https://github.com/anaticulae/groupmes/commit/bb6d249b5787ecc0017c48bfd50a7bc3072a99f2))
+
+- **requirements**: Upgrade requirements.txt
+  ([`5aaf832`](https://github.com/anaticulae/groupmes/commit/5aaf832da5c6a51e56b52838a0745e0c5e3a6a4a))
+
+### Refactoring
+
+- **page**: Replace constant with holy value
+  ([`6a5b3a6`](https://github.com/anaticulae/groupmes/commit/6a5b3a6433cc58b6ac7731fed8d3c44ee0480e69))
+
+- **pageselector**: Rename to more general variables
+  ([`7bcd2e6`](https://github.com/anaticulae/groupmes/commit/7bcd2e6e15d494c4b468386e1f66cf544ca775a0))
+
+- **remove**: Remove outdated patch
+  ([`904cfc5`](https://github.com/anaticulae/groupmes/commit/904cfc5b48ad3286bffc171f445dfb1b00a286ab))
+
+- **replace**: Replace with geostrat code
+  ([`60d0cca`](https://github.com/anaticulae/groupmes/commit/60d0cca15756cecb311f312b211e4acb4477abbe))
+
+- **replace**: Replace with holy value table
+  ([`1c3664d`](https://github.com/anaticulae/groupmes/commit/1c3664d4d643b870b6830d8901483d91a546142b))
+
+- **test**: Improve code style
+  ([`92df89e`](https://github.com/anaticulae/groupmes/commit/92df89ed3e6d1df28df9624063d55dff68708083))
+
+- **test**: Simplify test code
+  ([`5427b7f`](https://github.com/anaticulae/groupmes/commit/5427b7f019c2d3c316776ad4e97976f8363eae74))
+
+
+## v0.3.2 (2020-09-09)
+
+### Chores
+
+- **requirements**: Add example data generator
+  ([`0957f99`](https://github.com/anaticulae/groupmes/commit/0957f99b310129af75db68a9419a226db3f74561))
+
+### Refactoring
+
+- **replace**: Use external example generator
+  ([`69ba474`](https://github.com/anaticulae/groupmes/commit/69ba474129c7e7aa21456ebf55089385cd977dde))
+
+
+## v0.3.1 (2020-09-09)
+
+### Bug Fixes
+
+- **toc**: Fix loading of fewer than 15 pages
+  ([`52c0f67`](https://github.com/anaticulae/groupmes/commit/52c0f6793cd9c70bdf6416a05051d3fc23a97602))
+
+
+## v0.3.0 (2020-09-08)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`b40be7a`](https://github.com/anaticulae/groupmes/commit/b40be7af7e17c27f96f447be86c536b413658e7e))
+
+- **test**: Keep dev build fast
+  ([`9daa068`](https://github.com/anaticulae/groupmes/commit/9daa0683c5c03248901a930ee76d91e0a00ca249))
+
+### Features
+
+- **figure**: Add option to disable level three selector
+  ([`4f6761c`](https://github.com/anaticulae/groupmes/commit/4f6761c408e4a0404667a331519cefce1fc8ce1f))
+
+- **toc**: Extend toc level parser with code from words project
+  ([`e90b2f6`](https://github.com/anaticulae/groupmes/commit/e90b2f6a81261f21660b7a64773552f3be86c82f))
+
+- **toc**: Use more generalized toc page selector
+  ([`a2cd84f`](https://github.com/anaticulae/groupmes/commit/a2cd84f495880c1119ff02df8965d34904a5165d))
+
+### Refactoring
+
+- **page**: Externalize content page selector
+  ([`f052c11`](https://github.com/anaticulae/groupmes/commit/f052c11dc51548d60fc2e599664706a2c7ac6ce8))
+
+### Testing
+
+- **header**: Adjust test after upgrading test data generator
+  ([`2635bb3`](https://github.com/anaticulae/groupmes/commit/2635bb36b25da95c82d2ec0cbdc90ff5b1b12f59))
+
+
+## v0.2.1 (2020-09-01)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`996682f`](https://github.com/anaticulae/groupmes/commit/996682f2fc65007931f8bd23dc88e81b92ebd7b0))
+
+### Refactoring
+
+- **border**: Externalize load and dump of border pages
+  ([`56c416e`](https://github.com/anaticulae/groupmes/commit/56c416e0e903511f6a917c59eb6bd296af6cde5f))
+
+### Testing
+
+- **border**: Add regression border parsing diss264 test
+  ([`faacc26`](https://github.com/anaticulae/groupmes/commit/faacc2657fb732ed64e4c75945b7c96d524dd739))
+
+
+## v0.2.0 (2020-08-31)
+
+### Chores
+
+- **requirements**: Remove unused dev requirements
+  ([`a126f29`](https://github.com/anaticulae/groupmes/commit/a126f2936f8711f163724144223566ce7b95f29f))
+
+- **test**: Keep dev build fast
+  ([`09c2cbb`](https://github.com/anaticulae/groupmes/commit/09c2cbb1d83b342112fbe8618950d8cef03184c4))
+
+### Code Style
+
+- **fixed**: Fix spelling error
+  ([`e77901c`](https://github.com/anaticulae/groupmes/commit/e77901c1021b3be4d6e26f6d3c8939726161be87))
+
+### Features
+
+- **header**: Support fixed horizontal header on alternating pages
+  ([`6cc1c56`](https://github.com/anaticulae/groupmes/commit/6cc1c5604a6032185c7993946312ae21e5ed3668))
+
+### Refactoring
+
+- **footer**: Organize fixed footer extraction strategy
+  ([`5be507b`](https://github.com/anaticulae/groupmes/commit/5be507b5bf0d8029a94cc74b206cfc0bb7fc7a90))
+
+### Testing
+
+- **regression**: Ensure to parse alternating page header correctly
+  ([`bdc6d62`](https://github.com/anaticulae/groupmes/commit/bdc6d62126da14256a7f132c088faa1eb0d0b194))
+
+
+## v0.1.1 (2020-08-30)
+
+### Chores
+
+- **release**: Do not release with findings
+  ([`c6d0756`](https://github.com/anaticulae/groupmes/commit/c6d0756cd2ecb23838be82511587e50486f3b59a))
+
+### Documentation
+
+- **technique**: Move doc code from hey project
+  ([`1146ff5`](https://github.com/anaticulae/groupmes/commit/1146ff578761bbecfa4d6f35149ff8f9df7ed5ee))
+
+
+## v0.1.0 (2020-08-30)
+
+### Chores
+
+- **test**: Reduce required test data generator
+  ([`61ed0fc`](https://github.com/anaticulae/groupmes/commit/61ed0fc52e6ce1b3477558f54aaf39ed3bda52ca))
+
+### Features
+
+- **move**: Move code from `hey` project
+  ([`f408d4b`](https://github.com/anaticulae/groupmes/commit/f408d4b38d83419679fef6af888dba6be2d933fd))
+
+### Refactoring
+
+- **remove**: Remove none required code
+  ([`35a8bce`](https://github.com/anaticulae/groupmes/commit/35a8bcec8abec9bf1392e8491fc2e0574f5f340a))
+
+- **replace**: Replace hey dependencies
+  ([`d17a862`](https://github.com/anaticulae/groupmes/commit/d17a862436370bde2651e8e61a4c20a0b6a6d6e7))
+
+
+## v0.0.0 (2020-08-30)
+
+- Initial Release
