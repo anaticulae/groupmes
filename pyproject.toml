@@ -14,7 +14,7 @@ authors = [
     { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
 ]
 dependencies = [
-    "iamraw>=4.91.4,<5.0.0",
+    "iamraw>=4.91.5,<5.0.0",
     "utilo>=2.109.0,<3.0.0",
     "configos>=1.0.4,<2.0.0",
     "konradus>=1.0.1,<2.0.0",
@@ -37,7 +37,7 @@ content-type = "text/markdown"
 [project.optional-dependencies]
 dev = [
     "utilotest>=1.0.4,<2.0.0",
-    "hoverpower==1.4.1",
+    "hoverpower==1.4.3",
     "gennex==1.0.3",
     "rawmaker==2.40.3",
     "pagenumber==1.0.0",
