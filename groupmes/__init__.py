@@ -17,4 +17,4 @@ __version__ = '0.40.5'
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 PACKAGE = 'groupmes'
-PROCESS = 'groupmes'
+PROCESS = 'groupme'

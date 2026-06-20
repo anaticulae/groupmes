@@ -37,10 +37,7 @@ WORKPLAN = [
     utilo.create_step(
         'distance',
         inputs=[
-            utilo.ResultFile(producer='groupmes', name='area_area'),
-            utilo.ResultFile(producer='rawmaker', name='text_text'),
-            utilo.ResultFile(producer='rawmaker', name='text_positions'),
-            utilo.ResultFile(producer='groupmes', name='area_area'),
+            utilo.ResultFile(producer='groupme', name='area_area'),
             utilo.ResultFile(producer='rawmaker', name='text_text'),
             utilo.ResultFile(producer='rawmaker', name='text_positions'),
         ],
