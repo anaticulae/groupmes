@@ -1,6 +1,32 @@
 # CHANGELOG
 
 
+## v1.1.0 (2026-06-20)
+
+### Chores
+
+- **github**: Add hoverpower secret
+  ([`7d600c9`](https://github.com/anaticulae/groupmes/commit/7d600c97bc1fcb3644b98e6f0332ceaa194082b6))
+
+### Features
+
+- **groupme**: Add dynamic version
+  ([`c8a6450`](https://github.com/anaticulae/groupmes/commit/c8a645022cc8884c4752ed230079882c2ee75e7c))
+
+### Refactoring
+
+- **cli**: Simplify code
+  ([`23e6d40`](https://github.com/anaticulae/groupmes/commit/23e6d40055a8d04ae501309b3f132081c432f3cc))
+
+- **path**: Simplify code
+  ([`cdc3740`](https://github.com/anaticulae/groupmes/commit/cdc37407850c3b7e632495f7a364af5d0d4c1443))
+
+### Testing
+
+- **fix**: Adjust cli name
+  ([`0a6eae1`](https://github.com/anaticulae/groupmes/commit/0a6eae1412295f8f53f2d390cc5e8bfc1b425541))
+
+
 ## v1.0.0 (2026-06-20)
 
 ### Bug Fixes
