@@ -18,18 +18,18 @@ def work(
     footnote: str,
     pagenumber: str,
     borders: str,
-    pages: tuple = None,
+    pages: int | tuple = None,
 ) -> str:
     try:
         headnote = serializeraw.load_headerfooter(headnote, pages=pages)
     except FileNotFoundError as err:
         utilo.error(err)
-        headnote = []
+        headnote: list = []
     try:
         footnote = serializeraw.load_headerfooter(footnote, pages=pages)
     except FileNotFoundError as err:
         utilo.error(err)
-        footnote = []
+        footnote: list = []
 
     borders = serializeraw.load_pageborders(borders, pages=pages)
     pagenumber = load_pagenumbers(pagenumber, borders, pages=pages)
