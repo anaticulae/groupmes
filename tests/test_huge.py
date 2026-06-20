@@ -76,7 +76,7 @@ def test_huge_running(config, td, mp):  # pylint:disable=R0914
     rawgeneral = f'rawmaker -i {pdf} -j=auto {pages} -o {generalpath} {generalcmd}'
     utilo.file_copy(pdf, td.tmpdir.join('table'))
     pagenumber = f'pagenumber -i {generalpath} -o {generalpath}'
-    groupmes = f'groupmes -i {generalpath} -o {generalpath} --content -j2'
+    groupmes = f'groupme -i {generalpath} -o {generalpath} --content -j2'
     foonote = f'footnote -i {generalpath} -o {generalpath} -j2'
     cleanup = f'cleanup -i {generalpath} -o {generalpath} -j2'
     tablero = f'tablero -i {generalpath} -o {generalpath} -j3'
