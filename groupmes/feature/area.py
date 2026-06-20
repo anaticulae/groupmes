@@ -112,10 +112,10 @@ def group_page(navigator, tables, boxes) -> PageContentTextualArea:
         'tables': inside_tables,
     }
     border = {
-        key: list(value) for key, value in [
+        key: list(value) for key, value in (
             ('boxes', boxes.content if boxes else []),
             ('tables', tables.content if tables else []),
-        ]
+        )
     }
     result = PageContentTextualArea(
         page=navigator.page,

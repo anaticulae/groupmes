@@ -34,7 +34,7 @@ def docu007(pages: tuple = None):
 
 @pytest.mark.xfail(reason='investigate later')
 def test_distance_pyport_page0():
-    loaded = docu007(pages=(0))
+    loaded = docu007(pages=(0,))
     distances = groupmes.feature.distance.determine_distances(loaded)
     first = distances[0].content[0]
     assert first.after >= 40, first.after
@@ -43,7 +43,7 @@ def test_distance_pyport_page0():
 
 @pytest.mark.xfail(reason='enable groupme')
 def test_distance_pyport_page3():
-    loaded = docu007(pages=(3))
+    loaded = docu007(pages=(3,))
     distances = groupmes.feature.distance.determine_distances(loaded)
     page = distances[0].content
     assert len(page) == 1, page
@@ -54,7 +54,7 @@ def test_distance_pyport_page3():
 
 @pytest.mark.xfail(reason='improve table parser')
 def test_distance_pyport_page5():
-    loaded = docu007(pages=(5))
+    loaded = docu007(pages=(5,))
     distances = groupmes.feature.distance.determine_distances(loaded)
     page = distances[0].content
     assert len(page) == 4, page
