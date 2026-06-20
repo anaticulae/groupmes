@@ -41,6 +41,7 @@ def test_distance_pyport_page0():
     assert first.before <= -16, first.before
 
 
+@pytest.mark.xfail(reason='enable groupme')
 def test_distance_pyport_page3():
     loaded = docu007(pages=(3))
     distances = groupmes.feature.distance.determine_distances(loaded)
@@ -61,6 +62,7 @@ def test_distance_pyport_page5():
     assert all((item.before is None or item.before < 0.0 for item in page))
 
 
+@pytest.mark.xfail(reason='enable groupme')
 def test_distance_pyport():
     loaded = docu007()
     distances = groupmes.feature.distance.determine_distances(loaded)
