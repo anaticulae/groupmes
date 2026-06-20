@@ -20,8 +20,17 @@ def work(
     borders: str,
     pages: tuple = None,
 ) -> str:
-    headnote = serializeraw.load_headerfooter(headnote, pages=pages)
-    footnote = serializeraw.load_headerfooter(footnote, pages=pages)
+    try:
+        headnote = serializeraw.load_headerfooter(headnote, pages=pages)
+    except FileNotFoundError as err:
+        utilo.error(err)
+        headnote = []
+    try:
+        footnote = serializeraw.load_headerfooter(footnote, pages=pages)
+    except FileNotFoundError as err:
+        utilo.error(err)
+        footnote = []
+
     borders = serializeraw.load_pageborders(borders, pages=pages)
     pagenumber = load_pagenumbers(pagenumber, borders, pages=pages)
     merged = merge(headnote, footnote, pagenumber)

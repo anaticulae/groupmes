@@ -70,6 +70,8 @@ def determine_distances(loaded: RequiredResources) -> PageContentAreaDistances:
 
 
 def group_page(navigator, areas) -> AreaDistances:
+    if areas is None:
+        return []
     distance = create_distance(areas.border)
     distances = [distance.distance(line.bounding) for line in navigator]
 
@@ -166,7 +168,11 @@ def load(
     textpositions: str,
     pages: tuple = None,
 ) -> RequiredResources:
-    area = groupmes.feature.area.load_area(area, pages=pages)
+    try:
+        area = groupmes.feature.area.load_area(area, pages=pages)
+    except FileNotFoundError as err:
+        area = []
+        utilo.error(err)
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     textnavigator = texmex.create_ptns(
