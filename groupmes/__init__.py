@@ -7,14 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
+import importlib.metadata
 import os
 
 import groupmes.__patch__
 import groupmes.path
 
-__version__ = '0.40.5'
-
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
 PACKAGE = 'groupmes'
 PROCESS = 'groupme'
+
+__version__ = importlib.metadata.version(PACKAGE)
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
