@@ -67,26 +67,29 @@ changelog_file = "CHANGELOG"
 
 [tool.semantic_release.commit_parser_options]
 patch_tags = [
-    "fix",
-    "perf",
     "build",
     "chore",
     "ci",
-    "docs",
-    "style",
-    "refactor",
-    "test",
     "deps",
+    "docs",
+    "fix",
+    "perf",
+    "refactor",
+    "style",
+    "test",
+]
+minor_tags = [
+    "feat",
 ]
 
 [tool.hoverpower]
 packages = [
-    "bachelor",
-    "book",
-    "diss",
-    "docu",
-    "master",
-    "order",
+    "BACHELOR",
+    "BOOK",
+    "DISS",
+    "DOCU",
+    "MASTER",
+    "ORDER",
 ]
 
 [tool.setuptools.packages.find]
