@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.1 (2026-10-08)
+
+### Bug Fixes
+
+- **project**: Adjust naming
+  ([`c9aab81`](https://github.com/anaticulae/groupmes/commit/c9aab8170430f5af5c7063c7962e101e7149f42e))
+
+
 ## v1.1.0 (2026-06-20)
 
 ### Chores
