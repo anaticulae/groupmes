@@ -17,8 +17,6 @@ docker-doctest: docker-build
 	docker run\
 		-v $(CURDIR):/var/workdir \
 		$(IMAGE_NAME) \
-		-e HOVERPOWER_STORE=/tmp/groupmes/hoverpower/repo \
-		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET) \
 		"baw test docs"
 
 docker-fasttest: docker-decrypt
@@ -26,7 +24,6 @@ docker-fasttest: docker-decrypt
 		-v $(CURDIR):/var/workdir \
 		-v /tmp/power:/tmp/power \
 		-e HOVERPOWER_STORE=/tmp/groupmes/repo \
-		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET) \
 		$(IMAGE_NAME) \
 		"baw test fast"
 
@@ -35,7 +32,6 @@ docker-longtest: docker-decrypt
 		-v $(CURDIR):/var/workdir \
 		-v /tmp/power:/tmp/power \
 		-e HOVERPOWER_STORE=/tmp/groupmes/repo \
-		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET) \
 		$(IMAGE_NAME) \
 		"baw test long"
 
@@ -44,7 +40,6 @@ docker-alltest: docker-decrypt
 		-v $(CURDIR):/var/workdir \
 		-v /tmp/power:/tmp/power \
 		-e HOVERPOWER_STORE=/tmp/groupmes/repo \
-		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET) \
 		$(IMAGE_NAME) \
 		"baw test all"
 
