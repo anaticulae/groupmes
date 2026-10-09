@@ -13,13 +13,18 @@ import groupmes
 
 
 def area(path: str, prefix: str = '') -> str:
-    return utilo.pathconnector(path, groupmes.PACKAGE, 'area_area', prefix)
+    return utilo.pathconnector(
+        path,
+        groupmes.PROCESS,
+        'area_area',
+        prefix,
+    )
 
 
 def border_leftright(path: str, prefix: str = '') -> str:
     return utilo.pathconnector(
         path,
-        groupmes.PACKAGE,
+        groupmes.PROCESS,
         'border_leftright',
         prefix,
     )
@@ -28,7 +33,7 @@ def border_leftright(path: str, prefix: str = '') -> str:
 def distance(path: str, prefix: str = '') -> str:
     return utilo.pathconnector(
         path,
-        groupmes.PACKAGE,
+        groupmes.PROCESS,
         'distance_distance',
         prefix,
     )

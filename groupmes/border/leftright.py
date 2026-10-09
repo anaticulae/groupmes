@@ -293,7 +293,7 @@ def maximize_leftright(
     assert left_max <= right_min, 'left and right bounds are flipped'
     left = [item[0] for item in boundings if item[0] <= left_max]
     right = [item[2] for item in boundings if item[2] >= right_min]
-    # TODO: DO WE RELAY NEED THIS?
+    # TODO: DO WE REALY NEED THIS?
     left = utilo.mode(left, minimize=True) if left else 0.0
     right = utilo.mode(right, minimize=False) if right else size.size.width
     return left, right

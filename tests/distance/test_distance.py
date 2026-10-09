@@ -17,9 +17,10 @@ import groupmes.path
 
 
 def docu007(pages: tuple = None):
-    utilotest.fixture_requires(hoverpower.DOCU007_PDF)
+    pdf = hoverpower.DOCU007_PDF
+    utilotest.fixture_requires(pdf)
     # TODO: REMOVE DUPLICATION
-    source = hoverpower.link(hoverpower.DOCU007_PDF)
+    source = hoverpower.link(pdf)
     area = groupmes.path.area(source)
     text = iamraw.path.text(source)
     textposition = iamraw.path.textposition(source)
