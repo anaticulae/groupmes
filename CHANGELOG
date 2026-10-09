@@ -1,6 +1,44 @@
 # CHANGELOG
 
 
+## v1.1.2 (2026-10-09)
+
+### Bug Fixes
+
+- **project**: Adjust naming
+  ([`03eef2f`](https://github.com/anaticulae/groupmes/commit/03eef2f628971dadf60415d25a5360ec29bc9c64))
+
+### Chores
+
+- **ci**: Do not run tests twice
+  ([`a64b4c9`](https://github.com/anaticulae/groupmes/commit/a64b4c992df61b17ecf3d081b7f65a187e9422f7))
+
+- **make**: Remove unused vars
+  ([`217fef4`](https://github.com/anaticulae/groupmes/commit/217fef4d4a0bde2b0aa1f06b7facbf741ff3c26f))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`19d8af9`](https://github.com/anaticulae/groupmes/commit/19d8af9662a6c9f7326bfb4244c34586a97ae696))
+
+- **test**: Do not decrypt twice
+  ([`3655920`](https://github.com/anaticulae/groupmes/commit/36559201067867e3050a8799e97f955924ddbbf0))
+
+### Code Style
+
+- **border**: Fix spelling error
+  ([`e3a8b38`](https://github.com/anaticulae/groupmes/commit/e3a8b3864ad52d2330e964eca468d4104b6c5f34))
+
+- **make**: Format Makefile
+  ([`6991743`](https://github.com/anaticulae/groupmes/commit/69917436c4f1f153fa3cdfdcafa54b1c7a8f7749))
+
+### Testing
+
+- **distance**: Simplify code
+  ([`a08d89a`](https://github.com/anaticulae/groupmes/commit/a08d89aa581b5aaa284c55b4356e99654697c3f5))
+
+- **refactor**: Make test more robust
+  ([`9867dbc`](https://github.com/anaticulae/groupmes/commit/9867dbc5e1328ef09506e6c26861dc68403d0b41))
+
+
 ## v1.1.1 (2026-10-08)
 
 ### Bug Fixes
