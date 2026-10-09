@@ -13,7 +13,7 @@ import os
 import groupmes.__patch__
 import groupmes.path
 
-PACKAGE = 'groupme'
+PACKAGE = 'groupmes'
 PROCESS = 'groupme'
 
 __version__ = importlib.metadata.version(PACKAGE)
